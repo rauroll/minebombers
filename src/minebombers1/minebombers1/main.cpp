@@ -25,34 +25,18 @@ MenuScene menuScene = *new MenuScene();
 
 int main(int, char const**)
 {
-    // Create the main window
     sf::RenderWindow window(sf::VideoMode(800, 600), "Minebombers");
 
-    // Start the game loop
     while (window.isOpen())
     {
+        window.clear();
         sf::Event event;
         while (window.pollEvent(event))
         {
-            // Close window: exit
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            }
-            
-            // Escape pressed: exit
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-                window.close();
-            }
+            menuScene.onEvent(event);
         }
-
-        
-        // Clear screen
-        window.clear();
-
-        // scene.update(window);
         menuScene.update(window);
 
-        // Update the window
         window.display();
     }
 

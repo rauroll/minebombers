@@ -20,10 +20,15 @@ public:
         sf::CircleShape shape(50);
         
         // set the shape color to green
-        shape.setFillColor(sf::Color(100, 250, 50));
+        shape.setFillColor(sf::Color(asd++, 250, 50));
         window.draw(shape);
         
     }
+    void onEvent(sf::Event& event) {
+        
+    }
+private:
+    int asd = 5;
     
 };
 
