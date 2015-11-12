@@ -9,10 +9,7 @@
 /* Begin PBXBuildFile section */
 		47D18D1E1BF4909B003C760B /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 47D18D1D1BF4909B003C760B /* ResourcePath.mm */; };
 		47D18D211BF4909B003C760B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 47D18D201BF4909B003C760B /* main.cpp */; };
-		47D18D241BF4909B003C760B /* cute_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 47D18D231BF4909B003C760B /* cute_image.jpg */; };
-		47D18D261BF4909B003C760B /* nice_music.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 47D18D251BF4909B003C760B /* nice_music.ogg */; };
-		47D18D281BF4909B003C760B /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47D18D271BF4909B003C760B /* sansation.ttf */; };
-		47D18D2A1BF4909B003C760B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 47D18D291BF4909B003C760B /* icon.png */; };
+		CF31BFCA1BF4982D00EABA07 /* MenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF31BFC81BF4982D00EABA07 /* MenuScene.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,10 +18,9 @@
 		47D18D1D1BF4909B003C760B /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
 		47D18D1F1BF4909B003C760B /* ResourcePath.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourcePath.hpp; sourceTree = "<group>"; };
 		47D18D201BF4909B003C760B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		47D18D231BF4909B003C760B /* cute_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cute_image.jpg; sourceTree = "<group>"; };
-		47D18D251BF4909B003C760B /* nice_music.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = nice_music.ogg; sourceTree = "<group>"; };
-		47D18D271BF4909B003C760B /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
-		47D18D291BF4909B003C760B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		CF31BFC61BF4974C00EABA07 /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
+		CF31BFC81BF4982D00EABA07 /* MenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuScene.cpp; sourceTree = "<group>"; };
+		CF31BFC91BF4982D00EABA07 /* MenuScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuScene.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +58,9 @@
 				47D18D201BF4909B003C760B /* main.cpp */,
 				47D18D221BF4909B003C760B /* Resources */,
 				47D18D1B1BF4909B003C760B /* Supporting Files */,
+				CF31BFC61BF4974C00EABA07 /* Scene.hpp */,
+				CF31BFC81BF4982D00EABA07 /* MenuScene.cpp */,
+				CF31BFC91BF4982D00EABA07 /* MenuScene.hpp */,
 			);
 			path = minebombers1;
 			sourceTree = "<group>";
@@ -77,10 +76,6 @@
 		47D18D221BF4909B003C760B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				47D18D231BF4909B003C760B /* cute_image.jpg */,
-				47D18D251BF4909B003C760B /* nice_music.ogg */,
-				47D18D271BF4909B003C760B /* sansation.ttf */,
-				47D18D291BF4909B003C760B /* icon.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -142,10 +137,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47D18D2A1BF4909B003C760B /* icon.png in Resources */,
-				47D18D281BF4909B003C760B /* sansation.ttf in Resources */,
-				47D18D261BF4909B003C760B /* nice_music.ogg in Resources */,
-				47D18D241BF4909B003C760B /* cute_image.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +163,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF31BFCA1BF4982D00EABA07 /* MenuScene.cpp in Sources */,
 				47D18D211BF4909B003C760B /* main.cpp in Sources */,
 				47D18D1E1BF4909B003C760B /* ResourcePath.mm in Sources */,
 			);
@@ -311,6 +303,7 @@
 				47D18D2F1BF4909B003C760B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
