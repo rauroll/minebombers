@@ -15,6 +15,7 @@
 class Scene {
 public:
     virtual void update(sf::RenderWindow& window) = 0;
+    virtual void onEvent(sf::Event& event) = 0;
 };
 
 #endif /* Scene_hpp */
