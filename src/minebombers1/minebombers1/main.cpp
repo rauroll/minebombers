@@ -33,7 +33,10 @@ int main(int, char const**)
         sf::Event event;
         while (window.pollEvent(event))
         {
-            menuScene.onEvent(event);
+            if (event.type == sf::Event::Closed)
+                window.close();
+            else
+                menuScene.onEvent(event);
         }
         menuScene.update(window);
 
