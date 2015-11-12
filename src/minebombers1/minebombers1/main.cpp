@@ -20,11 +20,14 @@
 // Here is a small helper for you ! Have a look.
 #include "ResourcePath.hpp"
 #include "MenuScene.hpp"
-
-MenuScene menuScene = *new MenuScene();
+#include "Game.hpp"
 
 int main(int, char const**)
 {
+    Game* game = new Game();
+    MenuScene* menuScene = new MenuScene(*game);
+    game->setScene(*menuScene);
+    
     sf::RenderWindow window(sf::VideoMode(800, 600), "Minebombers");
 
     while (window.isOpen())
@@ -36,9 +39,9 @@ int main(int, char const**)
             if (event.type == sf::Event::Closed)
                 window.close();
             else
-                menuScene.onEvent(event);
+                game->getScene().onEvent(event);
         }
-        menuScene.update(window);
+        game->getScene().update(window);
 
         window.display();
     }
