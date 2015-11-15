@@ -25,7 +25,7 @@
 int main(int, char const**)
 {
     Game* game = new Game();
-    MenuScene* menuScene = new MenuScene(*game);
+    MenuScene* menuScene = new MenuScene();
     game->setScene(*menuScene);
     
     sf::RenderWindow window(sf::VideoMode(800, 600), "Minebombers");

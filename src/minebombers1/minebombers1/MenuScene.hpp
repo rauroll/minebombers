@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include "Scene.hpp"
 
-class MenuScene: Scene {
+class MenuScene: public Scene {
     
 public:
     void update(sf::RenderWindow& window) {

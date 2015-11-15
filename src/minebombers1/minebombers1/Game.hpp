@@ -14,15 +14,15 @@
 
 class Game {
 public:
-    void setScene(Scene& scene) {
+    void setScene(Scene* scene) {
         currentScene = scene;
     }
     
-    Scene& getScene() {
+    Scene* getScene() {
         return currentScene;
     }
 private:
-    Scene currentScene;
+    Scene* currentScene;
 };
 
 #endif /* Game_hpp */
