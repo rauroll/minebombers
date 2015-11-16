@@ -26,7 +26,7 @@ int main(int, char const**)
 {
     Game* game = new Game();
     MenuScene* menuScene = new MenuScene();
-    game->setScene(*menuScene);
+    game->setScene(menuScene);
     
     sf::RenderWindow window(sf::VideoMode(800, 600), "Minebombers");
 
@@ -39,9 +39,9 @@ int main(int, char const**)
             if (event.type == sf::Event::Closed)
                 window.close();
             else
-                game->getScene().onEvent(event);
+                game->getScene()->onEvent(event);
         }
-        game->getScene().update(window);
+        game->getScene()->update(window);
 
         window.display();
     }
