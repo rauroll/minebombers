@@ -22,8 +22,10 @@ public:
     MenuScene() : asd(0) {};
     MenuScene(const MenuScene& orig) : asd(0) {};
     virtual ~MenuScene();
-    void update(sf::RenderWindow& window);
+    void update();
     void onEvent(sf::Event& event);
+    void draw(sf::RenderWindow& window);
+
 private:
     int asd;
 };

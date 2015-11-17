@@ -12,6 +12,8 @@
  */
 
 #include "MenuScene.h"
+#include <cmath>
+#include <cstdlib>
 
 MenuScene::~MenuScene() {
 }
@@ -20,9 +22,15 @@ void MenuScene::onEvent(sf::Event& event) {
     
 }
 
-void MenuScene::update(sf::RenderWindow& window) {
-    sf::CircleShape shape(50);
-    shape.setFillColor(sf::Color(asd++, 250, 50));
-    window.draw(shape);
+void MenuScene::update() {
+    asd++;
 }
+
+void MenuScene::draw(sf::RenderWindow& window) {
+    sf::CircleShape shape(50);
+    shape.setPosition(400 + 200*sin(asd*2*3.1415/360), 200 + 200*cos(asd*2*3.1415/360));
+    shape.setFillColor(sf::Color(asd, 250, 50));
+    window.draw(shape);    
+}
+
 
