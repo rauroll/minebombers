@@ -15,7 +15,7 @@
 
 Tile::Tile(int level, sf::Texture& texture) {
     this->level = level;
-    this->texture = texture
+    this->texture = texture;
 }
 
 Tile::Tile(const Tile& orig) {
