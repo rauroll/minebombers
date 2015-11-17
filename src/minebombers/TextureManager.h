@@ -11,7 +11,9 @@
  * Created on November 17, 2015, 6:35 PM
  */
 
-#include<map>
+
+#include <SFML/Graphics.hpp>
+#include <map>
 
 #ifndef TEXTUREMANAGER_H
 #define TEXTUREMANAGER_H
@@ -22,7 +24,12 @@ public:
     TextureManager(const TextureManager& orig);
     virtual ~TextureManager();
     
-    sf::Texture* load(std::string path);
+    static TextureManager& getInstance() {
+        static TextureManager instance;
+        return instance;
+    }
+    
+    sf::Texture& load(std::string path);
 private:
     std::map<std::string, sf::Texture> textures;
 };

@@ -19,13 +19,17 @@
 
 class Map {
 public:
+    Map();
     Map(int w, int h);
     Map(const Map& orig);
     virtual ~Map();
-private:
+    
+    void setTile(int x, int y, Tile& tile);
+    Tile getTile(int x, int y) const;
+private:    
     int width;
     int height;
-    std::vector< std::vector<Tile*> > tiles;
+    std::vector< std::vector<Tile> > tiles;
     std::vector<Treasure*> treasures;
 };
 

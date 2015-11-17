@@ -38,8 +38,10 @@ OBJECTFILES= \
 	${OBJECTDIR}/Entity.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/Map.o \
+	${OBJECTDIR}/MapGenerator.o \
 	${OBJECTDIR}/MenuScene.o \
 	${OBJECTDIR}/Scene.o \
+	${OBJECTDIR}/TextureManager.o \
 	${OBJECTDIR}/Tile.o \
 	${OBJECTDIR}/Treasure.o \
 	${OBJECTDIR}/main.o
@@ -84,6 +86,11 @@ ${OBJECTDIR}/Map.o: Map.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Map.o Map.cpp
 
+${OBJECTDIR}/MapGenerator.o: MapGenerator.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MapGenerator.o MapGenerator.cpp
+
 ${OBJECTDIR}/MenuScene.o: MenuScene.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -93,6 +100,11 @@ ${OBJECTDIR}/Scene.o: Scene.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Scene.o Scene.cpp
+
+${OBJECTDIR}/TextureManager.o: TextureManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TextureManager.o TextureManager.cpp
 
 ${OBJECTDIR}/Tile.o: Tile.cpp 
 	${MKDIR} -p ${OBJECTDIR}

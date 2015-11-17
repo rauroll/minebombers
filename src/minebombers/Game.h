@@ -15,16 +15,19 @@
 #define GAME_H
 
 #include "Scene.h"
+#include "Map.h"
 
 class Game {
 public:
     Game();
-    Game(const Game& orig);
     virtual ~Game();
     void setScene(Scene* scene);    
     Scene* getScene();
+    
+    Map& getMap();
 private:
     Scene* currentScene;
+    Map map;
 };
 
 #endif /* GAME_H */

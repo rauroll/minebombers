@@ -21,6 +21,9 @@ public:
     Tile(int level, sf::Texture& texture);
     Tile(const Tile& orig);
     virtual ~Tile();
+    
+    sf::Texture& getTexture();
+    int getLevel();
 private:
     int level;
     sf::Texture texture;

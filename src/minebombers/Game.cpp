@@ -12,11 +12,12 @@
  */
 
 #include "Game.h"
+#include "MapGenerator.h"
+#include <iostream>
 
 Game::Game() {
-}
-
-Game::Game(const Game& orig) {
+    MapGenerator gen = MapGenerator();
+    map = gen.generate();
 }
 
 Game::~Game() {
@@ -29,3 +30,8 @@ Scene* Game::getScene() {
 void Game::setScene(Scene* scene) {
     currentScene = scene;
 }
+
+Map& Game::getMap() {
+    return map;
+}
+

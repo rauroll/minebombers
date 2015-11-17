@@ -22,17 +22,17 @@ TextureManager::TextureManager(const TextureManager& orig) {
 TextureManager::~TextureManager() {
 }
 
-sf::Texture* TextureManager::load(std::string path) {
+sf::Texture& TextureManager::load(std::string path) {
     if(textures.find(path) != textures.end()) {
-        return &textures[path];
+        return textures[path];
     }
     else {
         sf::Texture texture;
-        if(!texture.loadFromFile(path) {
+        if(!texture.loadFromFile(path)) {
             //TODO add placeholder
         }
 
         textures[path] = texture;
-        return &texture;
+        return textures[path];
     }
 }

@@ -19,8 +19,17 @@ Tile::Tile(int level, sf::Texture& texture) {
 }
 
 Tile::Tile(const Tile& orig) {
+    level = orig.level;
+    texture = orig.texture;
 }
 
 Tile::~Tile() {
 }
 
+sf::Texture& Tile::getTexture() {
+    return texture;
+}
+
+int Tile::getLevel() {
+    return level;
+}
