@@ -81,6 +81,11 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerOptionItem>-lsfml-graphics -lsfml-window -lsfml-system</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
       </compileType>
       <item path="Game.cpp" ex="false" tool="1" flavor2="0">
       </item>
