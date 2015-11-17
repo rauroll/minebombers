@@ -1,1 +1,8 @@
 .DS_Store
+src/minebombers/nbproject/private/
+src/minebombers/build/
+src/minebombers/nbbuild/
+src/minebombers/dist/
+src/minebombers/nbdist/
+src/minebombers/nbactions.xml
+src/minebombers/.nb-gradle/
