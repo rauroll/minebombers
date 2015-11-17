@@ -47,9 +47,17 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="Entity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Entity.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Game.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Game.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Map.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Map.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MenuScene.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -58,6 +66,10 @@
       <item path="Scene.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Scene.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Treasure.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Treasure.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -87,9 +99,17 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="Entity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Entity.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Game.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Game.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Map.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Map.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MenuScene.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -98,6 +118,10 @@
       <item path="Scene.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Scene.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Treasure.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Treasure.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
