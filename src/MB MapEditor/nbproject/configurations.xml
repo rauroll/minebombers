@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="97">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>Editor.h</itemPath>
+      <itemPath>EditorInfo.h</itemPath>
+      <itemPath>Map.h</itemPath>
+      <itemPath>MapLoader.h</itemPath>
+      <itemPath>MapWriter.h</itemPath>
+      <itemPath>Tile.h</itemPath>
+      <itemPath>TileType.h</itemPath>
+      <itemPath>Tileset.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>Editor.cpp</itemPath>
+      <itemPath>EditorInfo.cpp</itemPath>
+      <itemPath>Map.cpp</itemPath>
+      <itemPath>MapLoader.cpp</itemPath>
+      <itemPath>MapWriter.cpp</itemPath>
+      <itemPath>Tileset.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <standard>8</standard>
+        </ccTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerOptionItem>-lsfml-graphics -lsfml-window -lsfml-system</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="Editor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Editor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EditorInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EditorInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Map.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Map.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MapLoader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MapLoader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MapWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MapWriter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Tile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TileType.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Tileset.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Tileset.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <standard>8</standard>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerOptionItem>-lsfml-graphics -lsfml-window -lsfml-system</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="Editor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Editor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EditorInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EditorInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Map.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Map.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MapLoader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MapLoader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MapWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MapWriter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Tile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TileType.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Tileset.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Tileset.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

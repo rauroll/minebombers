@@ -6,3 +6,11 @@ src/minebombers/dist/
 src/minebombers/nbdist/
 src/minebombers/nbactions.xml
 src/minebombers/.nb-gradle/
+
+src/MB MapEditor/nbproject/private/
+src/MB MapEditor/build/
+src/MB MapEditor/nbbuild/
+src/MB MapEditor/dist/
+src/MB MapEditor/nbdist/
+src/MB MapEditor/nbactions.xml
+src/MB MapEditor/.nb-gradle/
