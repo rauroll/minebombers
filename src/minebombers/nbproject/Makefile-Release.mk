@@ -40,6 +40,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/GameScene.o \
 	${OBJECTDIR}/Map.o \
 	${OBJECTDIR}/MapGenerator.o \
+	${OBJECTDIR}/MapLoader.o \
 	${OBJECTDIR}/MenuScene.o \
 	${OBJECTDIR}/Scene.o \
 	${OBJECTDIR}/TextureManager.o \
@@ -96,6 +97,11 @@ ${OBJECTDIR}/MapGenerator.o: MapGenerator.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MapGenerator.o MapGenerator.cpp
+
+${OBJECTDIR}/MapLoader.o: MapLoader.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MapLoader.o MapLoader.cpp
 
 ${OBJECTDIR}/MenuScene.o: MenuScene.cpp 
 	${MKDIR} -p ${OBJECTDIR}

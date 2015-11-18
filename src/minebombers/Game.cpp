@@ -13,11 +13,13 @@
 
 #include "Game.h"
 #include "MapGenerator.h"
+#include "MapLoader.h"
 #include <iostream>
 
 Game::Game() {
     MapGenerator gen = MapGenerator();
-    map = gen.generate();
+    MapLoader loader = MapLoader();
+    map = loader.fromFile("maps/map.mb");
 }
 
 Game::~Game() {
