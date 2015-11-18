@@ -16,13 +16,10 @@
 TextureManager::TextureManager() {
 }
 
-TextureManager::TextureManager(const TextureManager& orig) {
-}
-
 TextureManager::~TextureManager() {
 }
 
-sf::Texture& TextureManager::load(std::string path) {
+const sf::Texture& TextureManager::load(const std::string& path) {
     if(textures.find(path) != textures.end()) {
         return textures[path];
     }

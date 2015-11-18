@@ -25,14 +25,11 @@ MapGenerator::~MapGenerator() {
 }
 
 Map MapGenerator::generate() {
-    Map map = Map(20, 20);
-    TextureManager manager = TextureManager::getInstance();
+    Map map = Map(100, 100, "assets/tileset.png", sf::Vector2u(16, 16));
     std::cout << "start generate" << std::endl;
-    for(int i = 0; i < 20; i++ ) {
-        for(int j = 0; j < 20; j++ ) {
-            sf::Texture texture = manager.load("assets/mq1.jpg");
-            //std::cout << "set tile" << std::endl;
-            Tile tile = Tile(40, texture);
+    for(int i = 0; i < 100; i++ ) {
+        for(int j = 0; j < 100; j++ ) {
+            Tile tile = Tile(40, rand() % 10);
             map.setTile(i, j, tile);
         }
     }

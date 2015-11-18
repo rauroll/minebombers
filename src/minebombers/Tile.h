@@ -18,15 +18,15 @@
 
 class Tile {
 public:
-    Tile(int level, sf::Texture& texture);
+    Tile(int level, int id);
     Tile(const Tile& orig);
     virtual ~Tile();
     
-    sf::Texture& getTexture();
+    int getId();
     int getLevel();
 private:
     int level;
-    sf::Texture texture;
+    int id;
 };
 
 #endif /* TILE_H */

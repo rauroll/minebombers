@@ -5,6 +5,8 @@
 #include "Game.h"
 #include "Scene.h"
 #include "MenuScene.h"
+#include "MapGenerator.h"
+#include "GameScene.h"
 
 #include <iostream>
 
@@ -12,7 +14,9 @@ int main(int, char const**)
 {
     Game* game = new Game();
     MenuScene* menuScene = new MenuScene();
-    game->setScene(menuScene);
+    GameScene* gameScene = new GameScene(game);
+    game->setScene(gameScene);
+    
     
     sf::RenderWindow window(sf::VideoMode(800, 600), "Minebombers");
     

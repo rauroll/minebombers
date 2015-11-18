@@ -21,7 +21,6 @@
 class TextureManager {
 public:
     TextureManager();
-    TextureManager(const TextureManager& orig);
     virtual ~TextureManager();
     
     static TextureManager& getInstance() {
@@ -29,7 +28,7 @@ public:
         return instance;
     }
     
-    sf::Texture& load(std::string path);
+    const sf::Texture& load(const std::string& path);
 private:
     std::map<std::string, sf::Texture> textures;
 };

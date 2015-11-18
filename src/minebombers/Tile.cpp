@@ -13,21 +13,21 @@
 
 #include "Tile.h"
 
-Tile::Tile(int level, sf::Texture& texture) {
+Tile::Tile(int level, int id) {
     this->level = level;
-    this->texture = texture;
+    this->id = id;
 }
 
 Tile::Tile(const Tile& orig) {
     level = orig.level;
-    texture = orig.texture;
+    id = orig.id;
 }
 
 Tile::~Tile() {
 }
 
-sf::Texture& Tile::getTexture() {
-    return texture;
+int Tile::getId() {
+    return id;
 }
 
 int Tile::getLevel() {

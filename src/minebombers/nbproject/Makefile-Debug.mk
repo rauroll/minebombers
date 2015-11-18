@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Entity.o \
 	${OBJECTDIR}/Game.o \
+	${OBJECTDIR}/GameScene.o \
 	${OBJECTDIR}/Map.o \
 	${OBJECTDIR}/MapGenerator.o \
 	${OBJECTDIR}/MenuScene.o \
@@ -51,8 +52,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=
-CXXFLAGS=
+CCFLAGS=-std=c++11
+CXXFLAGS=-std=c++11
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -80,6 +81,11 @@ ${OBJECTDIR}/Game.o: Game.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Game.o Game.cpp
+
+${OBJECTDIR}/GameScene.o: GameScene.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/GameScene.o GameScene.cpp
 
 ${OBJECTDIR}/Map.o: Map.cpp 
 	${MKDIR} -p ${OBJECTDIR}

@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>Entity.h</itemPath>
       <itemPath>Game.h</itemPath>
+      <itemPath>GameScene.h</itemPath>
       <itemPath>Map.h</itemPath>
       <itemPath>MapGenerator.h</itemPath>
       <itemPath>MenuScene.h</itemPath>
@@ -24,6 +25,7 @@
                    projectFiles="true">
       <itemPath>Entity.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
+      <itemPath>GameScene.cpp</itemPath>
       <itemPath>Map.cpp</itemPath>
       <itemPath>MapGenerator.cpp</itemPath>
       <itemPath>MenuScene.cpp</itemPath>
@@ -54,6 +56,9 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <ccTool>
+          <commandLine>-std=c++11</commandLine>
+        </ccTool>
         <linkerTool>
           <linkerLibItems>
             <linkerOptionItem>-lsfml-graphics -lsfml-window -lsfml-system</linkerOptionItem>
@@ -69,6 +74,10 @@
       <item path="Game.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Game.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GameScene.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GameScene.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Map.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -113,6 +122,7 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
+          <commandLine>-std=c++11</commandLine>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
@@ -135,6 +145,10 @@
       <item path="Game.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Game.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GameScene.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GameScene.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Map.cpp" ex="false" tool="1" flavor2="0">
       </item>
