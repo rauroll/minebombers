@@ -7,6 +7,7 @@
 #include "MenuScene.h"
 #include "MapGenerator.h"
 #include "GameScene.h"
+#include "FPS.h"
 
 #include <iostream>
 
@@ -21,6 +22,7 @@ int main(int, char const**)
     sf::RenderWindow window(sf::VideoMode(800, 600), "Minebombers");
     
     sf::Clock clock;
+    FPS fps;
     clock.restart();
     
     sf::Time dt = sf::milliseconds(10);
@@ -50,6 +52,10 @@ int main(int, char const**)
             game.getScene()->draw(window);
             window.display();
             draw = false;
+            
+            std::string fpsStr = "FPS: " + std::to_string(fps.getFPS());
+            window.setTitle(fpsStr);
+            fps.update();
         }
         else {
             sf::sleep(sf::milliseconds(1));
