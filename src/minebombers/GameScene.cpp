@@ -34,8 +34,8 @@ void GameScene::onEvent(sf::Event& event) {
 
 void GameScene::update() {
     Map& map = game->getMap();
-    Tile tile = Tile(100, rand() % 50);
-    map.setTile(rand() % map.getWidth(), rand() % map.getHeight(), tile);
+    int tile = rand() % 50;
+    map.setTileId(rand() % map.getWidth(), rand() % map.getHeight(), tile);
 }
 
 

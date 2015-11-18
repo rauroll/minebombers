@@ -28,6 +28,7 @@ public:
     
     void setTile(uint16_t x, uint16_t y, Tile& tile);
     Tile getTile(uint16_t x, uint16_t y) const;
+    void setTileId(uint16_t x, uint16_t y, int id);
     
     uint16_t getWidth() const;
     uint16_t getHeight() const;
@@ -44,6 +45,7 @@ private:
     std::vector<Treasure*> treasures;
     
     void initMap();
+    void updateVertex(uint16_t x, uint16_t y);
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 

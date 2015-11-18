@@ -22,8 +22,10 @@ public:
     Tile(const Tile& orig);
     virtual ~Tile();
     
-    int getId();
-    int getLevel();
+    int getId() const;
+    int getLevel() const;
+    
+    void setId(int id);
 private:
     int level;
     int id;

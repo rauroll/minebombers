@@ -67,22 +67,7 @@ void Map::initMap() {
 void Map::setTile(uint16_t x, uint16_t y, Tile& tile) {
     if(x >= 0 && x < width && y >= 0 && y < height) {
         tiles[x][y] = tile;
-
-        sf::Vertex* quad = &vertices[(y + x * width) * 4];
-        
-        int tileNumber = tile.getId();
-        int tX = tileNumber % (tileset.getSize().x / tileSize.x);
-        int tY = tileNumber / (tileset.getSize().x / tileSize.x);
-
-        quad[0].position = sf::Vector2f(x * tileSize.x, y * tileSize.y);
-        quad[1].position = sf::Vector2f((x + 1) * tileSize.x, y * tileSize.y);
-        quad[2].position = sf::Vector2f((x + 1) * tileSize.x, (y + 1) * tileSize.y);
-        quad[3].position = sf::Vector2f(x * tileSize.x, (y + 1) * tileSize.y);
-
-        quad[0].texCoords = sf::Vector2f(tX * tileSize.x, tY * tileSize.y);
-        quad[1].texCoords = sf::Vector2f((tX + 1) * tileSize.x, tY * tileSize.y);
-        quad[2].texCoords = sf::Vector2f((tX + 1) * tileSize.x, (tY + 1) * tileSize.y);
-        quad[3].texCoords = sf::Vector2f(tX * tileSize.x, (tY + 1) * tileSize.y);
+        updateVertex(x, y);
     }
 }
 
@@ -104,3 +89,27 @@ uint16_t Map::getWidth() const {
     return width;
 }
 
+void Map::setTileId(uint16_t x, uint16_t y, int id) {
+    if(x >= 0 && x < width && y >= 0 && y < height) {
+        tiles[x][y].setId(id);
+        updateVertex(x, y);
+    }
+}
+
+void Map::updateVertex(uint16_t x, uint16_t y) {
+        sf::Vertex* quad = &vertices[(y + x * width) * 4];
+        
+        int tileNumber = tiles[x][y].getId();
+        int tX = tileNumber % (tileset.getSize().x / tileSize.x);
+        int tY = tileNumber / (tileset.getSize().x / tileSize.x);
+
+        quad[0].position = sf::Vector2f(x * tileSize.x, y * tileSize.y);
+        quad[1].position = sf::Vector2f((x + 1) * tileSize.x, y * tileSize.y);
+        quad[2].position = sf::Vector2f((x + 1) * tileSize.x, (y + 1) * tileSize.y);
+        quad[3].position = sf::Vector2f(x * tileSize.x, (y + 1) * tileSize.y);
+
+        quad[0].texCoords = sf::Vector2f(tX * tileSize.x, tY * tileSize.y);
+        quad[1].texCoords = sf::Vector2f((tX + 1) * tileSize.x, tY * tileSize.y);
+        quad[2].texCoords = sf::Vector2f((tX + 1) * tileSize.x, (tY + 1) * tileSize.y);
+        quad[3].texCoords = sf::Vector2f(tX * tileSize.x, (tY + 1) * tileSize.y);
+}

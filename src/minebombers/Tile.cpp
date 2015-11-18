@@ -26,10 +26,15 @@ Tile::Tile(const Tile& orig) {
 Tile::~Tile() {
 }
 
-int Tile::getId() {
+int Tile::getId() const {
     return id;
 }
 
-int Tile::getLevel() {
+void Tile::setId(int id) {
+    this->id = id;
+}
+
+
+int Tile::getLevel() const {
     return level;
 }
