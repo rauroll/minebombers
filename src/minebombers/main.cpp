@@ -52,7 +52,7 @@ int main(int argc, char const** argv) {
             window.display();
             draw = false;
             
-            std::string fpsStr = "FPS: " + std::to_string(fps.getFPS());
+            std::string fpsStr = "Minebombers - FPS: " + std::to_string(fps.getFPS());
             window.setTitle(fpsStr);
             fps.update();
         }
