@@ -65,7 +65,6 @@ Map MapLoader::fromFile(const std::string& path) {
                     file.read((char*) &type, 2);
                     
                     Tile tile = Tile(level, tileId);
-                    std::cout << tileId << std::endl;
                     map.setTile(x, y, tile);
                 }
             }
