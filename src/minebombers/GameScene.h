@@ -18,7 +18,7 @@
 
 class GameScene : public Scene {
 public:
-    GameScene(Game* game);
+    GameScene(Game& game);
     GameScene(const GameScene& orig);
     virtual ~GameScene();
     
@@ -26,7 +26,7 @@ public:
     void onEvent(sf::Event& event);
     void draw(sf::RenderWindow& window);
 private:
-    Game* game;
+    Game& game;
 };
 
 #endif /* GAMESCENE_H */

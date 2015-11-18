@@ -13,19 +13,19 @@
 
 #include "GameScene.h"
 
-GameScene::GameScene(Game* game) {
-    this->game = game;
+GameScene::GameScene(Game& game) : game(game) {
+    
 }
 
-GameScene::GameScene(const GameScene& orig) {
-    game = orig.game;
+GameScene::GameScene(const GameScene& orig) : game(orig.game) {
+    
 }
 
 GameScene::~GameScene() {
 }
 
 void GameScene::draw(sf::RenderWindow& window) {
-    window.draw(game->getMap());
+    window.draw(game.getMap());
 }
 
 void GameScene::onEvent(sf::Event& event) {
@@ -33,7 +33,7 @@ void GameScene::onEvent(sf::Event& event) {
 }
 
 void GameScene::update() {
-    Map& map = game->getMap();
+    Map& map = game.getMap();
     int tile = rand() % 50;
     map.setTileId(rand() % map.getWidth(), rand() % map.getHeight(), tile);
 }

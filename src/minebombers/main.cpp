@@ -12,10 +12,10 @@
 
 int main(int, char const**)
 {
-    Game* game = new Game();
-    MenuScene* menuScene = new MenuScene();
-    GameScene* gameScene = new GameScene(game);
-    game->setScene(gameScene);
+    Game game = Game();
+    MenuScene menuScene = MenuScene();
+    GameScene gameScene = GameScene(game);
+    game.setScene(&gameScene);
     
     
     sf::RenderWindow window(sf::VideoMode(800, 600), "Minebombers");
@@ -35,11 +35,11 @@ int main(int, char const**)
             if (event.type == sf::Event::Closed)
                 window.close();
             else
-                game->getScene()->onEvent(event);
+                game.getScene()->onEvent(event);
         }
         
         while(gameTime + dt <= clock.getElapsedTime()) {
-            game->getScene()->update();
+            game.getScene()->update();
             
             gameTime += dt;
             draw = true;
@@ -47,7 +47,7 @@ int main(int, char const**)
         
         if(draw) {
             window.clear();
-            game->getScene()->draw(window);
+            game.getScene()->draw(window);
             window.display();
             draw = false;
         }
