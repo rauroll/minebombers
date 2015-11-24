@@ -25,12 +25,19 @@ MapGenerator::~MapGenerator() {
 }
 
 Map MapGenerator::generate() {
-    Map map = Map(100, 100, "assets/tileset.png", sf::Vector2u(16, 16));
+    uint16_t w = 40;
+    uint16_t h = 20;
+    Map map = Map(w, h);
+    Tileset tileset(sf::Vector2u(16, 16));
+    tileset.load("tileset.png");
+    map.setTileset(tileset);
+    
     std::cout << "start generate" << std::endl;
-    for(int i = 0; i < 100; i++ ) {
-        for(int j = 0; j < 100; j++ ) {
-            Tile tile = Tile(40, rand() % 10);
-            map.setTile(i, j, tile);
+    for(int i = 0; i < w; i++ ) {
+        for(int j = 0; j < h; j++ ) {
+            Tile tile = Tile(40, (j + i) % 10);
+            sf::Vector2u pos(i, j);
+            map.setTile(pos, tile);
         }
     }
     std::cout << "end generate" << std::endl;
