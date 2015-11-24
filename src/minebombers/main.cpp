@@ -18,7 +18,7 @@ int main(int argc, char const** argv) {
     game.setScene(&gameScene);
     
     
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Minebombers");
+    sf::RenderWindow window(sf::VideoMode(800, 800), "Minebombers");
     
     sf::Clock clock;
     FPS fps;
