@@ -80,7 +80,7 @@ void Map::updateVertex(const sf::Vector2u& p) {
     int tu = tileNumber % (tileset.width() / tileset.tileWidth());
     int tv = tileNumber / (tileset.width() / tileset.tileWidth());
 
-    std::cout << (tileset.width() / tileset.tileWidth()) << std::endl;
+    //std::cout << (tileset.width() / tileset.tileWidth()) << std::endl;
 
     // get a pointer to the current tile's quad
     sf::Vertex* quad = &vertices[(p.x + p.y * width) * 4];
