@@ -30,7 +30,7 @@ int main(int argc, char** argv) {
     MBEditor::Tileset tileset = MBEditor::Tileset(sf::Vector2u(16, 16));
     tileset.load("tileset.png");
     
-    /*MBEditor::Map map = MBEditor::Map(25, 25);
+    /*MBEditor::Map map = MBEditor::Map(80, 40);
     map.setTileset(tileset);
     map.setName("MAP1");*/
     MBEditor::MapLoader loader;
