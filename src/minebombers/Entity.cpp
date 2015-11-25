@@ -13,11 +13,11 @@
 
 #include "Entity.h"
 
-const sf::Sprite& Entity::getSprite() {
+const sf::Sprite& Entity::getSprite() const {
     return sprite;
 } 
 
-std::tuple<int, int> Entity::getPos() {
+const std::tuple<int, int> Entity::getPos() const {
     return std::tuple<int, int>(x, y);
 }
 
