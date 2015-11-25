@@ -13,6 +13,7 @@
 
 #include "MapLoader.h"
 #include "Tile.h"
+#include "Tileset.h"
 #include <iostream>
 
 MapLoader::MapLoader() {
@@ -40,8 +41,8 @@ Map MapLoader::fromFile(const std::string& path) {
             std::string name = readString(file);
             std::cout << "Map name: " << name << std::endl;
             
-            std::string tileset = readString(file);
-            std::cout << "Tileset: " << tileset << std::endl;
+            std::string tilesetFile = readString(file);
+            std::cout << "Tileset: " << tilesetFile << std::endl;
             
             uint16_t mapWidth, mapHeight;
             file.read((char*) &mapWidth, 2);
@@ -55,7 +56,13 @@ Map MapLoader::fromFile(const std::string& path) {
            
             std::cout << "Tile width: " << std::to_string(tileWidth) << std::endl << "Tile height: " << std::to_string(tileHeight) << std::endl;
             
-            map = Map(mapWidth, mapHeight, "assets/" + tileset, sf::Vector2u(tileWidth, tileHeight));
+            map = Map(mapWidth, mapHeight);
+            Tileset tileset(sf::Vector2u(tileWidth, tileHeight));
+            
+            tileset.load(tilesetFile);
+            
+            map.setTileset(tileset);
+            
             for(auto y = 0; y < mapHeight; y++) {
                 for(auto x = 0; x < mapWidth; x++) {
                     uint16_t tileId, level, type;
@@ -65,7 +72,9 @@ Map MapLoader::fromFile(const std::string& path) {
                     file.read((char*) &type, 2);
                     
                     Tile tile = Tile(level, tileId);
-                    map.setTile(x, y, tile);
+                    
+                    sf::Vector2u pos(x, y);
+                    map.setTile(pos, tile);
                 }
             }
         }

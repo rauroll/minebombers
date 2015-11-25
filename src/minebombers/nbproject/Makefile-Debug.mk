@@ -46,6 +46,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Scene.o \
 	${OBJECTDIR}/TextureManager.o \
 	${OBJECTDIR}/Tile.o \
+	${OBJECTDIR}/Tileset.o \
 	${OBJECTDIR}/Treasure.o \
 	${OBJECTDIR}/main.o
 
@@ -128,6 +129,11 @@ ${OBJECTDIR}/Tile.o: Tile.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Tile.o Tile.cpp
+
+${OBJECTDIR}/Tileset.o: Tileset.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Tileset.o Tileset.cpp
 
 ${OBJECTDIR}/Treasure.o: Treasure.cpp 
 	${MKDIR} -p ${OBJECTDIR}

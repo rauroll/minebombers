@@ -16,38 +16,45 @@
 
 #include <SFML/Graphics.hpp>
 
+
 #include "Tile.h"
-#include "Treasure.h"
+#include "Tileset.h"
+#include "TileType.h"
 
 class Map : public sf::Drawable, public sf::Transformable {
 public:
     Map();
-    Map(uint16_t w, uint16_t h, const std::string& tileset, sf::Vector2u tileSize);
+    Map(uint16_t width, uint16_t height);
     Map(const Map& orig);
     virtual ~Map();
-    
-    void setTile(uint16_t x, uint16_t y, Tile& tile);
-    Tile getTile(uint16_t x, uint16_t y) const;
-    void setTileId(uint16_t x, uint16_t y, int id);
-    
-    uint16_t getWidth() const;
-    uint16_t getHeight() const;
-private:    
+
+    void setName(const std::string& name);
+    void setTileset(Tileset& tileset);
+    void setTile(sf::Vector2u pos, Tile& tile);
+
+    void clearTiles();
+
+    const Tileset& getTileset() const;
+    const std::vector<std::vector<Tile> >& getTiles() const;
+    const std::string& getName() const;
+
+    const sf::Vector2u getSize() const;
+private:
     uint16_t width;
     uint16_t height;
-    
+
     std::vector<std::vector<Tile> > tiles;
-    sf::Texture tileset;
-    sf::Vector2u tileSize;
-    
+
+    std::string name;
+    Tileset tileset;
+
     sf::VertexArray vertices;
-    
-    std::vector<Treasure*> treasures;
-    
-    void initMap();
-    void updateVertex(uint16_t x, uint16_t y);
+
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    void updateVertex(const sf::Vector2u& p);
+    void updateAllVertex();
 };
+
 
 #endif /* MAP_H */
 
