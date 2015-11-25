@@ -25,7 +25,7 @@ public:
     Entity(const Entity& orig);
     virtual ~Entity();
     const sf::Sprite& getSprite() const; 
-    std::tuple<int, int> getPos() const;
+    const std::tuple<int, int> getPos() const;
     void setPos(int x, int y);
 protected:
     std::string name;
