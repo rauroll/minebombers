@@ -16,6 +16,7 @@
       <itemPath>Scene.h</itemPath>
       <itemPath>TextureManager.h</itemPath>
       <itemPath>Tile.h</itemPath>
+      <itemPath>TileType.h</itemPath>
       <itemPath>Tileset.h</itemPath>
       <itemPath>Treasure.h</itemPath>
     </logicalFolder>
@@ -120,6 +121,8 @@
       </item>
       <item path="Tile.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="TileType.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Tileset.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Tileset.h" ex="false" tool="3" flavor2="0">
@@ -204,6 +207,8 @@
       <item path="Tile.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Tile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TileType.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Tileset.cpp" ex="false" tool="1" flavor2="0">
       </item>
