@@ -42,6 +42,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/MapGenerator.o \
 	${OBJECTDIR}/MapLoader.o \
 	${OBJECTDIR}/MenuScene.o \
+	${OBJECTDIR}/Player.o \
 	${OBJECTDIR}/Scene.o \
 	${OBJECTDIR}/TextureManager.o \
 	${OBJECTDIR}/Tile.o \
@@ -107,6 +108,11 @@ ${OBJECTDIR}/MenuScene.o: MenuScene.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MenuScene.o MenuScene.cpp
+
+${OBJECTDIR}/Player.o: Player.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Player.o Player.cpp
 
 ${OBJECTDIR}/Scene.o: Scene.cpp 
 	${MKDIR} -p ${OBJECTDIR}

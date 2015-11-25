@@ -14,15 +14,26 @@
 #include "Game.h"
 #include "MapGenerator.h"
 #include "MapLoader.h"
+#include "Player.h"
 #include <iostream>
 
 Game::Game() {
     MapGenerator gen = MapGenerator();
     MapLoader loader = MapLoader();
     map = loader.fromFile("maps/map.mb");
+    
+    sf::Sprite playerSprite;
+    sf::Texture texture;
+    texture.loadFromFile("assets/mq1.jpg");
+    playerSprite.setTexture(texture);
+    player = Player(playerSprite, 25, 25, "JORMA");
 }
 
 Game::~Game() {
+}
+
+const Player& Game::getPlayer() {
+    return player;
 }
 
 Scene* Game::getScene() {

@@ -16,6 +16,7 @@
 
 #include "Scene.h"
 #include "Map.h"
+#include "Player.h"
 
 class Game {
 public:
@@ -23,11 +24,12 @@ public:
     virtual ~Game();
     void setScene(Scene* scene);    
     Scene* getScene();
-    
+    const Player& getPlayer();
     Map& getMap();
 private:
     Scene* currentScene;
     Map map;
+    Player player;
 };
 
 #endif /* GAME_H */
