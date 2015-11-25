@@ -18,10 +18,8 @@
 
 class Entity {
 public:
-    Entity(): sprite(), x(0), y(0), health(0), name() {}
-    Entity(const sf::Sprite& sp, int x, int y, int hp, const std::string& name) : 
-    sprite(sp), x(x), y(y), 
-    health(hp), name(name) {};
+    Entity();
+    Entity(const std::string texturefile, int x, int y, int hp, const std::string& name);
     Entity(const Entity& orig);
     
     virtual ~Entity();
@@ -29,6 +27,8 @@ public:
     const sf::Sprite& getSprite() const; 
     const std::tuple<int, int> getPos() const;
     void setPos(int x, int y);
+    
+    std::string getName() const;
 protected:
     std::string name;
     int health;

@@ -12,6 +12,26 @@
  */
 
 #include "Entity.h"
+#include "TextureManager.h"
+
+Entity::Entity() : sprite(), x(0), y(0), health(0), name() {
+}
+
+Entity::Entity(const std::string texturefile, int x, int y, int hp, const std::string& name) {
+    this->x = x;
+    this->y = y;
+    this->health = hp;
+    this->name = name;
+
+    sprite = sf::Sprite(TextureManager::getInstance().load(texturefile));
+}
+
+Entity::Entity(const Entity& orig) : sprite(orig.sprite) {
+    x = orig.x;
+    y = orig.y;
+    health = orig.health;
+    name = orig.name;
+}
 
 Entity::~Entity() {
 
@@ -25,9 +45,13 @@ const std::tuple<int, int> Entity::getPos() const {
     return std::tuple<int, int>(x, y);
 }
 
+std::string Entity::getName() const {
+    return name;
+}
+
+
 void Entity::setPos(int newX, int newY) {
     x = newX;
     y = newY;
 }
-
 

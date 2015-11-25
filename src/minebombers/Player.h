@@ -20,7 +20,7 @@
 class Player: public Entity {
 public:
     Player(): Entity() {};
-    Player(sf::Sprite sp, int x, int y, const std::string& name): Entity(sp, x, y, 100, name) {};
+    Player(const std::string& texturefile, int x, int y, const std::string& name);
     Player(const Player& orig);
     virtual ~Player();
 private:

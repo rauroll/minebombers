@@ -24,7 +24,7 @@ public:
     virtual ~Game();
     void setScene(Scene* scene);    
     Scene* getScene();
-    const Player& getPlayer();
+    const Player& getPlayer() const;
     Map& getMap();
 private:
     Scene* currentScene;

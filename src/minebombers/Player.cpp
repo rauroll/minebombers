@@ -13,5 +13,11 @@
 
 #include "Player.h"
 
+Player::Player(const std::string& texturefile, int x, int y, const std::string& name) : Entity(texturefile, x, y, 100, name) {
+}
+
+Player::Player(const Player& orig) : Entity(orig){
+}
+
 Player::~Player() {
 }

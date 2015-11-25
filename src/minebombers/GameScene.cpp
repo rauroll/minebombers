@@ -12,6 +12,10 @@
  */
 
 #include "GameScene.h"
+#include "TextureManager.h"
+#include "Player.h"
+
+#include <iostream>
 
 GameScene::GameScene(Game& game) : game(game) {
     
@@ -26,7 +30,15 @@ GameScene::~GameScene() {
 
 void GameScene::draw(sf::RenderWindow& window) {
     window.draw(game.getMap());
-    window.draw(game.getPlayer().getSprite());
+    Player player = game.getPlayer();
+    
+    //std::cout << "Player: " << player.getName() << std::endl;
+    
+    const sf::Sprite& sprite = player.getSprite();
+    
+    //sf::Sprite sprite = sf::Sprite(texture);   
+ 
+    window.draw(sprite);
 }
 
 void GameScene::onEvent(sf::Event& event) {
