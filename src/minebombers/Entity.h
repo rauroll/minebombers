@@ -23,7 +23,9 @@ public:
     sprite(sp), x(x), y(y), 
     health(hp), name(name) {};
     Entity(const Entity& orig);
+    
     virtual ~Entity();
+    
     const sf::Sprite& getSprite() const; 
     const std::tuple<int, int> getPos() const;
     void setPos(int x, int y);

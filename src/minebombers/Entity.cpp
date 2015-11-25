@@ -13,6 +13,10 @@
 
 #include "Entity.h"
 
+Entity::~Entity() {
+
+}
+
 const sf::Sprite& Entity::getSprite() const {
     return sprite;
 } 
