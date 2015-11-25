@@ -26,6 +26,7 @@ GameScene::~GameScene() {
 
 void GameScene::draw(sf::RenderWindow& window) {
     window.draw(game.getMap());
+    window.draw(game.getPlayer().getSprite());
 }
 
 void GameScene::onEvent(sf::Event& event) {

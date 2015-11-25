@@ -18,9 +18,15 @@
 
 class Entity {
 public:
-    Entity();
+    Entity(): sprite(), x(0), y(0), health(0), name() {}
+    Entity(const sf::Sprite& sp, int x, int y, int hp, const std::string& name) : 
+    sprite(sp), x(x), y(y), 
+    health(hp), name(name) {};
     Entity(const Entity& orig);
     virtual ~Entity();
+    const sf::Sprite& getSprite() const; 
+    std::tuple<int, int> getPos() const;
+    void setPos(int x, int y);
 protected:
     std::string name;
     int health;

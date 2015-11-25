@@ -13,12 +13,17 @@
 
 #include "Entity.h"
 
-Entity::Entity() {
+const sf::Sprite& Entity::getSprite() {
+    return sprite;
+} 
+
+std::tuple<int, int> Entity::getPos() {
+    return std::tuple<int, int>(x, y);
 }
 
-Entity::Entity(const Entity& orig) {
+void Entity::setPos(int newX, int newY) {
+    x = newX;
+    y = newY;
 }
 
-Entity::~Entity() {
-}
 
