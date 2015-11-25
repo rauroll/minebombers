@@ -34,7 +34,11 @@ void Tile::setId(int id) {
     this->id = id;
 }
 
-
 int Tile::getLevel() const {
     return level;
 }
+
+void Tile::setLevel(int level) {
+    this->level = level;
+}
+

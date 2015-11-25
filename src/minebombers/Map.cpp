@@ -111,6 +111,10 @@ void Map::setTile(sf::Vector2u pos, Tile& tile) {
     updateVertex(pos);
 }
 
+void Map::setTileLevel(sf::Vector2u pos, int level) {
+    tiles[pos.x][pos.y].setLevel(level);
+}
+
 const Tileset& Map::getTileset() const {
     return tileset;
 }

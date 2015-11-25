@@ -26,6 +26,7 @@ public:
     int getLevel() const;
     
     void setId(int id);
+    void setLevel(int level);
 private:
     int level;
     int id;
