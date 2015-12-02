@@ -39,7 +39,7 @@ void GameScene::draw(sf::RenderWindow& window) {
         window.draw(i.getSprite());
     }
  
-    //window.draw(sprite);
+    window.draw(sprite);
 }
 
 void GameScene::onEvent(sf::Event& event) {
