@@ -13,6 +13,8 @@
 
 int main(int argc, char const** argv) {
     Game game = Game();
+    game.setRandomTreasures(50);
+    
     MenuScene menuScene = MenuScene();
     GameScene gameScene = GameScene(game);
     game.setScene(&gameScene);
@@ -24,7 +26,7 @@ int main(int argc, char const** argv) {
     FPS fps;
     clock.restart();
     
-    sf::Time dt = sf::milliseconds(10);
+    sf::Time dt = sf::milliseconds(30);
     sf::Time gameTime = sf::milliseconds(0);
     bool draw = true;
     

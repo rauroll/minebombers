@@ -30,10 +30,16 @@ GameScene::~GameScene() {
 
 void GameScene::draw(sf::RenderWindow& window) {
     window.draw(game.getMap());
+    
     const Player& player = game.getPlayer();
     const sf::Sprite& sprite = player.getSprite();
+    
+    const std::vector<Treasure>& treasures = game.getTreasures();
+    for(auto i : treasures) {
+        window.draw(i.getSprite());
+    }
  
-    window.draw(sprite);
+    //window.draw(sprite);
 }
 
 void GameScene::onEvent(sf::Event& event) {

@@ -30,6 +30,9 @@ public:
     const Player& getPlayer() const;
     Map& getMap();
 
+    void clearTreasures();
+    void setRandomTreasures(uint16_t amount);
+    std::vector<Treasure>& getTreasures();
 private:
     Scene* currentScene;
     Map map;

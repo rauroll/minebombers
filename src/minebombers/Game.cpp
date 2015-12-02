@@ -15,7 +15,12 @@
 #include "MapGenerator.h"
 #include "MapLoader.h"
 #include "Player.h"
+#include "TextureManager.h"
+
+#include <SFML/Graphics.hpp>
+
 #include <iostream>
+#include <cstdio>
 
 Game::Game() {
     MapGenerator gen = MapGenerator();
@@ -50,7 +55,7 @@ bool Game::isEmpty(sf::Vector2u pos) {
         return false;
     }
     
-    return player.getPos() == pos;
+    return player.getPos() != pos;
 }
 
 bool Game::addTreasure(Treasure& treasure) {
@@ -61,3 +66,25 @@ bool Game::addTreasure(Treasure& treasure) {
     return false;
 }
 
+void Game::clearTreasures() {
+    treasures.clear();
+}
+
+void Game::setRandomTreasures(uint16_t amount) {
+    while(amount) {
+        sf::Vector2u pos(rand() % map.getSize().x, rand() % map.getSize().y);
+        
+        if(isEmpty(pos)) {
+            sf::Sprite sprite = sf::Sprite(TextureManager::getInstance().load("assets/my_doc.png"));
+            treasures.push_back(Treasure(sprite, 300, pos));
+            
+            std::cout << pos.x << ", " << pos.y << std::endl;
+            
+            amount--;
+        }
+    }
+}
+
+std::vector<Treasure>& Game::getTreasures() {
+    return treasures;
+}

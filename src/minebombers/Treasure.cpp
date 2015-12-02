@@ -17,12 +17,16 @@ Treasure::Treasure(sf::Sprite& sprite, uint32_t value, sf::Vector2u pos) {
     this->sprite = sprite;
     this->value = value;
     this->position = pos;
+    
+    sprite.setPosition(pos.x * 16, pos.y * 16);
 }
 
 Treasure::Treasure(const Treasure& orig) {
     sprite = orig.sprite;
     value = orig.value;
     position = orig.position;
+    
+    sprite.setPosition(position.x * 16, position.y * 16);
 }
 
 Treasure::~Treasure() {
@@ -36,4 +40,6 @@ sf::Vector2u Treasure::getPosition() const {
     return position;
 }
 
-
+sf::Sprite& Treasure::getSprite() {
+    return sprite;
+}

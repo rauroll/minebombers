@@ -24,6 +24,7 @@ public:
     
     uint32_t getValue() const;
     sf::Vector2u getPosition() const;
+    sf::Sprite& getSprite();
 private:
     sf::Sprite sprite;
     uint32_t value;
