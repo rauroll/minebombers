@@ -19,10 +19,12 @@
 
 class Player: public Entity {
 public:
-    Player(): Entity();
+    Player();
     Player(const std::string& texturefile, int x, int y, const std::string& name);
     Player(const Player& orig);
     virtual ~Player();
+    
+    void incrementMoney(uint32_t amount);
 private:
 
     uint32_t money;
