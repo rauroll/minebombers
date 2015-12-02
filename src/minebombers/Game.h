@@ -14,9 +14,12 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <vector>
+
 #include "Scene.h"
 #include "Map.h"
 #include "Player.h"
+#include "Treasure.h"
 
 class Game {
 public:
@@ -30,6 +33,11 @@ private:
     Scene* currentScene;
     Map map;
     Player player;
+    
+    std::vector<Treasure> treasures;
+    
+    bool isEmpty(sf::Vector2u pos);
+    bool addTreasure(Treasure& treasure);
 };
 
 #endif /* GAME_H */

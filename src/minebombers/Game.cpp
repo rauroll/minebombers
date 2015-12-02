@@ -45,3 +45,12 @@ Map& Game::getMap() {
     return map;
 }
 
+bool Game::isEmpty(sf::Vector2u pos) {
+    if(map.getTile(pos).getType() != FLOOR) {
+        return false;
+    }
+    
+    return player.getPos() == pos;
+}
+
+

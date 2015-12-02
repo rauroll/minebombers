@@ -14,6 +14,7 @@
 #include "MapLoader.h"
 #include "Tile.h"
 #include "Tileset.h"
+#include "TileType.h"
 #include <iostream>
 
 MapLoader::MapLoader() {
@@ -71,7 +72,7 @@ Map MapLoader::fromFile(const std::string& path) {
                     file.read((char*) &level, 2);
                     file.read((char*) &type, 2);
                     
-                    Tile tile = Tile(level, tileId);
+                    Tile tile = Tile(level, tileId, (TileType)type);
                     
                     sf::Vector2u pos(x, y);
                     map.setTile(pos, tile);

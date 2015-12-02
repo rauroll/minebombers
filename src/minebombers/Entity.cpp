@@ -41,8 +41,8 @@ const sf::Sprite& Entity::getSprite() const {
     return sprite;
 } 
 
-const std::tuple<int, int> Entity::getPos() const {
-    return std::tuple<int, int>(x, y);
+sf::Vector2u Entity::getPos() const {
+    return sf::Vector2u(x, y);
 }
 
 std::string Entity::getName() const {

@@ -13,6 +13,7 @@
 
 #include "Map.h"
 #include "TextureManager.h"
+#include "TileType.h"
 #include <iostream>
 
 Map::Map() {
@@ -43,7 +44,7 @@ void Map::clearTiles() {
         std::vector<Tile> column;
 
         for(auto y = 0; y < height; y++) {
-            Tile empty(0, 0);
+            Tile empty(0, 0, FLOOR);
 
             /*if ((y == 0 || y == (height - 1)) || x == 0 || x == (width - 1))
                 empty.type = WALL;*/
@@ -129,4 +130,8 @@ const std::string& Map::getName() const {
 
 const sf::Vector2u Map::getSize() const {
     return sf::Vector2u(width, height);
+}
+
+const Tile& Map::getTile(sf::Vector2u pos) const {
+    return tiles[pos.x][pos.y];
 }

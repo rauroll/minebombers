@@ -13,14 +13,16 @@
 
 #include "Tile.h"
 
-Tile::Tile(int level, int id) {
+Tile::Tile(int level, int id, TileType type) {
     this->level = level;
     this->id = id;
+    this->type = type;
 }
 
 Tile::Tile(const Tile& orig) {
     level = orig.level;
     id = orig.id;
+    type = orig.type;
 }
 
 Tile::~Tile() {
@@ -40,5 +42,9 @@ int Tile::getLevel() const {
 
 void Tile::setLevel(int level) {
     this->level = level;
+}
+
+TileType Tile::getType() const {
+    return type;
 }
 

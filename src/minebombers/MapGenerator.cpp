@@ -13,6 +13,7 @@
 
 #include "MapGenerator.h"
 #include "TextureManager.h"
+#include "TileType.h"
 #include <iostream>
 
 MapGenerator::MapGenerator() {
@@ -35,7 +36,7 @@ Map MapGenerator::generate() {
     std::cout << "start generate" << std::endl;
     for(int i = 0; i < w; i++ ) {
         for(int j = 0; j < h; j++ ) {
-            Tile tile = Tile(40, (j + i) % 10);
+            Tile tile = Tile(40, (j + i) % 10, FLOOR);
             sf::Vector2u pos(i, j);
             map.setTile(pos, tile);
         }

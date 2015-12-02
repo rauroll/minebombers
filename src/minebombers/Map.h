@@ -36,6 +36,7 @@ public:
     void clearTiles();
 
     const Tileset& getTileset() const;
+    const Tile& getTile(sf::Vector2u pos) const;
     const std::vector<std::vector<Tile> >& getTiles() const;
     const std::string& getName() const;
 

@@ -16,9 +16,11 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "TileType.h"
+
 class Tile {
 public:
-    Tile(int level, int id);
+    Tile(int level, int id, TileType type);
     Tile(const Tile& orig);
     virtual ~Tile();
     
@@ -27,9 +29,12 @@ public:
     
     void setId(int id);
     void setLevel(int level);
+    
+    TileType getType() const;
 private:
     int level;
     int id;
+    TileType type;
 };
 
 #endif /* TILE_H */
