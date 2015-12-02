@@ -53,4 +53,12 @@ bool Game::isEmpty(sf::Vector2u pos) {
     return player.getPos() == pos;
 }
 
+bool Game::addTreasure(Treasure& treasure) {
+    if(isEmpty(treasure.getPosition())) {
+        treasures.push_back(treasure);
+        return true;
+    }
+    return false;
+}
+
 

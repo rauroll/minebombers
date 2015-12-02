@@ -32,4 +32,8 @@ uint32_t Treasure::getValue() const {
     return value;
 }
 
+sf::Vector2u Treasure::getPosition() const {
+    return position;
+}
+
 

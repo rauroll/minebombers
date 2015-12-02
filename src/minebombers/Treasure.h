@@ -23,6 +23,7 @@ public:
     virtual ~Treasure();
     
     uint32_t getValue() const;
+    sf::Vector2u getPosition() const;
 private:
     sf::Sprite sprite;
     uint32_t value;
