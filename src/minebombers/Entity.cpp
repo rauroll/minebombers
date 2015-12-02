@@ -13,6 +13,7 @@
 
 #include "Entity.h"
 #include "TextureManager.h"
+#include <iostream>
 
 Entity::Entity() : sprite(), x(0), y(0), health(0), name() {
 }
@@ -31,6 +32,7 @@ Entity::Entity(const Entity& orig) : sprite(orig.sprite) {
     y = orig.y;
     health = orig.health;
     name = orig.name;
+    
 }
 
 Entity::~Entity() {
@@ -48,7 +50,6 @@ sf::Vector2u Entity::getPos() const {
 std::string Entity::getName() const {
     return name;
 }
-
 
 void Entity::setPos(int newX, int newY) {
     x = newX;

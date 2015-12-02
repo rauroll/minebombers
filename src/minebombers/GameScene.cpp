@@ -30,13 +30,8 @@ GameScene::~GameScene() {
 
 void GameScene::draw(sf::RenderWindow& window) {
     window.draw(game.getMap());
-    Player player = game.getPlayer();
-    
-    //std::cout << "Player: " << player.getName() << std::endl;
-    
+    const Player& player = game.getPlayer();
     const sf::Sprite& sprite = player.getSprite();
-    
-    //sf::Sprite sprite = sf::Sprite(texture);   
  
     window.draw(sprite);
 }

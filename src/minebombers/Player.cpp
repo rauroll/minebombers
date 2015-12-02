@@ -12,6 +12,7 @@
  */
 
 #include "Player.h"
+#include <iostream>
 
 Player::Player() : Entity() {
     money = 0;
@@ -32,4 +33,3 @@ Player::~Player() {
 void Player::incrementMoney(uint32_t amount) {
     money += amount;
 }
-

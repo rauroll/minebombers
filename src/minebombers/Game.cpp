@@ -61,4 +61,3 @@ bool Game::addTreasure(Treasure& treasure) {
     return false;
 }
 
-

@@ -29,6 +29,7 @@ public:
     Scene* getScene();
     const Player& getPlayer() const;
     Map& getMap();
+
 private:
     Scene* currentScene;
     Map map;
