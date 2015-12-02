@@ -27,6 +27,7 @@ public:
     const sf::Sprite& getSprite() const; 
     sf::Vector2u getPos() const;
     void setPos(int x, int y);
+    void move(sf::Vector2u dir);
     
     std::string getName() const;
 protected:

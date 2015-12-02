@@ -51,6 +51,11 @@ std::string Entity::getName() const {
     return name;
 }
 
+void Entity::move(sf::Vector2u dir) {
+    x += dir.x;
+    y += dir.y;
+} 
+
 void Entity::setPos(int newX, int newY) {
     x = newX;
     y = newY;

@@ -78,8 +78,6 @@ void Game::setRandomTreasures(uint16_t amount) {
             sf::Sprite sprite = sf::Sprite(TextureManager::getInstance().load("assets/my_doc.png"));
             treasures.push_back(Treasure(sprite, 300, pos));
             
-            std::cout << pos.x << ", " << pos.y << std::endl;
-            
             amount--;
         }
     }
