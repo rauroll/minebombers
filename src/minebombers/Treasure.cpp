@@ -13,12 +13,23 @@
 
 #include "Treasure.h"
 
-Treasure::Treasure() {
+Treasure::Treasure(sf::Sprite& sprite, uint32_t value, sf::Vector2u pos) {
+    this->sprite = sprite;
+    this->value = value;
+    this->position = pos;
 }
 
 Treasure::Treasure(const Treasure& orig) {
+    sprite = orig.sprite;
+    value = orig.value;
+    position = orig.position;
 }
 
 Treasure::~Treasure() {
 }
+
+uint32_t Treasure::getValue() const {
+    return value;
+}
+
 
