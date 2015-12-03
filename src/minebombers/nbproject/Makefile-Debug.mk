@@ -36,6 +36,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Entity.o \
+	${OBJECTDIR}/Explosive.o \
+	${OBJECTDIR}/ExplosiveWeapon.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/GameScene.o \
 	${OBJECTDIR}/Map.o \
@@ -43,11 +45,14 @@ OBJECTFILES= \
 	${OBJECTDIR}/MapLoader.o \
 	${OBJECTDIR}/MenuScene.o \
 	${OBJECTDIR}/Player.o \
+	${OBJECTDIR}/Projectile.o \
+	${OBJECTDIR}/ProjectileWeapon.o \
 	${OBJECTDIR}/Scene.o \
 	${OBJECTDIR}/TextureManager.o \
 	${OBJECTDIR}/Tile.o \
 	${OBJECTDIR}/Tileset.o \
 	${OBJECTDIR}/Treasure.o \
+	${OBJECTDIR}/Weapon.o \
 	${OBJECTDIR}/main.o
 
 
@@ -79,6 +84,16 @@ ${OBJECTDIR}/Entity.o: Entity.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Entity.o Entity.cpp
+
+${OBJECTDIR}/Explosive.o: Explosive.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Explosive.o Explosive.cpp
+
+${OBJECTDIR}/ExplosiveWeapon.o: ExplosiveWeapon.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ExplosiveWeapon.o ExplosiveWeapon.cpp
 
 ${OBJECTDIR}/Game.o: Game.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -115,6 +130,16 @@ ${OBJECTDIR}/Player.o: Player.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Player.o Player.cpp
 
+${OBJECTDIR}/Projectile.o: Projectile.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Projectile.o Projectile.cpp
+
+${OBJECTDIR}/ProjectileWeapon.o: ProjectileWeapon.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ProjectileWeapon.o ProjectileWeapon.cpp
+
 ${OBJECTDIR}/Scene.o: Scene.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -139,6 +164,11 @@ ${OBJECTDIR}/Treasure.o: Treasure.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Treasure.o Treasure.cpp
+
+${OBJECTDIR}/Weapon.o: Weapon.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Weapon.o Weapon.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
