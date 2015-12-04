@@ -8,12 +8,13 @@
  * File:   Projectile.cpp
  * Author: Olli
  * 
- * Created on December 2, 2015, 2:22 PM
+ * Created on December 3, 2015, 12:56 PM
  */
 
 #include "Projectile.h"
 
-Projectile::Projectile() {
+Projectile::Projectile(const std::string& texturefile, sf::Vector2u loc, sf::Vector2u dir) : MyDrawable(texturefile, loc.x, loc.y, name) {
+    
 }
 
 Projectile::Projectile(const Projectile& orig) {

@@ -13,13 +13,17 @@
 
 #include "Weapon.h"
 
-Weapon::Weapon(Map& map) {
-    this->map = map;
+Weapon::Weapon(std::string name) {
+    this->name = name;
 }
 
 Weapon::Weapon(const Weapon& orig) {
 }
 
 Weapon::~Weapon() {
+}
+
+void Weapon::use(Game& game, sf::Vector2u loc, sf::Vector2u dir) {
+    
 }
 

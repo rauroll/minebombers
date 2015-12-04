@@ -17,18 +17,20 @@
 
 #include "Map.h"
 #include <SFML/Graphics.hpp>
+#include <string.h>
 
 
 class Weapon {
 public:
-    Weapon(Map& map);
+    Weapon(std::string name);
     Weapon(const Weapon& orig);
     virtual ~Weapon();
     
-    virtual void use(sf::Vector2u loc, sf::Vector2u dir) = 0;
+    void use(Game& game, sf::Vector2u loc, sf::Vector2u dir);
     
 protected:
-    Map &map;
+    std::string name;
+    
 
 };
 

@@ -6,36 +6,29 @@
 
 /* 
  * File:   Entity.h
- * Author: Jere
+ * Author: Olli
  *
- * Created on 17. marraskuuta 2015, 18:00
+ * Created on December 4, 2015, 2:13 PM
  */
 
 #ifndef ENTITY_H
 #define ENTITY_H
 
 #include <SFML/Graphics.hpp>
+#include "MyDrawable.h"
 
-class Entity {
+
+
+
+class Entity : public MyDrawable {
 public:
     Entity();
     Entity(const std::string texturefile, int x, int y, int hp, const std::string& name);
     Entity(const Entity& orig);
-    
     virtual ~Entity();
+private:
     
-    const sf::Sprite& getSprite() const; 
-    sf::Vector2u getPos() const;
-    void setPos(int x, int y);
-    void move(sf::Vector2u dir);
-    
-    std::string getName() const;
-protected:
-    std::string name;
     int health;
-    sf::Sprite sprite;
-    int x;
-    int y;
 };
 
 #endif /* ENTITY_H */
