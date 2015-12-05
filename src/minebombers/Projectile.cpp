@@ -13,7 +13,9 @@
 
 #include "Projectile.h"
 
-Projectile::Projectile(const std::string& name, const std::string& texturefile, sf::Vector2u loc, sf::Vector2u dir) : MyDrawable(texturefile, loc.x, loc.y, name) {
+Projectile::Projectile(const std::string& name, const std::string& texturefile, int damage, sf::Vector2u loc, sf::Vector2u dir) : MyDrawable(texturefile, loc.x, loc.y, name) {
+    this->damage = damage;
+    this->dir = dir;
 }
 
 Projectile::Projectile(const Projectile& orig) {
