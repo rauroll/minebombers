@@ -31,7 +31,10 @@ GameScene::~GameScene() {
 void GameScene::draw(sf::RenderWindow& window) {
     window.draw(game.getMap());
     
-    const Player& player = game.getPlayer();
+    Player& player = game.getPlayer();
+    player.updateSpritePosition();
+    
+    
     const sf::Sprite& sprite = player.getSprite();
     
     const std::vector<Treasure>& treasures = game.getTreasures();
@@ -43,12 +46,19 @@ void GameScene::draw(sf::RenderWindow& window) {
 }
 
 void GameScene::onEvent(sf::Event& event) {
-
+    switch (event.type) {
+          case sf::Event::KeyPressed:
+              game.getPlayer().move(sf::Vector2u(1, 1));
+              break;
+          default:
+              break;
+    }
 }
 
 void GameScene::update() {
     Map& map = game.getMap();
     int tile = rand() % 50;
+    
     //map.setTileId(rand() % map.getWidth(), rand() % map.getHeight(), tile);
 }
 

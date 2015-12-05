@@ -30,11 +30,12 @@ public:
     void move(sf::Vector2u dir);
     
     std::string getName() const;
+    
+    void updateSpritePosition();
 protected:
     std::string name;
     sf::Sprite sprite;
-    int x;
-    int y;
+    sf::Vector2u position;
 };
 
 #endif /* MYDRAWABLE_H */
