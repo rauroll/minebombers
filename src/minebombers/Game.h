@@ -27,7 +27,6 @@ public:
     virtual ~Game();
     void setScene(Scene* scene);    
     Scene* getScene();
-    Player& getPlayer();
     Map& getMap();
     std::vector<Player>& getPlayers();
 
@@ -40,10 +39,8 @@ public:
 private:
     Scene* currentScene;
     Map map;
-    Player player;
     
     std::vector<Player> players;
-    
     std::vector<Treasure> treasures;
     
     bool isEmpty(sf::Vector2u pos);

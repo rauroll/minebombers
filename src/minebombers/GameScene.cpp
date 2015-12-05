@@ -14,6 +14,7 @@
 #include "GameScene.h"
 #include "TextureManager.h"
 #include "Player.h"
+#include "AudioManager.h"
 
 #include <iostream>
 
@@ -50,8 +51,8 @@ void GameScene::onEvent(sf::Event& event) {
             sf::Vector2u& v = keyboard[event.key.code];
             //std::cout << "painettiin:" << event.key.code << ", " << v.x << ", " << v.y << std::endl;
             if(!v.x) {
-                v.x = 1;
-                v.y = 0;
+                v.x = 1; //on/off
+                v.y = 0; //time
             }
             
             break;

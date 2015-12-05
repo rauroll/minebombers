@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>AudioManager.h</itemPath>
       <itemPath>Entity.h</itemPath>
       <itemPath>FPS.h</itemPath>
       <itemPath>Game.h</itemPath>
@@ -31,6 +32,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>AudioManager.cpp</itemPath>
       <itemPath>Entity.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
       <itemPath>GameScene.cpp</itemPath>
@@ -75,11 +77,15 @@
         </ccTool>
         <linkerTool>
           <linkerLibItems>
-            <linkerOptionItem>-lsfml-graphics -lsfml-window -lsfml-system</linkerOptionItem>
+            <linkerOptionItem>-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
       <item path="../../../../Downloads/mq1.jpg" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AudioManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AudioManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Entity.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -174,11 +180,15 @@
         </asmTool>
         <linkerTool>
           <linkerLibItems>
-            <linkerOptionItem>-lsfml-graphics -lsfml-window -lsfml-system</linkerOptionItem>
+            <linkerOptionItem>-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
       <item path="../../../../Downloads/mq1.jpg" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AudioManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AudioManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Entity.cpp" ex="false" tool="1" flavor2="0">
       </item>

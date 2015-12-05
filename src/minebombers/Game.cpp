@@ -26,16 +26,11 @@ Game::Game() {
     MapGenerator gen = MapGenerator();
     MapLoader loader = MapLoader();
     
-    player = Player("assets/mq1.jpg", 0, 0, "JORMA");
     //map = loader.fromFile("maps/map.mb");
     map = gen.generate();
 }
 
 Game::~Game() {
-}
-
-Player& Game::getPlayer() {
-    return player;
 }
 
 std::vector<Player>& Game::getPlayers() {
@@ -59,7 +54,12 @@ bool Game::isEmpty(sf::Vector2u pos) {
         return false;
     }
     
-    return player.getPos() != pos;
+    for(auto& i : players) {
+        if(i.getPos() == pos)
+            return false;
+    }
+    
+    return true;
 }
 
 bool Game::addTreasure(Treasure& treasure) {
