@@ -13,8 +13,10 @@
 
 #include "Weapon.h"
 
-Weapon::Weapon(std::string name) {
+Weapon::Weapon(std::string name, int price, int damage) {
     this->name = name;
+    this->price = price;
+    this->damage = damage;
 }
 
 Weapon::Weapon(const Weapon& orig) {

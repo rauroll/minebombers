@@ -23,7 +23,7 @@
 
 class Weapon {
 public:
-    Weapon(std::string name);
+    Weapon(std::string name, int price, int damage);
     Weapon(const Weapon& orig);
     virtual ~Weapon();
     
@@ -31,7 +31,8 @@ public:
     
 protected:
     std::string name;
-    
+    int price;
+    int damage;
 
 };
 
