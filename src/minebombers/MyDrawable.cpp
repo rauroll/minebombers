@@ -37,7 +37,8 @@ MyDrawable::MyDrawable(const std::string texturefile, int x, int y, const std::s
 MyDrawable::MyDrawable(const MyDrawable& orig) : sprite(orig.sprite) {
     position = orig.position;
     name = orig.name;
-    sprite.setPosition(position.x*16, position.y*16);
+    sprite.setPosition(orig.sprite.getPosition());
+    //sprite.setPosition(position.x*16, position.y*16);
 }
 
 MyDrawable::~MyDrawable() {

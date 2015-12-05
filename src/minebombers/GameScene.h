@@ -15,6 +15,8 @@
 #define GAMESCENE_H
 
 #include "Game.h"
+#include <map>
+#include <tuple>
 
 class GameScene : public Scene {
 public:
@@ -27,6 +29,7 @@ public:
     void draw(sf::RenderWindow& window);
 private:
     Game& game;
+    std::map<sf::Keyboard::Key, sf::Vector2u> keyboard;
 };
 
 #endif /* GAMESCENE_H */

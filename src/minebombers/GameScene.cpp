@@ -36,36 +36,66 @@ void GameScene::draw(sf::RenderWindow& window) {
         window.draw(i.getSprite());
     }
     
-    const std::vector<Player>& players = game.getPlayers();
-    for(auto i : players) {
+    std::vector<Player>& players = game.getPlayers();
+    for(auto& i : players) {
         window.draw(i.getSprite());
         i.updateSpritePosition();
     }
 }
 
 void GameScene::onEvent(sf::Event& event) {
-    switch (event.type) {
-          case sf::Event::KeyPressed:
-              if (event.key.code == sf::Keyboard::Up)
-                  game.movePlayer(0, sf::Vector2u(0, -1));
-              if (event.key.code == sf::Keyboard::Right)
-                  game.movePlayer(0, sf::Vector2u(1, 0));
-              if (event.key.code == sf::Keyboard::Down)
-                  game.movePlayer(0, sf::Vector2u(0, 1));
-              if (event.key.code == sf::Keyboard::Left)
-                  game.movePlayer(0, sf::Vector2u(-1, 0));
-              
-              break;
-          default:
-              break;
+    switch (event.type)
+    {
+        case sf::Event::KeyPressed: {
+            sf::Vector2u& v = keyboard[event.key.code];
+            //std::cout << "painettiin:" << event.key.code << ", " << v.x << ", " << v.y << std::endl;
+            if(!v.x) {
+                v.x = 1;
+                v.y = 0;
+            }
+            
+            break;
+        }
+        case sf::Event::KeyReleased:
+            //std::cout << "release" << std::endl;
+            keyboard[event.key.code] = sf::Vector2u(0, 0);
+            break;
+        default:
+            break;
     }
 }
 
 void GameScene::update() {
-    Map& map = game.getMap();
-    int tile = rand() % 50;
+    for(auto& i : keyboard) {
+        if(i.second.x) {
+            i.second.y ++;
+            
+            //std::cout << i.second.y << std::endl;
+            
+            if(i.second.y % 5 == 1) {
+                //Player 1
+                if(i.first == sf::Keyboard::Up)
+                    game.movePlayer(0, sf::Vector2u(0, -1));
+                if(i.first == sf::Keyboard::Down)
+                    game.movePlayer(0, sf::Vector2u(0, 1));
+                if(i.first == sf::Keyboard::Right)
+                    game.movePlayer(0, sf::Vector2u(1, 0));
+                if(i.first == sf::Keyboard::Left)
+                    game.movePlayer(0, sf::Vector2u(-1, 0));
+                
+                //Player 2
+                if(i.first == sf::Keyboard::W)
+                    game.movePlayer(1, sf::Vector2u(0, -1));
+                if(i.first == sf::Keyboard::S)
+                    game.movePlayer(1, sf::Vector2u(0, 1));
+                if(i.first == sf::Keyboard::D)
+                    game.movePlayer(1, sf::Vector2u(1, 0));
+                if(i.first == sf::Keyboard::A)
+                    game.movePlayer(1, sf::Vector2u(-1, 0));
+            }
+        }
+    }
     
-    //map.setTileId(rand() % map.getWidth(), rand() % map.getHeight(), tile);
 }
 
 
