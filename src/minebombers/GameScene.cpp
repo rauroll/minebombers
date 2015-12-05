@@ -14,6 +14,7 @@
 #include "GameScene.h"
 #include "TextureManager.h"
 #include "Player.h"
+#include "AudioManager.h"
 
 #include <iostream>
 
@@ -57,6 +58,7 @@ void GameScene::onEvent(sf::Event& event) {
               if (event.key.code == sf::Keyboard::Left)
                   game.movePlayer(0, sf::Vector2u(-1, 0));
               
+              AudioManager::getInstance().playSound("dead");
               break;
           default:
               break;

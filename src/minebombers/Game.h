@@ -39,7 +39,6 @@ private:
     Scene* currentScene;
     Map map;
     Player player;
-    
     std::vector<Treasure> treasures;
     
     bool isEmpty(sf::Vector2u pos);

@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/AudioManager.o \
 	${OBJECTDIR}/Entity.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/GameScene.o \
@@ -77,6 +78,11 @@ LDLIBSOPTIONS=-lsfml-graphics -lsfml-window -lsfml-system
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/minebombers: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/minebombers ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/AudioManager.o: AudioManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AudioManager.o AudioManager.cpp
 
 ${OBJECTDIR}/Entity.o: Entity.cpp 
 	${MKDIR} -p ${OBJECTDIR}
