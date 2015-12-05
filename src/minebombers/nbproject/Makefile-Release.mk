@@ -69,7 +69,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lsfml-graphics -lsfml-window -lsfml-system
+LDLIBSOPTIONS=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}

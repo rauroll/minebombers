@@ -47,6 +47,7 @@ void GameScene::draw(sf::RenderWindow& window) {
 }
 
 void GameScene::onEvent(sf::Event& event) {
+    AudioManager::getInstance().playSound("dead");
     switch (event.type) {
           case sf::Event::KeyPressed:
               if (event.key.code == sf::Keyboard::Up)
@@ -57,8 +58,6 @@ void GameScene::onEvent(sf::Event& event) {
                   game.movePlayer(0, sf::Vector2u(0, 1));
               if (event.key.code == sf::Keyboard::Left)
                   game.movePlayer(0, sf::Vector2u(-1, 0));
-              
-              AudioManager::getInstance().playSound("dead");
               break;
           default:
               break;

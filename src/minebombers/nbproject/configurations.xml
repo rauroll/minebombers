@@ -180,7 +180,7 @@
         </asmTool>
         <linkerTool>
           <linkerLibItems>
-            <linkerOptionItem>-lsfml-graphics -lsfml-window -lsfml-system</linkerOptionItem>
+            <linkerOptionItem>-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
