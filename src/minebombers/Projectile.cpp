@@ -25,3 +25,7 @@ Projectile::Projectile(const Projectile& orig) {
 Projectile::~Projectile() {
 }
 
+void Projectile::explode() {
+    
+}
+

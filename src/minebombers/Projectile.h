@@ -22,11 +22,12 @@ public:
     Projectile(const std::string& name, const std::string& texturefile, int damage, sf::Vector2u radius, sf::Vector2u loc, sf::Vector2u dir);
     Projectile(const Projectile& orig);
     virtual ~Projectile();
-    
+    void explode();
 private:
     int damage;
     sf::Vector2u dir;
     sf::Vector2u radius;
+    bool state;
 };
 
 #endif /* BULLET_H */
