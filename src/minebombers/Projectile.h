@@ -19,14 +19,14 @@
 
 class Projectile : public MyDrawable {
 public:
-    Projectile(const std::string& name, const std::string& texturefile, int damage, sf::Vector2u loc, sf::Vector2u dir);
+    Projectile(const std::string& name, const std::string& texturefile, int damage, sf::Vector2u radius, sf::Vector2u loc, sf::Vector2u dir);
     Projectile(const Projectile& orig);
     virtual ~Projectile();
     
 private:
     int damage;
     sf::Vector2u dir;
-    
+    sf::Vector2u radius;
 };
 
 #endif /* BULLET_H */
