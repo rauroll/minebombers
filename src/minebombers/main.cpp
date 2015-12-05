@@ -14,6 +14,7 @@
 int main(int argc, char const** argv) {
     Game game = Game();
     game.setRandomTreasures(50);
+    game.addPlayer("JERE");
     
     MenuScene menuScene = MenuScene();
     GameScene gameScene = GameScene(game);

@@ -38,6 +38,10 @@ Player& Game::getPlayer() {
     return player;
 }
 
+std::vector<Player>& Game::getPlayers() {
+    return players;
+}
+
 Scene* Game::getScene() {
     return currentScene;
 }
@@ -88,8 +92,16 @@ std::vector<Treasure>& Game::getTreasures() {
 }
 
 void Game::movePlayer(uint8_t player, sf::Vector2u d) {
-    Player& p = this->player;
-    
-    p.move(d);
+    if(player < players.size()) {
+        players[player].move(d);
+    }
 }
 
+void Game::addPlayer(const std::string& name) {
+    sf::Vector2u pos(rand() % 20, rand() % 20);
+    
+    Player p("assets/mq1.jpg", 1, 1, name);
+    players.push_back(p);
+    
+    std::cout << pos.x << "," << pos.y << std::endl;
+}

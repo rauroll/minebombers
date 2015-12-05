@@ -22,7 +22,7 @@ Entity::Entity(const std::string texturefile, int x, int y, int hp, const std::s
     this->health = hp;
 }
 
-Entity::Entity(const Entity& orig) /* inherit mydrawable here */{
+Entity::Entity(const Entity& orig) : MyDrawable(orig) {
     this->health = orig.health;
 }
 

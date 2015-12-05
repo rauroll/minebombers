@@ -29,16 +29,20 @@ public:
     Scene* getScene();
     Player& getPlayer();
     Map& getMap();
+    std::vector<Player>& getPlayers();
 
     void clearTreasures();
     void setRandomTreasures(uint16_t amount);
     std::vector<Treasure>& getTreasures();
     
+    void addPlayer(const std::string& name);
     void movePlayer(uint8_t player, sf::Vector2u d);
 private:
     Scene* currentScene;
     Map map;
     Player player;
+    
+    std::vector<Player> players;
     
     std::vector<Treasure> treasures;
     

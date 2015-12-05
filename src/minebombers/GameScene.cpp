@@ -31,18 +31,17 @@ GameScene::~GameScene() {
 void GameScene::draw(sf::RenderWindow& window) {
     window.draw(game.getMap());
     
-    Player& player = game.getPlayer();
-    player.updateSpritePosition();
-    
-    
-    const sf::Sprite& sprite = player.getSprite();
-    
     const std::vector<Treasure>& treasures = game.getTreasures();
     for(auto i : treasures) {
         window.draw(i.getSprite());
     }
- 
-    window.draw(sprite);
+    
+    const std::vector<Player>& players = game.getPlayers();
+    for(auto i : players) {
+        std::cout << players[0].getName() << std::endl;
+        window.draw(i.getSprite());
+        i.updateSpritePosition();
+    }
 }
 
 void GameScene::onEvent(sf::Event& event) {

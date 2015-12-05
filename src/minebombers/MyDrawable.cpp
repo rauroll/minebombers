@@ -30,12 +30,14 @@ MyDrawable::MyDrawable(const std::string texturefile, int x, int y, const std::s
     sprite = sf::Sprite(texture);
     sprite.setScale(16.0 / size.x, 16.0 / size.y);
     
-    sprite.setPosition(x, y);
+    sprite.setPosition(x*16, y*16);
+    std::cout << sprite.getPosition().x << ", " << sprite.getPosition().y << std::endl;
 }
 
 MyDrawable::MyDrawable(const MyDrawable& orig) : sprite(orig.sprite) {
     position = orig.position;
-    name = orig.name;   
+    name = orig.name;
+    sprite.setPosition(position.x*16, position.y*16);
 }
 
 MyDrawable::~MyDrawable() {
@@ -67,7 +69,7 @@ void MyDrawable::updateSpritePosition() {
     int dX = position.x*16 - pixelPos.x;
     int dY = position.y*16 - pixelPos.y;
     
-    //std::cout << position.x << ", " << position.y << " | " << pixelPos.x << ", " << pixelPos.y << " | " << dX << ", " << dY << std::endl;
+    std::cout << position.x << ", " << position.y << " | " << pixelPos.x << ", " << pixelPos.y << " | " << dX << ", " << dY << std::endl;
     
     if(dX != 0) {
         pixelPos.x += std::min(std::abs(dX), 4)*(std::abs(dX)/dX);
