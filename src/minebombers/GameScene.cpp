@@ -48,7 +48,15 @@ void GameScene::draw(sf::RenderWindow& window) {
 void GameScene::onEvent(sf::Event& event) {
     switch (event.type) {
           case sf::Event::KeyPressed:
-              game.getPlayer().move(sf::Vector2u(1, 1));
+              if (event.key.code == sf::Keyboard::Up)
+                  game.movePlayer(0, sf::Vector2u(0, -1));
+              if (event.key.code == sf::Keyboard::Right)
+                  game.movePlayer(0, sf::Vector2u(1, 0));
+              if (event.key.code == sf::Keyboard::Down)
+                  game.movePlayer(0, sf::Vector2u(0, 1));
+              if (event.key.code == sf::Keyboard::Left)
+                  game.movePlayer(0, sf::Vector2u(-1, 0));
+              
               break;
           default:
               break;
