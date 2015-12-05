@@ -69,7 +69,7 @@ void MyDrawable::updateSpritePosition() {
     int dX = position.x*16 - pixelPos.x;
     int dY = position.y*16 - pixelPos.y;
     
-    std::cout << position.x << ", " << position.y << " | " << pixelPos.x << ", " << pixelPos.y << " | " << dX << ", " << dY << std::endl;
+    //std::cout << position.x << ", " << position.y << " | " << pixelPos.x << ", " << pixelPos.y << " | " << dX << ", " << dY << std::endl;
     
     if(dX != 0) {
         pixelPos.x += std::min(std::abs(dX), 4)*(std::abs(dX)/dX);

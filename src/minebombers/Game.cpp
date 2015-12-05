@@ -100,8 +100,6 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
 void Game::addPlayer(const std::string& name) {
     sf::Vector2u pos(rand() % 20, rand() % 20);
     
-    Player p("assets/mq1.jpg", 1, 1, name);
+    Player p("assets/mq1.jpg", pos.x, pos.y, name);
     players.push_back(p);
-    
-    std::cout << pos.x << "," << pos.y << std::endl;
 }

@@ -38,7 +38,6 @@ void GameScene::draw(sf::RenderWindow& window) {
     
     const std::vector<Player>& players = game.getPlayers();
     for(auto i : players) {
-        std::cout << players[0].getName() << std::endl;
         window.draw(i.getSprite());
         i.updateSpritePosition();
     }
