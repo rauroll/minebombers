@@ -44,11 +44,13 @@ OBJECTFILES= \
 	${OBJECTDIR}/MenuScene.o \
 	${OBJECTDIR}/MyDrawable.o \
 	${OBJECTDIR}/Player.o \
+	${OBJECTDIR}/Projectile.o \
 	${OBJECTDIR}/Scene.o \
 	${OBJECTDIR}/TextureManager.o \
 	${OBJECTDIR}/Tile.o \
 	${OBJECTDIR}/Tileset.o \
 	${OBJECTDIR}/Treasure.o \
+	${OBJECTDIR}/Weapon.o \
 	${OBJECTDIR}/main.o
 
 
@@ -121,6 +123,11 @@ ${OBJECTDIR}/Player.o: Player.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Player.o Player.cpp
 
+${OBJECTDIR}/Projectile.o: Projectile.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Projectile.o Projectile.cpp
+
 ${OBJECTDIR}/Scene.o: Scene.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -145,6 +152,11 @@ ${OBJECTDIR}/Treasure.o: Treasure.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Treasure.o Treasure.cpp
+
+${OBJECTDIR}/Weapon.o: Weapon.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Weapon.o Weapon.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
