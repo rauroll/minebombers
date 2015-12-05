@@ -22,7 +22,7 @@ MyDrawable::MyDrawable(const std::string texturefile, int x, int y, const std::s
     this->y = y;
     this->name = name;
 
-    sf::Texture texture = TextureManager::getInstance().load(texturefile);
+    const sf::Texture& texture = TextureManager::getInstance().load(texturefile);
     sf::Vector2u size = texture.getSize();
     sprite = sf::Sprite(texture);
     sprite.setScale(16.0 / size.x, 16.0 / size.y);
