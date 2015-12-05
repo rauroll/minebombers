@@ -11,8 +11,8 @@
  * Created on 17. marraskuuta 2015, 18:00
  */
 
-#ifndef ENTITY_H
-#define ENTITY_H
+#ifndef MYDRAWABLE_H
+#define MYDRAWABLE_H
 
 #include <SFML/Graphics.hpp>
 
@@ -37,5 +37,5 @@ protected:
     int y;
 };
 
-#endif /* ENTITY_H */
+#endif /* MYDRAWABLE_H */
 

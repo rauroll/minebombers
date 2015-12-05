@@ -12,6 +12,7 @@
  */
 
 #include "Entity.h"
+#include "MyDrawable.h"
 
 Entity::Entity() {
     

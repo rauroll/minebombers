@@ -11,14 +11,14 @@
  * Created on December 3, 2015, 12:56 PM
  */
 
-#ifndef BULLET_H
-#define BULLET_H
+#ifndef PROJECTILE_H
+#define PROJECTILE_H
 
 #include <SFML/Graphics.hpp>
 
 class Projectile : public MyDrawable {
 public:
-    Projectile(std::string name, const std::string& texturefile, sf::Vector2u loc, sf::Vector2u dir);
+    Projectile(const std::string& name, const std::string& texturefile, sf::Vector2u loc, sf::Vector2u dir);
     Projectile(const Projectile& orig);
     virtual ~Projectile();
     

@@ -36,17 +36,15 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Entity.o \
-	${OBJECTDIR}/Explosive.o \
-	${OBJECTDIR}/ExplosiveWeapon.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/GameScene.o \
 	${OBJECTDIR}/Map.o \
 	${OBJECTDIR}/MapGenerator.o \
 	${OBJECTDIR}/MapLoader.o \
 	${OBJECTDIR}/MenuScene.o \
+	${OBJECTDIR}/MyDrawable.o \
 	${OBJECTDIR}/Player.o \
 	${OBJECTDIR}/Projectile.o \
-	${OBJECTDIR}/ProjectileWeapon.o \
 	${OBJECTDIR}/Scene.o \
 	${OBJECTDIR}/TextureManager.o \
 	${OBJECTDIR}/Tile.o \
@@ -85,16 +83,6 @@ ${OBJECTDIR}/Entity.o: Entity.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Entity.o Entity.cpp
 
-${OBJECTDIR}/Explosive.o: Explosive.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Explosive.o Explosive.cpp
-
-${OBJECTDIR}/ExplosiveWeapon.o: ExplosiveWeapon.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ExplosiveWeapon.o ExplosiveWeapon.cpp
-
 ${OBJECTDIR}/Game.o: Game.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -125,6 +113,11 @@ ${OBJECTDIR}/MenuScene.o: MenuScene.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MenuScene.o MenuScene.cpp
 
+${OBJECTDIR}/MyDrawable.o: MyDrawable.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MyDrawable.o MyDrawable.cpp
+
 ${OBJECTDIR}/Player.o: Player.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -134,11 +127,6 @@ ${OBJECTDIR}/Projectile.o: Projectile.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Projectile.o Projectile.cpp
-
-${OBJECTDIR}/ProjectileWeapon.o: ProjectileWeapon.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ProjectileWeapon.o ProjectileWeapon.cpp
 
 ${OBJECTDIR}/Scene.o: Scene.cpp 
 	${MKDIR} -p ${OBJECTDIR}

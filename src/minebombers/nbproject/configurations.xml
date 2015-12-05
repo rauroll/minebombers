@@ -5,8 +5,6 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>Entity.h</itemPath>
-      <itemPath>Explosive.h</itemPath>
-      <itemPath>ExplosiveWeapon.h</itemPath>
       <itemPath>FPS.h</itemPath>
       <itemPath>Game.h</itemPath>
       <itemPath>GameScene.h</itemPath>
@@ -14,9 +12,9 @@
       <itemPath>MapGenerator.h</itemPath>
       <itemPath>MapLoader.h</itemPath>
       <itemPath>MenuScene.h</itemPath>
+      <itemPath>MyDrawable.h</itemPath>
       <itemPath>Player.h</itemPath>
       <itemPath>Projectile.h</itemPath>
-      <itemPath>ProjectileWeapon.h</itemPath>
       <itemPath>Scene.h</itemPath>
       <itemPath>TextureManager.h</itemPath>
       <itemPath>Tile.h</itemPath>
@@ -34,17 +32,15 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Entity.cpp</itemPath>
-      <itemPath>Explosive.cpp</itemPath>
-      <itemPath>ExplosiveWeapon.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
       <itemPath>GameScene.cpp</itemPath>
       <itemPath>Map.cpp</itemPath>
       <itemPath>MapGenerator.cpp</itemPath>
       <itemPath>MapLoader.cpp</itemPath>
       <itemPath>MenuScene.cpp</itemPath>
+      <itemPath>MyDrawable.cpp</itemPath>
       <itemPath>Player.cpp</itemPath>
       <itemPath>Projectile.cpp</itemPath>
-      <itemPath>ProjectileWeapon.cpp</itemPath>
       <itemPath>Scene.cpp</itemPath>
       <itemPath>TextureManager.cpp</itemPath>
       <itemPath>Tile.cpp</itemPath>
@@ -89,14 +85,6 @@
       </item>
       <item path="Entity.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Explosive.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Explosive.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ExplosiveWeapon.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ExplosiveWeapon.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="FPS.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Game.cpp" ex="false" tool="1" flavor2="0">
@@ -123,6 +111,10 @@
       </item>
       <item path="MenuScene.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="MyDrawable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MyDrawable.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Player.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Player.h" ex="false" tool="3" flavor2="0">
@@ -130,10 +122,6 @@
       <item path="Projectile.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Projectile.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ProjectileWeapon.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ProjectileWeapon.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Scene.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -196,14 +184,6 @@
       </item>
       <item path="Entity.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Explosive.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Explosive.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ExplosiveWeapon.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ExplosiveWeapon.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="FPS.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Game.cpp" ex="false" tool="1" flavor2="0">
@@ -230,6 +210,10 @@
       </item>
       <item path="MenuScene.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="MyDrawable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MyDrawable.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Player.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Player.h" ex="false" tool="3" flavor2="0">
@@ -237,10 +221,6 @@
       <item path="Projectile.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Projectile.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ProjectileWeapon.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ProjectileWeapon.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Scene.cpp" ex="false" tool="1" flavor2="0">
       </item>
