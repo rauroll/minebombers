@@ -15,6 +15,7 @@
 #define PROJECTILE_H
 
 #include <SFML/Graphics.hpp>
+#include "MyDrawable.h"
 
 class Projectile : public MyDrawable {
 public:

@@ -16,6 +16,7 @@
 #define WEAPON_H
 
 #include "Map.h"
+#include "Game.h"
 #include <SFML/Graphics.hpp>
 #include <string.h>
 

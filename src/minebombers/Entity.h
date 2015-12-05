@@ -14,11 +14,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include <SFML/Graphics.hpp>
 #include "MyDrawable.h"
-
-
-
 
 class Entity : public MyDrawable {
 public:
