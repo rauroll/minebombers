@@ -11,26 +11,30 @@
  * Created on 17. marraskuuta 2015, 18:00
  */
 
+#include <cmath>
+#include <iostream>
+
 #include "MyDrawable.h"
 #include "TextureManager.h"
 
-MyDrawable::MyDrawable() : sprite(), x(0), y(0), name() {
+MyDrawable::MyDrawable() : sprite(), name() {
+    this->position = sf::Vector2u(0, 0);
 }
 
 MyDrawable::MyDrawable(const std::string texturefile, int x, int y, const std::string& name) {
-    this->x = x;
-    this->y = y;
+    this->position = sf::Vector2u(x, y);
     this->name = name;
 
     const sf::Texture& texture = TextureManager::getInstance().load(texturefile);
     sf::Vector2u size = texture.getSize();
     sprite = sf::Sprite(texture);
     sprite.setScale(16.0 / size.x, 16.0 / size.y);
+    
+    sprite.setPosition(x, y);
 }
 
 MyDrawable::MyDrawable(const MyDrawable& orig) : sprite(orig.sprite) {
-    x = orig.x;
-    y = orig.y;
+    position = orig.position;
     name = orig.name;   
 }
 
@@ -42,7 +46,7 @@ const sf::Sprite& MyDrawable::getSprite() const {
 }
 
 sf::Vector2u MyDrawable::getPos() const {
-    return sf::Vector2u(x, y);
+    return position;
 }
 
 std::string MyDrawable::getName() const {
@@ -50,12 +54,29 @@ std::string MyDrawable::getName() const {
 }
 
 void MyDrawable::move(sf::Vector2u dir) {
-    x += dir.x;
-    y += dir.y;
+    position += dir;
 }
 
 void MyDrawable::setPos(int newX, int newY) {
-    x = newX;
-    y = newY;
+    position = sf::Vector2u(newX, newY);
+}
+
+void MyDrawable::updateSpritePosition() {
+    sf::Vector2f pixelPos = sprite.getPosition();
+    
+    int dX = position.x*16 - pixelPos.x;
+    int dY = position.y*16 - pixelPos.y;
+    
+    //std::cout << position.x << ", " << position.y << " | " << pixelPos.x << ", " << pixelPos.y << " | " << dX << ", " << dY << std::endl;
+    
+    if(dX != 0) {
+        pixelPos.x += std::min(std::abs(dX), 4)*(std::abs(dX)/dX);
+    }
+    
+    if(dY != 0) {
+        pixelPos.y += std::min(std::abs(dY), 4)*(std::abs(dY)/dY);
+    }
+    
+    sprite.setPosition(pixelPos);
 }
 

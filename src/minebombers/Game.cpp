@@ -26,7 +26,7 @@ Game::Game() {
     MapGenerator gen = MapGenerator();
     MapLoader loader = MapLoader();
     
-    player = Player("assets/mq1.jpg", 25, 25, "JORMA");
+    player = Player("assets/mq1.jpg", 0, 0, "JORMA");
     //map = loader.fromFile("maps/map.mb");
     map = gen.generate();
 }
@@ -34,7 +34,7 @@ Game::Game() {
 Game::~Game() {
 }
 
-const Player& Game::getPlayer() const {
+Player& Game::getPlayer() {
     return player;
 }
 
@@ -86,3 +86,10 @@ void Game::setRandomTreasures(uint16_t amount) {
 std::vector<Treasure>& Game::getTreasures() {
     return treasures;
 }
+
+void Game::movePlayer(uint8_t player, sf::Vector2u d) {
+    Player& p = this->player;
+    
+    p.move(d);
+}
+

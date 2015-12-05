@@ -27,12 +27,14 @@ public:
     virtual ~Game();
     void setScene(Scene* scene);    
     Scene* getScene();
-    const Player& getPlayer() const;
+    Player& getPlayer();
     Map& getMap();
 
     void clearTreasures();
     void setRandomTreasures(uint16_t amount);
     std::vector<Treasure>& getTreasures();
+    
+    void movePlayer(uint8_t player, sf::Vector2u d);
 private:
     Scene* currentScene;
     Map map;
