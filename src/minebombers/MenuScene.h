@@ -28,9 +28,12 @@ public:
 
 private:
     Game& game;
-    sf::Text minebombers;
-    sf::Text twoPlayer;
-    sf::Text campaign;
+    sf::Font font;
+    int logoPhase = 0;
+    int selected = 0;
+    
+    float twoPlayerScale = 0.9;
+    float campaignScale = 0.9;
 };
 
 #endif /* MENUSCENE_H */
