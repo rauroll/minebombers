@@ -16,6 +16,8 @@
 #include "MapLoader.h"
 #include "Player.h"
 #include "TextureManager.h"
+#include "GameScene.h"
+#include "MenuScene.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -28,6 +30,9 @@ Game::Game() {
     
     map = loader.fromFile("maps/map.mb");
     //map = gen.generate();
+    
+    scenes["menu"] = new MenuScene(*this);
+    scenes["game"] = new GameScene(*this);
 }
 
 Game::~Game() {
@@ -41,8 +46,8 @@ Scene* Game::getScene() {
     return currentScene;
 }
 
-void Game::setScene(Scene* scene) {
-    currentScene = scene;
+void Game::setScene(std::string sceneName) {
+    currentScene = scenes.at(sceneName);
 }
 
 Map& Game::getMap() {
