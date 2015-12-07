@@ -70,7 +70,7 @@ const sf::Vector2u& MyDrawable::getPos() {
 }
 
 void MyDrawable::updateSpritePosition() {
-    sf::IntRect r1(spriteIndex * 120, 0, 120, 120);
+    sf::IntRect r1(spriteIndex * 16, 0, 16, 16);
     sprite.setTextureRect(r1);
     
     sf::Vector2f pixelPos = sprite.getPosition();
@@ -88,7 +88,7 @@ void MyDrawable::updateSpritePosition() {
         pixelPos.y += std::min(std::abs(dY), 4)*(std::abs(dY)/dY);
     }
     
-    spriteIndex = (spriteIndex + 1) % 2;
+    spriteIndex = (spriteIndex + 1) % 8;
     std::cout << "sprite index: " << spriteIndex << std::endl;
     
     sprite.setPosition(pixelPos);
