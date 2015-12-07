@@ -6,7 +6,6 @@
 #include "Scene.h"
 #include "MenuScene.h"
 #include "MapGenerator.h"
-#include "GameScene.h"
 #include "FPS.h"
 
 #include <iostream>
@@ -17,10 +16,7 @@ int main(int argc, char const** argv) {
     game.addPlayer("JERE");
     game.addPlayer("JERE2");
     
-    MenuScene menuScene = MenuScene(game);
-    GameScene gameScene = GameScene(game);
-    game.setScene(&gameScene);
-    
+    game.setScene("menu");
     
     sf::RenderWindow window(sf::VideoMode(800, 800), "Minebombers");
     
@@ -33,7 +29,7 @@ int main(int argc, char const** argv) {
     bool draw = true;
     
     while (window.isOpen())
-    {
+    {        
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -43,16 +39,16 @@ int main(int argc, char const** argv) {
                 game.getScene()->onEvent(event);
         }
         
-        while(gameTime + dt <= clock.getElapsedTime()) {
+        while(gameTime + dt <= clock.getElapsedTime()) {            
             game.getScene()->update();
-            
+                        
             gameTime += dt;
             draw = true;
         }
         
         if(draw) {
-            window.clear();
-            game.getScene()->draw(window);
+            window.clear();            
+            game.getScene()->draw(window);            
             window.display();
             draw = false;
             

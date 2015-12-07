@@ -34,7 +34,7 @@ void MenuScene::onEvent(sf::Event& event) {
             case sf::Keyboard::Return: {
                 if (selected == 0) {
                     GameScene gameScene = GameScene(game);
-                    game.setScene(&gameScene);
+                    game.setScene("game");
                 }
             }
         }
