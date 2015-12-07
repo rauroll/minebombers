@@ -67,6 +67,13 @@ void Map::setTileset(Tileset& tileset) {
     updateAllVertex();
 }
 
+bool Map::canMoveTo(sf::Vector2u newPosition) {
+    TileType tileType = this->getTile(newPosition).getType();
+    return newPosition.x > 0 && newPosition.y > 0
+           && newPosition.x <= width && newPosition.y <= height
+           && tileType == FLOOR;
+}
+
 void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     states.transform *= getTransform();
     states.texture = &tileset.getTexture();

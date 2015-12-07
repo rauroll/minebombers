@@ -32,6 +32,7 @@ public:
     void setTileset(Tileset& tileset);
     void setTile(sf::Vector2u pos, Tile& tile);
     void setTileLevel(sf::Vector2u pos, int level);
+    bool canMoveTo(sf::Vector2u newPosition);
 
     void clearTiles();
 

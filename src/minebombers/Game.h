@@ -33,7 +33,6 @@ public:
     void clearTreasures();
     void setRandomTreasures(uint16_t amount);
     std::vector<Treasure>& getTreasures();
-    bool isMovableTo(sf::Vector2u);
     
     void addPlayer(const std::string& name);
     void movePlayer(uint8_t player, sf::Vector2u d);
