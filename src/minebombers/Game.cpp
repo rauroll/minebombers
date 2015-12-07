@@ -101,6 +101,16 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
 void Game::addPlayer(const std::string& name) {
     sf::Vector2u pos(rand() % 20, rand() % 20);
     
-    Player p("assets/mq1.jpg", pos.x, pos.y, name);
+    Player p("assets/explosion.png", pos.x, pos.y, name);
     players.push_back(p);
 }
+
+void Game::addProjectile(Projectile& projectile) {
+    projectiles.push_back(projectile);
+}
+
+std::vector<Projectile>& Game::getProjectiles() {
+    return this->projectiles;
+}
+    
+    

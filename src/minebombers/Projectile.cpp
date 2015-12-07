@@ -13,16 +13,24 @@
 
 #include "Projectile.h"
 
-Projectile::Projectile(const std::string& name, const std::string& texturefile, int damage, sf::Vector2u radius, sf::Vector2u loc, sf::Vector2u dir) : MyDrawable(texturefile, loc.x, loc.y, name) {
+Projectile::Projectile(const std::string& name, const std::string& texturefile, int damage, sf::Vector2u radius, sf::Vector2u loc, sf::Vector2u dir, sf::Time timer) : MyDrawable(texturefile, loc.x, loc.y, name) {
     this->damage = damage;
     this->dir = dir;
     this->radius = radius;
+    this->timer = timer;
 }
 
 Projectile::Projectile(const Projectile& orig) {
+    
+}
+
+Projectile::Projectile(const Projectile& orig, sf::Vector2u loc, sf::Vector2u dir) : Projectile(orig) {
+    this->loc = loc;
+    this->dir = dir;
 }
 
 Projectile::~Projectile() {
+    
 }
 
 void Projectile::explode() {
