@@ -33,3 +33,20 @@ Player::~Player() {
 void Player::incrementMoney(uint32_t amount) {
     money += amount;
 }
+
+void Player::changeWeapon() {
+    activeWeapon = weapons.size() % ++activeWeapon;
+}
+
+void Player::addWeapon(Weapon& weapon) {
+    weapons.push_back(weapon);
+}
+
+Weapon& Player::getActiveWeapon() {
+    return weapons[activeWeapon];
+}
+
+Projectile Player::useWeapon(sf::Vector2u dir) {
+    Weapon& wep = this->getActiveWeapon();
+    return wep.use(this->position, dir);
+}

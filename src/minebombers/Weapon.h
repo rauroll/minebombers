@@ -16,7 +16,6 @@
 #define WEAPON_H
 
 #include "Map.h"
-#include "Game.h"
 #include <SFML/Graphics.hpp>
 #include <string.h>
 #include "Projectile.h"
@@ -28,7 +27,7 @@ public:
     Weapon(const Weapon& orig);
     virtual ~Weapon();
     
-    void use(Game& game, sf::Vector2u loc, sf::Vector2u dir);
+    Projectile use(sf::Vector2u loc, sf::Vector2u dir);
     
 protected:
     std::string name;

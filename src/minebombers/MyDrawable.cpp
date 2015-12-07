@@ -89,7 +89,7 @@ void MyDrawable::updateSpritePosition() {
     }
     
     spriteIndex = (spriteIndex + 1) % 8;
-    std::cout << "sprite index: " << spriteIndex << std::endl;
+    //std::cout << "sprite index: " << spriteIndex << std::endl;
     
     sprite.setPosition(pixelPos);
 }

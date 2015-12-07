@@ -8,6 +8,8 @@
 #include "MapGenerator.h"
 #include "GameScene.h"
 #include "FPS.h"
+#include "Weapon.h"
+#include "Projectile.h"
 
 #include <iostream>
 
@@ -16,6 +18,10 @@ int main(int argc, char const** argv) {
     game.setRandomTreasures(50);
     game.addPlayer("JERE");
     game.addPlayer("JERE2");
+    
+    
+    Projectile proj = Projectile("jonnemissile", "assets/mq1.png", 10);
+    Weapon onlyWeapon = Weapon("jonnegun", 99, proj);
     
     MenuScene menuScene = MenuScene();
     GameScene gameScene = GameScene(game);
