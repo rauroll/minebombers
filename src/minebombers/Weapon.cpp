@@ -13,18 +13,22 @@
 
 #include "Weapon.h"
 
-Weapon::Weapon(std::string name, int price) {
+Weapon::Weapon(std::string name, int price, Projectile& projectile) : projectile(projectile) {
     this->name = name;
     this->price = price;
 }
 
-Weapon::Weapon(const Weapon& orig) {
+Weapon::Weapon(const Weapon& orig) : projectile(orig.projectile) {
+    this->name = orig.name;
+    this->price = orig.price;
 }
 
 Weapon::~Weapon() {
 }
 
 void Weapon::use(Game& game, sf::Vector2u loc, sf::Vector2u dir) {
+    Projectile proj = Projectile(this->projectile, loc, dir);
+    game.addProjectile(proj);
     
 }
 

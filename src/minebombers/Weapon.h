@@ -19,11 +19,12 @@
 #include "Game.h"
 #include <SFML/Graphics.hpp>
 #include <string.h>
+#include "Projectile.h"
 
 
 class Weapon {
 public:
-    Weapon(std::string name, int price);
+    Weapon(std::string name, int price, Projectile& projectile);
     Weapon(const Weapon& orig);
     virtual ~Weapon();
     
@@ -32,6 +33,7 @@ public:
 protected:
     std::string name;
     int price;
+    Projectile& projectile;
     
 };
 
