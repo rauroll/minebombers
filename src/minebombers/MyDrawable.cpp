@@ -28,8 +28,10 @@ MyDrawable::MyDrawable(const std::string texturefile, int x, int y, const std::s
 
     const sf::Texture& texture = TextureManager::getInstance().load(texturefile);
     sf::Vector2u size = texture.getSize();
+    
+    std::cout << "texture size: " <<  size.x << " " << size.y << std::endl;
     sprite = sf::Sprite(texture);
-    sprite.setScale(16.0 / size.x, 16.0 / size.y);
+    //sprite.setScale(16.0 / size.x, 16.0 / size.y);
     
     sprite.setPosition(x*16, y*16);
     std::cout << sprite.getPosition().x << ", " << sprite.getPosition().y << std::endl;
@@ -88,8 +90,12 @@ void MyDrawable::updateSpritePosition() {
         pixelPos.y += std::min(std::abs(dY), 4)*(std::abs(dY)/dY);
     }
     
-    spriteIndex = (spriteIndex + 1) % 8;
-    std::cout << "sprite index: " << spriteIndex << std::endl;
+    if (tick == tickRate) {
+        spriteIndex = (spriteIndex + 1) % 8;
+        tick = 0;
+    }
+        
+    tick++;
     
     sprite.setPosition(pixelPos);
 }

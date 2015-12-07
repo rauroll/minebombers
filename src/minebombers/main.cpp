@@ -19,7 +19,7 @@ int main(int argc, char const** argv) {
     
     MenuScene menuScene = MenuScene(game);
     GameScene gameScene = GameScene(game);
-    game.setScene(&menuScene);
+    game.setScene(&gameScene);
     
     
     sf::RenderWindow window(sf::VideoMode(800, 800), "Minebombers");
