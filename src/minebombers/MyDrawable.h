@@ -34,6 +34,8 @@ public:
     
     void updateSpritePosition();
 protected:
+    int tickRate = 5;
+    int tick = 0;
     int spriteIndex = 0;
     std::string name;
     std::string texturefile;
