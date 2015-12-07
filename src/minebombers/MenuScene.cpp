@@ -17,6 +17,7 @@
 #include <iostream>
 #include "Game.h"
 #include "GameScene.h"
+#include "TextureManager.h"
 
 MenuScene::MenuScene(Game& game) : game(game) {
     font.loadFromFile("assets/BebasNeue.otf");
@@ -61,30 +62,35 @@ void MenuScene::draw(sf::RenderWindow& window) {
     int width = 800;
     int height = 800;
     
-    sf::Text minebombers = sf::Text("minebombers", font, 100);
+    sf::Sprite background;
+    background.setTexture(TextureManager::getInstance().load("assets/background.jpg"));
+    background.setScale(width / background.getLocalBounds().width, height / background.getLocalBounds().height);
+    
+    sf::Text minebombers = sf::Text("minebombers", font, 110);
     sf::Text twoPlayer = sf::Text("2 players", font, 85);
     sf::Text campaign = sf::Text("campaign", font, 85);
        
-    float logoScale = (sin(logoPhase / 15.0) + 10) * 0.1;
+    float logoScale = (sin(logoPhase / 20.0) + 20) * 0.05;
     minebombers.setScale(logoScale, logoScale);
     minebombers.setOrigin(minebombers.getLocalBounds().width / 2, minebombers.getLocalBounds().height / 2);
     
     twoPlayer.setOrigin(twoPlayer.getLocalBounds().width / 2, twoPlayer.getLocalBounds().height / 2);
     campaign.setOrigin(campaign.getLocalBounds().width / 2, campaign.getLocalBounds().height / 2);
     
-    sf::Color highlight = sf::Color(255, 0, 0, 255);
-    if (selected == 0)
-        twoPlayer.setColor(highlight);
-    else if (selected == 1)
-        campaign.setColor(highlight);
+    sf::Color dimmed = sf::Color(255, 255, 255, 150);
+    if (selected == 1)
+        twoPlayer.setColor(dimmed);
+    else if (selected == 0)
+        campaign.setColor(dimmed);
     
     twoPlayer.setScale(twoPlayerScale, twoPlayerScale);
     campaign.setScale(campaignScale, campaignScale);
     
     minebombers.setPosition(width / 2, 100);    
     twoPlayer.setPosition(width / 2, minebombers.getPosition().y + 210);
-    campaign.setPosition(width / 2, twoPlayer.getPosition().y + 100);
+    campaign.setPosition(width / 2, twoPlayer.getPosition().y + 120);
     
+    window.draw(background);
     window.draw(minebombers);
     window.draw(twoPlayer);
     window.draw(campaign);
