@@ -60,6 +60,7 @@ std::string MyDrawable::getName() const {
 }
 
 void MyDrawable::move(sf::Vector2u dir) {
+    this->dir = dir;
     position += dir;
 }
 
@@ -72,8 +73,15 @@ const sf::Vector2u& MyDrawable::getPos() {
 }
 
 void MyDrawable::updateSpritePosition() {
-    sf::IntRect r1(spriteIndex * 16, 0, 16, 16);
+    int spriteLength = sprite.getTexture()->getSize().x / 16;
+    
+    sf::IntRect r1(spriteColumn * 16, spriteRow * 16, 16, 16);
+    
     sprite.setTextureRect(r1);
+    //sprite.scale(-1, 1);
+
+    
+    std::cout << "dirvector: " << this->dir.x << " " << this->dir.y << std::endl;
     
     sf::Vector2f pixelPos = sprite.getPosition();
     
@@ -91,7 +99,7 @@ void MyDrawable::updateSpritePosition() {
     }
     
     if (tick == tickRate) {
-        spriteIndex = (spriteIndex + 1) % 8;
+        spriteColumn = (spriteColumn + 1) % spriteLength;
         tick = 0;
     }
         

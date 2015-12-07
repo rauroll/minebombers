@@ -34,9 +34,11 @@ public:
     
     void updateSpritePosition();
 protected:
-    int tickRate = 5;
+    sf::Vector2u dir = sf::Vector2u(1, 0);
+    int spriteColumn = 0;
+    int spriteRow = 0;
+    int tickRate = 2;
     int tick = 0;
-    int spriteIndex = 0;
     std::string name;
     std::string texturefile;
     sf::Sprite sprite;
