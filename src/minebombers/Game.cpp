@@ -26,8 +26,8 @@ Game::Game() {
     MapGenerator gen = MapGenerator();
     MapLoader loader = MapLoader();
     
-    //map = loader.fromFile("maps/map.mb");
-    map = gen.generate();
+    map = loader.fromFile("maps/map.mb");
+    //map = gen.generate();
 }
 
 Game::~Game() {
