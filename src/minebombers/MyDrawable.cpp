@@ -17,13 +17,14 @@
 #include "MyDrawable.h"
 #include "TextureManager.h"
 
-MyDrawable::MyDrawable() : sprite(), name() {
+MyDrawable::MyDrawable() : sprite(), name(), texturefile() {
     this->position = sf::Vector2u(0, 0);
 }
 
 MyDrawable::MyDrawable(const std::string texturefile, int x, int y, const std::string& name) {
     this->position = sf::Vector2u(x, y);
     this->name = name;
+    this->texturefile = texturefile;
 
     const sf::Texture& texture = TextureManager::getInstance().load(texturefile);
     sf::Vector2u size = texture.getSize();
@@ -69,6 +70,9 @@ const sf::Vector2u& MyDrawable::getPos() {
 }
 
 void MyDrawable::updateSpritePosition() {
+    sf::IntRect r1(spriteIndex * 120, 0, 120, 120);
+    sprite.setTextureRect(r1);
+    
     sf::Vector2f pixelPos = sprite.getPosition();
     
     int dX = position.x*16 - pixelPos.x;
@@ -83,6 +87,9 @@ void MyDrawable::updateSpritePosition() {
     if(dY != 0) {
         pixelPos.y += std::min(std::abs(dY), 4)*(std::abs(dY)/dY);
     }
+    
+    spriteIndex = (spriteIndex + 1) % 2;
+    std::cout << "sprite index: " << spriteIndex << std::endl;
     
     sprite.setPosition(pixelPos);
 }
