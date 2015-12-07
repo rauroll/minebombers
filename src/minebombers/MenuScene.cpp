@@ -37,6 +37,8 @@ void MenuScene::onEvent(sf::Event& event) {
                     game.setScene("game");
                 }
             }
+            default:
+                break;
         }
         selected = fmin(1, fmax(0, selected));
     }
