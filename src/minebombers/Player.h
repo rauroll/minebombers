@@ -29,7 +29,7 @@ public:
     
     void addWeapon(Weapon& weapon);
     void changeWeapon();
-    Projectile useWeapon(sf::Vector2u dir);
+    Projectile* useWeapon(sf::Vector2u dir);
     void incrementMoney(uint32_t amount);
 private:
     Weapon& getActiveWeapon();

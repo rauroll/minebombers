@@ -26,8 +26,8 @@ Weapon::Weapon(const Weapon& orig) : projectile(orig.projectile) {
 Weapon::~Weapon() {
 }
 
-Projectile Weapon::use(sf::Vector2u loc, sf::Vector2u dir) {
-    Projectile proj = Projectile(this->projectile, loc, dir);
-    return proj;
+Projectile* Weapon::use(sf::Vector2u loc, sf::Vector2u dir) {
+    Projectile* p = new Projectile(this->projectile, loc, dir);
+    return p;
 }
 
