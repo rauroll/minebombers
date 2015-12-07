@@ -16,6 +16,7 @@
 #include <cstdlib>
 #include <iostream>
 #include "Game.h"
+#include "GameScene.h"
 
 MenuScene::MenuScene(Game& game) : game(game) {
     sf::Font font;
@@ -26,18 +27,27 @@ MenuScene::MenuScene(Game& game) : game(game) {
     campaign = sf::Text("campaign", font, 70);
 }
 
-MenuScene::MenuScene(const MenuScene& scene) : game(scene.game) {
-    
-}
-
 MenuScene::~MenuScene() {
 }
 
 void MenuScene::onEvent(sf::Event& event) {
     if (event.type == sf::Event::MouseMoved) {
+        if (twoPlayer.getLocalBounds().contains(event.mouseMove.x, event.mouseMove.y))
+            twoPlayer.setScale(1.1, 1.1);
+        else
+            twoPlayer.setScale(1, 1);
+        
+        if (campaign.getLocalBounds().contains(event.mouseMove.x, event.mouseMove.y))
+            campaign.setScale(1.1, 1.1);
+        else
+            campaign.setScale(1, 1);
+            
     }
     else if(event.type == sf::Event::MouseButtonPressed) {
-        std::cout << "asd" << std::endl;
+        if (twoPlayer.getLocalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+            GameScene gameScene = GameScene(game);
+            game.setScene(&gameScene);
+        }
     }
 }
 

@@ -21,7 +21,6 @@
 class MenuScene: public Scene {
 public:
     MenuScene(Game& game);
-    MenuScene(const MenuScene& orig);
     virtual ~MenuScene();
     void update();
     void onEvent(sf::Event& event);
