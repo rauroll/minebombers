@@ -105,11 +105,11 @@ void Game::addPlayer(const std::string& name) {
     players.push_back(p);
 }
 
-void Game::addProjectile(Projectile* projectile) {
+void Game::addProjectile(Projectile projectile) {
     projectiles.push_back(projectile);
 }
 
-std::vector<Projectile*>& Game::getProjectiles() {
+std::vector<Projectile>& Game::getProjectiles() {
     return this->projectiles;
 }
     

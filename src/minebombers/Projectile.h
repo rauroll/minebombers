@@ -22,7 +22,8 @@ class Projectile : public MyDrawable {
 public:
     Projectile(const std::string& name, const std::string& texturefile, int damage, sf::Vector2u radius = sf::Vector2u(1, 1), sf::Time timer = sf::milliseconds(5000));
     Projectile(const Projectile& orig);
-    Projectile(const Projectile& orig, sf::Vector2u loc, sf::Vector2u dir);
+    
+    void setDirection(sf::Vector2u dir);
     
     void update();
     virtual ~Projectile();

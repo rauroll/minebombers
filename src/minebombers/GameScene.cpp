@@ -43,10 +43,10 @@ void GameScene::draw(sf::RenderWindow& window) {
         i.updateSpritePosition();
     }
     
-    std::vector<Projectile*>& projectiles = game.getProjectiles();
+    std::vector<Projectile>& projectiles = game.getProjectiles();
     for (auto i : projectiles) {
-        window.draw(i->getSprite());
-        i->update();
+        window.draw(i.getSprite());
+        i.update();
     }
 }
 
@@ -64,7 +64,8 @@ void GameScene::onEvent(sf::Event& event) {
             if (event.key.code == sf::Keyboard::LControl) {
                 std::cout << "Left control pressed" << std::endl;
                 Player& player = game.getPlayers()[0];
-                game.addProjectile(player.useWeapon(sf::Vector2u(0, 1)));
+                Projectile p = player.useWeapon(sf::Vector2u(0, 1));
+                game.addProjectile(p);
             }
             
             break;

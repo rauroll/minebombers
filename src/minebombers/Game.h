@@ -38,8 +38,8 @@ public:
     void addPlayer(const std::string& name);
     void movePlayer(uint8_t player, sf::Vector2u d);
 
-    void addProjectile(Projectile* projectile);
-    std::vector<Projectile*>& getProjectiles();
+    void addProjectile(Projectile projectile);
+    std::vector<Projectile>& getProjectiles();
     
 private:
     Scene* currentScene;
@@ -47,7 +47,7 @@ private:
     
     std::vector<Player> players;
     std::vector<Treasure> treasures;
-    std::vector<Projectile*> projectiles;
+    std::vector<Projectile> projectiles;
     
     bool isEmpty(sf::Vector2u pos);
     bool addTreasure(Treasure& treasure);

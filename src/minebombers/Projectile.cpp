@@ -20,17 +20,18 @@ Projectile::Projectile(const std::string& name, const std::string& texturefile, 
     this->timer = timer;
 }
 
-Projectile::Projectile(const Projectile& orig) {
-    
-}
-
-Projectile::Projectile(const Projectile& orig, sf::Vector2u loc, sf::Vector2u dir) : Projectile(orig) {
-    this->dir = dir;
-    this->position = loc;
+Projectile::Projectile(const Projectile& orig) : MyDrawable(orig) {
+    this->dir = orig.dir;
+    this->position = orig.position;
+    this->radius = orig.radius;
+    this->timer = orig.timer;
 }
 
 Projectile::~Projectile() {
-    
+}
+
+void Projectile::setDirection(sf::Vector2u dir) {
+    this->dir = dir;
 }
 
 void Projectile::update() {

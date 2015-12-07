@@ -27,7 +27,7 @@ public:
     Weapon(const Weapon& orig);
     virtual ~Weapon();
     
-    Projectile* use(sf::Vector2u loc, sf::Vector2u dir);
+    Projectile use(sf::Vector2u loc, sf::Vector2u dir);
     
 protected:
     std::string name;

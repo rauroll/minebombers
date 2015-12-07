@@ -19,9 +19,10 @@ int main(int argc, char const** argv) {
     game.addPlayer("JERE");
     game.addPlayer("JERE2");
     
-    
-    Projectile proj = Projectile("jonnemissile", "assets/mq1.png", 10);
+    Projectile proj = Projectile("jonnemissile", "assets/mq1.jpg", 10);
     Weapon onlyWeapon = Weapon("jonnegun", 99, proj);
+    
+    game.getPlayers()[0].addWeapon(onlyWeapon);
     
     MenuScene menuScene = MenuScene();
     GameScene gameScene = GameScene(game);
