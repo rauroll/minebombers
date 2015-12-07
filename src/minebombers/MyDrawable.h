@@ -34,7 +34,9 @@ public:
     
     void updateSpritePosition();
 protected:
+    int spriteIndex = 0;
     std::string name;
+    std::string texturefile;
     sf::Sprite sprite;
     sf::Vector2u position;
 };
