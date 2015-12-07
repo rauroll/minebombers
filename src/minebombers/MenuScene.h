@@ -16,18 +16,22 @@
 
 #include "Scene.h"
 #include <SFML/System.hpp>
+#include "Game.h"
 
 class MenuScene: public Scene {
 public:
-    MenuScene() {};
-    MenuScene(const MenuScene& orig) {};
+    MenuScene(Game& game);
+    MenuScene(const MenuScene& orig);
     virtual ~MenuScene();
     void update();
     void onEvent(sf::Event& event);
     void draw(sf::RenderWindow& window);
 
 private:
-    
+    Game& game;
+    sf::Text minebombers;
+    sf::Text twoPlayer;
+    sf::Text campaign;
 };
 
 #endif /* MENUSCENE_H */

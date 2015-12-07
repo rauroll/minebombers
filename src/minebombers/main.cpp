@@ -17,7 +17,7 @@ int main(int argc, char const** argv) {
     game.addPlayer("JERE");
     game.addPlayer("JERE2");
     
-    MenuScene menuScene = MenuScene();
+    MenuScene menuScene = MenuScene(game);
     GameScene gameScene = GameScene(game);
     game.setScene(&menuScene);
     
