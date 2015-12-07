@@ -81,7 +81,7 @@ void MyDrawable::updateSpritePosition() {
     //sprite.scale(-1, 1);
 
     
-    std::cout << "dirvector: " << this->dir.x << " " << this->dir.y << std::endl;
+    //std::cout << "dirvector: " << this->dir.x << " " << this->dir.y << std::endl;
     
     sf::Vector2f pixelPos = sprite.getPosition();
     
