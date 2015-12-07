@@ -64,6 +64,10 @@ void MyDrawable::setPos(int newX, int newY) {
     position = sf::Vector2u(newX, newY);
 }
 
+const sf::Vector2u& MyDrawable::getPos() {
+    return position;
+}
+
 void MyDrawable::updateSpritePosition() {
     sf::Vector2f pixelPos = sprite.getPosition();
     

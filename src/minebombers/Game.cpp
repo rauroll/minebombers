@@ -91,9 +91,18 @@ std::vector<Treasure>& Game::getTreasures() {
     return treasures;
 }
 
+bool Game::isMovableTo(sf::Vector2u newPosition) {
+    sf::Vector2u mapSize = map.getSize();
+    TileType tileType = map.getTile(newPosition).getType();
+    return newPosition.x > 0 && newPosition.y > 0
+           && newPosition.x < mapSize.x && newPosition.y < mapSize.y
+           && tileType == FLOOR; 
+}
+
 void Game::movePlayer(uint8_t player, sf::Vector2u d) {
     if(player < players.size()) {
-        players[player].move(d);
+        if(this->isMovableTo(players[player].getPos() + d))
+            players[player].move(d);
     }
 }
 
