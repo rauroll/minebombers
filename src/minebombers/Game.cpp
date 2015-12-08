@@ -24,7 +24,7 @@
 #include <iostream>
 #include <cstdio>
 
-Game::Game() {
+Game::Game(int w, int h) : width(w), height(h) {
     MapGenerator gen = MapGenerator();
     MapLoader loader = MapLoader();
     

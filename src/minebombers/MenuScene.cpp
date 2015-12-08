@@ -61,8 +61,8 @@ void MenuScene::update() {
 }
 
 void MenuScene::draw(sf::RenderWindow& window) {
-    int width = 800;
-    int height = 800;
+    int width = game.getWidth();
+    int height = game.getHeight();
     
     sf::Sprite background;
     background.setTexture(TextureManager::getInstance().load("assets/background.jpg"));
