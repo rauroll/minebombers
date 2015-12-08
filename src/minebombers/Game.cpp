@@ -127,7 +127,7 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
     }
 }
 
-void Game::addPlayer(const std::string& name) {
+sf::Vector2u Game::getRandomEmptyPos() {
     sf::Vector2u pos;
     sf::Vector2u mapSize = map.getSize();
     while (true) {
@@ -135,12 +135,16 @@ void Game::addPlayer(const std::string& name) {
         if (map.canMoveTo(pos) && !this->isEntityAtPos(pos))
             break;
     }
-    
+    return pos;
+}
+
+void Game::addPlayer(const std::string& name) {
+    sf::Vector2u pos = this->getRandomEmptyPos();
     std::cout << "asd: " << pos.x << "," << pos.y << std::endl;
     
     Player p("assets/playersprite.png", pos.x, pos.y, name);
     players.push_back(p);
-    map.setTileAsVisible(sf::Vector2u(pos.x, pos.y));
+    map.setTileAsVisible(pos);
 }
 
 void Game::addProjectile(Projectile projectile) {
