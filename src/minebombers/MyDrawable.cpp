@@ -66,6 +66,7 @@ void MyDrawable::move(sf::Vector2u dir) {
 
 void MyDrawable::setPos(int newX, int newY) {
     position = sf::Vector2u(newX, newY);
+    sprite.setPosition(newX*16, newY*16);
 }
 
 const sf::Vector2u& MyDrawable::getPos() {
