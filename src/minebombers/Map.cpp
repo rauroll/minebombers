@@ -82,13 +82,11 @@ void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 void Map::updateVertex(const sf::Vector2u& p) {
     Tile tile = tiles[p.x][p.y];
-    //if (tile.isVisible() == 1) {
+    if (tile.isVisible() == 1) {
         int tileNumber = tile.getId();
 
         int tu = tileNumber % (tileset.width() / tileset.tileWidth());
         int tv = tileNumber / (tileset.width() / tileset.tileWidth());
-
-        //std::cout << (tileset.width() / tileset.tileWidth()) << std::endl;
 
         // get a pointer to the current tile's quad
         sf::Vertex* quad = &vertices[(p.x + p.y * width) * 4];
@@ -104,7 +102,8 @@ void Map::updateVertex(const sf::Vector2u& p) {
         quad[1].texCoords = sf::Vector2f((tu + 1) * tileset.tileWidth(), tv * tileset.tileHeight());
         quad[2].texCoords = sf::Vector2f((tu + 1) * tileset.tileWidth(), (tv + 1) * tileset.tileHeight());
         quad[3].texCoords = sf::Vector2f(tu * tileset.tileWidth(), (tv + 1) * tileset.tileHeight());
-    //}
+        
+    }
 }
 
 void Map::updateAllVertex() {
@@ -121,8 +120,16 @@ void Map::setTile(sf::Vector2u pos, Tile& tile) {
 }
 
 void Map::setTileAsVisible(sf::Vector2u p) {
-    tiles[p.x][p.y].setVisible();
-    this->updateVertex(p);
+    int radius = 5;
+    for (int x = 0; x < radius; x++) {
+        for (int y = 0; y < radius; y++) {
+        sf::Vector2f v(p.x + x - radius / 2, p.y + y - radius / 2);
+            if (v.x >= 0 && v.x < getSize().x && v.y >= 0 && v.y < getSize().y) {
+                tiles[v.x][v.y].setVisible();
+                this->updateVertex(sf::Vector2u(v.x, v.y));
+            }
+        }
+    }
 }
 
 void Map::setTileLevel(sf::Vector2u pos, int level) {

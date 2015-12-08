@@ -55,6 +55,10 @@ sf::Vector2u MyDrawable::getPos() const {
     return position;
 }
 
+sf::Vector2u MyDrawable::getDir() const {
+    return dir;
+}
+
 std::string MyDrawable::getName() const {
     return name;
 }
@@ -66,6 +70,7 @@ void MyDrawable::move(sf::Vector2u dir) {
 
 void MyDrawable::setPos(int newX, int newY) {
     position = sf::Vector2u(newX, newY);
+    sprite.setPosition(newX*16, newY*16);
 }
 
 const sf::Vector2u& MyDrawable::getPos() {
@@ -78,15 +83,13 @@ void MyDrawable::updateSpritePosition() {
     sf::IntRect r1(spriteColumn * 16, spriteRow * 16, 16, 16);
     
     sprite.setTextureRect(r1);
-    //sprite.scale(-1, 1);
-
-    
-    //std::cout << "dirvector: " << this->dir.x << " " << this->dir.y << std::endl;
+    sprite.setOrigin(sprite.getLocalBounds().width / 2, sprite.getLocalBounds().height / 2);
+    sprite.setRotation(dir.x == 1 ? 90 : dir.y == 1 ? 180 : dir.y == -1 ? 0 : -90);
     
     sf::Vector2f pixelPos = sprite.getPosition();
     
-    int dX = position.x*16 - pixelPos.x;
-    int dY = position.y*16 - pixelPos.y;
+    int dX = position.x*16 - pixelPos.x + 8;
+    int dY = position.y*16 - pixelPos.y + 8;
     
     //std::cout << position.x << ", " << position.y << " | " << pixelPos.x << ", " << pixelPos.y << " | " << dX << ", " << dY << std::endl;
     
@@ -104,6 +107,7 @@ void MyDrawable::updateSpritePosition() {
     }
         
     tick++;
+
     
     sprite.setPosition(pixelPos);
 }

@@ -24,7 +24,7 @@
 #include <iostream>
 #include <cstdio>
 
-Game::Game() {
+Game::Game(int w, int h) : width(w), height(h) {
     MapGenerator gen = MapGenerator();
     MapLoader loader = MapLoader();
     
@@ -96,11 +96,21 @@ std::vector<Treasure>& Game::getTreasures() {
     return treasures;
 }
 
+bool Game::isEntityAtPos(sf::Vector2u pos) {
+    for (auto player : players) {
+        if (player.getPos() == pos)
+            return true;
+    }
+    return false;
+}
+
 void Game::movePlayer(uint8_t player, sf::Vector2u d) {
     if(player < players.size()) {
-        if(map.canMoveTo(players[player].getPos() + d)) {
+        sf::Vector2u newPosition = players[player].getPos() + d;
+        
+        if(map.canMoveTo(newPosition) && !this->isEntityAtPos(newPosition)) {
             players[player].move(d);
-            map.setTileAsVisible(sf::Vector2u(players[player].getPos()));
+            map.setTileAsVisible(newPosition);
         }
     }
 }
@@ -110,9 +120,10 @@ void Game::addPlayer(const std::string& name) {
     
     Player p("assets/playersprite.png", pos.x, pos.y, name);
     players.push_back(p);
+    map.setTileAsVisible(sf::Vector2u(pos.x, pos.y));
 }
 
-void Game::addProjectile(Projectile& projectile) {
+void Game::addProjectile(Projectile projectile) {
     projectiles.push_back(projectile);
 }
 
