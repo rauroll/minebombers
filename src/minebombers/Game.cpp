@@ -24,7 +24,7 @@
 #include <iostream>
 #include <cstdio>
 
-Game::Game(int w, int h) : width(w), height(h) {
+Game::Game() {
     MapGenerator gen = MapGenerator();
     MapLoader loader = MapLoader();
     
@@ -120,6 +120,8 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
                 break;
             }
         }
+        
+        map.setTileAsVisible(newPosition);
     }
 }
 
@@ -128,6 +130,7 @@ void Game::addPlayer(const std::string& name) {
     
     Player p("assets/playersprite.png", pos.x, pos.y, name);
     players.push_back(p);
+    map.setTileAsVisible(sf::Vector2u(pos.x, pos.y));
 }
 
 void Game::addProjectile(Projectile projectile) {
@@ -137,5 +140,3 @@ void Game::addProjectile(Projectile projectile) {
 std::vector<Projectile>& Game::getProjectiles() {
     return this->projectiles;
 }
-
-    

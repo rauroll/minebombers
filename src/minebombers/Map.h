@@ -35,6 +35,8 @@ public:
     bool canMoveTo(sf::Vector2u newPosition);
 
     void clearTiles();
+    
+    void setTileAsVisible(sf::Vector2u p);
 
     const Tileset& getTileset() const;
     const Tile& getTile(sf::Vector2u pos) const;

@@ -24,7 +24,7 @@
 
 class Game {
 public:
-    Game(int w, int h);
+    Game();
     virtual ~Game();
     void setScene(std::string scene);    
     Scene* getScene();
@@ -38,11 +38,9 @@ public:
     bool isEntityAtPos(sf::Vector2u pos);
     
     void addPlayer(const std::string& name);
-    void movePlayer(uint8_t player, sf::Vector2u d);
-
+    void movePlayer(uint8_t player, sf::Vector2u d);   
     void addProjectile(Projectile projectile);
     std::vector<Projectile>& getProjectiles();
-
 private:
     Scene* currentScene;
     Map map;
