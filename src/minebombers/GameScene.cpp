@@ -49,6 +49,20 @@ void GameScene::draw(sf::RenderWindow& window) {
         window.draw(i.getSprite());
         i.updateSpritePosition();
     }
+    
+    // statusbar
+    sf::Vector2u windowSize = window.getSize();
+    int statusBarHeight = 100;
+    sf::RectangleShape background(sf::Vector2f(windowSize.x, statusBarHeight));
+    background.setPosition(0, windowSize.y - statusBarHeight);
+    background.setFillColor(sf::Color(150, 0, 0, 155));
+    window.draw(background);
+    
+    sf::Font font;
+    font.loadFromFile("assets/BebasNeue.otf");
+    sf::Text text = sf::Text("haloo vittu :D", font, 32);
+    text.setPosition(10, windowSize.y - statusBarHeight / 2 - text.getLocalBounds().height / 2);
+    window.draw(text);
 }
 
 void GameScene::onEvent(sf::Event& event) {
