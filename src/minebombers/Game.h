@@ -24,7 +24,7 @@
 
 class Game {
 public:
-    Game(int w, int h);
+    Game();
     virtual ~Game();
     void setScene(std::string scene);    
     Scene* getScene();
@@ -42,12 +42,7 @@ public:
     void addProjectile(Projectile projectile);
     std::vector<Projectile>& getProjectiles();
     
-    int getWidth() { return width; };
-    int getHeight() { return height; };
-    
 private:
-    int width;
-    int height;
     Scene* currentScene;
     Map map;
     
