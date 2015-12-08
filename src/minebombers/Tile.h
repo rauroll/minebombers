@@ -31,7 +31,7 @@ public:
     void setLevel(int level);
     
     void setVisible();
-    bool isVisible();
+    bool isVisible() const;
     
     TileType getType() const;
 private:

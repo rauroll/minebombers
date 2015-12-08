@@ -34,7 +34,8 @@ void GameScene::draw(sf::RenderWindow& window) {
     
     std::vector<Treasure>& treasures = game.getTreasures();
     for(auto &i : treasures) {
-        window.draw(i.getSprite());
+        if (game.getMap().getTile(i.getPosition()).isVisible())
+            window.draw(i.getSprite());
     }
     
     std::vector<Player>& players = game.getPlayers();
