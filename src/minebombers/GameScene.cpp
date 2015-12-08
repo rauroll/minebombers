@@ -63,7 +63,7 @@ void GameScene::onEvent(sf::Event& event) {
             
             if (event.key.code == sf::Keyboard::LControl) {
                 Player& player = game.getPlayers()[0];
-                Projectile p = player.useWeapon(sf::Vector2u(0, 1));
+                Projectile p = player.useWeapon();
                 game.addProjectile(p);
             }
             

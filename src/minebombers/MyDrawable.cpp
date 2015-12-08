@@ -55,6 +55,10 @@ sf::Vector2u MyDrawable::getPos() const {
     return position;
 }
 
+sf::Vector2u MyDrawable::getDir() const {
+    return dir;
+}
+
 std::string MyDrawable::getName() const {
     return name;
 }

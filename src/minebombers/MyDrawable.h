@@ -26,6 +26,7 @@ public:
     
     const sf::Sprite& getSprite() const; 
     sf::Vector2u getPos() const;
+    sf::Vector2u getDir() const;
     void setPos(int x, int y);
     const sf::Vector2u& getPos();
     void move(sf::Vector2u dir);
