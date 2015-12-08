@@ -48,5 +48,5 @@ Weapon& Player::getActiveWeapon() {
 
 Projectile Player::useWeapon(sf::Vector2u dir) {
     Weapon& wep = this->getActiveWeapon();
-    return wep.use(this->position, dir);
+    return wep.use(this->getPos(), dir);
 }

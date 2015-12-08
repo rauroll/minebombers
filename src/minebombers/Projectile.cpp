@@ -12,6 +12,7 @@
  */
 
 #include "Projectile.h"
+#include <iostream>
 
 Projectile::Projectile(const std::string& name, const std::string& texturefile, int damage, sf::Vector2u radius, sf::Time timer) : MyDrawable(texturefile, 0, 0, name) {
     this->damage = damage;
@@ -35,7 +36,7 @@ void Projectile::setDirection(sf::Vector2u dir) {
 }
 
 void Projectile::update() {
-    this->position += this->dir;
+    this->move(this->dir);
 }
 
 void Projectile::explode() {
