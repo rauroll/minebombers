@@ -42,13 +42,8 @@ public:
 
     void addProjectile(Projectile projectile);
     std::vector<Projectile>& getProjectiles();
-    
-    int getWidth() { return width; };
-    int getHeight() { return height; };
-    
+
 private:
-    int width;
-    int height;
     Scene* currentScene;
     Map map;
     

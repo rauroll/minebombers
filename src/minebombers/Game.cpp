@@ -108,8 +108,18 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
     if(player < players.size()) {
         sf::Vector2u newPosition = players[player].getPos() + d;
         
-        if(map.canMoveTo(newPosition) && !this->isEntityAtPos(newPosition))
+        if(map.canMoveTo(newPosition) && !this->isEntityAtPos(newPosition)) {
             players[player].move(d);
+        }
+        
+        for(auto i = treasures.begin(); i != treasures.end(); i++) {
+            Treasure& asd = *i;
+            if(asd.getPosition() == players[player].getPos()) {
+                players[player].incrementMoney(asd.getValue());
+                treasures.erase(i);
+                break;
+            }
+        }
     }
 }
 
@@ -127,5 +137,5 @@ void Game::addProjectile(Projectile projectile) {
 std::vector<Projectile>& Game::getProjectiles() {
     return this->projectiles;
 }
-    
+
     
