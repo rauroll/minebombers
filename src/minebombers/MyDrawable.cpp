@@ -48,7 +48,6 @@ MyDrawable::~MyDrawable() {
 }
 
 const sf::Sprite& MyDrawable::getSprite() const {
-    //std::cout << "moving: " << isMoving() << std::endl;
     return sprite;
 }
 
@@ -79,7 +78,7 @@ const sf::Vector2u& MyDrawable::getPos() {
 }
 
 bool MyDrawable::isMoving() const {
-    sf::Vector2f v(this->position.x, this->position.y);
+    sf::Vector2f v(this->position.x * 16.0 + 8, this->position.y * 16.0 + 8);
     return (v != this->sprite.getPosition());
 }
 
