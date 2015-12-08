@@ -32,19 +32,19 @@ GameScene::~GameScene() {
 void GameScene::draw(sf::RenderWindow& window) {
     window.draw(game.getMap());
     
-    const std::vector<Treasure>& treasures = game.getTreasures();
-    for(auto i : treasures) {
+    std::vector<Treasure>& treasures = game.getTreasures();
+    for(auto &i : treasures) {
         window.draw(i.getSprite());
     }
     
     std::vector<Player>& players = game.getPlayers();
-    for(auto& i : players) {
+    for(auto &i : players) {
         window.draw(i.getSprite());
         i.updateSpritePosition();
     }
     
     std::vector<Projectile>& projectiles = game.getProjectiles();
-    for (auto i : projectiles) {
+    for (auto &i : projectiles) {
         window.draw(i.getSprite());
         i.updateSpritePosition();
     }
@@ -110,10 +110,9 @@ void GameScene::update() {
     }
     
     std::vector<Projectile>& projectiles = game.getProjectiles();
-    for (auto i : projectiles) {
+    for (auto &i : projectiles) {
         i.update();
     }
-    
 }
 
 
