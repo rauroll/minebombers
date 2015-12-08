@@ -33,6 +33,8 @@ public:
     
     std::string getName() const;
     
+    bool isMoving() const;
+    
     void updateSpritePosition();
 protected:
     sf::Vector2u dir = sf::Vector2u(1, 0);

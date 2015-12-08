@@ -23,8 +23,10 @@
 
 #include <iostream>
 #include <cstdio>
+#include <time.h>
 
-Game::Game(int w, int h) : width(w), height(h) {
+Game::Game() {
+    srand(time(NULL));
     MapGenerator gen = MapGenerator();
     MapLoader loader = MapLoader();
     
@@ -108,16 +110,40 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
     if(player < players.size()) {
         sf::Vector2u newPosition = players[player].getPos() + d;
         
-        if(map.canMoveTo(newPosition) && !this->isEntityAtPos(newPosition))
+        if(map.canMoveTo(newPosition) && !this->isEntityAtPos(newPosition)) {
             players[player].move(d);
+        }
+        
+        for(auto i = treasures.begin(); i != treasures.end(); i++) {
+            Treasure& asd = *i;
+            if(asd.getPosition() == players[player].getPos()) {
+                players[player].incrementMoney(asd.getValue());
+                treasures.erase(i);
+                break;
+            }
+        }
+        
+        map.setTileAsVisible(newPosition);
     }
 }
 
+sf::Vector2u Game::getRandomEmptyPos() {
+    sf::Vector2u pos;
+    sf::Vector2u mapSize = map.getSize();
+    while (true) {
+        pos = sf::Vector2u(rand() % mapSize.x, rand() % mapSize.y);
+        if (map.canMoveTo(pos) && !this->isEntityAtPos(pos))
+            break;
+    }
+    return pos;
+}
+
 void Game::addPlayer(const std::string& name) {
-    sf::Vector2u pos(rand() % 20, rand() % 20);
+    sf::Vector2u pos = this->getRandomEmptyPos();
     
     Player p("assets/playersprite.png", pos.x, pos.y, name);
     players.push_back(p);
+    map.setTileAsVisible(pos);
 }
 
 void Game::addProjectile(Projectile projectile) {
@@ -127,5 +153,3 @@ void Game::addProjectile(Projectile projectile) {
 std::vector<Projectile>& Game::getProjectiles() {
     return this->projectiles;
 }
-    
-    

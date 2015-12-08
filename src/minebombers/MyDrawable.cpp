@@ -77,9 +77,15 @@ const sf::Vector2u& MyDrawable::getPos() {
     return position;
 }
 
+bool MyDrawable::isMoving() const {
+    sf::Vector2f v(this->position.x * 16.0 + 8, this->position.y * 16.0 + 8);
+    return (v != this->sprite.getPosition());
+}
+
 void MyDrawable::updateSpritePosition() {
     int spriteLength = sprite.getTexture()->getSize().x / 16;
     
+    if (!isMoving()) spriteRow = 1; else spriteRow = 0;
     sf::IntRect r1(spriteColumn * 16, spriteRow * 16, 16, 16);
     
     sprite.setTextureRect(r1);
@@ -108,7 +114,6 @@ void MyDrawable::updateSpritePosition() {
         
     tick++;
 
-    
     sprite.setPosition(pixelPos);
 }
 

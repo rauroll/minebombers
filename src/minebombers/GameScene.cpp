@@ -35,7 +35,8 @@ void GameScene::draw(sf::RenderWindow& window) {
     
     std::vector<Treasure>& treasures = game.getTreasures();
     for(auto &i : treasures) {
-        window.draw(i.getSprite());
+        if (game.getMap().getTile(i.getPosition()).isVisible())
+            window.draw(i.getSprite());
     }
     
     std::vector<Player>& players = game.getPlayers();
@@ -52,6 +53,7 @@ void GameScene::draw(sf::RenderWindow& window) {
 }
 
 void GameScene::onEvent(sf::Event& event) {
+    AudioManager::getInstance().playSound("dead");
     switch (event.type)
     {
         case sf::Event::KeyPressed: {

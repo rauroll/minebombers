@@ -12,17 +12,20 @@
  */
 
 #include "Tile.h"
+#include "iostream"
 
 Tile::Tile(int level, int id, TileType type) {
     this->level = level;
     this->id = id;
     this->type = type;
+    this->visible = false;
 }
 
 Tile::Tile(const Tile& orig) {
     level = orig.level;
     id = orig.id;
     type = orig.type;
+    visible = orig.visible;
 }
 
 Tile::~Tile() {
@@ -38,6 +41,14 @@ void Tile::setId(int id) {
 
 int Tile::getLevel() const {
     return level;
+}
+
+void Tile::setVisible() {
+    this->visible = true;
+}
+
+bool Tile::isVisible() const {
+    return visible;
 }
 
 void Tile::setLevel(int level) {

@@ -24,7 +24,7 @@
 
 class Game {
 public:
-    Game(int w, int h);
+    Game();
     virtual ~Game();
     void setScene(std::string scene);    
     Scene* getScene();
@@ -39,16 +39,15 @@ public:
     
     void addPlayer(const std::string& name);
     void movePlayer(uint8_t player, sf::Vector2u d);
-
+    sf::Vector2u getRandomEmptyPos();
     void addProjectile(Projectile projectile);
     std::vector<Projectile>& getProjectiles();
     
-    int getWidth() { return width; };
-    int getHeight() { return height; };
-    
+    static Game& game() {
+        static Game instance;
+        return instance;
+    }
 private:
-    int width;
-    int height;
     Scene* currentScene;
     Map map;
     

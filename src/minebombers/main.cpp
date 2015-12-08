@@ -13,7 +13,7 @@
 #include <iostream>
 
 int main(int argc, char const** argv) {
-    Game game = Game(800, 800);
+    Game game = Game();
     game.setRandomTreasures(50);
     game.addPlayer("JERE");
     game.addPlayer("JERE2");
@@ -26,7 +26,7 @@ int main(int argc, char const** argv) {
     game.setScene("menu");
 
     
-    sf::RenderWindow window(sf::VideoMode(game.getWidth(), game.getHeight()), "Minebombers");
+    sf::RenderWindow window(sf::VideoMode(1300, 700), "Minebombers");
     
     sf::Clock clock;
     FPS fps;
