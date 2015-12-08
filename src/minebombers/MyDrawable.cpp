@@ -85,6 +85,7 @@ bool MyDrawable::isMoving() const {
 void MyDrawable::updateSpritePosition() {
     int spriteLength = sprite.getTexture()->getSize().x / 16;
     
+    if (!isMoving()) spriteRow = 1; else spriteRow = 0;
     sf::IntRect r1(spriteColumn * 16, spriteRow * 16, 16, 16);
     
     sprite.setTextureRect(r1);
