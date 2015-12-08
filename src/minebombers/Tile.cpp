@@ -47,7 +47,7 @@ void Tile::setVisible() {
     this->visible = true;
 }
 
-bool Tile::isVisible() {
+bool Tile::isVisible() const {
     return visible;
 }
 
