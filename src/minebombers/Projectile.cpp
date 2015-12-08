@@ -13,6 +13,7 @@
 
 #include "Projectile.h"
 #include <iostream>
+#include <algorithm>
 
 Projectile::Projectile(const std::string& name, const std::string& texturefile, int damage, sf::Vector2u radius, sf::Time timer) : MyDrawable(texturefile, 0, 0, name) {
     this->damage = damage;
@@ -29,17 +30,35 @@ Projectile::Projectile(const Projectile& orig) : MyDrawable(orig) {
 }
 
 Projectile::~Projectile() {
+    
 }
 
 void Projectile::setDirection(sf::Vector2u dir) {
     this->dir = dir;
 }
 
-void Projectile::update() {
+bool Projectile::update() {
     this->move(this->dir);
+    bool collided = game.isEntityAtPos(this->getPos()) || !game.getMap().canMoveTo(this->getPos());
+    if (collided) {
+        this->explode();
+    }
+    return collided;
+    
 }
 
 void Projectile::explode() {
+    Map& map = game.getMap();
+    sf::Vector2u loc = this->getPos();
+    for (auto i = std::max(loc.x - radius, 0), i < std::min(loc.x + radius, map.getSize().x), i++) {
+        std::cout << "Explosion on: " << i << ", 0" << std::endl;
+        // Cause damage to all affected entities and obstacles
+                
+    }
+    for (auto i = std::max(loc.y - radius, 0), i < std::min(loc.y + radius, map.getSize().y), i++) {
+        std::cout << "Explosion on: 0, " << i << std::endl;
+        // Cause damage to all affected entities and obstacles
+    }
     
 }
 

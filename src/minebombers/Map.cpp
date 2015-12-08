@@ -126,7 +126,6 @@ void Map::setTileAsVisible(sf::Vector2u p) {
         sf::Vector2f v(p.x + x - radius, p.y + y - radius);
             if (v.x >= 0 && v.x < getSize().x && v.y >= 0 && v.y < getSize().y) {
                 if(((float)v.x - p.x)*((float)v.x - p.x) + ((float)v.y - p.y)*((float)v.y - p.y) + 0.5 <= radius*radius) {
-                    std::cout << (v.x - p.x)*(v.x - p.x) + (v.y - p.y)*(v.y - p.y) << std::endl;
                     tiles[v.x][v.y].setVisible();
                     this->updateVertex(sf::Vector2u(v.x, v.y));
                 }

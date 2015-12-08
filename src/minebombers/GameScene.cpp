@@ -27,6 +27,7 @@ GameScene::GameScene(const GameScene& orig) : game(orig.game) {
 }
 
 GameScene::~GameScene() {
+    
 }
 
 void GameScene::draw(sf::RenderWindow& window) {
