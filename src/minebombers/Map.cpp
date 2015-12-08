@@ -121,12 +121,15 @@ void Map::setTile(sf::Vector2u pos, Tile& tile) {
 
 void Map::setTileAsVisible(sf::Vector2u p) {
     int radius = 5;
-    for (int x = 0; x < radius; x++) {
-        for (int y = 0; y < radius; y++) {
-        sf::Vector2f v(p.x + x - radius / 2, p.y + y - radius / 2);
+    for (int x = 0; x < radius*2; x++) {
+        for (int y = 0; y < radius*2; y++) {
+        sf::Vector2f v(p.x + x - radius, p.y + y - radius);
             if (v.x >= 0 && v.x < getSize().x && v.y >= 0 && v.y < getSize().y) {
-                tiles[v.x][v.y].setVisible();
-                this->updateVertex(sf::Vector2u(v.x, v.y));
+                if(((float)v.x - p.x)*((float)v.x - p.x) + ((float)v.y - p.y)*((float)v.y - p.y) + 0.5 <= radius*radius) {
+                    std::cout << (v.x - p.x)*(v.x - p.x) + (v.y - p.y)*(v.y - p.y) << std::endl;
+                    tiles[v.x][v.y].setVisible();
+                    this->updateVertex(sf::Vector2u(v.x, v.y));
+                }
             }
         }
     }
