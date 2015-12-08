@@ -112,8 +112,18 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
         
         if(map.canMoveTo(newPosition) && !this->isEntityAtPos(newPosition)) {
             players[player].move(d);
-            map.setTileAsVisible(newPosition);
         }
+        
+        for(auto i = treasures.begin(); i != treasures.end(); i++) {
+            Treasure& asd = *i;
+            if(asd.getPosition() == players[player].getPos()) {
+                players[player].incrementMoney(asd.getValue());
+                treasures.erase(i);
+                break;
+            }
+        }
+        
+        map.setTileAsVisible(newPosition);
     }
 }
 

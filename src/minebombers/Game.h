@@ -41,7 +41,6 @@ public:
     void movePlayer(uint8_t player, sf::Vector2u d);   
     void addProjectile(Projectile projectile);
     std::vector<Projectile>& getProjectiles();
-    
 private:
     Scene* currentScene;
     Map map;
