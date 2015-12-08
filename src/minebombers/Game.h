@@ -42,6 +42,11 @@ public:
     sf::Vector2u getRandomEmptyPos();
     void addProjectile(Projectile projectile);
     std::vector<Projectile>& getProjectiles();
+    
+    static Game& game() {
+        static Game instance;
+        return instance;
+    }
 private:
     Scene* currentScene;
     Map map;
