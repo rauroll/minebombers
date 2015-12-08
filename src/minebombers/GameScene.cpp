@@ -51,6 +51,7 @@ void GameScene::draw(sf::RenderWindow& window) {
 }
 
 void GameScene::onEvent(sf::Event& event) {
+    AudioManager::getInstance().playSound("dead");
     switch (event.type)
     {
         case sf::Event::KeyPressed: {
