@@ -35,6 +35,8 @@ public:
     void setRandomTreasures(uint16_t amount);
     std::vector<Treasure>& getTreasures();
     
+    bool isEntityAtPos(sf::Vector2u pos);
+    
     void addPlayer(const std::string& name);
     void movePlayer(uint8_t player, sf::Vector2u d);
 

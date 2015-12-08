@@ -96,9 +96,19 @@ std::vector<Treasure>& Game::getTreasures() {
     return treasures;
 }
 
+bool Game::isEntityAtPos(sf::Vector2u pos) {
+    for (auto player : players) {
+        if (player.getPos() == pos)
+            return true;
+    }
+    return false;
+}
+
 void Game::movePlayer(uint8_t player, sf::Vector2u d) {
     if(player < players.size()) {
-        if(map.canMoveTo(players[player].getPos() + d))
+        sf::Vector2u newPosition = players[player].getPos() + d;
+        
+        if(map.canMoveTo(newPosition) && !this->isEntityAtPos(newPosition))
             players[player].move(d);
     }
 }
