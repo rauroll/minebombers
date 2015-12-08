@@ -15,7 +15,10 @@
 #define PLAYER_H
 
 #include <SFML/Graphics.hpp>
+#include "Weapon.h"
 #include "Entity.h"
+#include "Projectile.h"
+
 
 class Player: public Entity {
 public:
@@ -23,10 +26,15 @@ public:
     Player(const std::string& texturefile, int x, int y, const std::string& name);
     Player(const Player& orig);
     virtual ~Player();
-
+    
+    void addWeapon(Weapon& weapon);
+    void changeWeapon();
+    Projectile useWeapon(sf::Vector2u dir);
     void incrementMoney(uint32_t amount);
 private:
-
+    Weapon& getActiveWeapon();
+    int activeWeapon = 0;
+    std::vector<Weapon> weapons;
     uint32_t money;
 };
 

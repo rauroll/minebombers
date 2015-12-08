@@ -26,9 +26,10 @@ Weapon::Weapon(const Weapon& orig) : projectile(orig.projectile) {
 Weapon::~Weapon() {
 }
 
-void Weapon::use(Game& game, sf::Vector2u loc, sf::Vector2u dir) {
-    Projectile proj = Projectile(this->projectile, loc, dir);
-    game.addProjectile(proj);
-    
+Projectile Weapon::use(sf::Vector2u loc, sf::Vector2u dir) {
+    Projectile p = Projectile(this->projectile);
+    p.setPos(loc.x, loc.y);
+    p.setDirection(dir);
+    return p;
 }
 

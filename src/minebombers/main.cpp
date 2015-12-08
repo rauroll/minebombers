@@ -7,6 +7,8 @@
 #include "MenuScene.h"
 #include "MapGenerator.h"
 #include "FPS.h"
+#include "Weapon.h"
+#include "Projectile.h"
 
 #include <iostream>
 
@@ -16,7 +18,13 @@ int main(int argc, char const** argv) {
     game.addPlayer("JERE");
     game.addPlayer("JERE2");
     
+    Projectile proj = Projectile("jonnemissile", "assets/mq1.jpg", 10);
+    Weapon onlyWeapon = Weapon("jonnegun", 99, proj);
+    
+    game.getPlayers()[0].addWeapon(onlyWeapon);
+    
     game.setScene("menu");
+
     
     sf::RenderWindow window(sf::VideoMode(800, 800), "Minebombers");
     

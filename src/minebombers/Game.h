@@ -40,7 +40,7 @@ public:
     void addPlayer(const std::string& name);
     void movePlayer(uint8_t player, sf::Vector2u d);
 
-    void addProjectile(Projectile& projectile);
+    void addProjectile(Projectile projectile);
     std::vector<Projectile>& getProjectiles();
     
 private:

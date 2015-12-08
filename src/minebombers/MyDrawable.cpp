@@ -102,6 +102,7 @@ void MyDrawable::updateSpritePosition() {
     }
         
     tick++;
+
     
     sprite.setPosition(pixelPos);
 }
