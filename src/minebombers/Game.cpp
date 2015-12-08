@@ -140,7 +140,6 @@ sf::Vector2u Game::getRandomEmptyPos() {
 
 void Game::addPlayer(const std::string& name) {
     sf::Vector2u pos = this->getRandomEmptyPos();
-    std::cout << "asd: " << pos.x << "," << pos.y << std::endl;
     
     Player p("assets/playersprite.png", pos.x, pos.y, name);
     players.push_back(p);
