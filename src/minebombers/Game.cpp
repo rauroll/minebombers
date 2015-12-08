@@ -98,8 +98,10 @@ std::vector<Treasure>& Game::getTreasures() {
 
 void Game::movePlayer(uint8_t player, sf::Vector2u d) {
     if(player < players.size()) {
-        if(map.canMoveTo(players[player].getPos() + d))
+        if(map.canMoveTo(players[player].getPos() + d)) {
             players[player].move(d);
+            map.setTileAsVisible(sf::Vector2u(players[player].getPos()));
+        }
     }
 }
 
@@ -117,5 +119,3 @@ void Game::addProjectile(Projectile& projectile) {
 std::vector<Projectile>& Game::getProjectiles() {
     return this->projectiles;
 }
-    
-    

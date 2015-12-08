@@ -30,8 +30,12 @@ public:
     void setId(int id);
     void setLevel(int level);
     
+    void setVisible();
+    int isVisible();
+    
     TileType getType() const;
 private:
+    int visible;;
     int level;
     int id;
     TileType type;
