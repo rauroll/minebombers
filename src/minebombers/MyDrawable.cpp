@@ -48,6 +48,7 @@ MyDrawable::~MyDrawable() {
 }
 
 const sf::Sprite& MyDrawable::getSprite() const {
+    //std::cout << "moving: " << isMoving() << std::endl;
     return sprite;
 }
 
@@ -75,6 +76,11 @@ void MyDrawable::setPos(int newX, int newY) {
 
 const sf::Vector2u& MyDrawable::getPos() {
     return position;
+}
+
+bool MyDrawable::isMoving() const {
+    sf::Vector2f v(this->position.x, this->position.y);
+    return (v != this->sprite.getPosition());
 }
 
 void MyDrawable::updateSpritePosition() {
@@ -108,7 +114,6 @@ void MyDrawable::updateSpritePosition() {
         
     tick++;
 
-    
     sprite.setPosition(pixelPos);
 }
 

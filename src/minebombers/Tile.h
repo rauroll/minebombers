@@ -31,11 +31,11 @@ public:
     void setLevel(int level);
     
     void setVisible();
-    int isVisible();
+    bool isVisible();
     
     TileType getType() const;
 private:
-    int visible;;
+    bool visible;;
     int level;
     int id;
     TileType type;

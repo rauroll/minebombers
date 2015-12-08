@@ -18,7 +18,7 @@ Tile::Tile(int level, int id, TileType type) {
     this->level = level;
     this->id = id;
     this->type = type;
-    this->visible = 0;
+    this->visible = false;
 }
 
 Tile::Tile(const Tile& orig) {
@@ -44,10 +44,10 @@ int Tile::getLevel() const {
 }
 
 void Tile::setVisible() {
-    this->visible = 1;
+    this->visible = true;
 }
 
-int Tile::isVisible() {
+bool Tile::isVisible() {
     return visible;
 }
 
