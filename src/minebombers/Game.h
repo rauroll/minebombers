@@ -38,7 +38,8 @@ public:
     bool isEntityAtPos(sf::Vector2u pos);
     
     void addPlayer(const std::string& name);
-    void movePlayer(uint8_t player, sf::Vector2u d);   
+    void movePlayer(uint8_t player, sf::Vector2u d);
+    sf::Vector2u getRandomEmptyPos();
     void addProjectile(Projectile projectile);
     std::vector<Projectile>& getProjectiles();
 private:
