@@ -42,6 +42,10 @@ void Player::addWeapon(Weapon& weapon) {
     weapons.push_back(weapon);
 }
 
+int Player::getMoney() const {
+    return this->money;
+}
+
 Weapon& Player::getActiveWeapon() {
     return weapons[activeWeapon];
 }
