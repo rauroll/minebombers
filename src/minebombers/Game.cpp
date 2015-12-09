@@ -139,9 +139,9 @@ void Game::revealMapAt(sf::Vector2u pos, int radius) {
     pos.y = 16 * pos.y + 8;
     for(int x = pos.x - radius; x < pos.x + radius; x++) {
         for(int y = pos.y - radius; y < pos.y + radius; y++) {
-            int Dx = x - pos.x;
-            int Dy = y - pos.y;
-            if (sqrt(Dx * Dx + Dy * Dy) < radius)
+            int Dx = x - (int) pos.x;
+            int Dy = y - (int) pos.y;
+            if (sqrt(Dx * Dx + Dy * Dy) < radius && x >= 0 && y >= 0 && x < overlayImage.getSize().x && y < overlayImage.getSize().y)
                 overlayImage.setPixel(x, y, sf::Color(0, 0, 0, 0));
         }
     }
