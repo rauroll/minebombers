@@ -26,6 +26,7 @@ public:
     
     int getId() const;
     int getLevel() const;
+    int getStartLevel() const;
     
     void setId(int id);
     void setLevel(int level);
@@ -37,6 +38,7 @@ public:
 private:
     bool visible;;
     int level;
+    int startLevel;
     int id;
     TileType type;
 };

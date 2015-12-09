@@ -16,6 +16,7 @@
 
 Tile::Tile(int level, int id, TileType type) {
     this->level = level;
+    this->startLevel = level;
     this->id = id;
     this->type = type;
     this->visible = false;
@@ -23,6 +24,7 @@ Tile::Tile(int level, int id, TileType type) {
 
 Tile::Tile(const Tile& orig) {
     level = orig.level;
+    startLevel = orig.level;
     id = orig.id;
     type = orig.type;
     visible = orig.visible;
@@ -41,6 +43,10 @@ void Tile::setId(int id) {
 
 int Tile::getLevel() const {
     return level;
+}
+
+int Tile::getStartLevel() const {
+    return startLevel;
 }
 
 void Tile::setVisible() {
