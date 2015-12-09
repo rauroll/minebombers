@@ -135,13 +135,18 @@ sf::Image& Game::getOverlayImage() {
 }
 
 void Game::revealMapAt(sf::Vector2u pos, int radius) {
-    pos.x = 16 * pos.x + 8;
-    pos.y = 16 * pos.y + 8;
-    for(int x = pos.x - radius; x < pos.x + radius; x++) {
-        for(int y = pos.y - radius; y < pos.y + radius; y++) {
-            int Dx = x - (int) pos.x;
-            int Dy = y - (int) pos.y;
-            if (sqrt(Dx * Dx + Dy * Dy) < radius && x >= 0 && y >= 0 && x < overlayImage.getSize().x && y < overlayImage.getSize().y)
+    int posX = pos.x = 16 * pos.x + 8;
+    int posY = 16 * pos.y + 8;
+    
+    for(int x = fmax(0, posX - radius); x < posX + radius; x++) {
+        int Dx = x - posX;
+        for(int y = fmax(0, posY - radius); y < posY + radius; y++) {
+            int Dy = y - posY;
+            int distance = x <= 0 || y <= 0 ? 0 : sqrt(Dx * Dx + Dy * Dy);
+            if (distance < radius 
+                    && x >= 0 && y >= 0 
+                    && x < overlayImage.getSize().x 
+                    && y < overlayImage.getSize().y)
                 overlayImage.setPixel(x, y, sf::Color(0, 0, 0, 0));
         }
     }

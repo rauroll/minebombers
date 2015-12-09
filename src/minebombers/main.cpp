@@ -28,6 +28,7 @@ int main(int argc, char const** argv) {
     sf::Vector2u mapSize = game.getMap().getSize();
     int statusbarHeight = 100;
     sf::RenderWindow window(sf::VideoMode(mapSize.x * 16, mapSize.y * 16 + statusbarHeight), "Minebombers");
+    window.setMouseCursorVisible(false);
     
     sf::Clock clock;
     FPS fps;
