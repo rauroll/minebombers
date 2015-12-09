@@ -14,6 +14,7 @@
 #include "Projectile.h"
 #include <iostream>
 #include <algorithm>
+#include "Game.h"
 
 Projectile::Projectile(const std::string& name, const std::string& texturefile, int damage, sf::Vector2u radius, sf::Time timer) : MyDrawable(texturefile, 0, 0, name) {
     this->damage = damage;
@@ -39,7 +40,7 @@ void Projectile::setDirection(sf::Vector2u dir) {
 
 bool Projectile::update() {
     this->move(this->dir);
-    bool collided = game.isEntityAtPos(this->getPos()) || !game.getMap().canMoveTo(this->getPos());
+    bool collided = Game::game().isEntityAtPos(this->getPos()) || !Game::game().getMap().canMoveTo(this->getPos());
     if (collided) {
         this->explode();
     }
@@ -48,17 +49,17 @@ bool Projectile::update() {
 }
 
 void Projectile::explode() {
-    Map& map = game.getMap();
+    Map& map = Game::game().getMap();
     sf::Vector2u loc = this->getPos();
-    for (auto i = std::max(loc.x - radius, 0), i < std::min(loc.x + radius, map.getSize().x), i++) {
-        std::cout << "Explosion on: " << i << ", 0" << std::endl;
+    //for (auto i = std::max(loc.x - radius, 0); i < std::min(loc.x + radius, map.getSize().x); i++) {
+    //    std::cout << "Explosion on: " << i << ", 0" << std::endl;
         // Cause damage to all affected entities and obstacles
                 
-    }
-    for (auto i = std::max(loc.y - radius, 0), i < std::min(loc.y + radius, map.getSize().y), i++) {
-        std::cout << "Explosion on: 0, " << i << std::endl;
+    //}
+    //for (auto i = std::max(loc.y - radius, 0); i < std::min(loc.y + radius, map.getSize().y); i++) {
+    //    std::cout << "Explosion on: 0, " << i << std::endl;
         // Cause damage to all affected entities and obstacles
-    }
+    //}
     
 }
 

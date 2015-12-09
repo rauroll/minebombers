@@ -16,7 +16,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "MyDrawable.h"
-#include "game.h"
 #include <SFML/System.hpp>
 
 class Projectile : public MyDrawable {
