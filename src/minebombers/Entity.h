@@ -22,6 +22,8 @@ public:
     Entity(const std::string texturefile, int x, int y, int hp, const std::string& name);
     Entity(const Entity& orig);
     virtual ~Entity();
+    
+    int getHealth();
 private:
     
     int health;

@@ -29,3 +29,8 @@ Entity::Entity(const Entity& orig) : MyDrawable(orig) {
 Entity::~Entity() {
 }
 
+int Entity::getHealth() {
+    return this->health;
+}
+
+

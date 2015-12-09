@@ -61,9 +61,23 @@ void GameScene::draw(sf::RenderWindow& window) {
     
     sf::Font font;
     font.loadFromFile("assets/BebasNeue.otf");
-    sf::Text text = sf::Text("haloo vittu :D", font, 32);
+    /*sf::Text text = sf::Text("haloo vittu :D", font, 32);
     text.setPosition(10, windowSize.y - statusBarHeight / 2 - text.getLocalBounds().height / 2);
-    window.draw(text);
+    window.draw(text);*/
+    
+    // Draw player data for each player
+    int i = 0;
+    for(auto &p : players) {
+        int box_x = 10 + i * 100;
+        int box_baseline_y = windowSize.y - 32;
+        sf::Text name = sf::Text(p.getName(), font, 16);
+        name.setPosition(box_x, box_baseline_y - 16);
+        sf::Text hp = sf::Text("HP" + std::to_string(p.getHealth()) + "/100", font, 16);
+        hp.setPosition(box_x, box_baseline_y);
+        window.draw(name);
+        window.draw(hp);
+        i++;
+    }
 }
 
 void GameScene::onEvent(sf::Event& event) {
