@@ -33,8 +33,8 @@ Game::Game() {
     map = loader.fromFile("maps/map.mb");
     //map = gen.generate();
     
-    scenes["menu"] = new MenuScene(*this);
-    scenes["game"] = new GameScene(*this);
+    scenes[MENUSCENE] = new MenuScene(*this);
+    scenes[GAMESCENE] = new GameScene(*this);
 }
 
 Game::~Game() {
@@ -48,8 +48,8 @@ Scene* Game::getScene() {
     return currentScene;
 }
 
-void Game::setScene(std::string sceneName) {
-    currentScene = scenes.at(sceneName);
+void Game::setScene(SceneType scene) {
+    currentScene = scenes.at(scene);
 }
 
 Map& Game::getMap() {

@@ -23,7 +23,7 @@ int main(int argc, char const** argv) {
     
     game.getPlayers()[0].addWeapon(onlyWeapon);
     
-    game.setScene("menu");
+    game.setScene(MENUSCENE);
 
     sf::Vector2u mapSize = game.getMap().getSize();
     sf::RenderWindow window(sf::VideoMode(mapSize.x * 16, mapSize.y * 16), "Minebombers");
