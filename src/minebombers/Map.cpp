@@ -68,10 +68,12 @@ void Map::setTileset(Tileset& tileset) {
 }
 
 bool Map::floorAt(sf::Vector2u newPosition) {
-    TileType tileType = this->getTile(newPosition).getType();
-    return newPosition.x > 0 && newPosition.y > 0
-           && newPosition.x <= width && newPosition.y <= height
-           && tileType == FLOOR;
+    if (newPosition.x >= 0 && newPosition.x < getSize().x && newPosition.y >= 0 && newPosition.y < getSize().y) {
+        TileType tileType = this->getTile(newPosition).getType();
+        return newPosition.x > 0 && newPosition.y > 0
+               && newPosition.x <= width && newPosition.y <= height
+               && tileType == FLOOR;
+    } else return false;
 }
 
 void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const {
