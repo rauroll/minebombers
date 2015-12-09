@@ -44,7 +44,7 @@ bool Projectile::update() {
     if (collided) {
         this->explode();
     }
-    return false;
+    return collided;
     
 }
 
