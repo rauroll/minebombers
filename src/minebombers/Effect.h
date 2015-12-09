@@ -20,17 +20,17 @@
 class Effect : public MyDrawable {
 public:
     Effect();
-    Effect(std::string name, const std::string& texturefile, sf::Vector2u loc, bool removeAfterDone = true);
+    Effect(std::string name, const std::string& texturefile, sf::Vector2u loc, bool permanent = false);
     Effect(const Effect& orig);
     
     bool update();
+    bool isPermanent();
     
     virtual ~Effect();
     
 private:
     
-    bool removeAfterDone;
-    bool isDone;
+    bool permanent;
 
 };
 

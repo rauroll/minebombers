@@ -205,8 +205,8 @@ void Game::update() {
     for (auto i = 0; i < effects.size(); i++) {
         Effect& e = effects[i];
         bool animationComplete = e.update();
-        if (animationComplete) {
-            //remove
+        if (animationComplete && !e.isPermanent()) {
+            //should be removed here
         }
     }
 

@@ -13,9 +13,8 @@
 
 #include "Effect.h"
 
-Effect::Effect(std::string name, const std::string& texturefile, sf::Vector2u loc, bool removeAfterDone) : MyDrawable(texturefile, loc.x, loc.y, name) {
-    this->removeAfterDone = removeAfterDone;
-    this->isDone = false;
+Effect::Effect(std::string name, const std::string& texturefile, sf::Vector2u loc, bool permanent) : MyDrawable(texturefile, loc.x, loc.y, name) {
+    this->permanent = permanent;
 }
 
 Effect::Effect() {
@@ -23,13 +22,17 @@ Effect::Effect() {
 }
 
 Effect::Effect(const Effect& orig) : MyDrawable(orig) {
-    this->removeAfterDone = orig.removeAfterDone;
+    this->permanent = orig.permanent;
 }
 
 Effect::~Effect() {
     
 }
 
+Effect::isPermanent() {
+    return !this->permanent;
+}
+
 Effect::update() {
-    // check if at last frame and update isDone flag
+    return this->spriteHasEnded();
 }
