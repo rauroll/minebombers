@@ -31,6 +31,7 @@ public:
     void changeWeapon();
     Projectile useWeapon();
     void incrementMoney(uint32_t amount);
+    int getMoney() const;
 private:
     Weapon& getActiveWeapon();
     int activeWeapon = 0;
