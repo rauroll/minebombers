@@ -17,8 +17,8 @@
 
 AudioManager::AudioManager() {
     sf::SoundBuffer soundBuffer;
-    soundBuffer.loadFromFile("assets/kuolema1.wav");
-    soundBuffers["dead"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/lazer.wav");
+    soundBuffers["lazer"] = soundBuffer;
 }
 
 AudioManager::AudioManager(const AudioManager& orig) {

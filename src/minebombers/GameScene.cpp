@@ -78,7 +78,6 @@ void GameScene::draw(sf::RenderWindow& window) {
 }
 
 void GameScene::onEvent(sf::Event& event) {
-    AudioManager::getInstance().playSound("dead");
     switch (event.type)
     {
         case sf::Event::KeyPressed: {
@@ -90,6 +89,7 @@ void GameScene::onEvent(sf::Event& event) {
             }
             
             if (event.key.code == sf::Keyboard::LControl) {
+                AudioManager::getInstance().playSound("lazer");
                 Player& player = game.getPlayers()[0];
                 Projectile p = player.useWeapon();
                 game.addProjectile(p);
