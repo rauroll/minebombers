@@ -82,11 +82,15 @@ bool MyDrawable::isMoving() const {
     return (v != this->sprite.getPosition());
 }
 
+bool MyDrawable::spriteHasEnded() const {
+    return this->spriteEnded;
+}
+
+
 void MyDrawable::updateSpritePosition() {
     int spriteLength = sprite.getTexture()->getSize().x / 16;
     
     if (spriteColumn == spriteLength - 1) this->spriteEnded = true;
-    std::cout << "over?" << this->spriteEnded << std::endl;
     
     if (!isMoving()) spriteRow = 1; else spriteRow = 0;
     sf::IntRect r1(spriteColumn * 16, spriteRow * 16, 16, 16);

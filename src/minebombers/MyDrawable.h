@@ -36,6 +36,9 @@ public:
     bool isMoving() const;
     
     void updateSpritePosition();
+    
+    bool spriteHasEnded() const;
+    
 protected:
     sf::Vector2u dir = sf::Vector2u(1, 0);
     int spriteColumn = 0;
