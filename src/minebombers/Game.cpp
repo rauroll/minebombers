@@ -116,6 +116,7 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
         
         if(map.floorAt(newPosition) && !this->isEntityAtPos(newPosition)) {
             players[player].move(d);
+            map.setTileAsVisible(newPosition);
         }
         
         for(auto i = treasures.begin(); i != treasures.end(); i++) {
@@ -126,15 +127,15 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
                 break;
             }
         }
-        this->revealMapAt(players[player].getPos());
+        //this->revealMapAt(players[player].getPos());
     }
 }
 
-sf::Image& Game::getOverlayImage() {
+/*sf::Image& Game::getOverlayImage() {
     return overlayImage;
 }
 
-void Game::revealMapAt(sf::Vector2u pos, int radius) {
+/*void Game::revealMapAt(sf::Vector2u pos, int radius) {
     pos.x = 16 * pos.x + 8;
     pos.y = 16 * pos.y + 8;
     for(int x = pos.x - radius; x < pos.x + radius; x++) {
@@ -146,6 +147,7 @@ void Game::revealMapAt(sf::Vector2u pos, int radius) {
         }
     }
 }
+*/
 
 sf::Vector2u Game::getRandomEmptyPos() {
     sf::Vector2u pos;
@@ -163,7 +165,8 @@ void Game::addPlayer(const std::string& name) {
     
     Player p("assets/playersprite.png", pos.x, pos.y, name);
     players.push_back(p);
-    this->revealMapAt(p.getPos());
+    this->map.setTileAsVisible(pos);
+    //this->revealMapAt(p.getPos());
 }
 
 void Game::addProjectile(Projectile projectile) {

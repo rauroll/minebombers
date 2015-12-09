@@ -68,7 +68,7 @@ void Map::setTileset(Tileset& tileset) {
 }
 
 bool Map::floorAt(sf::Vector2u newPosition) {
-    if (newPosition.x >= 0 && newPosition.x < getSize().x && newPosition.y >= 0 && newPosition.y < getSize().y) {
+    if ((int) newPosition.x >= 0 && newPosition.x < getSize().x && (int) newPosition.y >= 0 && newPosition.y < getSize().y) {
         TileType tileType = this->getTile(newPosition).getType();
         return newPosition.x > 0 && newPosition.y > 0
                && newPosition.x <= width && newPosition.y <= height
@@ -84,7 +84,7 @@ void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 void Map::updateVertex(const sf::Vector2u& p) {
     Tile tile = tiles[p.x][p.y];
-    if (tile.isVisible() || true) {
+    if (tile.isVisible()) {
         int tileNumber = tile.getId();
 
         int tu = tileNumber % (tileset.width() / tileset.tileWidth());

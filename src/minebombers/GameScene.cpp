@@ -77,11 +77,11 @@ void GameScene::draw(sf::RenderWindow& window) {
         i++;
     }
     
-    sf::Texture overlayTexture;
+    /*sf::Texture overlayTexture;
     overlayTexture.loadFromImage(game.getOverlayImage());
     sf::Sprite overlay;
     overlay.setTexture(overlayTexture);
-    window.draw(overlay);
+    window.draw(overlay);*/
 }
 
 void GameScene::onEvent(sf::Event& event) {
