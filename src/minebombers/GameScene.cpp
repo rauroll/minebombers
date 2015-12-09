@@ -61,9 +61,6 @@ void GameScene::draw(sf::RenderWindow& window) {
     
     sf::Font font;
     font.loadFromFile("assets/BebasNeue.otf");
-    /*sf::Text text = sf::Text("haloo vittu :D", font, 32);
-    text.setPosition(10, windowSize.y - statusBarHeight / 2 - text.getLocalBounds().height / 2);
-    window.draw(text);*/
     
     // Draw player data for each player
     int i = 0;
