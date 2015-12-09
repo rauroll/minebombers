@@ -69,11 +69,14 @@ void GameScene::draw(sf::RenderWindow& window) {
         int box_x = 10 + i * 100;
         int box_baseline_y = windowSize.y - 32;
         sf::Text name = sf::Text(p.getName(), font, 16);
-        name.setPosition(box_x, box_baseline_y - 16);
+        name.setPosition(box_x, box_baseline_y - 32);
         sf::Text hp = sf::Text("HP" + std::to_string(p.getHealth()) + "/100", font, 16);
-        hp.setPosition(box_x, box_baseline_y);
+        hp.setPosition(box_x, box_baseline_y - 16);
+        sf::Text mohlay = sf::Text("Money: " + std::to_string(p.getMoney()), font, 16);
+        mohlay.setPosition(box_x, box_baseline_y);
         window.draw(name);
         window.draw(hp);
+        window.draw(mohlay);
         i++;
     }
     

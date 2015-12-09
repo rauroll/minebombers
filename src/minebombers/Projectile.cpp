@@ -51,6 +51,7 @@ bool Projectile::update() {
 void Projectile::explode() {
     Map& map = Game::game().getMap();
     sf::Vector2u loc = this->getPos();
+    
     //for (auto i = std::max(loc.x - radius, 0); i < std::min(loc.x + radius, map.getSize().x); i++) {
     //    std::cout << "Explosion on: " << i << ", 0" << std::endl;
         // Cause damage to all affected entities and obstacles
