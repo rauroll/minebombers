@@ -30,6 +30,7 @@ namespace MBEditor {
         void prevTile();
         void moveCursor(sf::Vector2u d);
         void setType(MBEditor::TileType type);
+        void setLevel(uint8_t level);
         
         void insert();
         
