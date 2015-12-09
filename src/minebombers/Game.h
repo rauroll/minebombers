@@ -21,6 +21,7 @@
 #include "Player.h"
 #include "Treasure.h"
 #include "Projectile.h"
+#include "Effect.h"
 
 enum SceneType { GAMESCENE, MENUSCENE };
 
@@ -45,6 +46,12 @@ public:
     void addProjectile(Projectile projectile);
     std::vector<Projectile>& getProjectiles();
     
+    void addEffect(Effect effect);
+    
+    std::vector<Effect>& getEffects();
+    
+    void update();
+    
     static Game& game() {
         static Game instance;
         return instance;
@@ -61,6 +68,7 @@ private:
     std::vector<Player> players;
     std::vector<Treasure> treasures;
     std::vector<Projectile> projectiles;
+    std::vector<Effect> effects;
     
     std::map<SceneType, Scene*> scenes;
     

@@ -18,7 +18,8 @@ int main(int argc, char const** argv) {
     game.addPlayer("JERE");
     game.addPlayer("JERE2");
     
-    Projectile proj = Projectile("jonnemissile", "assets/projectile.png", 10);
+    Effect explosion = Effect("Explosion", "assets/explosion.png", sf::Vector2u(0, 0), true);
+    Projectile proj = Projectile("jonnemissile", "assets/projectile.png", 10, explosion);
     Weapon onlyWeapon = Weapon("jonnegun", 99, proj);
     
     game.getPlayers()[0].addWeapon(onlyWeapon);
