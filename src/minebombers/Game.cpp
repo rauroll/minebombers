@@ -185,9 +185,29 @@ void Game::addEffect(Effect effect) {
     this->effects.push_back(effect);
 }
 
+std::vector<Effect>& Game::getEffects() {
+    return this->effects;
+}
+
 void Game::update() {
     std::vector<Projectile>& projectiles = this->getProjectiles();
-    for (auto &i : projectiles) {
-        i.update();
+    for (auto i = 0; i < projectiles.size(); i++) {
+        Projectile& p = projectiles[i];
+        bool exploded = p.update();
+        if (exploded) {
+            // erase here
+            //projectiles.erase(projectiles.at(i));
+        }
+    }    
+    
+    std::vector<Effect>& effects = this->getEffects();
+    
+    for (auto i = 0; i < effects.size(); i++) {
+        Effect& e = effects[i];
+        bool animationComplete = e.update();
+        if (animationComplete) {
+            //remove
+        }
     }
+
 }

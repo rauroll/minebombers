@@ -48,6 +48,8 @@ public:
     
     void addEffect(Effect effect);
     
+    std::vector<Effect>& getEffects();
+    
     void update();
     
     static Game& game() {

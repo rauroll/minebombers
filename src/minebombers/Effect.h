@@ -23,11 +23,14 @@ public:
     Effect(std::string name, const std::string& texturefile, sf::Vector2u loc, bool removeAfterDone = true);
     Effect(const Effect& orig);
     
+    bool update();
+    
     virtual ~Effect();
     
 private:
     
     bool removeAfterDone;
+    bool isDone;
 
 };
 

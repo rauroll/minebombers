@@ -15,6 +15,7 @@
 
 Effect::Effect(std::string name, const std::string& texturefile, sf::Vector2u loc, bool removeAfterDone) : MyDrawable(texturefile, loc.x, loc.y, name) {
     this->removeAfterDone = removeAfterDone;
+    this->isDone = false;
 }
 
 Effect::Effect() {
@@ -29,3 +30,6 @@ Effect::~Effect() {
     
 }
 
+Effect::update() {
+    // check if at last frame and update isDone flag
+}
