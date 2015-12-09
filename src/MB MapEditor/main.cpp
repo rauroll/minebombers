@@ -25,16 +25,16 @@
 #include "MapLoader.h"
 
 int main(int argc, char** argv) {
-    sf::RenderWindow window(sf::VideoMode(1300, 800), "MB MapEditor");
+    sf::RenderWindow window(sf::VideoMode(1600, 800), "MB MapEditor");
     
     MBEditor::Tileset tileset = MBEditor::Tileset(sf::Vector2u(16, 16));
-    tileset.load("tileset.png");
+    tileset.load("map_spritesheet.png");
     
-    /*MBEditor::Map map = MBEditor::Map(80, 40);
+    MBEditor::Map map = MBEditor::Map(80, 40);
     map.setTileset(tileset);
-    map.setName("MAP1");*/
-    MBEditor::MapLoader loader;
-    MBEditor::Map map = loader.fromFile("map.mb");
+    map.setName("MAP1");
+   /* MBEditor::MapLoader loader;
+    MBEditor::Map map = loader.fromFile("map.mb");*/
     
     MBEditor::Editor editor = MBEditor::Editor(map);
     MBEditor::MapWriter writer;
@@ -74,6 +74,11 @@ int main(int argc, char** argv) {
                     }
                     else if (event.key.code == sf::Keyboard::F) {
                         editor.setType(MBEditor::FLOOR);
+                    }
+                    else if (event.key.code == sf::Keyboard::R) {
+                        editor.setType(MBEditor::ROCK);
+                        uint8_t level = editor.getCurrentLevel() == 100 ? 50 : 100;
+                        editor.setLevel(level);
                     }
                     else if (event.key.code == sf::Keyboard::S) {
                         writer.saveToFile(map, "map.mb");

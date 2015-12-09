@@ -82,15 +82,32 @@ bool MyDrawable::isMoving() const {
     return (v != this->sprite.getPosition());
 }
 
+bool MyDrawable::spriteHasEnded() const {
+    return this->spriteEnded;
+}
+
+
 void MyDrawable::updateSpritePosition() {
     int spriteLength = sprite.getTexture()->getSize().x / 16;
+    
+    if (spriteColumn == spriteLength - 1) this->spriteEnded = true;
     
     if (!isMoving()) spriteRow = 1; else spriteRow = 0;
     sf::IntRect r1(spriteColumn * 16, spriteRow * 16, 16, 16);
     
     sprite.setTextureRect(r1);
     sprite.setOrigin(sprite.getLocalBounds().width / 2, sprite.getLocalBounds().height / 2);
-    sprite.setRotation(dir.x == 1 ? 90 : dir.y == 1 ? 180 : dir.y == -1 ? 0 : -90);
+    
+    int rotation = 0;
+    if (dir.x == 1) {
+        rotation = dir.y == 0 ? 90 : dir.y == 1 ? 135 : 45;
+    } else if (dir.x == 0) {
+        rotation = dir.y == 1 ? 180 : 0;
+    } else {
+        rotation = dir.y == 0 ? 270 : dir.y == 1 ? 225 : 315;
+    }
+    
+    sprite.setRotation(rotation);
     
     sf::Vector2f pixelPos = sprite.getPosition();
     

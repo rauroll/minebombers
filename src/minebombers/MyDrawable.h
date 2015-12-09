@@ -36,6 +36,9 @@ public:
     bool isMoving() const;
     
     void updateSpritePosition();
+    
+    bool spriteHasEnded() const;
+    
 protected:
     sf::Vector2u dir = sf::Vector2u(1, 0);
     int spriteColumn = 0;
@@ -44,6 +47,7 @@ protected:
     int tick = 0;
     std::string name;
     std::string texturefile;
+    bool spriteEnded;
     sf::Sprite sprite;
     sf::Vector2u position;
 };

@@ -69,10 +69,11 @@ void Map::setTileset(Tileset& tileset) {
 
 bool Map::floorAt(sf::Vector2u newPosition) {
     if ((int) newPosition.x >= 0 && newPosition.x < getSize().x && (int) newPosition.y >= 0 && newPosition.y < getSize().y) {
-        TileType tileType = this->getTile(newPosition).getType();
+        const Tile& tile = this->getTile(newPosition);
+        TileType tileType = tile.getType();
         return newPosition.x > 0 && newPosition.y > 0
                && newPosition.x <= width && newPosition.y <= height
-               && tileType == FLOOR;
+               && (tileType == FLOOR || (tileType == ROCK && tile.getLevel() <= 0));
     } else return false;
 }
 
@@ -86,6 +87,11 @@ void Map::updateVertex(const sf::Vector2u& p) {
     Tile tile = tiles[p.x][p.y];
     if (tile.isVisible() || true) {
         int tileNumber = tile.getId();
+        int healthPerLevel = tile.getStartLevel()/5;
+        
+        if(tile.getType() == ROCK) {
+            tileNumber += 5 - tile.getLevel()/healthPerLevel;
+        }
 
         int tu = tileNumber % (tileset.width() / tileset.tileWidth());
         int tv = tileNumber / (tileset.width() / tileset.tileWidth());
