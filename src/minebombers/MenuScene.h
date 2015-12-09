@@ -20,14 +20,13 @@
 
 class MenuScene: public Scene {
 public:
-    MenuScene(Game& game);
+    MenuScene();
     virtual ~MenuScene();
     void update();
     void onEvent(sf::Event& event);
     void draw(sf::RenderWindow& window);
 
 private:
-    Game& game;
     sf::Font font;
     int logoPhase = 0;
     int selected = 0;

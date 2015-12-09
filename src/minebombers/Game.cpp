@@ -34,8 +34,8 @@ Game::Game() {
     map = loader.fromFile("maps/map.mb");
     //map = gen.generate();
     
-    scenes[MENUSCENE] = new MenuScene(*this);
-    scenes[GAMESCENE] = new GameScene(*this);
+    scenes[MENUSCENE] = new MenuScene();
+    scenes[GAMESCENE] = new GameScene();
     
     sf::Vector2u windowSize = map.getSize();
     overlayImage.create(windowSize.x * 16, windowSize.y * 16, sf::Color(0, 0, 0, 255));

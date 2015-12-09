@@ -19,11 +19,11 @@
 #include <iostream>
 #include <math.h>
 
-GameScene::GameScene(Game& game) : game(game) {
+GameScene::GameScene() {
     
 }
 
-GameScene::GameScene(const GameScene& orig) : game(orig.game) {
+GameScene::GameScene(const GameScene& orig) {
     
 }
 
@@ -32,6 +32,7 @@ GameScene::~GameScene() {
 }
 
 void GameScene::draw(sf::RenderWindow& window) {
+    Game& game = Game::game();
     window.draw(game.getMap());
     
     std::vector<Treasure>& treasures = game.getTreasures();
@@ -84,6 +85,7 @@ void GameScene::draw(sf::RenderWindow& window) {
 }
 
 void GameScene::onEvent(sf::Event& event) {
+    Game& game = Game::game();
     switch (event.type)
     {
         case sf::Event::KeyPressed: {
@@ -118,6 +120,7 @@ void GameScene::onEvent(sf::Event& event) {
 }
 
 void GameScene::update() {
+    Game& game = Game::game();
     for(auto& i : keyboard) {
         if(i.second.x) {
             i.second.y ++;
