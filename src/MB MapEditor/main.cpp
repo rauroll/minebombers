@@ -28,13 +28,13 @@ int main(int argc, char** argv) {
     sf::RenderWindow window(sf::VideoMode(1600, 800), "MB MapEditor");
     
     MBEditor::Tileset tileset = MBEditor::Tileset(sf::Vector2u(16, 16));
-    tileset.load("tileset.png");
+    tileset.load("map_spritesheet.png");
     
-    /*MBEditor::Map map = MBEditor::Map(80, 40);
+    MBEditor::Map map = MBEditor::Map(80, 40);
     map.setTileset(tileset);
-    map.setName("MAP1");*/
-    MBEditor::MapLoader loader;
-    MBEditor::Map map = loader.fromFile("map.mb");
+    map.setName("MAP1");
+   /* MBEditor::MapLoader loader;
+    MBEditor::Map map = loader.fromFile("map.mb");*/
     
     MBEditor::Editor editor = MBEditor::Editor(map);
     MBEditor::MapWriter writer;
