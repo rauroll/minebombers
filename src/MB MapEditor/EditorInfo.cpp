@@ -70,6 +70,8 @@ namespace MBEditor {
                 return "WALL";
             case FLOOR:
                 return "FLOOR";
+            case ROCK:
+                return "ROCK";
             default:
                 return "UNKNOW";
         }

@@ -106,5 +106,11 @@ namespace MBEditor {
         currentTile = currentTile - 1 % map.getTileset().count();
         info.setCurretTile(currentTile);
     }
+    
+    void Editor::setLevel(uint8_t level) {
+        currentLevel = level;
+        info.setCurrentLevel(level);
+    }
+
 }
 
