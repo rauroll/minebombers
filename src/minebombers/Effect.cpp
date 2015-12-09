@@ -29,10 +29,10 @@ Effect::~Effect() {
     
 }
 
-Effect::isPermanent() {
+bool Effect::isPermanent() {
     return !this->permanent;
 }
 
-Effect::update() {
+bool Effect::update() {
     return this->spriteHasEnded();
 }
