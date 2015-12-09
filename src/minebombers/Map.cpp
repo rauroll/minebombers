@@ -67,7 +67,7 @@ void Map::setTileset(Tileset& tileset) {
     updateAllVertex();
 }
 
-bool Map::canMoveTo(sf::Vector2u newPosition) {
+bool Map::floorAt(sf::Vector2u newPosition) {
     TileType tileType = this->getTile(newPosition).getType();
     return newPosition.x > 0 && newPosition.y > 0
            && newPosition.x <= width && newPosition.y <= height

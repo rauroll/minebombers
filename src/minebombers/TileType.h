@@ -14,7 +14,7 @@
 #ifndef TILETYPE_H
 #define TILETYPE_H
 
-enum TileType { WALL, FLOOR };
+enum TileType { WALL, FLOOR, ROCK };
 
 #endif /* TILETYPE_H */
 

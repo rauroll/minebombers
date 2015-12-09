@@ -22,11 +22,13 @@
 #include "Treasure.h"
 #include "Projectile.h"
 
+enum SceneType { GAMESCENE, MENUSCENE };
+
 class Game {
 public:
     Game();
     virtual ~Game();
-    void setScene(std::string scene);    
+    void setScene(SceneType scene);    
     Scene* getScene();
     Map& getMap();
     std::vector<Player>& getPlayers();
@@ -55,7 +57,7 @@ private:
     std::vector<Treasure> treasures;
     std::vector<Projectile> projectiles;
     
-    std::map<std::string, Scene*> scenes;
+    std::map<SceneType, Scene*> scenes;
     
     bool isEmpty(sf::Vector2u pos);
     bool addTreasure(Treasure& treasure);
