@@ -101,7 +101,7 @@ void GameScene::onEvent(sf::Event& event) {
             
             switch (event.key.code) {
                 case sf::Keyboard::LControl: {
-                    AudioManager::getInstance().playSound("lazer");
+                    AudioManager::getInstance().playSound("shot");
                     Player& player = game.getPlayers()[0];
                     Projectile p = player.useWeapon();
                     game.addProjectile(p);

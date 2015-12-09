@@ -21,6 +21,10 @@ AudioManager::AudioManager() {
     soundBuffers["lazer"] = soundBuffer;
     soundBuffer.loadFromFile("assets/tushy.wav");
     soundBuffers["tush"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/booom.wav");
+    soundBuffers["boom"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/shot.wav");
+    soundBuffers["shot"] = soundBuffer;
 }
 
 AudioManager::AudioManager(const AudioManager& orig) {
