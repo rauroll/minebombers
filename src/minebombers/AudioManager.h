@@ -30,7 +30,8 @@ public:
     
     const void playSound(std::string);
 private:
-    std::map<std::string, sf::SoundBuffer> sounds;
+    std::map<std::string, sf::SoundBuffer> soundBuffers;
+    std::map<std::string, sf::Sound> sounds;
 };
 
 #endif /* AUDIOMANAGER_H */

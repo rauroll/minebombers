@@ -13,11 +13,12 @@
 
 #include "AudioManager.h"
 #include <SFML/Audio.hpp>
+#include <iostream>
 
 AudioManager::AudioManager() {
     sf::SoundBuffer soundBuffer;
     soundBuffer.loadFromFile("assets/kuolema1.wav");
-    sounds["dead"] = soundBuffer;
+    soundBuffers["dead"] = soundBuffer;
 }
 
 AudioManager::AudioManager(const AudioManager& orig) {
@@ -27,7 +28,7 @@ AudioManager::~AudioManager() {
 }
 
 const void AudioManager::playSound(std::string soundName) {
-    sf::Sound sound;
-    sound.setBuffer(sounds.at(soundName));
-    sound.play();
+    if (sounds.find(soundName) == sounds.end())
+        sounds[soundName] = sf::Sound(soundBuffers.at(soundName));
+    sounds[soundName].play();
 }
