@@ -20,7 +20,7 @@
 
 class GameScene : public Scene {
 public:
-    GameScene(Game& game);
+    GameScene();
     GameScene(const GameScene& orig);
     virtual ~GameScene();
     
@@ -28,7 +28,6 @@ public:
     void onEvent(sf::Event& event);
     void draw(sf::RenderWindow& window);
 private:
-    Game& game;
     std::map<sf::Keyboard::Key, sf::Vector2u> keyboard;
 };
 

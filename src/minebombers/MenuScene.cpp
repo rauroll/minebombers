@@ -19,7 +19,7 @@
 #include "GameScene.h"
 #include "TextureManager.h"
 
-MenuScene::MenuScene(Game& game) : game(game) {
+MenuScene::MenuScene() {
     font.loadFromFile("assets/BebasNeue.otf");
 }
 
@@ -27,13 +27,13 @@ MenuScene::~MenuScene() {
 }
 
 void MenuScene::onEvent(sf::Event& event) {
+    Game& game = Game::game();
     if(event.type == sf::Event::KeyPressed) {
         switch (event.key.code) {
             case sf::Keyboard::Down: selected++; break;
             case sf::Keyboard::Up: selected--; break;
             case sf::Keyboard::Return: {
                 if (selected == 0) {
-                    GameScene gameScene = GameScene(game);
                     game.setScene(GAMESCENE);
                 }
             }

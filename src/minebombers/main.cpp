@@ -13,7 +13,7 @@
 #include <iostream>
 
 int main(int argc, char const** argv) {
-    Game game = Game();
+    Game& game = Game::game();
     game.setRandomTreasures(50);
     game.addPlayer("JERE");
     game.addPlayer("JERE2");

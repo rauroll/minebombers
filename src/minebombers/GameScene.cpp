@@ -19,11 +19,11 @@
 #include <iostream>
 #include <math.h>
 
-GameScene::GameScene(Game& game) : game(game) {
+GameScene::GameScene() {
     
 }
 
-GameScene::GameScene(const GameScene& orig) : game(orig.game) {
+GameScene::GameScene(const GameScene& orig) {
     
 }
 
@@ -32,12 +32,12 @@ GameScene::~GameScene() {
 }
 
 void GameScene::draw(sf::RenderWindow& window) {
+    Game& game = Game::game();
     window.draw(game.getMap());
     
     std::vector<Treasure>& treasures = game.getTreasures();
     for(auto &i : treasures) {
-        if (game.getMap().getTile(i.getPosition()).isVisible())
-            window.draw(i.getSprite());
+        window.draw(i.getSprite());
     }
     
     std::vector<Player>& players = game.getPlayers();
@@ -85,6 +85,7 @@ void GameScene::draw(sf::RenderWindow& window) {
 }
 
 void GameScene::onEvent(sf::Event& event) {
+    Game& game = Game::game();
     switch (event.type)
     {
         case sf::Event::KeyPressed: {
@@ -95,11 +96,16 @@ void GameScene::onEvent(sf::Event& event) {
                 v.y = 0; //time
             }
             
-            if (event.key.code == sf::Keyboard::LControl) {
-                AudioManager::getInstance().playSound("lazer");
-                Player& player = game.getPlayers()[0];
-                Projectile p = player.useWeapon();
-                game.addProjectile(p);
+            switch (event.key.code) {
+                case sf::Keyboard::LControl: {
+                    AudioManager::getInstance().playSound("lazer");
+                    Player& player = game.getPlayers()[0];
+                    Projectile p = player.useWeapon();
+                    game.addProjectile(p);
+                    break;
+                }
+                default:
+                    break;
             }
             
             break;
@@ -114,6 +120,7 @@ void GameScene::onEvent(sf::Event& event) {
 }
 
 void GameScene::update() {
+    Game& game = Game::game();
     for(auto& i : keyboard) {
         if(i.second.x) {
             i.second.y ++;
