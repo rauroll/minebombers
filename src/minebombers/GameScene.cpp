@@ -36,8 +36,7 @@ void GameScene::draw(sf::RenderWindow& window) {
     
     std::vector<Treasure>& treasures = game.getTreasures();
     for(auto &i : treasures) {
-        if (game.getMap().getTile(i.getPosition()).isVisible())
-            window.draw(i.getSprite());
+        window.draw(i.getSprite());
     }
     
     std::vector<Player>& players = game.getPlayers();
@@ -95,11 +94,16 @@ void GameScene::onEvent(sf::Event& event) {
                 v.y = 0; //time
             }
             
-            if (event.key.code == sf::Keyboard::LControl) {
-                AudioManager::getInstance().playSound("lazer");
-                Player& player = game.getPlayers()[0];
-                Projectile p = player.useWeapon();
-                game.addProjectile(p);
+            switch (event.key.code) {
+                case sf::Keyboard::LControl: {
+                    AudioManager::getInstance().playSound("lazer");
+                    Player& player = game.getPlayers()[0];
+                    Projectile p = player.useWeapon();
+                    game.addProjectile(p);
+                    break;
+                }
+                default:
+                    break;
             }
             
             break;
