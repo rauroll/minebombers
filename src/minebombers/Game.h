@@ -49,7 +49,12 @@ public:
         static Game instance;
         return instance;
     }
+    
+    sf::Image& getOverlayImage();
+    void revealMapAt(sf::Vector2u pos, int radius = 80);
 private:
+    sf::Image overlayImage;
+    
     Scene* currentScene;
     Map map;
     

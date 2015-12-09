@@ -24,6 +24,7 @@
 #include <iostream>
 #include <cstdio>
 #include <time.h>
+#include <cmath>
 
 Game::Game() {
     srand(time(NULL));
@@ -35,6 +36,9 @@ Game::Game() {
     
     scenes[MENUSCENE] = new MenuScene(*this);
     scenes[GAMESCENE] = new GameScene(*this);
+    
+    sf::Vector2u windowSize = map.getSize();
+    overlayImage.create(windowSize.x * 16, windowSize.y * 16, sf::Color(0, 0, 0, 255));
 }
 
 Game::~Game() {
@@ -122,8 +126,24 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
                 break;
             }
         }
-        
-        map.setTileAsVisible(newPosition);
+        this->revealMapAt(players[player].getPos());
+    }
+}
+
+sf::Image& Game::getOverlayImage() {
+    return overlayImage;
+}
+
+void Game::revealMapAt(sf::Vector2u pos, int radius) {
+    pos.x = 16 * pos.x + 8;
+    pos.y = 16 * pos.y + 8;
+    for(int x = pos.x - radius; x < pos.x + radius; x++) {
+        for(int y = pos.y - radius; y < pos.y + radius; y++) {
+            int Dx = x - pos.x;
+            int Dy = y - pos.y;
+            if (sqrt(Dx * Dx + Dy * Dy) < radius)
+                overlayImage.setPixel(x, y, sf::Color(0, 0, 0, 0));
+        }
     }
 }
 
@@ -143,7 +163,7 @@ void Game::addPlayer(const std::string& name) {
     
     Player p("assets/playersprite.png", pos.x, pos.y, name);
     players.push_back(p);
-    map.setTileAsVisible(pos);
+    this->revealMapAt(p.getPos());
 }
 
 void Game::addProjectile(Projectile projectile) {

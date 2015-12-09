@@ -84,7 +84,7 @@ void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 void Map::updateVertex(const sf::Vector2u& p) {
     Tile tile = tiles[p.x][p.y];
-    if (tile.isVisible()) {
+    if (tile.isVisible() || true) {
         int tileNumber = tile.getId();
 
         int tu = tileNumber % (tileset.width() / tileset.tileWidth());

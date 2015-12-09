@@ -17,6 +17,7 @@
 #include "AudioManager.h"
 
 #include <iostream>
+#include <math.h>
 
 GameScene::GameScene(Game& game) : game(game) {
     
@@ -75,6 +76,12 @@ void GameScene::draw(sf::RenderWindow& window) {
         window.draw(hp);
         i++;
     }
+    
+    sf::Texture overlayTexture;
+    overlayTexture.loadFromImage(game.getOverlayImage());
+    sf::Sprite overlay;
+    overlay.setTexture(overlayTexture);
+    window.draw(overlay);
 }
 
 void GameScene::onEvent(sf::Event& event) {
