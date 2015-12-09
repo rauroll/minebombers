@@ -16,14 +16,14 @@
 #include <algorithm>
 #include "Game.h"
 
-Projectile::Projectile(const std::string& name, const std::string& texturefile, int damage, sf::Vector2u radius, sf::Time timer) : MyDrawable(texturefile, 0, 0, name) {
+Projectile::Projectile(const std::string& name, const std::string& texturefile, int damage, Effect& effect, sf::Vector2u radius, sf::Time timer) : MyDrawable(texturefile, 0, 0, name), effect(effect) {
     this->damage = damage;
     this->dir = dir;
     this->radius = radius;
     this->timer = timer;
 }
 
-Projectile::Projectile(const Projectile& orig) : MyDrawable(orig) {
+Projectile::Projectile(const Projectile& orig) : MyDrawable(orig), effect(orig.effect) {
     this->dir = orig.dir;
     this->position = orig.position;
     this->radius = orig.radius;
@@ -50,19 +50,27 @@ bool Projectile::update() {
     
 }
 
+Effect& Projectile::getEffect() {
+    return this->effect;
+}
+
 void Projectile::explode() {
-    Map& map = Game::game().getMap();
+    Game& game = Game::game();
+    Map& map = game.getMap();
     sf::Vector2u loc = this->getPos();
     
-    //for (auto i = std::max(loc.x - radius, 0); i < std::min(loc.x + radius, map.getSize().x); i++) {
-    //    std::cout << "Explosion on: " << i << ", 0" << std::endl;
-        // Cause damage to all affected entities and obstacles
-                
-    //}
-    //for (auto i = std::max(loc.y - radius, 0); i < std::min(loc.y + radius, map.getSize().y); i++) {
-    //    std::cout << "Explosion on: 0, " << i << std::endl;
-        // Cause damage to all affected entities and obstacles
-    //}
+    unsigned int zero = 0;
+    
+    for (auto i = std::max(loc.x - radius.x, zero); i < std::min(loc.x + radius.x, map.getSize().x); i++) {
+        Effect effect = Effect(this->getEffect());
+        effect.setPos(i, loc.y);
+        game.addEffect(effect);
+    }
+    for (auto i = std::max(loc.y - radius.y, zero); i < std::min(loc.y + radius.y, map.getSize().y); i++) {
+        Effect effect = Effect(this->getEffect());
+        effect.setPos(loc.x, i);
+        game.addEffect(effect);
+    }
     
 }
 

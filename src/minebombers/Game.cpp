@@ -181,6 +181,10 @@ std::vector<Projectile>& Game::getProjectiles() {
     return this->projectiles;
 }
 
+void Game::addEffect(Effect effect) {
+    this->effects.push_back(effect);
+}
+
 void Game::update() {
     std::vector<Projectile>& projectiles = this->getProjectiles();
     for (auto &i : projectiles) {
