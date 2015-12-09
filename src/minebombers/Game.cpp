@@ -110,7 +110,7 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
     if(player < players.size()) {
         sf::Vector2u newPosition = players[player].getPos() + d;
         
-        if(map.canMoveTo(newPosition) && !this->isEntityAtPos(newPosition)) {
+        if(map.floorAt(newPosition) && !this->isEntityAtPos(newPosition)) {
             players[player].move(d);
         }
         
@@ -132,7 +132,7 @@ sf::Vector2u Game::getRandomEmptyPos() {
     sf::Vector2u mapSize = map.getSize();
     while (true) {
         pos = sf::Vector2u(rand() % mapSize.x, rand() % mapSize.y);
-        if (map.canMoveTo(pos) && !this->isEntityAtPos(pos))
+        if (map.floorAt(pos) && !this->isEntityAtPos(pos))
             break;
     }
     return pos;

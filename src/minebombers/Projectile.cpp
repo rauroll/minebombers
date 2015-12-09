@@ -40,7 +40,7 @@ void Projectile::setDirection(sf::Vector2u dir) {
 
 bool Projectile::update() {
     this->move(this->dir);
-    bool collided = Game::game().isEntityAtPos(this->getPos()) || !Game::game().getMap().canMoveTo(this->getPos());
+    bool collided = Game::game().isEntityAtPos(this->getPos()) || !Game::game().getMap().floorAt(this->getPos());
     if (collided) {
         this->explode();
     }
