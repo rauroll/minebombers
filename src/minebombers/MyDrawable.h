@@ -44,6 +44,7 @@ protected:
     int tick = 0;
     std::string name;
     std::string texturefile;
+    bool spriteEnded;
     sf::Sprite sprite;
     sf::Vector2u position;
 };
