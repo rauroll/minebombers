@@ -116,7 +116,6 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
         
         if(map.floorAt(newPosition) && !this->isEntityAtPos(newPosition)) {
             players[player].move(d);
-            map.setTileAsVisible(newPosition);
         }
         
         for(auto i = treasures.begin(); i != treasures.end(); i++) {
@@ -127,27 +126,33 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
                 break;
             }
         }
-        //this->revealMapAt(players[player].getPos());
+        this->revealMapAt(players[player].getPos());
     }
 }
 
-/*sf::Image& Game::getOverlayImage() {
+sf::Image& Game::getOverlayImage() {
     return overlayImage;
 }
 
-/*void Game::revealMapAt(sf::Vector2u pos, int radius) {
-    pos.x = 16 * pos.x + 8;
-    pos.y = 16 * pos.y + 8;
-    for(int x = pos.x - radius; x < pos.x + radius; x++) {
-        for(int y = pos.y - radius; y < pos.y + radius; y++) {
-            int Dx = x - (int) pos.x;
-            int Dy = y - (int) pos.y;
-            if (sqrt(Dx * Dx + Dy * Dy) < radius && x >= 0 && y >= 0 && x < overlayImage.getSize().x && y < overlayImage.getSize().y)
-                overlayImage.setPixel(x, y, sf::Color(0, 0, 0, 0));
+void Game::revealMapAt(sf::Vector2u pos, int radius) {
+    int posX = pos.x = 16 * pos.x + 8;
+    int posY = 16 * pos.y + 8;
+    sf::Vector2u overlaySize = overlayImage.getSize();
+    int overlayWidth = overlaySize.x;
+    int overlayHeight = overlaySize.y;
+    sf::Color transparent = sf::Color(0, 0, 0, 0);
+    
+    for(int x = fmax(0, posX - radius); x < posX + radius; x++) {
+        int Dx = x - posX;
+        int DxPow = Dx * Dx;
+        for(int y = fmax(0, posY - radius); y < posY + radius; y++) {
+            int Dy = y - posY;
+            int distance = sqrt(DxPow + Dy * Dy);
+            if (distance < radius && x < overlayWidth && y < overlayHeight)
+                overlayImage.setPixel(x, y, transparent);
         }
     }
 }
-*/
 
 sf::Vector2u Game::getRandomEmptyPos() {
     sf::Vector2u pos;
@@ -165,8 +170,7 @@ void Game::addPlayer(const std::string& name) {
     
     Player p("assets/playersprite.png", pos.x, pos.y, name);
     players.push_back(p);
-    this->map.setTileAsVisible(pos);
-    //this->revealMapAt(p.getPos());
+    this->revealMapAt(p.getPos());
 }
 
 void Game::addProjectile(Projectile projectile) {
