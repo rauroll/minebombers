@@ -151,10 +151,8 @@ void GameScene::update() {
         }
     }
     
-    std::vector<Projectile>& projectiles = game.getProjectiles();
-    for (auto &i : projectiles) {
-        i.update();
-    }
+    game.update();
+    
 }
 
 

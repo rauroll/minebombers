@@ -45,6 +45,8 @@ public:
     void addProjectile(Projectile projectile);
     std::vector<Projectile>& getProjectiles();
     
+    void update();
+    
     static Game& game() {
         static Game instance;
         return instance;

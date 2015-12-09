@@ -180,3 +180,10 @@ void Game::addProjectile(Projectile projectile) {
 std::vector<Projectile>& Game::getProjectiles() {
     return this->projectiles;
 }
+
+void Game::update() {
+    std::vector<Projectile>& projectiles = this->getProjectiles();
+    for (auto &i : projectiles) {
+        i.update();
+    }
+}
