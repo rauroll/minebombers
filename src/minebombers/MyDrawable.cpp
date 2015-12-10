@@ -15,7 +15,7 @@
 #include <iostream>
 
 #include "MyDrawable.h"
-#include "TextureManager.h"
+#include "ResourceManager.h"
 
 MyDrawable::MyDrawable() : sprite(), name(), texturefile() {
     this->position = sf::Vector2u(0, 0);
@@ -26,7 +26,7 @@ MyDrawable::MyDrawable(const std::string texturefile, int x, int y, const std::s
     this->name = name;
     this->texturefile = texturefile;
 
-    const sf::Texture& texture = TextureManager::getInstance().load(texturefile);
+    const sf::Texture& texture = ResourceManager::getInstance().loadTexture(texturefile);
     sf::Vector2u size = texture.getSize();
     
     std::cout << "texture size: " <<  size.x << " " << size.y << std::endl;

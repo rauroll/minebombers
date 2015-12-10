@@ -35,7 +35,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/AudioManager.o \
 	${OBJECTDIR}/Effect.o \
 	${OBJECTDIR}/Entity.o \
 	${OBJECTDIR}/Game.o \
@@ -47,9 +46,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/MyDrawable.o \
 	${OBJECTDIR}/Player.o \
 	${OBJECTDIR}/Projectile.o \
+	${OBJECTDIR}/ResourceManager.o \
 	${OBJECTDIR}/Scene.o \
 	${OBJECTDIR}/ShopScene.o \
-	${OBJECTDIR}/TextureManager.o \
 	${OBJECTDIR}/Tile.o \
 	${OBJECTDIR}/Tileset.o \
 	${OBJECTDIR}/Treasure.o \
@@ -80,11 +79,6 @@ LDLIBSOPTIONS=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/minebombers: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/minebombers ${OBJECTFILES} ${LDLIBSOPTIONS}
-
-${OBJECTDIR}/AudioManager.o: AudioManager.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AudioManager.o AudioManager.cpp
 
 ${OBJECTDIR}/Effect.o: Effect.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -141,6 +135,11 @@ ${OBJECTDIR}/Projectile.o: Projectile.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Projectile.o Projectile.cpp
 
+${OBJECTDIR}/ResourceManager.o: ResourceManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ResourceManager.o ResourceManager.cpp
+
 ${OBJECTDIR}/Scene.o: Scene.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -150,11 +149,6 @@ ${OBJECTDIR}/ShopScene.o: ShopScene.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ShopScene.o ShopScene.cpp
-
-${OBJECTDIR}/TextureManager.o: TextureManager.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TextureManager.o TextureManager.cpp
 
 ${OBJECTDIR}/Tile.o: Tile.cpp 
 	${MKDIR} -p ${OBJECTDIR}

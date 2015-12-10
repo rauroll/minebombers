@@ -12,7 +12,7 @@
  */
 
 #include "MapGenerator.h"
-#include "TextureManager.h"
+#include "ResourceManager.h"
 #include "TileType.h"
 #include <iostream>
 
