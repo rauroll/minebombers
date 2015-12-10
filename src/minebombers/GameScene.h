@@ -26,6 +26,7 @@ public:
     
     void update();
     void onEvent(sf::Event& event);
+    void onChangedTo();
     void draw(sf::RenderWindow& window);
 private:
     std::map<sf::Keyboard::Key, sf::Vector2u> keyboard;

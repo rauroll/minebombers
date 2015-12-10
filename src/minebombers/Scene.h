@@ -25,6 +25,7 @@ public:
     virtual void update() = 0;
     virtual void onEvent(sf::Event& event) = 0;
     virtual void draw(sf::RenderWindow& window) = 0;
+    virtual void onChangedTo() = 0;
 private:
 
 };

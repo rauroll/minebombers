@@ -24,6 +24,7 @@ public:
     virtual ~MenuScene();
     void update();
     void onEvent(sf::Event& event);
+    void onChangedTo();
     void draw(sf::RenderWindow& window);
 
 private:

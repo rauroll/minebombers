@@ -18,7 +18,6 @@
 #include "TextureManager.h"
 
 ShopScene::ShopScene() {
-    clock.restart();
 }
 
 ShopScene::ShopScene(const ShopScene& orig) {
@@ -26,6 +25,11 @@ ShopScene::ShopScene(const ShopScene& orig) {
 
 ShopScene::~ShopScene() {
 }
+
+void ShopScene::onChangedTo() {
+    clock.restart();
+}
+
 
 void ShopScene::onEvent(sf::Event& event) {
     if (event.type == sf::Event::KeyPressed) {

@@ -24,6 +24,7 @@ public:
     
     void update();
     void onEvent(sf::Event& event);
+    void onChangedTo();
     void draw(sf::RenderWindow& window);
 private:
     std::vector<int> playerSelections{0,0};

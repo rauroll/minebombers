@@ -70,6 +70,7 @@ sf::Time Game::getRoundTime() const {
 
 void Game::setScene(SceneType scene) {
     currentScene = scenes.at(scene);
+    currentScene->onChangedTo();
 }
 
 Map& Game::getMap() {
