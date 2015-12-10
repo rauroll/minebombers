@@ -50,6 +50,8 @@ public:
     
     std::vector<Effect>& getEffects();
     
+    sf::Vector2u getCanvasSize();
+    
     void update();
     
     static Game& game() {

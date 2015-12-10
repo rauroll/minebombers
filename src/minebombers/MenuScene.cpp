@@ -20,7 +20,6 @@
 #include "TextureManager.h"
 
 MenuScene::MenuScene() {
-    font.loadFromFile("assets/BebasNeue.otf");
 }
 
 MenuScene::~MenuScene() {
@@ -61,7 +60,8 @@ void MenuScene::update() {
 }
 
 void MenuScene::draw(sf::RenderWindow& window) {
-    sf::Vector2u size = window.getSize();
+    sf::Font font = TextureManager::getInstance().getFont();
+    sf::Vector2u size = Game::game().getCanvasSize();
     int width = size.x;
     int height = size.y;
     

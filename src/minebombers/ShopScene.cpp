@@ -15,6 +15,7 @@
 
 #include "ShopScene.h"
 #include "Game.h"
+#include "TextureManager.h"
 
 ShopScene::ShopScene() {
     clock.restart();
@@ -60,8 +61,10 @@ void ShopScene::update() {
 }
 
 void ShopScene::draw(sf::RenderWindow& window) {
-    sf::Font font;
-    font.loadFromFile("assets/BebasNeue.otf");
+    sf::Font font = TextureManager::getInstance().getFont();
+    
+    Game& game = Game::game();
+    sf::Vector2u size = game.getCanvasSize();
     
     sf::Text text("Shop", font, 100);
     text.setPosition(50, 50);
@@ -84,7 +87,7 @@ void ShopScene::draw(sf::RenderWindow& window) {
     
     sf::Text nextRound("Next round starts in " + std::to_string((int) ceil(15 - clock.getElapsedTime().asSeconds())) + "...", font, 60);
     sf::FloatRect bounds = nextRound.getLocalBounds();
-    nextRound.setPosition(window.getSize().x / 2 - bounds.width / 2, window.getSize().y - bounds.height * 2);
+    nextRound.setPosition(size.x / 2 - bounds.width / 2, size.y - bounds.height - 50);
     window.draw(nextRound);
 }
 

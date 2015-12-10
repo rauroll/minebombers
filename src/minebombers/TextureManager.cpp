@@ -19,6 +19,14 @@ TextureManager::TextureManager() {
 TextureManager::~TextureManager() {
 }
 
+const sf::Font& TextureManager::getFont() {
+    if (!font) {
+        font = new sf::Font();
+        font->loadFromFile("assets/BebasNeue.otf");
+    }
+    return *font;
+}
+
 const sf::Texture& TextureManager::load(const std::string& path) {
     if(textures.find(path) != textures.end()) {
         return textures[path];

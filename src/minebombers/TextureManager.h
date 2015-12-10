@@ -28,9 +28,12 @@ public:
         return instance;
     }
     
+    const sf::Font& getFont();
+    
     const sf::Texture& load(const std::string& path);
 private:
     std::map<std::string, sf::Texture> textures;
+    sf::Font* font;
 };
 
 #endif /* TEXTUREMANAGER_H */

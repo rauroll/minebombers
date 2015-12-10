@@ -46,6 +46,12 @@ Game::Game() {
 Game::~Game() {
 }
 
+sf::Vector2u Game::getCanvasSize() {
+    sf::Vector2u s = map.getSize();
+    return sf::Vector2u(s.x * 16, s.y * 16 + 100);
+}
+
+
 std::vector<Player>& Game::getPlayers() {
     return players;
 }

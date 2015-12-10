@@ -59,15 +59,15 @@ void GameScene::draw(sf::RenderWindow& window) {
     }
     
     // statusbar
-    sf::Vector2u windowSize = window.getSize();
+    sf::Vector2u windowSize = game.getCanvasSize();
     int statusBarHeight = 100;
     sf::RectangleShape background(sf::Vector2f(windowSize.x, statusBarHeight));
     background.setPosition(0, windowSize.y - statusBarHeight);
     background.setFillColor(sf::Color(150, 0, 0, 155));
     window.draw(background);
     
-    sf::Font font;
-    font.loadFromFile("assets/BebasNeue.otf");
+    sf::Font font = TextureManager::getInstance().getFont();
+
     
     // Draw player data for each player
     int i = 0;

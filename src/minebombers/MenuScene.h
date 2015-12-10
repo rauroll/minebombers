@@ -27,7 +27,6 @@ public:
     void draw(sf::RenderWindow& window);
 
 private:
-    sf::Font font;
     int logoPhase = 0;
     int selected = 0;
     
