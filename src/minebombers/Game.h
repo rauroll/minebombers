@@ -22,6 +22,8 @@
 #include "Treasure.h"
 #include "Projectile.h"
 #include "Effect.h"
+#include "MapGenerator.h"
+#include "MapLoader.h"
 
 enum SceneType { GAMESCENE, MENUSCENE, SHOPSCENE };
 
@@ -59,6 +61,8 @@ public:
         return instance;
     }
     
+    sf::Time getRoundTime() const;
+    
     sf::Image& getOverlayImage();
     void revealMapAt(sf::Vector2u pos, int radius = 80);
 private:
@@ -66,6 +70,9 @@ private:
     
     Scene* currentScene;
     Map map;
+    
+    MapLoader loader;
+    MapGenerator gen;
     
     std::vector<Player> players;
     std::vector<Treasure> treasures;
@@ -76,6 +83,11 @@ private:
     
     bool isEmpty(sf::Vector2u pos);
     bool addTreasure(Treasure& treasure);
+    
+    void startRound();
+       
+    sf::Clock roundClock;
+    sf::Time roundTime;
 };
 
 #endif /* GAME_H */

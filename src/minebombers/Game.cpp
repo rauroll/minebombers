@@ -12,8 +12,6 @@
  */
 
 #include "Game.h"
-#include "MapGenerator.h"
-#include "MapLoader.h"
 #include "Player.h"
 #include "TextureManager.h"
 #include "GameScene.h"
@@ -29,16 +27,22 @@
 
 Game::Game() {
     srand(time(NULL));
-    MapGenerator gen = MapGenerator();
-    MapLoader loader = MapLoader();
-    
-    map = loader.fromFile("maps/map.mb");
-    //map = gen.generate();
-    
+    this->gen = MapGenerator();
+    this->loader = MapLoader();
+     
     scenes[MENUSCENE] = new MenuScene();
     scenes[GAMESCENE] = new GameScene();
     scenes[SHOPSCENE] = new ShopScene();
     
+    this->startRound();
+}
+
+void Game::startRound() {
+    this->roundClock.restart();
+    this->roundTime = sf::seconds(60 * 5);
+    map = loader.fromFile("maps/map.mb");
+    //map = gen.generate();
+     
     sf::Vector2u windowSize = map.getSize();
     overlayImage.create(windowSize.x * 16, windowSize.y * 16, sf::Color(0, 0, 0, 255));
 }
@@ -58,6 +62,10 @@ std::vector<Player>& Game::getPlayers() {
 
 Scene* Game::getScene() {
     return currentScene;
+}
+
+sf::Time Game::getRoundTime() const {
+    return this->roundClock.getElapsedTime();
 }
 
 void Game::setScene(SceneType scene) {
