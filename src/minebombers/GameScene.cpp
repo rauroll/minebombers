@@ -57,8 +57,6 @@ void GameScene::draw(sf::RenderWindow& window) {
     for (auto &i : projectiles) {
         window.draw(i.getSprite());
         i.updateSpritePosition();
-        std::cout << i.getPos().x << ", " << i.getPos().y << std::endl;
-        std::cout << i.getSprite().getPosition().x << ", " << i.getSprite().getPosition().y << std::endl;
     }
     
     std::vector<Effect>& effects = game.getEffects();
