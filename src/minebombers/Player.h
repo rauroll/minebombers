@@ -28,7 +28,7 @@ public:
     virtual ~Player();
     
     void addWeapon(Weapon& weapon);
-    void changeWeapon();
+    void nextWeapon();
     Projectile useWeapon();
     void incrementMoney(uint32_t amount);
     int getMoney() const;

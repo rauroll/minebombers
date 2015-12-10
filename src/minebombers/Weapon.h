@@ -29,8 +29,12 @@ public:
     
     Projectile use(sf::Vector2u loc, sf::Vector2u dir);
     
+    void addAmmo(int amount);
+    int getAmmoCount() const;
+    
 protected:
     std::string name;
+    int ammoCount;
     int price;
     Projectile& projectile;
     
