@@ -31,6 +31,11 @@ GameScene::~GameScene() {
     
 }
 
+void GameScene::onChangedTo() {
+    
+}
+
+
 void GameScene::draw(sf::RenderWindow& window) {
     Game& game = Game::game();
     window.draw(game.getMap());

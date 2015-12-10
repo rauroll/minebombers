@@ -74,6 +74,7 @@ sf::Time Game::getRoundRemainingTime() const {
 
 void Game::setScene(SceneType scene) {
     currentScene = scenes.at(scene);
+    currentScene->onChangedTo();
 }
 
 Map& Game::getMap() {

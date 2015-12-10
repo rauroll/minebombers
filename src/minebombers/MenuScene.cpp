@@ -25,6 +25,11 @@ MenuScene::MenuScene() {
 MenuScene::~MenuScene() {
 }
 
+void MenuScene::onChangedTo() {
+
+}
+
+
 void MenuScene::onEvent(sf::Event& event) {
     Game& game = Game::game();
     if(event.type == sf::Event::KeyPressed) {
