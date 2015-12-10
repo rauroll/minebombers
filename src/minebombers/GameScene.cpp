@@ -139,6 +139,7 @@ void GameScene::onEvent(sf::Event& event) {
 
 void GameScene::update() {
     Game& game = Game::game();
+    
     for(auto& i : keyboard) {
         if(i.second.x) {
             i.second.y ++;
@@ -146,6 +147,7 @@ void GameScene::update() {
             //std::cout << i.second.y << std::endl;
             
             if(i.second.y % 5 == 1) {
+                
                 //Player 1
                 if(i.first == sf::Keyboard::Up)
                     game.movePlayer(0, sf::Vector2u(0, -1));
@@ -165,11 +167,19 @@ void GameScene::update() {
                     game.movePlayer(1, sf::Vector2u(1, 0));
                 if(i.first == sf::Keyboard::A)
                     game.movePlayer(1, sf::Vector2u(-1, 0));
+                
+                
             }
+
+                
         }
     }
     
     game.update();
+    
+    
+    
+    
     
 }
 

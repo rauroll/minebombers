@@ -15,6 +15,7 @@
 
 Effect::Effect(std::string name, const std::string& texturefile, sf::Vector2u loc, bool permanent) : MyDrawable(texturefile, loc.x, loc.y, name) {
     this->permanent = permanent;
+    this->canMove = false;
 }
 
 Effect::Effect() {
@@ -23,6 +24,8 @@ Effect::Effect() {
 
 Effect::Effect(const Effect& orig) : MyDrawable(orig) {
     this->permanent = orig.permanent;
+    this->spriteEnded = false;
+    this->canMove = orig.canMove;
 }
 
 Effect::~Effect() {

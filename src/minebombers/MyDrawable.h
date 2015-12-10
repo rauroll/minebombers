@@ -50,6 +50,7 @@ protected:
     bool spriteEnded;
     sf::Sprite sprite;
     sf::Vector2u position;
+    bool canMove = true;
 };
 
 #endif /* MYDRAWABLE_H */

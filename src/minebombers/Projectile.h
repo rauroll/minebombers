@@ -37,7 +37,8 @@ private:
     sf::Vector2u radius;
     bool state;
     sf::Time timer;
-    Effect& effect;
+    Effect effect;
+    int stepper = 0;
 };
 
 #endif /* BULLET_H */

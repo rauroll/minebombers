@@ -80,7 +80,7 @@ const sf::Vector2u& MyDrawable::getPos() {
 
 bool MyDrawable::isMoving() const {
     sf::Vector2f v(this->position.x * 16.0 + 8, this->position.y * 16.0 + 8);
-    return (v != this->sprite.getPosition());
+    return (v != this->sprite.getPosition() && this->canMove);
 }
 
 bool MyDrawable::spriteHasEnded() const {
@@ -91,6 +91,8 @@ bool MyDrawable::spriteHasEnded() const {
 void MyDrawable::updateSpritePosition() {
     int spriteLength = sprite.getTexture()->getSize().x / 16;
     spriteLength = spriteLength == 0 ? 1 : spriteLength;
+    
+    
 
     if (spriteColumn == spriteLength - 1) this->spriteEnded = true;
     
@@ -99,6 +101,11 @@ void MyDrawable::updateSpritePosition() {
     
     sprite.setTextureRect(r1);
     sprite.setOrigin(sprite.getLocalBounds().width / 2, sprite.getLocalBounds().height / 2);
+    
+    if (this->name == "Explosion") {
+        std::cout << "Sprite length is: " << spriteLength << std::endl;
+        std::cout << "Int rect is at: " << spriteRow << std::endl;
+    }
     
     int rotation = 0;
     if (dir.x == 1) {

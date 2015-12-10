@@ -41,7 +41,7 @@ Game::Game() {
 
 void Game::startRound() {    
     this->roundClock.restart();
-    this->roundTime = sf::seconds(10);
+    this->roundTime = sf::seconds(100);
     map = loader.fromFile("maps/map.mb");
     //map = gen.generate();
      
@@ -237,21 +237,22 @@ void Game::update() {
     for (auto i = 0; i < projectiles.size(); i++) {
         Projectile& p = projectiles[i];
         bool exploded = p.update();
-        ///if (exploded) {
-            // erase here
-            //projectiles.erase(projectiles.at(i));
-        //}
+        if (exploded) {
+            projectiles.erase(projectiles.begin() + i);
+            i--;
+        }
     }
     
-    /*
+    
     std::vector<Effect>& effects = this->getEffects();
     
     for (auto i = 0; i < effects.size(); i++) {
         Effect& e = effects[i];
         bool animationComplete = e.update();
         if (animationComplete && !e.isPermanent()) {
-            //should be removed here
+            effects.erase(effects.begin() + i);
+            i--;
         }
-    }*/
+    }
 
 }

@@ -39,12 +39,15 @@ void Projectile::setDirection(sf::Vector2u dir) {
 }
 
 bool Projectile::update() {
-    Game &game = Game::game();
-    if (game.getMap().floorAt(this->getPos() + this->dir)) {
-        this->move(this->dir);
-    } else {
-        //this->explode();
-        return true;
+    stepper++;
+    if (stepper % 5 == 0) {
+        Game &game = Game::game();
+        if (game.getMap().floorAt(this->getPos() + this->dir)) {
+            this->move(this->dir);
+        } else {
+            this->explode();
+            return true;
+        }
     }
     return false;
     
@@ -60,17 +63,19 @@ void Projectile::explode() {
     sf::Vector2u loc = this->getPos();
     
     unsigned int zero = 0;
-    
-    for (auto i = std::max(loc.x - radius.x, zero); i < std::min(loc.x + radius.x, map.getSize().x); i++) {
-        Effect effect = Effect(this->getEffect());
-        effect.setPos(i, loc.y);
-        game.addEffect(effect);
-    }
-    for (auto i = std::max(loc.y - radius.y, zero); i < std::min(loc.y + radius.y, map.getSize().y); i++) {
-        Effect effect = Effect(this->getEffect());
-        effect.setPos(loc.x, i);
-        game.addEffect(effect);
-    }
+    Effect effect = Effect(this->getEffect());
+    effect.setPos(loc.x, loc.y);
+    game.addEffect(effect);
+//    for (auto i = std::max(loc.x - radius.x, zero); i < std::min(loc.x + radius.x, map.getSize().x); i++) {
+//        Effect effect = Effect(this->getEffect());
+//        effect.setPos(i, loc.y);
+//        game.addEffect(effect);
+//    }
+//    for (auto i = std::max(loc.y - radius.y, zero); i < std::min(loc.y + radius.y, map.getSize().y); i++) {
+//        Effect effect = Effect(this->getEffect());
+//        effect.setPos(loc.x, i);
+//        game.addEffect(effect);
+//    }
     
 }
 
