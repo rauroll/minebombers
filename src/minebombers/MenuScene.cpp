@@ -17,7 +17,7 @@
 #include <iostream>
 #include "Game.h"
 #include "GameScene.h"
-#include "TextureManager.h"
+#include "ResourceManager.h"
 
 MenuScene::MenuScene() {
 }
@@ -65,13 +65,13 @@ void MenuScene::update() {
 }
 
 void MenuScene::draw(sf::RenderWindow& window) {
-    sf::Font font = TextureManager::getInstance().getFont();
+    sf::Font font = ResourceManager::getInstance().getFont();
     sf::Vector2u size = Game::game().getCanvasSize();
     int width = size.x;
     int height = size.y;
     
     sf::Sprite background;
-    background.setTexture(TextureManager::getInstance().load("assets/background.jpg"));
+    background.setTexture(ResourceManager::getInstance().loadTexture("assets/background.jpg"));
     background.setScale(width / background.getLocalBounds().width, height / background.getLocalBounds().height);
     
     sf::Text minebombers = sf::Text("minebombers", font, 110);

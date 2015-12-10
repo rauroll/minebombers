@@ -13,7 +13,7 @@
 
 #include "Game.h"
 #include "Player.h"
-#include "TextureManager.h"
+#include "ResourceManager.h"
 #include "GameScene.h"
 #include "MenuScene.h"
 #include "ShopScene.h"
@@ -124,7 +124,7 @@ void Game::setRandomTreasures(uint16_t amount) {
         sf::Vector2u pos(rand() % map.getSize().x, rand() % map.getSize().y);
         
         if(isEmpty(pos)) {
-            sf::Sprite sprite = sf::Sprite(TextureManager::getInstance().load("assets/my_doc.png"));
+            sf::Sprite sprite = sf::Sprite(ResourceManager::getInstance().loadTexture("assets/my_doc.png"));
             treasures.push_back(Treasure(sprite, 300, pos));
             
             amount--;

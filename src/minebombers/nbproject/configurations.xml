@@ -4,7 +4,6 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>AudioManager.h</itemPath>
       <itemPath>Effect.h</itemPath>
       <itemPath>Entity.h</itemPath>
       <itemPath>FPS.h</itemPath>
@@ -17,9 +16,9 @@
       <itemPath>MyDrawable.h</itemPath>
       <itemPath>Player.h</itemPath>
       <itemPath>Projectile.h</itemPath>
+      <itemPath>ResourceManager.h</itemPath>
       <itemPath>Scene.h</itemPath>
       <itemPath>ShopScene.h</itemPath>
-      <itemPath>TextureManager.h</itemPath>
       <itemPath>Tile.h</itemPath>
       <itemPath>TileType.h</itemPath>
       <itemPath>Tileset.h</itemPath>
@@ -34,7 +33,6 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>AudioManager.cpp</itemPath>
       <itemPath>Effect.cpp</itemPath>
       <itemPath>Entity.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
@@ -46,9 +44,9 @@
       <itemPath>MyDrawable.cpp</itemPath>
       <itemPath>Player.cpp</itemPath>
       <itemPath>Projectile.cpp</itemPath>
+      <itemPath>ResourceManager.cpp</itemPath>
       <itemPath>Scene.cpp</itemPath>
       <itemPath>ShopScene.cpp</itemPath>
-      <itemPath>TextureManager.cpp</itemPath>
       <itemPath>Tile.cpp</itemPath>
       <itemPath>Tileset.cpp</itemPath>
       <itemPath>Treasure.cpp</itemPath>
@@ -86,10 +84,6 @@
         </linkerTool>
       </compileType>
       <item path="../../../../Downloads/mq1.jpg" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="AudioManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="AudioManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Effect.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -137,6 +131,10 @@
       </item>
       <item path="Projectile.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ResourceManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ResourceManager.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Scene.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Scene.h" ex="false" tool="3" flavor2="0">
@@ -144,10 +142,6 @@
       <item path="ShopScene.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ShopScene.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TextureManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TextureManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Tile.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -198,10 +192,6 @@
       </compileType>
       <item path="../../../../Downloads/mq1.jpg" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="AudioManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="AudioManager.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Effect.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Effect.h" ex="false" tool="3" flavor2="0">
@@ -248,6 +238,10 @@
       </item>
       <item path="Projectile.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ResourceManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ResourceManager.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Scene.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Scene.h" ex="false" tool="3" flavor2="0">
@@ -255,10 +249,6 @@
       <item path="ShopScene.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ShopScene.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TextureManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TextureManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Tile.cpp" ex="false" tool="1" flavor2="0">
       </item>
