@@ -27,6 +27,7 @@ public:
     void draw(sf::RenderWindow& window);
 private:
     std::vector<int> playerSelections{0,0};
+    std::vector<std::string> weapons{"ase 1", "ase 2", "ase 3", "sun mutsi"};
 };
 
 #endif /* SHOPSCENE_H */
