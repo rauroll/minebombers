@@ -32,6 +32,8 @@ public:
     void addAmmo(int amount);
     int getAmmoCount() const;
     
+    std::string getName();
+    
 protected:
     std::string name;
     int ammoCount;
