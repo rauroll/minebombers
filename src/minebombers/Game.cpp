@@ -16,6 +16,7 @@
 #include "TextureManager.h"
 #include "GameScene.h"
 #include "MenuScene.h"
+#include "ShopScene.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -31,6 +32,7 @@ Game::Game() {
      
     scenes[MENUSCENE] = new MenuScene();
     scenes[GAMESCENE] = new GameScene();
+    scenes[SHOPSCENE] = new ShopScene();
     
     this->startRound();
 }

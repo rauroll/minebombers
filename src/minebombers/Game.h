@@ -25,7 +25,7 @@
 #include "MapGenerator.h"
 #include "MapLoader.h"
 
-enum SceneType { GAMESCENE, MENUSCENE };
+enum SceneType { GAMESCENE, MENUSCENE, SHOPSCENE };
 
 class Game {
 public:

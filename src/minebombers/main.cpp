@@ -24,7 +24,7 @@ int main(int argc, char const** argv) {
     
     game.getPlayers()[0].addWeapon(onlyWeapon);
     
-    game.setScene(MENUSCENE);
+    game.setScene(SHOPSCENE);
 
     sf::Vector2u mapSize = game.getMap().getSize();
     int statusbarHeight = 100;

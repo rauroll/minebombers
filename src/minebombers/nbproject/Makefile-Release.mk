@@ -48,6 +48,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Player.o \
 	${OBJECTDIR}/Projectile.o \
 	${OBJECTDIR}/Scene.o \
+	${OBJECTDIR}/ShopScene.o \
 	${OBJECTDIR}/TextureManager.o \
 	${OBJECTDIR}/Tile.o \
 	${OBJECTDIR}/Tileset.o \
@@ -144,6 +145,11 @@ ${OBJECTDIR}/Scene.o: Scene.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Scene.o Scene.cpp
+
+${OBJECTDIR}/ShopScene.o: ShopScene.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ShopScene.o ShopScene.cpp
 
 ${OBJECTDIR}/TextureManager.o: TextureManager.cpp 
 	${MKDIR} -p ${OBJECTDIR}
