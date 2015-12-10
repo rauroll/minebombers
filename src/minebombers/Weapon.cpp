@@ -13,7 +13,7 @@
 
 #include "Weapon.h"
 
-Weapon::Weapon(std::string name, int price, Projectile& projectile) : projectile(projectile) {
+Weapon::Weapon(std::string name, int price, Projectile projectile) : projectile(projectile) {
     this->name = name;
     this->price = price;
 }
@@ -44,7 +44,6 @@ Projectile Weapon::use(sf::Vector2u loc, sf::Vector2u dir) {
     
     p.setPos(loc.x, loc.y);
     p.setDirection(dir);
-    p.updateSpritePosition();
     return p;
 }
 

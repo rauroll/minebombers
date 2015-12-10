@@ -137,7 +137,7 @@ std::vector<Treasure>& Game::getTreasures() {
 }
 
 bool Game::isEntityAtPos(sf::Vector2u pos) {
-    for (auto player : players) {
+    for (auto& player : players) {
         if (player.getPos() == pos)
             return true;
     }
@@ -152,7 +152,7 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
             players[player].move(d);
         }
         
-        for(auto& i = treasures.begin(); i != treasures.end(); i++) {
+        for(auto i = treasures.begin(); i != treasures.end(); i++) {
             Treasure& tres = *i;
             if(tres.getPosition() == players[player].getPos()) {
                 players[player].incrementMoney(tres.getValue());
@@ -232,12 +232,13 @@ void Game::update() {
     for (auto i = 0; i < projectiles.size(); i++) {
         Projectile& p = projectiles[i];
         bool exploded = p.update();
-        if (exploded) {
+        ///if (exploded) {
             // erase here
             //projectiles.erase(projectiles.at(i));
-        }
-    }    
+        //}
+    }
     
+    /*
     std::vector<Effect>& effects = this->getEffects();
     
     for (auto i = 0; i < effects.size(); i++) {
@@ -246,6 +247,6 @@ void Game::update() {
         if (animationComplete && !e.isPermanent()) {
             //should be removed here
         }
-    }
+    }*/
 
 }

@@ -43,7 +43,7 @@ bool Projectile::update() {
     if (game.getMap().floorAt(this->getPos() + this->dir)) {
         this->move(this->dir);
     } else {
-        this->explode();
+        //this->explode();
         return true;
     }
     return false;

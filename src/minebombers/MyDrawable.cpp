@@ -12,6 +12,7 @@
  */
 
 #include <cmath>
+#include <algorithm>
 #include <iostream>
 
 #include "MyDrawable.h"
@@ -89,7 +90,8 @@ bool MyDrawable::spriteHasEnded() const {
 
 void MyDrawable::updateSpritePosition() {
     int spriteLength = sprite.getTexture()->getSize().x / 16;
-    
+    spriteLength = spriteLength == 0 ? 1 : spriteLength;
+
     if (spriteColumn == spriteLength - 1) this->spriteEnded = true;
     
     if (!isMoving()) spriteRow = 1; else spriteRow = 0;
@@ -114,7 +116,7 @@ void MyDrawable::updateSpritePosition() {
     int dX = position.x*16 - pixelPos.x + 8;
     int dY = position.y*16 - pixelPos.y + 8;
     
-    //std::cout << position.x << ", " << position.y << " | " << pixelPos.x << ", " << pixelPos.y << " | " << dX << ", " << dY << std::endl;
+   // std::cout << position.x << ", " << position.y << " | " << pixelPos.x << ", " << pixelPos.y << " | " << dX << ", " << dY << std::endl;
     
     if(dX != 0) {
         pixelPos.x += std::min(std::abs(dX), 4)*(std::abs(dX)/dX);
@@ -128,7 +130,6 @@ void MyDrawable::updateSpritePosition() {
         spriteColumn = (spriteColumn + 1) % spriteLength;
         tick = 0;
     }
-        
     tick++;
 
     sprite.setPosition(pixelPos);
