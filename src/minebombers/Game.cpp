@@ -40,6 +40,7 @@ Game::Game() {
 }
 
 void Game::startRound() {    
+    this->roundClock.restart();
     this->roundTime = sf::seconds(10);
     map = loader.fromFile("maps/map.mb");
     //map = gen.generate();
