@@ -32,7 +32,8 @@ GameScene::~GameScene() {
 }
 
 void GameScene::onChangedTo() {
-    
+    Game& game = Game::game();
+    game.startRound();
 }
 
 

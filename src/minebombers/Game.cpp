@@ -34,17 +34,29 @@ Game::Game() {
     scenes[GAMESCENE] = new GameScene();
     scenes[SHOPSCENE] = new ShopScene();
     
-    this->startRound();
+    map = loader.fromFile("maps/map.mb");
+    
+    //this->startRound();
 }
 
-void Game::startRound() {
-    this->roundClock.restart();
+void Game::startRound() {    
     this->roundTime = sf::seconds(10);
     map = loader.fromFile("maps/map.mb");
     //map = gen.generate();
      
     sf::Vector2u windowSize = map.getSize();
     overlayImage.create(windowSize.x * 16, windowSize.y * 16, sf::Color(0, 0, 0, 255));
+    
+    this->setRandomTreasures(50);
+    this->addPlayer("JERE");
+    this->addPlayer("JERE2");
+    
+    Effect explosion = Effect("Explosion", "assets/explosion.png", sf::Vector2u(0, 0), true);
+    Projectile proj = Projectile("jonnemissile", "assets/projectile.png", 10, explosion);
+    Weapon onlyWeapon = Weapon("jonnegun", 99, proj);
+        
+    this->getPlayers()[0].addWeapon(onlyWeapon);
+    
 }
 
 void Game::endRound() {

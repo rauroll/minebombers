@@ -65,6 +65,9 @@ public:
     
     sf::Image& getOverlayImage();
     void revealMapAt(sf::Vector2u pos, int radius = 80);
+    
+    void startRound();
+    void endRound();
 private:
     sf::Image overlayImage;
     
@@ -83,9 +86,6 @@ private:
     
     bool isEmpty(sf::Vector2u pos);
     bool addTreasure(Treasure& treasure);
-    
-    void startRound();
-    void endRound();
        
     sf::Clock roundClock;
     sf::Time roundTime;
