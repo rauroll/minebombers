@@ -23,7 +23,7 @@
 #include "Projectile.h"
 #include "Effect.h"
 
-enum SceneType { GAMESCENE, MENUSCENE };
+enum SceneType { GAMESCENE, MENUSCENE, SHOPSCENE };
 
 class Game {
 public:

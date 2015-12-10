@@ -18,6 +18,7 @@
       <itemPath>Player.h</itemPath>
       <itemPath>Projectile.h</itemPath>
       <itemPath>Scene.h</itemPath>
+      <itemPath>ShopScene.h</itemPath>
       <itemPath>TextureManager.h</itemPath>
       <itemPath>Tile.h</itemPath>
       <itemPath>TileType.h</itemPath>
@@ -46,6 +47,7 @@
       <itemPath>Player.cpp</itemPath>
       <itemPath>Projectile.cpp</itemPath>
       <itemPath>Scene.cpp</itemPath>
+      <itemPath>ShopScene.cpp</itemPath>
       <itemPath>TextureManager.cpp</itemPath>
       <itemPath>Tile.cpp</itemPath>
       <itemPath>Tileset.cpp</itemPath>
@@ -138,6 +140,10 @@
       <item path="Scene.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Scene.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ShopScene.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ShopScene.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TextureManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -245,6 +251,10 @@
       <item path="Scene.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Scene.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ShopScene.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ShopScene.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TextureManager.cpp" ex="false" tool="1" flavor2="0">
       </item>

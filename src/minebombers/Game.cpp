@@ -18,6 +18,7 @@
 #include "TextureManager.h"
 #include "GameScene.h"
 #include "MenuScene.h"
+#include "ShopScene.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -36,6 +37,7 @@ Game::Game() {
     
     scenes[MENUSCENE] = new MenuScene();
     scenes[GAMESCENE] = new GameScene();
+    scenes[SHOPSCENE] = new ShopScene();
     
     sf::Vector2u windowSize = map.getSize();
     overlayImage.create(windowSize.x * 16, windowSize.y * 16, sf::Color(0, 0, 0, 255));
