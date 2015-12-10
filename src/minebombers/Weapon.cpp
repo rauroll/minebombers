@@ -34,6 +34,11 @@ void Weapon::addAmmo(int amount) {
     this->ammoCount += amount;
 }
 
+std::string Weapon::getName() {
+    return name;
+}
+
+
 Projectile Weapon::use(sf::Vector2u loc, sf::Vector2u dir) {
     Projectile p = Projectile(this->projectile);
     
