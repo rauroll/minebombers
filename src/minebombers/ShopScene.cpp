@@ -14,9 +14,10 @@
 #include <math.h>
 
 #include "ShopScene.h"
+#include "Game.h"
 
 ShopScene::ShopScene() {
-
+    clock.restart();
 }
 
 ShopScene::ShopScene(const ShopScene& orig) {
@@ -53,7 +54,9 @@ void ShopScene::onEvent(sf::Event& event) {
 }
 
 void ShopScene::update() {
-
+    if (clock.getElapsedTime().asSeconds() > 15) {
+        Game::game().setScene(GAMESCENE);
+    }
 }
 
 void ShopScene::draw(sf::RenderWindow& window) {
@@ -69,8 +72,6 @@ void ShopScene::draw(sf::RenderWindow& window) {
         sf::Text text(w, font, 72);
         text.setPosition(200, 200 + i++ * 80);
         window.draw(text);
-        
-        
     }
     
     for(int i = 0; i < playerSelections.size(); i++) {
@@ -80,6 +81,11 @@ void ShopScene::draw(sf::RenderWindow& window) {
         circle.setFillColor(i ? sf::Color(0, 255, 0) : sf::Color(255, 0, 0));
         window.draw(circle);
     }
+    
+    sf::Text nextRound("Next round starts in " + std::to_string((int) ceil(15 - clock.getElapsedTime().asSeconds())) + "...", font, 60);
+    sf::FloatRect bounds = nextRound.getLocalBounds();
+    nextRound.setPosition(window.getSize().x / 2 - bounds.width / 2, window.getSize().y - bounds.height * 2);
+    window.draw(nextRound);
 }
 
 
