@@ -152,10 +152,10 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
             players[player].move(d);
         }
         
-        for(auto i = treasures.begin(); i != treasures.end(); i++) {
-            Treasure& asd = *i;
-            if(asd.getPosition() == players[player].getPos()) {
-                players[player].incrementMoney(asd.getValue());
+        for(auto& i = treasures.begin(); i != treasures.end(); i++) {
+            Treasure& tres = *i;
+            if(tres.getPosition() == players[player].getPos()) {
+                players[player].incrementMoney(tres.getValue());
                 treasures.erase(i);
                 break;
             }
