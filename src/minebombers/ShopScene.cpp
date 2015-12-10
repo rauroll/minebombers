@@ -15,7 +15,7 @@
 
 #include "ShopScene.h"
 #include "Game.h"
-#include "TextureManager.h"
+#include "ResourceManager.h"
 
 ShopScene::ShopScene() {
 }
@@ -65,7 +65,7 @@ void ShopScene::update() {
 }
 
 void ShopScene::draw(sf::RenderWindow& window) {
-    sf::Font font = TextureManager::getInstance().getFont();
+    sf::Font font = ResourceManager::getInstance().getFont();
     
     Game& game = Game::game();
     sf::Vector2u size = game.getCanvasSize();

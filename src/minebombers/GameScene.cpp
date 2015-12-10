@@ -12,9 +12,8 @@
  */
 
 #include "GameScene.h"
-#include "TextureManager.h"
+#include "ResourceManager.h"
 #include "Player.h"
-#include "AudioManager.h"
 
 #include <iostream>
 #include <math.h>
@@ -73,9 +72,8 @@ void GameScene::draw(sf::RenderWindow& window) {
     background.setFillColor(sf::Color(150, 0, 0, 155));
     window.draw(background);
     
-    sf::Font font = TextureManager::getInstance().getFont();
+    sf::Font font = ResourceManager::getInstance().getFont();
 
-    
     // Draw player data for each player
     int i = 0;
     for(auto &p : players) {
@@ -118,7 +116,7 @@ void GameScene::onEvent(sf::Event& event) {
             
             switch (event.key.code) {
                 case sf::Keyboard::LControl: {
-                    AudioManager::getInstance().playSound("shot");
+                    ResourceManager::getInstance().playSound("shot");
                     Player& player = game.getPlayers()[0];
                     Projectile p = player.useWeapon();
                     game.addProjectile(p);

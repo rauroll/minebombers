@@ -13,27 +13,30 @@
 
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <map>
 
 #ifndef TEXTUREMANAGER_H
 #define TEXTUREMANAGER_H
 
-class TextureManager {
+class ResourceManager {
 public:
-    TextureManager();
-    virtual ~TextureManager();
+    ResourceManager();
+    virtual ~ResourceManager();
     
-    static TextureManager& getInstance() {
-        static TextureManager instance;
+    static ResourceManager& getInstance() {
+        static ResourceManager instance;
         return instance;
     }
     
     const sf::Font& getFont();
-    
-    const sf::Texture& load(const std::string& path);
+    const sf::Texture& loadTexture(const std::string& path);
+    const void playSound(std::string soundName);
 private:
     std::map<std::string, sf::Texture> textures;
     sf::Font* font;
+    std::map<std::string, sf::SoundBuffer> soundBuffers;
+    std::map<std::string, sf::Sound> sounds;
 };
 
 #endif /* TEXTUREMANAGER_H */
