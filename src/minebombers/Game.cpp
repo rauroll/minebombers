@@ -62,6 +62,11 @@ void Game::startRound() {
 
 void Game::endRound() {
     this->setScene(SHOPSCENE);
+    this->players.clear();
+    this->treasures.clear();
+    this->effects.clear();
+    this->projectiles.clear();
+
 }
 
 Game::~Game() {

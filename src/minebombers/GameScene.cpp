@@ -74,7 +74,6 @@ void GameScene::draw(sf::RenderWindow& window) {
     
     sf::Font font = TextureManager::getInstance().getFont();
 
-    
     // Draw player data for each player
     int i = 0;
     for(auto &p : players) {
