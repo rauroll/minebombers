@@ -34,7 +34,7 @@ void Player::incrementMoney(uint32_t amount) {
     money += amount;
 }
 
-void Player::changeWeapon() {
+void Player::nextWeapon() {
     activeWeapon = weapons.size() % ++activeWeapon;
 }
 

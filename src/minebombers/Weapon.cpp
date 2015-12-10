@@ -26,6 +26,14 @@ Weapon::Weapon(const Weapon& orig) : projectile(orig.projectile) {
 Weapon::~Weapon() {
 }
 
+int Weapon::getAmmoCount() const {
+    return this->ammoCount;
+}
+
+void Weapon::addAmmo(int amount) {
+    this->ammoCount += amount;
+}
+
 Projectile Weapon::use(sf::Vector2u loc, sf::Vector2u dir) {
     Projectile p = Projectile(this->projectile);
     p.setPos(loc.x, loc.y);
