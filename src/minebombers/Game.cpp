@@ -39,12 +39,16 @@ Game::Game() {
 
 void Game::startRound() {
     this->roundClock.restart();
-    this->roundTime = sf::seconds(60 * 5);
+    this->roundTime = sf::seconds(10);
     map = loader.fromFile("maps/map.mb");
     //map = gen.generate();
      
     sf::Vector2u windowSize = map.getSize();
     overlayImage.create(windowSize.x * 16, windowSize.y * 16, sf::Color(0, 0, 0, 255));
+}
+
+void Game::endRound() {
+    this->setScene(SHOPSCENE);
 }
 
 Game::~Game() {
@@ -64,8 +68,8 @@ Scene* Game::getScene() {
     return currentScene;
 }
 
-sf::Time Game::getRoundTime() const {
-    return this->roundClock.getElapsedTime();
+sf::Time Game::getRoundRemainingTime() const {
+    return (this->roundTime - this->roundClock.getElapsedTime());
 }
 
 void Game::setScene(SceneType scene) {
@@ -206,6 +210,10 @@ std::vector<Effect>& Game::getEffects() {
 }
 
 void Game::update() {
+    if (this->getRoundRemainingTime() <= sf::seconds(0)) {
+        this->endRound();
+    }
+    
     std::vector<Projectile>& projectiles = this->getProjectiles();
     for (auto i = 0; i < projectiles.size(); i++) {
         Projectile& p = projectiles[i];

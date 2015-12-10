@@ -36,6 +36,7 @@ void Weapon::addAmmo(int amount) {
 
 Projectile Weapon::use(sf::Vector2u loc, sf::Vector2u dir) {
     Projectile p = Projectile(this->projectile);
+    
     p.setPos(loc.x, loc.y);
     p.setDirection(dir);
     p.updateSpritePosition();

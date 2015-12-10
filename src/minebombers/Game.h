@@ -61,7 +61,7 @@ public:
         return instance;
     }
     
-    sf::Time getRoundTime() const;
+    sf::Time getRoundRemainingTime() const;
     
     sf::Image& getOverlayImage();
     void revealMapAt(sf::Vector2u pos, int radius = 80);
@@ -85,6 +85,7 @@ private:
     bool addTreasure(Treasure& treasure);
     
     void startRound();
+    void endRound();
        
     sf::Clock roundClock;
     sf::Time roundTime;

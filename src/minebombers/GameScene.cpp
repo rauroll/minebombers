@@ -86,7 +86,7 @@ void GameScene::draw(sf::RenderWindow& window) {
         i++;
     }
     
-    sf::Text roundClock = sf::Text(std::to_string(game.getRoundTime().asSeconds()), font, 32);
+    sf::Text roundClock = sf::Text(std::to_string(game.getRoundRemainingTime().asSeconds()), font, 32);
     roundClock.setPosition(windowSize.x - 200, windowSize.y - 32);
     window.draw(roundClock);
     
