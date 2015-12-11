@@ -12,15 +12,18 @@
  */
 
 #include "Weapon.h"
+#include "ResourceManager.h"
 
-Weapon::Weapon(std::string name, int price, Projectile projectile) : projectile(projectile) {
+Weapon::Weapon(std::string name, std::string shotAudioName, int price, Projectile projectile) : projectile(projectile) {
     this->name = name;
     this->price = price;
+    this->shotAudioName = shotAudioName;
 }
 
 Weapon::Weapon(const Weapon& orig) : projectile(orig.projectile) {
     this->name = orig.name;
     this->price = orig.price;
+    this->shotAudioName = orig.shotAudioName;
 }
 
 Weapon::~Weapon() {
@@ -41,7 +44,7 @@ std::string Weapon::getName() {
 
 Projectile Weapon::use(sf::Vector2u loc, sf::Vector2u dir) {
     Projectile p = Projectile(this->projectile);
-    
+    ResourceManager::getInstance().playSound(this->shotAudioName);
     p.setPos(loc.x, loc.y);
     p.setDirection(dir);
     return p;
