@@ -36,6 +36,7 @@ MyDrawable::MyDrawable(const std::string texturefile, int x, int y, const std::s
     
     sprite.setPosition(x*16, y*16);
     std::cout << sprite.getPosition().x << ", " << sprite.getPosition().y << std::endl;
+    this->updateSpritePosition();
 }
 
 MyDrawable::MyDrawable(const MyDrawable& orig) : sprite(orig.sprite) {
@@ -43,6 +44,7 @@ MyDrawable::MyDrawable(const MyDrawable& orig) : sprite(orig.sprite) {
     name = orig.name;
     sprite.setPosition(orig.sprite.getPosition());
     //sprite.setPosition(position.x*16, position.y*16);
+    this->updateSpritePosition();
 }
 
 MyDrawable::~MyDrawable() {
@@ -80,7 +82,7 @@ const sf::Vector2u& MyDrawable::getPos() {
 
 bool MyDrawable::isMoving() const {
     sf::Vector2f v(this->position.x * 16.0 + 8, this->position.y * 16.0 + 8);
-    return (v != this->sprite.getPosition() && this->canMove);
+    return (v != this->sprite.getPosition() && !this->alwaysStillSprite);
 }
 
 bool MyDrawable::spriteHasEnded() const {
@@ -96,7 +98,7 @@ void MyDrawable::updateSpritePosition() {
 
     if (spriteColumn == spriteLength - 1) this->spriteEnded = true;
     
-    if (!isMoving()) spriteRow = 1; else spriteRow = 0;
+    if (!isMoving()) spriteRow = 0; else spriteRow = 1;
     sf::IntRect r1(spriteColumn * 16, spriteRow * 16, 16, 16);
     
     sprite.setTextureRect(r1);

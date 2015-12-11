@@ -21,6 +21,7 @@ Projectile::Projectile(const std::string& name, const std::string& texturefile, 
     this->dir = dir;
     this->radius = radius;
     this->timer = timer;
+    this->alwaysStillSprite = true;
 }
 
 Projectile::Projectile(const Projectile& orig) : MyDrawable(orig), effect(orig.effect) {
@@ -28,6 +29,7 @@ Projectile::Projectile(const Projectile& orig) : MyDrawable(orig), effect(orig.e
     this->position = orig.position;
     this->radius = orig.radius;
     this->timer = orig.timer;
+    this->alwaysStillSprite = orig.alwaysStillSprite;
 }
 
 Projectile::~Projectile() {
@@ -62,20 +64,20 @@ void Projectile::explode() {
     Map& map = game.getMap();
     sf::Vector2u loc = this->getPos();
     
-    unsigned int zero = 0;
-    Effect effect = Effect(this->getEffect());
-    effect.setPos(loc.x, loc.y);
-    game.addEffect(effect);
-//    for (auto i = std::max(loc.x - radius.x, zero); i < std::min(loc.x + radius.x, map.getSize().x); i++) {
-//        Effect effect = Effect(this->getEffect());
-//        effect.setPos(i, loc.y);
-//        game.addEffect(effect);
-//    }
-//    for (auto i = std::max(loc.y - radius.y, zero); i < std::min(loc.y + radius.y, map.getSize().y); i++) {
-//        Effect effect = Effect(this->getEffect());
-//        effect.setPos(loc.x, i);
-//        game.addEffect(effect);
-//    }
+    unsigned int zero = 1;
+//    Effect effect = Effect(this->getEffect());
+//    effect.setPos(loc.x, loc.y);
+//    game.addEffect(effect);
+    for (auto i = std::max(loc.x - radius.x, zero); i <= std::min(loc.x + radius.x, map.getSize().x-1); i++) {
+        Effect effect = Effect(this->getEffect());
+        effect.setPos(i, loc.y);
+        game.addEffect(effect);
+    }
+    for (auto i = std::max(loc.y - radius.y, zero); i <= std::min(loc.y + radius.y, map.getSize().y-1); i++) {
+        Effect effect = Effect(this->getEffect());
+        effect.setPos(loc.x, i);
+        game.addEffect(effect);
+    }
     
 }
 
