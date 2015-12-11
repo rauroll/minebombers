@@ -133,7 +133,8 @@ void Map::setTileAsVisible(sf::Vector2u p) {
     int radius = 5;
     for (int x = 0; x < radius*2; x++) {
         for (int y = 0; y < radius*2; y++) {
-        sf::Vector2f v(p.x + x - radius, p.y + y - radius);
+            sf::Vector2f v(p.x + x - radius, p.y + y - radius);
+            
             if (v.x >= 0 && v.x < getSize().x && v.y >= 0 && v.y < getSize().y) {
                 if(((float)v.x - p.x)*((float)v.x - p.x) + ((float)v.y - p.y)*((float)v.y - p.y) + 0.5 <= radius*radius) {
                     tiles[v.x][v.y].setVisible();
