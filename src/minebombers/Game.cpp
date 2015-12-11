@@ -58,6 +58,8 @@ void Game::startRound() {
         
     this->getPlayers()[0].addWeapon(onlyWeapon);
     
+    ResourceManager::getInstance().playMusic("game");
+    
 }
 
 void Game::endRound() {

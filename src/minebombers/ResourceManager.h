@@ -32,11 +32,13 @@ public:
     const sf::Font& getFont();
     const sf::Texture& loadTexture(const std::string& path);
     const void playSound(std::string soundName);
+    const void playMusic(std::string musicName);
 private:
     std::map<std::string, sf::Texture> textures;
     sf::Font* font;
     std::map<std::string, sf::SoundBuffer> soundBuffers;
     std::map<std::string, sf::Sound> sounds;
+    sf::Music music;
 };
 
 #endif /* TEXTUREMANAGER_H */

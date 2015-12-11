@@ -167,19 +167,13 @@ void GameScene::update() {
                     game.movePlayer(1, sf::Vector2u(1, 0));
                 if(i.first == sf::Keyboard::A)
                     game.movePlayer(1, sf::Vector2u(-1, 0));
-                
-                
+                   
             }
-
                 
         }
     }
     
     game.update();
-    
-    
-    
-    
     
 }
 

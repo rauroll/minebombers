@@ -12,6 +12,7 @@
  */
 
 #include "ResourceManager.h"
+#include <iostream>
 
 ResourceManager::ResourceManager() {
     sf::SoundBuffer soundBuffer;
@@ -23,6 +24,9 @@ ResourceManager::ResourceManager() {
     soundBuffers["boom"] = soundBuffer;
     soundBuffer.loadFromFile("assets/shot.wav");
     soundBuffers["shot"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/räjähdys.wav");
+    soundBuffers["explosion"] = soundBuffer;
+    
 }
 
 ResourceManager::~ResourceManager() {
@@ -55,4 +59,14 @@ const void ResourceManager::playSound(std::string soundName) {
     if (sounds.find(soundName) == sounds.end())
         sounds[soundName] = sf::Sound(soundBuffers.at(soundName));
     sounds[soundName].play();
+}
+
+const void ResourceManager::playMusic(std::string musicName) {
+    if (musicName == "game") {
+        if (!this->music.openFromFile("assets/never_die.wav")) {
+            return;
+        }
+        this->music.play();
+        this->music.setLoop(true);
+    }
 }

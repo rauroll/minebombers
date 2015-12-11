@@ -15,6 +15,7 @@
 #include <iostream>
 #include <algorithm>
 #include "Game.h"
+#include "ResourceManager.h"
 
 Projectile::Projectile(const std::string& name, const std::string& texturefile, int damage, Effect& effect, sf::Vector2u radius, sf::Time timer) : MyDrawable(texturefile, 0, 0, name), effect(effect) {
     this->damage = damage;
@@ -64,6 +65,7 @@ void Projectile::explode() {
     Map& map = game.getMap();
     sf::Vector2u loc = this->getPos();
     
+    
     int zero = 1;
     for (auto i = std::max((int)(loc.x - radius.x), zero); i < std::min(loc.x + radius.x, map.getSize().x-1); i++) {
         Effect effect = Effect(this->getEffect());
@@ -82,6 +84,7 @@ void Projectile::explode() {
         game.addEffect(effect);
         map.damageTile(explosionLoc);
     }
+    ResourceManager::getInstance().playSound("explosion");
     
 }
 
