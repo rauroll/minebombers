@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
@@ -10,7 +12,6 @@
 #include "Weapon.h"
 #include "Projectile.h"
 
-#include <iostream>
 
 int main(int argc, char const** argv) {
     Game& game = Game::game();

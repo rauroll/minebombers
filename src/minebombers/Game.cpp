@@ -11,19 +11,19 @@
  * Created on November 17, 2015, 2:21 PM
  */
 
-#include "Game.h"
-#include "Player.h"
-#include "ResourceManager.h"
-#include "GameScene.h"
-#include "MenuScene.h"
-#include "ShopScene.h"
-
 #include <SFML/Graphics.hpp>
 
 #include <iostream>
 #include <cstdio>
 #include <time.h>
 #include <cmath>
+
+#include "Game.h"
+#include "Player.h"
+#include "ResourceManager.h"
+#include "GameScene.h"
+#include "MenuScene.h"
+#include "ShopScene.h"
 
 Game::Game() {
     srand(time(NULL));
@@ -242,16 +242,16 @@ void Game::update() {
     }
     
     for(auto &i : players) {
-        i.updateSpritePosition();
+        i.updateSpritePosition(4);
     }
 
     for (auto &i : effects) {
-        i.updateSpritePosition();
+        i.updateSpritePosition(4);
     }
 
     for (auto i = 0; i < projectiles.size(); i++) {
         Projectile& p = projectiles[i];
-        p.updateSpritePosition();
+        p.updateSpritePosition(8);
         bool exploded = p.update();
         if (exploded) {
             projectiles.erase(projectiles.begin() + i);

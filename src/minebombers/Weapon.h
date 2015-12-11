@@ -15,11 +15,11 @@
 #ifndef WEAPON_H
 #define WEAPON_H
 
-#include "Map.h"
 #include <SFML/Graphics.hpp>
-#include <string.h>
-#include "Projectile.h"
+#include <string>
 
+#include "Map.h"
+#include "Projectile.h"
 
 class Weapon {
 public:

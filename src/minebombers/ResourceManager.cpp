@@ -12,7 +12,6 @@
  */
 
 #include "ResourceManager.h"
-#include <iostream>
 
 ResourceManager::ResourceManager() {
     sf::SoundBuffer soundBuffer;

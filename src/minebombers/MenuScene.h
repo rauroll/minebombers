@@ -14,8 +14,9 @@
 #ifndef MENUSCENE_H
 #define MENUSCENE_H
 
-#include "Scene.h"
 #include <SFML/System.hpp>
+
+#include "Scene.h"
 #include "Game.h"
 
 class MenuScene: public Scene {

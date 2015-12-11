@@ -11,9 +11,9 @@
  * Created on November 17, 2015, 5:53 PM
  */
 
-#include "Tile.h"
-#include "iostream"
 #include <algorithm>
+
+#include "Tile.h"
 
 Tile::Tile(int level, int id, TileType type) {
     this->level = level;

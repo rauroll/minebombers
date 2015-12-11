@@ -11,10 +11,11 @@
  * Created on November 17, 2015, 7:00 PM
  */
 
+#include <iostream>
+
 #include "MapGenerator.h"
 #include "ResourceManager.h"
 #include "TileType.h"
-#include <iostream>
 
 MapGenerator::MapGenerator() {
 }

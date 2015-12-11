@@ -11,10 +11,11 @@
  * Created on November 17, 2015, 2:23 PM
  */
 
-#include "MenuScene.h"
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
+
+#include "MenuScene.h"
 #include "Game.h"
 #include "GameScene.h"
 #include "ResourceManager.h"

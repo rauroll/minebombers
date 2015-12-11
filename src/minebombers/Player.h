@@ -15,6 +15,7 @@
 #define PLAYER_H
 
 #include <SFML/Graphics.hpp>
+
 #include "Weapon.h"
 #include "Entity.h"
 #include "Projectile.h"

@@ -11,11 +11,12 @@
  * Created on November 18, 2015, 5:34 PM
  */
 
+#include <iostream>
+
 #include "MapLoader.h"
 #include "Tile.h"
 #include "Tileset.h"
 #include "TileType.h"
-#include <iostream>
 
 MapLoader::MapLoader() {
 }

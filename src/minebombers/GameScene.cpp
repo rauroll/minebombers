@@ -11,12 +11,12 @@
  * Created on November 18, 2015, 4:49 PM
  */
 
+#include <iostream>
+#include <math.h>
+
 #include "GameScene.h"
 #include "ResourceManager.h"
 #include "Player.h"
-
-#include <iostream>
-#include <math.h>
 
 GameScene::GameScene() {
     

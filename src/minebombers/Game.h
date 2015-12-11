@@ -14,6 +14,7 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <SFML/System.hpp>
 #include <vector>
 
 #include "Scene.h"
@@ -24,7 +25,7 @@
 #include "Effect.h"
 #include "MapGenerator.h"
 #include "MapLoader.h"
-#include <SFML/System.hpp>
+
 
 enum SceneType { GAMESCENE, MENUSCENE, SHOPSCENE };
 

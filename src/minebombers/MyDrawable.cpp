@@ -36,7 +36,7 @@ MyDrawable::MyDrawable(const std::string texturefile, int x, int y, const std::s
     
     sprite.setPosition(x*16, y*16);
     std::cout << sprite.getPosition().x << ", " << sprite.getPosition().y << std::endl;
-    this->updateSpritePosition();
+    //this->updateSpritePosition();
 }
 
 MyDrawable::MyDrawable(const MyDrawable& orig) : sprite(orig.sprite) {
@@ -44,7 +44,7 @@ MyDrawable::MyDrawable(const MyDrawable& orig) : sprite(orig.sprite) {
     name = orig.name;
     sprite.setPosition(orig.sprite.getPosition());
     //sprite.setPosition(position.x*16, position.y*16);
-    this->updateSpritePosition();
+    //this->updateSpritePosition();
 }
 
 MyDrawable::~MyDrawable() {
@@ -90,7 +90,7 @@ bool MyDrawable::spriteHasEnded() const {
 }
 
 
-void MyDrawable::updateSpritePosition() {
+void MyDrawable::updateSpritePosition(int speed) {
     int spriteLength = sprite.getTexture()->getSize().x / 16;
     spriteLength = spriteLength == 0 ? 1 : spriteLength;
     
@@ -124,11 +124,11 @@ void MyDrawable::updateSpritePosition() {
    // std::cout << position.x << ", " << position.y << " | " << pixelPos.x << ", " << pixelPos.y << " | " << dX << ", " << dY << std::endl;
     
     if(dX != 0) {
-        pixelPos.x += std::min(std::abs(dX), 4)*(std::abs(dX)/dX);
+        pixelPos.x += std::min(std::abs(dX), speed)*(std::abs(dX)/dX);
     }
     
     if(dY != 0) {
-        pixelPos.y += std::min(std::abs(dY), 4)*(std::abs(dY)/dY);
+        pixelPos.y += std::min(std::abs(dY), speed)*(std::abs(dY)/dY);
     }
     
     if (tick == tickRate) {

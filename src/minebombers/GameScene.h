@@ -14,10 +14,11 @@
 #ifndef GAMESCENE_H
 #define GAMESCENE_H
 
-#include "Game.h"
 #include <map>
 #include <tuple>
 #include <SFML/System.hpp>
+
+#include "Game.h"
 
 class GameScene : public Scene {
 public:
