@@ -75,8 +75,8 @@ const void ResourceManager::playMusic(std::string musicName) {
             return;
         }
         //this->music.setPitch(2); // for hilarious effect :: D maybe for some power up?
-        this->music.setVolume(20);
-        //this->music.play();
+        this->music.setVolume(15);
+        this->music.play();
         this->music.setLoop(true);
     }
 }
