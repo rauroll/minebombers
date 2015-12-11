@@ -88,7 +88,7 @@ void Map::updateVertex(const sf::Vector2u& p) {
     if (tile.isVisible() || true) {
         int tileNumber = tile.getId();
         int healthPerLevel = tile.getStartLevel()/5;
-        
+            
         if(tile.getType() == ROCK) {
             tileNumber += 5 - tile.getLevel()/healthPerLevel;
         }
@@ -168,4 +168,5 @@ const Tile& Map::getTile(sf::Vector2u pos) const {
 
 void Map::damageTile(sf::Vector2u pos) {
     tiles[pos.x][pos.y].reduceLevel();
+    updateVertex(pos);
 }

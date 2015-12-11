@@ -25,7 +25,7 @@ Tile::Tile(int level, int id, TileType type) {
 
 Tile::Tile(const Tile& orig) {
     level = orig.level;
-    startLevel = orig.level;
+    startLevel = orig.startLevel;
     id = orig.id;
     type = orig.type;
     visible = orig.visible;
@@ -64,7 +64,7 @@ void Tile::setLevel(int level) {
 
 void Tile::reduceLevel() {
     
-    this->level = std::max(0, this->level - 1);
+    this->level = std::max(0, this->level - 20);
     
 }
 
