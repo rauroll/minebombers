@@ -33,6 +33,7 @@ public:
     const sf::Texture& loadTexture(const std::string& path);
     const void playSound(std::string soundName);
     const void playKling(int value);
+    const void playExplosion(int damage, std::string soundName);
     const void playMusic(std::string musicName);
 private:
     std::map<std::string, sf::Texture> textures;

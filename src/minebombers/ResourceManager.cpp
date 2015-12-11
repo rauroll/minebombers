@@ -12,6 +12,7 @@
  */
 
 #include "ResourceManager.h"
+#include <iostream>
 
 ResourceManager::ResourceManager() {
     sf::SoundBuffer soundBuffer;
@@ -77,6 +78,15 @@ const void ResourceManager::playKling(int value) {
         this->playSound("ohright");
     }
 }
+
+const void ResourceManager::playExplosion(int damage, std::string soundName) {
+    if (sounds.find(soundName) == sounds.end())
+        sounds[soundName] = sf::Sound(soundBuffers.at(soundName));
+    sounds[soundName].setPitch(1 / (damage / 20.0));
+    sounds[soundName].setVolume(20);
+    sounds[soundName].play();
+}
+
 
 const void ResourceManager::playMusic(std::string musicName) {
     if (musicName == "game") {
