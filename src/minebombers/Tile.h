@@ -31,7 +31,7 @@ public:
     void setId(int id);
     void setLevel(int level);
     
-    void reduceLevel();
+    void reduceLevel(int dmg);
     
     void setVisible();
     bool isVisible() const;

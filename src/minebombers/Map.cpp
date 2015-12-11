@@ -166,7 +166,7 @@ const Tile& Map::getTile(sf::Vector2u pos) const {
     return tiles[pos.x][pos.y];
 }
 
-void Map::damageTile(sf::Vector2u pos) {
-    tiles[pos.x][pos.y].reduceLevel();
+void Map::damageTile(sf::Vector2u pos, int damage) {
+    tiles[pos.x][pos.y].reduceLevel(damage);
     updateVertex(pos);
 }

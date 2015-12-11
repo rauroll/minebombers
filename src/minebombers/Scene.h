@@ -22,7 +22,7 @@ public:
     Scene();
     Scene(const Scene& orig);
     virtual ~Scene();
-    virtual void update() = 0;
+    virtual void update(sf::Time dt) = 0;
     virtual void onEvent(sf::Event& event) = 0;
     virtual void draw(sf::RenderWindow& window) = 0;
     virtual void onChangedTo() = 0;

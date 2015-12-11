@@ -141,8 +141,10 @@ void GameScene::onEvent(sf::Event& event) {
     }
 }
 
-void GameScene::update() {
+void GameScene::update(sf::Time dt) {
     Game& game = Game::game();
+    
+//    sf::Time delay = sf::milliseconds(50);
     
     for(auto& i : keyboard) {
         if(i.second.x) {

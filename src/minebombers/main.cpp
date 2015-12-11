@@ -42,7 +42,7 @@ int main(int argc, char const** argv) {
         }
         
         while(gameTime + dt <= clock.getElapsedTime()) {            
-            game.getScene()->update();
+            game.getScene()->update(dt);
                         
             gameTime += dt;
             draw = true;

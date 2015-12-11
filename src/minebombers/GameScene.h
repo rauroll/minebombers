@@ -17,6 +17,7 @@
 #include "Game.h"
 #include <map>
 #include <tuple>
+#include <SFML/System.hpp>
 
 class GameScene : public Scene {
 public:
@@ -24,7 +25,7 @@ public:
     GameScene(const GameScene& orig);
     virtual ~GameScene();
     
-    void update();
+    void update(sf::Time dt);
     void onEvent(sf::Event& event);
     void onChangedTo();
     void draw(sf::RenderWindow& window);

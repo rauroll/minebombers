@@ -48,7 +48,7 @@ void MenuScene::onEvent(sf::Event& event) {
     }
 }
 
-void MenuScene::update() {
+void MenuScene::update(sf::Time dt) {
     logoPhase++;
     
     if (selected == 0) {

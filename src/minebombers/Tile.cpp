@@ -62,10 +62,8 @@ void Tile::setLevel(int level) {
     this->level = level;
 }
 
-void Tile::reduceLevel() {
-    
-    this->level = std::max(0, this->level - 20);
-    
+void Tile::reduceLevel(int dmg) {
+    this->level = std::max(0, this->level - dmg);
 }
 
 TileType Tile::getType() const {

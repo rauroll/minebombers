@@ -15,6 +15,7 @@
 #define SHOPSCENE_H
 
 #include "Scene.h"
+#include <SFML/System.hpp>
 
 class ShopScene : public Scene {
 public:
@@ -22,7 +23,7 @@ public:
     ShopScene(const ShopScene& orig);
     virtual ~ShopScene();
     
-    void update();
+    void update(sf::Time dt);
     void onEvent(sf::Event& event);
     void onChangedTo();
     void draw(sf::RenderWindow& window);

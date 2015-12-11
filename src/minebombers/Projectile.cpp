@@ -28,6 +28,7 @@ Projectile::Projectile(const std::string& name, const std::string& texturefile, 
 
 Projectile::Projectile(const Projectile& orig) : MyDrawable(orig), effect(orig.effect) {
     this->dir = orig.dir;
+    this->damage = orig.damage;
     this->position = orig.position;
     this->radius = orig.radius;
     this->timer = orig.timer;
@@ -74,7 +75,7 @@ void Projectile::explode() {
         sf::Vector2u explosionLoc = sf::Vector2u(i, loc.y);
         effect.setPos(i, loc.y);
         game.addEffect(effect);
-        map.damageTile(explosionLoc);
+        map.damageTile(explosionLoc, this->damage);
     }
     
     for (auto i = std::max((int)(loc.y - radius.y), zero); i < std::min(loc.y + radius.y, map.getSize().y-1); i++) {
@@ -84,7 +85,7 @@ void Projectile::explode() {
         sf::Vector2u explosionLoc = sf::Vector2u(loc.x, i);
         effect.setPos(loc.x, i);
         game.addEffect(effect);
-        map.damageTile(explosionLoc);
+        map.damageTile(explosionLoc, this->damage);
     }
     ResourceManager::getInstance().playSound(this->explosionAudioName);
     
