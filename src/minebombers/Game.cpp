@@ -136,7 +136,7 @@ void Game::setRandomTreasures(uint16_t amount) {
         
         if(isEmpty(pos)) {
             sf::Sprite sprite = sf::Sprite(ResourceManager::getInstance().loadTexture("assets/my_doc.png"));
-            treasures.push_back(Treasure(sprite, 300, pos));
+            treasures.push_back(Treasure(sprite, rand() % 300, pos));
             
             amount--;
         }
@@ -166,6 +166,8 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
         for(auto i = treasures.begin(); i != treasures.end(); i++) {
             Treasure& tres = *i;
             if(tres.getPosition() == players[player].getPos()) {
+                // TREASURE FOUND :)
+                ResourceManager::getInstance().playKling(tres.getValue());
                 players[player].incrementMoney(tres.getValue());
                 treasures.erase(i);
                 break;

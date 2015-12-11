@@ -46,7 +46,7 @@ void Projectile::setDirection(sf::Vector2u dir) {
 
 bool Projectile::update() {
     stepper++;
-    if (stepper % 5 == 0) {
+    if (stepper % 2 == 1) {
         Game &game = Game::game();
         sf::Vector2u nextLocation = this->getPos() + this->dir;
         bool playerHit = false;
