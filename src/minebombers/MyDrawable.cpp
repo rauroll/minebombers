@@ -34,7 +34,6 @@ MyDrawable::MyDrawable(const std::string texturefile, int x, int y, const std::s
     //sprite.setScale(16.0 / size.x, 16.0 / size.y);
     
     sprite.setPosition(x*16, y*16);
-    std::cout << sprite.getPosition().x << ", " << sprite.getPosition().y << std::endl;
     this->updateSpritePosition(0);
 }
 
