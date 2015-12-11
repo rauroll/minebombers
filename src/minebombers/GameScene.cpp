@@ -48,20 +48,20 @@ void GameScene::draw(sf::RenderWindow& window) {
     std::vector<Player>& players = game.getPlayers();
     for(auto &i : players) {
         window.draw(i.getSprite());
-        i.updateSpritePosition();
+        //i.updateSpritePosition();
     }
     
     
     std::vector<Projectile>& projectiles = game.getProjectiles();
     for (auto &i : projectiles) {
         window.draw(i.getSprite());
-        i.updateSpritePosition();
+        //i.updateSpritePosition();
     }
     
     std::vector<Effect>& effects = game.getEffects();
     for (auto &i : effects) {
         window.draw(i.getSprite());
-        i.updateSpritePosition();
+        //i.updateSpritePosition();
     }
     
     // statusbar

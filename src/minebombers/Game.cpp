@@ -239,18 +239,23 @@ void Game::update() {
         this->endRound();
     }
     
-    std::vector<Projectile>& projectiles = this->getProjectiles();
+    for(auto &i : players) {
+        i.updateSpritePosition();
+    }
+
+    for (auto &i : effects) {
+        i.updateSpritePosition();
+    }
+
     for (auto i = 0; i < projectiles.size(); i++) {
         Projectile& p = projectiles[i];
+        p.updateSpritePosition();
         bool exploded = p.update();
         if (exploded) {
             projectiles.erase(projectiles.begin() + i);
             i--;
         }
     }
-    
-    
-    std::vector<Effect>& effects = this->getEffects();
     
     for (auto i = 0; i < effects.size(); i++) {
         Effect& e = effects[i];
