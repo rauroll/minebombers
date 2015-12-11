@@ -14,6 +14,7 @@
 #include "Entity.h"
 #include "MyDrawable.h"
 #include <algorithm>
+#include "ResourceManager.h"
 
 Entity::Entity() {
     
@@ -35,6 +36,10 @@ int Entity::getHealth() {
 }
 
 void Entity::reduceHealth(int damage) {
+    ResourceManager::getInstance().playSound("hurt1");
+    if (!(this->isAlive())) {
+        ResourceManager::getInstance().playSound("death2");
+    }
     this->health = std::max(0, this->health - damage);
 }
 

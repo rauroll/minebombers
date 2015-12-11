@@ -32,6 +32,10 @@ ResourceManager::ResourceManager() {
     soundBuffers["yesh"] = soundBuffer;
     soundBuffer.loadFromFile("assets/ohright.wav");
     soundBuffers["ohright"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/kuolema2.wav");
+    soundBuffers["death2"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/aivittu1.wav");
+    soundBuffers["hurt1"] = soundBuffer;
 }
 
 ResourceManager::~ResourceManager() {
@@ -72,9 +76,9 @@ const void ResourceManager::playKling(int value) {
     sounds["kling"].setPitch(1 / (value / 200.0));
     sounds["kling"].setVolume(20);
     sounds["kling"].play();
-    if (value >= 250 && value < 260) {
+    if (value >= 240 && value < 280) {
         this->playSound("yesh");
-    } else if (value >= 260) {
+    } else if (value >= 280) {
         this->playSound("ohright");
     }
 }
