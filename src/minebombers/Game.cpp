@@ -242,16 +242,16 @@ void Game::update() {
     }
     
     for(auto &i : players) {
-        i.updateSpritePosition();
+        i.updateSpritePosition(4);
     }
 
     for (auto &i : effects) {
-        i.updateSpritePosition();
+        i.updateSpritePosition(4);
     }
 
     for (auto i = 0; i < projectiles.size(); i++) {
         Projectile& p = projectiles[i];
-        p.updateSpritePosition();
+        p.updateSpritePosition(8);
         bool exploded = p.update();
         if (exploded) {
             projectiles.erase(projectiles.begin() + i);

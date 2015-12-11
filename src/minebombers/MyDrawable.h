@@ -35,7 +35,7 @@ public:
     
     bool isMoving() const;
     
-    void updateSpritePosition();
+    void updateSpritePosition(int speed);
     
     bool spriteHasEnded() const;
     
