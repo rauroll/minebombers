@@ -14,8 +14,8 @@
 #ifndef EFFECT_H
 #define EFFECT_H
 
-#include "MyDrawable.h"
 #include <SFML/Graphics.hpp>
+#include "MyDrawable.h"
 
 class Effect : public MyDrawable {
 public:

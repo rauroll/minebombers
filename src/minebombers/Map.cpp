@@ -11,10 +11,11 @@
  * Created on 17. marraskuuta 2015, 17:53
  */
 
+#include <iostream>
+
 #include "Map.h"
 #include "ResourceManager.h"
 #include "TileType.h"
-#include <iostream>
 
 Map::Map() {
     Map(0, 0);

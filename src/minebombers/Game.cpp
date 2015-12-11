@@ -11,19 +11,19 @@
  * Created on November 17, 2015, 2:21 PM
  */
 
-#include "Game.h"
-#include "Player.h"
-#include "ResourceManager.h"
-#include "GameScene.h"
-#include "MenuScene.h"
-#include "ShopScene.h"
-
 #include <SFML/Graphics.hpp>
 
 #include <iostream>
 #include <cstdio>
 #include <time.h>
 #include <cmath>
+
+#include "Game.h"
+#include "Player.h"
+#include "ResourceManager.h"
+#include "GameScene.h"
+#include "MenuScene.h"
+#include "ShopScene.h"
 
 Game::Game() {
     srand(time(NULL));

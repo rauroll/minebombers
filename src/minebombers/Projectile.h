@@ -15,9 +15,10 @@
 #define PROJECTILE_H
 
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+
 #include "MyDrawable.h"
 #include "Effect.h"
-#include <SFML/System.hpp>
 
 class Projectile : public MyDrawable {
 public:

@@ -16,7 +16,6 @@
 
 #include <SFML/Graphics.hpp>
 
-
 #include "Tile.h"
 #include "Tileset.h"
 #include "TileType.h"

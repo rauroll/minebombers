@@ -14,8 +14,9 @@
 #ifndef SHOPSCENE_H
 #define SHOPSCENE_H
 
-#include "Scene.h"
 #include <SFML/System.hpp>
+
+#include "Scene.h"
 
 class ShopScene : public Scene {
 public:

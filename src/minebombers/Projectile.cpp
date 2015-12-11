@@ -11,9 +11,10 @@
  * Created on December 3, 2015, 12:56 PM
  */
 
-#include "Projectile.h"
 #include <iostream>
 #include <algorithm>
+
+#include "Projectile.h"
 #include "Game.h"
 #include "ResourceManager.h"
 
