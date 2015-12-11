@@ -41,12 +41,13 @@ std::string Weapon::getName() {
     return name;
 }
 
-
 Projectile Weapon::use(sf::Vector2u loc, sf::Vector2u dir) {
     Projectile p = Projectile(this->projectile);
     ResourceManager::getInstance().playSound(this->shotAudioName);
-    p.setPos(loc.x, loc.y);
+    
+    p.setPos(loc);
     p.setDirection(dir);
+    
     return p;
 }
 

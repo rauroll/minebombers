@@ -38,25 +38,25 @@ Map MapLoader::fromFile(const std::string& path) {
         file.read((char*) &magic, 2);
 
         if(magic == 0x424d) {
-            std::cout << "Correct magicnumber" << std::endl;
+            //std::cout << "Correct magicnumber" << std::endl;
             
             std::string name = readString(file);
-            std::cout << "Map name: " << name << std::endl;
+            //std::cout << "Map name: " << name << std::endl;
             
             std::string tilesetFile = readString(file);
-            std::cout << "Tileset: " << tilesetFile << std::endl;
+            //std::cout << "Tileset: " << tilesetFile << std::endl;
             
             uint16_t mapWidth, mapHeight;
             file.read((char*) &mapWidth, 2);
             file.read((char*) &mapHeight, 2);
             
-            std::cout << "Map width: " << mapWidth << std::endl << "Map height: " << mapHeight << std::endl;
+            //std::cout << "Map width: " << mapWidth << std::endl << "Map height: " << mapHeight << std::endl;
             
             uint16_t tileWidth, tileHeight;
             file.read((char*) &tileWidth, 2);
             file.read((char*) &tileHeight, 2);
            
-            std::cout << "Tile width: " << std::to_string(tileWidth) << std::endl << "Tile height: " << std::to_string(tileHeight) << std::endl;
+            //std::cout << "Tile width: " << std::to_string(tileWidth) << std::endl << "Tile height: " << std::to_string(tileHeight) << std::endl;
             
             map = Map(mapWidth, mapHeight);
             Tileset tileset(sf::Vector2u(tileWidth, tileHeight));
@@ -89,8 +89,7 @@ Map MapLoader::fromFile(const std::string& path) {
     else {
         std::cout << "Error: file not found" << std::endl;
     }
-    
-    //map = Map(100, 100, "assets/tileset.png", sf::Vector2u(16, 16));
+
     return map;
 }
 
@@ -98,7 +97,7 @@ std::string MapLoader::readString(std::fstream& file) {
     uint16_t length;
     file.read((char*) &length, 2);
 
-    std::cout << "String length: " << length << std::endl;
+    //std::cout << "String length: " << length << std::endl;
     
     char* buf = new char[length + 1];
     file.read(buf, length);
