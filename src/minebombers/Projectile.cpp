@@ -49,7 +49,16 @@ bool Projectile::update() {
     stepper++;
     if (stepper % 2 == 1) {
         Game &game = Game::game();
-        if (game.getMap().floorAt(this->getPos() + this->dir)) {
+        sf::Vector2u nextLocation = this->getPos() + this->dir;
+        bool playerHit = false;
+        for (auto& p : game.getPlayers()) {
+            if (p.getPos() == nextLocation && p.isAlive()) {
+                this->explode();
+                return true;
+            }
+        }
+        
+        if (game.getMap().floorAt(nextLocation)) {
             this->move(this->dir);
         } else {
             this->explode();
@@ -68,6 +77,7 @@ void Projectile::explode() {
     Game& game = Game::game();
     Map& map = game.getMap();
     sf::Vector2u loc = this->getPos();
+    std::vector<Player>& players = game.getPlayers();
     
     
     int zero = 1;
@@ -77,6 +87,11 @@ void Projectile::explode() {
         effect.setPos(i, loc.y);
         game.addEffect(effect);
         map.damageTile(explosionLoc, this->damage);
+        for (auto& p : players) {
+            if (p.getPos() == explosionLoc) {
+                p.reduceHealth(this->damage);
+            }    
+        }
     }
     
     for (auto i = std::max((int)(loc.y - radius.y), zero); i < std::min(loc.y + radius.y, map.getSize().y-1); i++) {
@@ -87,6 +102,11 @@ void Projectile::explode() {
         effect.setPos(loc.x, i);
         game.addEffect(effect);
         map.damageTile(explosionLoc, this->damage);
+        for (auto& p : players) {
+            if (p.getPos() == explosionLoc) {
+                p.reduceHealth(this->damage);
+            }    
+        }
     }
     ResourceManager::getInstance().playSound(this->explosionAudioName);
     
