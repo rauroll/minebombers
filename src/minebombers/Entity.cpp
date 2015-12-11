@@ -13,6 +13,7 @@
 
 #include "Entity.h"
 #include "MyDrawable.h"
+#include <algorithm>
 
 Entity::Entity() {
     
@@ -33,4 +34,10 @@ int Entity::getHealth() {
     return this->health;
 }
 
+void Entity::reduceHealth(int damage) {
+    this->health = std::max(0, this->health - damage);
+}
 
+bool Entity::isAlive() {
+    return this->health > 0;
+}
