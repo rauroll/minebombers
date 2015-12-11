@@ -65,9 +65,6 @@ void Projectile::explode() {
     sf::Vector2u loc = this->getPos();
     
     unsigned int zero = 1;
-//    Effect effect = Effect(this->getEffect());
-//    effect.setPos(loc.x, loc.y);
-//    game.addEffect(effect);
     for (auto i = std::max(loc.x - radius.x, zero); i <= std::min(loc.x + radius.x, map.getSize().x-1); i++) {
         Effect effect = Effect(this->getEffect());
         effect.setPos(i, loc.y);
