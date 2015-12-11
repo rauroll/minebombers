@@ -122,6 +122,11 @@ void GameScene::onEvent(sf::Event& event) {
                     game.addProjectile(p);
                     break;
                 }
+                case sf::Keyboard::LShift: {
+                    Player& player = game.getPlayers()[0];
+                    player.nextWeapon();
+                    break;
+                }
                 default:
                     break;
             }

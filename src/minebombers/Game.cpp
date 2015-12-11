@@ -55,8 +55,12 @@ void Game::startRound() {
     Effect explosion = Effect("Explosion", "assets/explosion.png", sf::Vector2u(0, 0), true);
     Projectile proj = Projectile("jonnemissile", "assets/projectile.png", 10, explosion, sf::Vector2u(5, 5));
     Weapon onlyWeapon = Weapon("jonnegun", 99, proj);
+    
+    Projectile bomb = Projectile("keilapommi", "assets/bomb.png", 50, explosion, sf::Vector2u(100, 100));
+    Weapon bombWeapon = Weapon("bomb", 99, bomb);
         
     this->getPlayers()[0].addWeapon(onlyWeapon);
+    this->getPlayers()[0].addWeapon(bombWeapon);
     
     ResourceManager::getInstance().playMusic("game");
     
