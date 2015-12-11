@@ -91,7 +91,8 @@ void Map::updateVertex(const sf::Vector2u& p) {
         int healthPerLevel = tile.getStartLevel()/5;
             
         if(tile.getType() == ROCK) {
-            tileNumber += 5 - tile.getLevel()/healthPerLevel;
+            int offset = 5 - tile.getLevel()/healthPerLevel;
+            tileNumber = offset == 5 ? 0 : tileNumber + offset;
         }
 
         int tu = tileNumber % (tileset.width() / tileset.tileWidth());
