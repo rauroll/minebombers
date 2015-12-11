@@ -41,7 +41,7 @@ public:
     const Tileset& getTileset() const;
     const Tile& getTile(sf::Vector2u pos) const;
     const std::vector<std::vector<Tile> >& getTiles() const;
-    void damageTile(sf::Vector2u pos);
+    void damageTile(sf::Vector2u pos, int damage);
     const std::string& getName() const;
 
     const sf::Vector2u getSize() const;

@@ -22,7 +22,7 @@ class MenuScene: public Scene {
 public:
     MenuScene();
     virtual ~MenuScene();
-    void update();
+    void update(sf::Time dt);
     void onEvent(sf::Event& event);
     void onChangedTo();
     void draw(sf::RenderWindow& window);

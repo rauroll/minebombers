@@ -24,6 +24,7 @@
 #include "Effect.h"
 #include "MapGenerator.h"
 #include "MapLoader.h"
+#include <SFML/System.hpp>
 
 enum SceneType { GAMESCENE, MENUSCENE, SHOPSCENE };
 
