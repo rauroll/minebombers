@@ -61,6 +61,11 @@ void Tile::setLevel(int level) {
     this->level = level;
 }
 
+void Tile::reduceLevel() {
+    this->level = (this->getLevel() == 0) ? 0 : this->getLevel() - 1;
+    
+}
+
 TileType Tile::getType() const {
     return type;
 }

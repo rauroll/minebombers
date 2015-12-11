@@ -165,3 +165,7 @@ const sf::Vector2u Map::getSize() const {
 const Tile& Map::getTile(sf::Vector2u pos) const {
     return tiles[pos.x][pos.y];
 }
+
+void Map::damageTile(sf::Vector2u pos) {
+    tiles[pos.x][pos.y].reduceLevel();
+}

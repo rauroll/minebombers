@@ -67,14 +67,18 @@ void Projectile::explode() {
     unsigned int zero = 1;
     for (auto i = std::max(loc.x - radius.x, zero); i < std::min(loc.x + radius.x, map.getSize().x-1); i++) {
         Effect effect = Effect(this->getEffect());
+        sf::Vector2u explosionLoc = sf::Vector2u(i, loc.y);
         effect.setPos(i, loc.y);
         game.addEffect(effect);
+        map.damageTile(explosionLoc);
     }
     for (auto i = std::max(loc.y - radius.y, zero); i < std::min(loc.y + radius.y, map.getSize().y-1); i++) {
         if (i == loc.y) continue;
         Effect effect = Effect(this->getEffect());
+        sf::Vector2u explosionLoc = sf::Vector2u(loc.x, i);
         effect.setPos(loc.x, i);
         game.addEffect(effect);
+        map.damageTile(explosionLoc);
     }
     
 }
