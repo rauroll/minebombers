@@ -108,7 +108,7 @@ void Projectile::explode() {
             }    
         }
     }
-    ResourceManager::getInstance().playSound(this->explosionAudioName);
+    ResourceManager::getInstance().playExplosion(this->damage, this->explosionAudioName);
     
 }
 
