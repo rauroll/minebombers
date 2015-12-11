@@ -104,10 +104,6 @@ void MyDrawable::updateSpritePosition() {
     sprite.setTextureRect(r1);
     sprite.setOrigin(sprite.getLocalBounds().width / 2, sprite.getLocalBounds().height / 2);
     
-    if (this->name == "Explosion") {
-        std::cout << "Sprite length is: " << spriteLength << std::endl;
-        std::cout << "Int rect is at: " << spriteRow << std::endl;
-    }
     
     int rotation = 0;
     if (dir.x == 1) {

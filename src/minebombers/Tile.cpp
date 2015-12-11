@@ -13,6 +13,7 @@
 
 #include "Tile.h"
 #include "iostream"
+#include <algorithm>
 
 Tile::Tile(int level, int id, TileType type) {
     this->level = level;
@@ -62,7 +63,8 @@ void Tile::setLevel(int level) {
 }
 
 void Tile::reduceLevel() {
-    this->level = (this->getLevel() == 0) ? 0 : this->getLevel() - 1;
+    
+    this->level = std::max(0, this->level - 1);
     
 }
 
