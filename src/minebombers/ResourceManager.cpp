@@ -28,6 +28,10 @@ ResourceManager::ResourceManager() {
     soundBuffers["explosion"] = soundBuffer;
     soundBuffer.loadFromFile("assets/kling.wav");
     soundBuffers["kling"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/yesh.wav");
+    soundBuffers["yesh"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/ohright.wav");
+    soundBuffers["ohright"] = soundBuffer;
 }
 
 ResourceManager::~ResourceManager() {
@@ -65,8 +69,14 @@ const void ResourceManager::playSound(std::string soundName) {
 const void ResourceManager::playKling(int value) {
     if (sounds.find("kling") == sounds.end())
         sounds["kling"] = sf::Sound(soundBuffers.at("kling"));
-    sounds["kling"].setPitch(value / 100.0);
+    sounds["kling"].setPitch(1 / (value / 200.0));
+    sounds["kling"].setVolume(20);
     sounds["kling"].play();
+    if (value >= 250 && value < 260) {
+        this->playSound("yesh");
+    } else if (value >= 260) {
+        this->playSound("ohright");
+    }
 }
 
 const void ResourceManager::playMusic(std::string musicName) {
