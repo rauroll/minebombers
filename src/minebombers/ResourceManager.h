@@ -32,6 +32,7 @@ public:
     const sf::Font& getFont();
     const sf::Texture& loadTexture(const std::string& path);
     const void playSound(std::string soundName);
+    const void playKling(int value);
     const void playMusic(std::string musicName);
 private:
     std::map<std::string, sf::Texture> textures;

@@ -26,7 +26,8 @@ ResourceManager::ResourceManager() {
     soundBuffers["shot"] = soundBuffer;
     soundBuffer.loadFromFile("assets/räjähdys.wav");
     soundBuffers["explosion"] = soundBuffer;
-    
+    soundBuffer.loadFromFile("assets/kling.wav");
+    soundBuffers["kling"] = soundBuffer;
 }
 
 ResourceManager::~ResourceManager() {
@@ -61,6 +62,13 @@ const void ResourceManager::playSound(std::string soundName) {
     sounds[soundName].play();
 }
 
+const void ResourceManager::playKling(int value) {
+    if (sounds.find("kling") == sounds.end())
+        sounds["kling"] = sf::Sound(soundBuffers.at("kling"));
+    sounds["kling"].setPitch(value / 100.0);
+    sounds["kling"].play();
+}
+
 const void ResourceManager::playMusic(std::string musicName) {
     if (musicName == "game") {
         if (!this->music.openFromFile("assets/never_die.wav")) {
@@ -68,7 +76,7 @@ const void ResourceManager::playMusic(std::string musicName) {
         }
         //this->music.setPitch(2); // for hilarious effect :: D maybe for some power up?
         this->music.setVolume(20);
-        this->music.play();
+        //this->music.play();
         this->music.setLoop(true);
     }
 }
