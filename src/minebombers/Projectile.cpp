@@ -83,10 +83,13 @@ void Projectile::explode() {
     int zero = 1;
     for (auto i = std::max((int)(loc.x - radius.x), zero); i < std::min(loc.x + radius.x, map.getSize().x-1); i++) {
         Effect effect = Effect(this->getEffect());
+        
         sf::Vector2u explosionLoc = sf::Vector2u(i, loc.y);
-        effect.setPos(i, loc.y);
+        effect.setPos(explosionLoc);
+        
         game.addEffect(effect);
         map.damageTile(explosionLoc, this->damage);
+
         for (auto& p : players) {
             if (p.getPos() == explosionLoc) {
                 p.reduceHealth(this->damage);
@@ -95,11 +98,12 @@ void Projectile::explode() {
     }
     
     for (auto i = std::max((int)(loc.y - radius.y), zero); i < std::min(loc.y + radius.y, map.getSize().y-1); i++) {
-        
         if (i == loc.y) continue;
+        
         Effect effect = Effect(this->getEffect());
         sf::Vector2u explosionLoc = sf::Vector2u(loc.x, i);
-        effect.setPos(loc.x, i);
+        effect.setPos(explosionLoc);
+        
         game.addEffect(effect);
         map.damageTile(explosionLoc, this->damage);
         for (auto& p : players) {
@@ -108,7 +112,7 @@ void Projectile::explode() {
             }    
         }
     }
+
     ResourceManager::getInstance().playExplosion(this->damage, this->explosionAudioName);
-    
 }
 

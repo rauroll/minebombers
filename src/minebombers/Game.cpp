@@ -63,7 +63,6 @@ void Game::startRound() {
     this->getPlayers()[0].addWeapon(bombWeapon);
     
     ResourceManager::getInstance().playMusic("game");
-    
 }
 
 void Game::endRound() {
@@ -173,6 +172,7 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
                 break;
             }
         }
+        
         this->revealMapAt(players[player].getPos());
     }
 }
@@ -184,17 +184,21 @@ sf::Image& Game::getOverlayImage() {
 void Game::revealMapAt(sf::Vector2u pos, int radius) {
     int posX = pos.x = 16 * pos.x + 8;
     int posY = 16 * pos.y + 8;
+    
     sf::Vector2u overlaySize = overlayImage.getSize();
     int overlayWidth = overlaySize.x;
     int overlayHeight = overlaySize.y;
+    
     sf::Color transparent = sf::Color(0, 0, 0, 0);
     
     for(int x = fmax(0, posX - radius); x < posX + radius; x++) {
         int Dx = x - posX;
         int DxPow = Dx * Dx;
+        
         for(int y = fmax(0, posY - radius); y < posY + radius; y++) {
             int Dy = y - posY;
             int distance = sqrt(DxPow + Dy * Dy);
+            
             if (distance < radius && x < overlayWidth && y < overlayHeight)
                 overlayImage.setPixel(x, y, transparent);
         }
@@ -204,11 +208,13 @@ void Game::revealMapAt(sf::Vector2u pos, int radius) {
 sf::Vector2u Game::getRandomEmptyPos() {
     sf::Vector2u pos;
     sf::Vector2u mapSize = map.getSize();
+    
     while (true) {
         pos = sf::Vector2u(rand() % mapSize.x, rand() % mapSize.y);
         if (map.floorAt(pos) && !this->isEntityAtPos(pos))
             break;
     }
+    
     return pos;
 }
 
@@ -252,6 +258,7 @@ void Game::update() {
     for (auto i = 0; i < projectiles.size(); i++) {
         Projectile& p = projectiles[i];
         p.updateSpritePosition(8);
+        
         bool exploded = p.update();
         if (exploded) {
             projectiles.erase(projectiles.begin() + i);
@@ -261,6 +268,7 @@ void Game::update() {
     
     for (auto i = 0; i < effects.size(); i++) {
         Effect& e = effects[i];
+        
         bool animationComplete = e.update();
         if (animationComplete && !e.isPermanent()) {
             effects.erase(effects.begin() + i);

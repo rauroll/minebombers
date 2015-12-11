@@ -30,21 +30,19 @@ MyDrawable::MyDrawable(const std::string texturefile, int x, int y, const std::s
     const sf::Texture& texture = ResourceManager::getInstance().loadTexture(texturefile);
     sf::Vector2u size = texture.getSize();
     
-    std::cout << "texture size: " <<  size.x << " " << size.y << std::endl;
     sprite = sf::Sprite(texture);
     //sprite.setScale(16.0 / size.x, 16.0 / size.y);
     
     sprite.setPosition(x*16, y*16);
-    std::cout << sprite.getPosition().x << ", " << sprite.getPosition().y << std::endl;
-    //this->updateSpritePosition();
+    this->updateSpritePosition(0);
 }
 
 MyDrawable::MyDrawable(const MyDrawable& orig) : sprite(orig.sprite) {
     position = orig.position;
     name = orig.name;
     sprite.setPosition(orig.sprite.getPosition());
-    //sprite.setPosition(position.x*16, position.y*16);
-    //this->updateSpritePosition();
+
+    this->updateSpritePosition(0);
 }
 
 MyDrawable::~MyDrawable() {
@@ -71,9 +69,9 @@ void MyDrawable::move(sf::Vector2u dir) {
     position += dir;
 }
 
-void MyDrawable::setPos(int newX, int newY) {
-    position = sf::Vector2u(newX, newY);
-    sprite.setPosition(newX*16, newY*16);
+void MyDrawable::setPos(sf::Vector2u position) {
+    this->position = position;
+    sprite.setPosition(position.x*16, position.y*16);
 }
 
 const sf::Vector2u& MyDrawable::getPos() {
@@ -94,8 +92,6 @@ void MyDrawable::updateSpritePosition(int speed) {
     int spriteLength = sprite.getTexture()->getSize().x / 16;
     spriteLength = spriteLength == 0 ? 1 : spriteLength;
     
-    
-
     if (spriteColumn == spriteLength - 1) this->spriteEnded = true;
     
     if (!isMoving()) spriteRow = 0; else spriteRow = 1;
@@ -103,7 +99,6 @@ void MyDrawable::updateSpritePosition(int speed) {
     
     sprite.setTextureRect(r1);
     sprite.setOrigin(sprite.getLocalBounds().width / 2, sprite.getLocalBounds().height / 2);
-    
     
     int rotation = 0;
     if (dir.x == 1) {
@@ -139,4 +134,3 @@ void MyDrawable::updateSpritePosition(int speed) {
 
     sprite.setPosition(pixelPos);
 }
-
