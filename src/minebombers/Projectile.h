@@ -21,7 +21,7 @@
 
 class Projectile : public MyDrawable {
 public:
-    Projectile(const std::string& name, const std::string& texturefile, int damage, Effect& effect, sf::Vector2u radius = sf::Vector2u(1, 1), sf::Time timer = sf::milliseconds(5000));
+    Projectile(const std::string& name, const std::string& texturefile, const std::string& audioName, int damage, Effect& effect, sf::Vector2u radius = sf::Vector2u(1, 1), sf::Time timer = sf::milliseconds(5000));
     Projectile(const Projectile& orig);
     
     void setDirection(sf::Vector2u dir);
@@ -32,6 +32,7 @@ public:
     virtual ~Projectile();
     void explode();
 private:
+    std::string explosionAudioName;
     int damage;
     sf::Vector2u dir;
     sf::Vector2u radius;

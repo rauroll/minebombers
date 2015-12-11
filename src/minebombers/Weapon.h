@@ -23,7 +23,7 @@
 
 class Weapon {
 public:
-    Weapon(std::string name, int price, Projectile projectile);
+    Weapon(std::string name, std::string shotAudioName, int price, Projectile projectile);
     Weapon(const Weapon& orig);
     virtual ~Weapon();
     
@@ -35,6 +35,7 @@ public:
     std::string getName();
     
 protected:
+    std::string shotAudioName;
     std::string name;
     int ammoCount;
     int price;

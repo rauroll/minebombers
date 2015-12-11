@@ -17,12 +17,13 @@
 #include "Game.h"
 #include "ResourceManager.h"
 
-Projectile::Projectile(const std::string& name, const std::string& texturefile, int damage, Effect& effect, sf::Vector2u radius, sf::Time timer) : MyDrawable(texturefile, 0, 0, name), effect(effect) {
+Projectile::Projectile(const std::string& name, const std::string& texturefile, const std::string& audioName, int damage, Effect& effect, sf::Vector2u radius, sf::Time timer) : MyDrawable(texturefile, 0, 0, name), effect(effect) {
     this->damage = damage;
     this->dir = dir;
     this->radius = radius;
     this->timer = timer;
     this->alwaysStillSprite = true;
+    this->explosionAudioName = audioName;
 }
 
 Projectile::Projectile(const Projectile& orig) : MyDrawable(orig), effect(orig.effect) {
@@ -32,6 +33,7 @@ Projectile::Projectile(const Projectile& orig) : MyDrawable(orig), effect(orig.e
     this->radius = orig.radius;
     this->timer = orig.timer;
     this->alwaysStillSprite = orig.alwaysStillSprite;
+    this->explosionAudioName = orig.explosionAudioName;
 }
 
 Projectile::~Projectile() {
@@ -85,7 +87,7 @@ void Projectile::explode() {
         game.addEffect(effect);
         map.damageTile(explosionLoc, this->damage);
     }
-    ResourceManager::getInstance().playSound("explosion");
+    ResourceManager::getInstance().playSound(this->explosionAudioName);
     
 }
 
