@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/ButtonReactionFactory.o \
 	${OBJECTDIR}/Effect.o \
 	${OBJECTDIR}/Entity.o \
 	${OBJECTDIR}/Game.o \
@@ -79,6 +80,11 @@ LDLIBSOPTIONS=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/minebombers: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/minebombers ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/ButtonReactionFactory.o: ButtonReactionFactory.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ButtonReactionFactory.o ButtonReactionFactory.cpp
 
 ${OBJECTDIR}/Effect.o: Effect.cpp 
 	${MKDIR} -p ${OBJECTDIR}

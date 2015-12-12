@@ -17,6 +17,7 @@
 #include "GameScene.h"
 #include "ResourceManager.h"
 #include "Player.h"
+#include "ButtonReactionFactory.h"
 
 GameScene::GameScene() {
     
@@ -33,6 +34,8 @@ GameScene::~GameScene() {
 void GameScene::onChangedTo() {
     Game& game = Game::game();
     game.startRound();
+    
+    reloadButtons();
 }
 
 
@@ -48,20 +51,17 @@ void GameScene::draw(sf::RenderWindow& window) {
     std::vector<Player>& players = game.getPlayers();
     for(auto &i : players) {
         window.draw(i.getSprite());
-        //i.updateSpritePosition();
     }
     
     
     std::vector<Projectile>& projectiles = game.getProjectiles();
     for (auto &i : projectiles) {
         window.draw(i.getSprite());
-        //i.updateSpritePosition();
     }
     
     std::vector<Effect>& effects = game.getEffects();
     for (auto &i : effects) {
         window.draw(i.getSprite());
-        //i.updateSpritePosition();
     }
     
     // statusbar
@@ -134,28 +134,10 @@ void GameScene::onEvent(sf::Event& event) {
     {
         case sf::Event::KeyPressed: {
             sf::Vector2u& v = keyboard[event.key.code];
-            //std::cout << "painettiin:" << event.key.code << ", " << v.x << ", " << v.y << std::endl;
             if(!v.x) {
                 v.x = 1; //on/off
                 v.y = 0; //time
             }
-            
-            switch (event.key.code) {
-                case sf::Keyboard::LControl: {
-                    Player& player = game.getPlayers()[0];
-                    Projectile p = player.useWeapon();
-                    game.addProjectile(p);
-                    break;
-                }
-                case sf::Keyboard::LShift: {
-                    Player& player = game.getPlayers()[0];
-                    player.nextWeapon();
-                    break;
-                }
-                default:
-                    break;
-            }
-            
             break;
         }
         case sf::Event::KeyReleased:
@@ -170,40 +152,81 @@ void GameScene::onEvent(sf::Event& event) {
 void GameScene::update(sf::Time dt) {
     Game& game = Game::game();
     
-    if (!game.roundHasEnded()) {
+    if (!game.roundHasEnded()) {    
+        //Update button presstime
         for(auto& i : keyboard) {
             if(i.second.x) {
-                i.second.y ++;
-
-                if(i.second.y % 5 == 1) {
-
-                    //Player 1
-                    if(i.first == sf::Keyboard::Up)
-                        game.movePlayer(0, sf::Vector2u(0, -1));
-                    if(i.first == sf::Keyboard::Down)
-                        game.movePlayer(0, sf::Vector2u(0, 1));
-                    if(i.first == sf::Keyboard::Right)
-                        game.movePlayer(0, sf::Vector2u(1, 0));
-                    if(i.first == sf::Keyboard::Left)
-                        game.movePlayer(0, sf::Vector2u(-1, 0));
-
-                    //Player 2
-                    if(i.first == sf::Keyboard::W)
-                        game.movePlayer(1, sf::Vector2u(0, -1));
-                    if(i.first == sf::Keyboard::S)
-                        game.movePlayer(1, sf::Vector2u(0, 1));
-                    if(i.first == sf::Keyboard::D)
-                        game.movePlayer(1, sf::Vector2u(1, 0));
-                    if(i.first == sf::Keyboard::A)
-                        game.movePlayer(1, sf::Vector2u(-1, 0));
-                }
+                i.second.y++;
             }
         }
+        
+        checkKeys();
     }
     
     game.update();
     
 }
 
+void GameScene::reloadButtons() {
+    Game& game = Game::game();
+    ButtonReactionFactory factory;
+    
+    playerButtons.clear();
+    for(size_t i = 0; i < game.getPlayers().size(); i++) {
+        playerButtons.push_back(factory.getPlayerButtons(i));
+    }
+}
 
+void GameScene::checkKeys() {
+    Game& game = Game::game();
+    
+    for(size_t i = 0; i < playerButtons.size(); i++) {
+        auto buttons = playerButtons[i];
+        
+        for(auto button = buttons.begin(); button != buttons.end(); button++) {
+            sf::Keyboard::Key key = button->first;
+            ButtonReaction reaction = button->second;
+            
+            if (keyboard.find(key) != keyboard.end()) {
+                sf::Vector2u b = keyboard[key]; // x = state, y = time;
+                
+                if (b.x) {
+                    switch(reaction) {
+                        case MOVE_UP:
+                            if(b.y % 5 == 1)
+                                game.movePlayer(i, sf::Vector2u(0, -1));
+                            break;
+                        case MOVE_DOWN:
+                            if(b.y % 5 == 1)
+                                game.movePlayer(i, sf::Vector2u(0, 1));
+                            break;
+                        case MOVE_LEFT:
+                            if(b.y % 5 == 1)
+                                game.movePlayer(i, sf::Vector2u(-1, 0));
+                            break;
+                        case MOVE_RIGHT:
+                            if(b.y % 5 == 1)
+                                game.movePlayer(i, sf::Vector2u(1, 0));
+                            break;
+                        case SHOOT: {
+                            Player& player = game.getPlayers()[i];
+                            Projectile p = player.useWeapon();
+                            game.addProjectile(p);
+                            
+                            keyboard[key] = sf::Vector2u(0, 0);
+                            break;
+                        }
+                        case CHANGE_WEAPON: {
+                            Player& player = game.getPlayers()[i];
+                            player.nextWeapon();
+                            break;                            
+                        }
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+    }
+}
 

@@ -71,6 +71,9 @@ void Game::startRound() {
     getPlayers()[0].addWeapon(onlyWeapon);
     getPlayers()[0].addWeapon(bombWeapon);
     
+    getPlayers()[1].addWeapon(onlyWeapon);
+    getPlayers()[1].addWeapon(bombWeapon);
+    
     ResourceManager::getInstance().playMusic("game");
 }
 

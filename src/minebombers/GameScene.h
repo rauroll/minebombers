@@ -19,6 +19,7 @@
 #include <SFML/System.hpp>
 
 #include "Game.h"
+#include "ButtonReaction.h"
 
 class GameScene : public Scene {
 public:
@@ -30,8 +31,13 @@ public:
     void onEvent(sf::Event& event);
     void onChangedTo();
     void draw(sf::RenderWindow& window);
+    
 private:
+    void reloadButtons();
+    void checkKeys();
+    
     std::map<sf::Keyboard::Key, sf::Vector2u> keyboard;
+    std::vector<std::map<sf::Keyboard::Key, ButtonReaction> > playerButtons;
 };
 
 #endif /* GAMESCENE_H */
