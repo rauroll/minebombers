@@ -80,22 +80,28 @@ void GameScene::draw(sf::RenderWindow& window) {
     sf::Color statusBarColor = sf::Color(0, 0, 0);
     
     for(auto &p : players) {
-        sf::Text name = sf::Text(p.getName(), font, playerFontSize * 1.2);
-        name.setPosition(playerX, playerY - playerFontSize * 1.2 * 2);
+        sf::Text name = sf::Text(p.getName(), font, playerFontSize * 1.1);
+        name.setPosition(playerX, playerY - playerFontSize * 1.1 * 2);
         name.setColor(statusBarColor);
         window.draw(name);
         
-        sf::Text hp = sf::Text("HP" + std::to_string(p.getHealth()) + "/100", font, playerFontSize);
-        hp.setPosition(playerX, playerY - playerFontSize);
+        sf::Text hp = sf::Text(std::to_string(p.getHealth()), font, playerFontSize * 1.1);
+        hp.setPosition(playerX + name.getLocalBounds().width + 5, playerY - playerFontSize * 1.1 * 2);
         hp.setColor(sf::Color(200 - p.getHealth() * 200 / 100, p.getHealth() * 200 / 100, 50));
         window.draw(hp);
         
         sf::Text mohlay = sf::Text("Money: " + std::to_string(p.getMoney()), font, playerFontSize);
-        mohlay.setPosition(playerX, playerY);
+        mohlay.setPosition(playerX, playerY - playerFontSize);
         mohlay.setColor(sf::Color(100, 100, 100));
         window.draw(mohlay);
         
-        playerX += name.getLocalBounds().width + 75;
+        Weapon weapon = p.getActiveWeapon();
+        sf::Text weaponText = sf::Text(weapon.getName() + " (" + std::to_string(weapon.getAmmoCount()) + ")", font, playerFontSize);
+        weaponText.setPosition(playerX, playerY);
+        weaponText.setColor(sf::Color(100, 100, 100));
+        window.draw(weaponText);
+                
+        playerX += name.getLocalBounds().width + 80;
     }
     
     sf::Text roundStatus("Round " + std::to_string(game.getRound()) + " / " + std::to_string(game.getTotalRounds()), font, 60);

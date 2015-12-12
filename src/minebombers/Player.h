@@ -37,8 +37,8 @@ public:
     bool hasAmmo();
     void incrementMoney(uint32_t amount);
     int getMoney() const;
-private:
     Weapon& getActiveWeapon();
+private:
     std::map<std::string, unsigned int> weaponsMap;
     typedef std::map<std::string, unsigned int>::iterator weapon_iterator;
     weapon_iterator activeWeapon;
