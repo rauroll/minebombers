@@ -70,7 +70,7 @@ const sf::Texture& ResourceManager::loadTexture(const std::string& path) {
 }
 
 const void ResourceManager::playSound(std::string soundName) {
-    if (Game::game().soundEnabled()) {
+    if (Game::getInstance().soundEnabled()) {
         if (sounds.find(soundName) == sounds.end())
             sounds[soundName] = sf::Sound(soundBuffers.at(soundName));
         sounds[soundName].play();
@@ -78,7 +78,7 @@ const void ResourceManager::playSound(std::string soundName) {
 }
 
 const void ResourceManager::playKling(int value) {
-    if (Game::game().soundEnabled()) {
+    if (Game::getInstance().soundEnabled()) {
         if (sounds.find("kling") == sounds.end())
             sounds["kling"] = sf::Sound(soundBuffers.at("kling"));
         sounds["kling"].setPitch(1 / (value / 200.0));
@@ -93,7 +93,7 @@ const void ResourceManager::playKling(int value) {
 }
 
 const void ResourceManager::playExplosion(int damage, std::string soundName) {
-    if (Game::game().soundEnabled()) {
+    if (Game::getInstance().soundEnabled()) {
         if (sounds.find(soundName) == sounds.end())
             sounds[soundName] = sf::Sound(soundBuffers.at(soundName));
         sounds[soundName].setPitch(1 / (damage / 20.0));

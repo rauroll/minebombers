@@ -62,7 +62,7 @@ public:
     
     void update(sf::Time dt);
     
-    static Game& game() {
+    static Game& getInstance() {
         static Game instance;
         return instance;
     }

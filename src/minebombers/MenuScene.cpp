@@ -32,7 +32,7 @@ void MenuScene::onChangedTo() {
 
 
 void MenuScene::onEvent(sf::Event& event) {
-    Game& game = Game::game();
+    Game& game = Game::getInstance();
     if(event.type == sf::Event::KeyPressed) {
         switch (event.key.code) {
             case sf::Keyboard::Down: selected++; break;
@@ -67,7 +67,7 @@ void MenuScene::update(sf::Time dt) {
 
 void MenuScene::draw(sf::RenderWindow& window) {
     sf::Font font = ResourceManager::getInstance().getFont();
-    sf::Vector2u size = Game::game().getCanvasSize();
+    sf::Vector2u size = Game::getInstance().getCanvasSize();
     int width = size.x;
     int height = size.y;
     

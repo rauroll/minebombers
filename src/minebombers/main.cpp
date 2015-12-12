@@ -14,7 +14,7 @@
 
 
 int main(int argc, char const** argv) {
-    Game& game = Game::game();
+    Game& game = Game::getInstance();
     
     game.setScene(MENUSCENE);
     

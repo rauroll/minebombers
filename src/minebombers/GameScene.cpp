@@ -32,7 +32,7 @@ GameScene::~GameScene() {
 }
 
 void GameScene::onChangedTo() {
-    Game& game = Game::game();
+    Game& game = Game::getInstance();
     game.startRound();
     
     reloadButtons();
@@ -40,7 +40,7 @@ void GameScene::onChangedTo() {
 
 
 void GameScene::draw(sf::RenderWindow& window) {
-    Game& game = Game::game();
+    Game& game = Game::getInstance();
     window.draw(game.getMap());
     
     std::vector<Treasure>& treasures = game.getTreasures();
@@ -128,7 +128,7 @@ void GameScene::draw(sf::RenderWindow& window) {
 }
 
 void GameScene::onEvent(sf::Event& event) {
-    Game& game = Game::game();
+    Game& game = Game::getInstance();
     switch (event.type)
     {
         case sf::Event::KeyPressed: {
@@ -149,7 +149,7 @@ void GameScene::onEvent(sf::Event& event) {
 }
 
 void GameScene::update(sf::Time dt) {
-    Game& game = Game::game();
+    Game& game = Game::getInstance();
     
     if (!game.roundHasEnded()) {    
         //Update button presstime
@@ -166,7 +166,7 @@ void GameScene::update(sf::Time dt) {
 }
 
 void GameScene::reloadButtons() {
-    Game& game = Game::game();
+    Game& game = Game::getInstance();
     ButtonReactionFactory factory;
     
     playerButtons.clear();
@@ -176,7 +176,7 @@ void GameScene::reloadButtons() {
 }
 
 void GameScene::checkKeys() {
-    Game& game = Game::game();
+    Game& game = Game::getInstance();
     
     for(size_t i = 0; i < playerButtons.size(); i++) {
         auto buttons = playerButtons[i];

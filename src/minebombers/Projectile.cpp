@@ -75,7 +75,7 @@ bool Projectile::update(sf::Time dt) {
 bool Projectile::updateProjectile() {
     stepper++;
     if (stepper % 2 == 1) {
-        Game &game = Game::game();
+        Game &game = Game::getInstance();
         sf::Vector2u nextLocation = this->getPos() + this->dir;
         bool playerHit = false;
         for (auto& p : game.getPlayers()) {
@@ -105,7 +105,7 @@ bool Projectile::updateBomb(sf::Time dt) {
 }
 
 bool Projectile::updatePick() {
-    Game& game = Game::game();
+    Game& game = Game::getInstance();
     Map& map = game.getMap();
     sf::Vector2u loc = this->getPos() + this->dir;
     std::vector<Player>& players = game.getPlayers();
@@ -126,7 +126,7 @@ Effect& Projectile::getEffect() {
 }
 
 void Projectile::explode() {
-    Game& game = Game::game();
+    Game& game = Game::getInstance();
     Map& map = game.getMap();
     sf::Vector2u loc = this->getPos();
     std::vector<Player>& players = game.getPlayers();
