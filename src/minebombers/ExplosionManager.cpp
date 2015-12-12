@@ -31,7 +31,7 @@ ExplosionManager::~ExplosionManager() {
 }
 
 void crossExplosion(Projectile& projectile) {
-    Game& game = Game::game();
+    Game& game = Game::getInstance();
     Map& map = game.getMap();
     sf::Vector2u loc = projectile.getPos();
     std::vector<Player>& players = game.getPlayers();
