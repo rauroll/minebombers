@@ -54,6 +54,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Tileset.o \
 	${OBJECTDIR}/Treasure.o \
 	${OBJECTDIR}/Weapon.o \
+	${OBJECTDIR}/WeaponManager.o \
 	${OBJECTDIR}/main.o
 
 
@@ -175,6 +176,11 @@ ${OBJECTDIR}/Weapon.o: Weapon.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Weapon.o Weapon.cpp
+
+${OBJECTDIR}/WeaponManager.o: WeaponManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/WeaponManager.o WeaponManager.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

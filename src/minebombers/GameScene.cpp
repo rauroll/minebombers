@@ -53,7 +53,6 @@ void GameScene::draw(sf::RenderWindow& window) {
         window.draw(i.getSprite());
     }
     
-    
     std::vector<Projectile>& projectiles = game.getProjectiles();
     for (auto &i : projectiles) {
         window.draw(i.getSprite());
@@ -164,7 +163,6 @@ void GameScene::update(sf::Time dt) {
     }
     
     game.update();
-    
 }
 
 void GameScene::reloadButtons() {
@@ -210,8 +208,11 @@ void GameScene::checkKeys() {
                             break;
                         case SHOOT: {
                             Player& player = game.getPlayers()[i];
-                            Projectile p = player.useWeapon();
-                            game.addProjectile(p);
+                            if (player.hasAmmo()) {
+                                std::cout << "Player had ammo left" << std::endl;
+                                Projectile p = player.useWeapon();
+                                game.addProjectile(p);
+                            }
                             
                             keyboard[key] = sf::Vector2u(0, 0);
                             break;
@@ -219,6 +220,8 @@ void GameScene::checkKeys() {
                         case CHANGE_WEAPON: {
                             Player& player = game.getPlayers()[i];
                             player.nextWeapon();
+                            
+                            keyboard[key] = sf::Vector2u(0, 0);
                             break;                            
                         }
                         default:
