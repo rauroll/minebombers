@@ -16,7 +16,7 @@
 int main(int argc, char const** argv) {
     Game& game = Game::game();
     
-    game.setScene(SHOPSCENE);
+    game.setScene(MENUSCENE);
     
     sf::Vector2u mapSize = game.getMap().getSize();
     int statusbarHeight = 100;
