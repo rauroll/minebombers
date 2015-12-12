@@ -63,6 +63,20 @@ Map MapGenerator::generate() {
         sf::Vector2u pos(rand() % w, rand() % h);
         map.setTile(pos, tile);
     }
+    
+    // edges
+    for (int x = 0; x < w; x++) {
+        Tile tile = Tile(0, 10, WALL);
+        map.setTile(sf::Vector2u(x, 0), tile); 
+        map.setTile(sf::Vector2u(x, h - 1), tile); 
+    }
+    
+    for (int y = 0; y < h; y++) {
+        Tile tile = Tile(0, 10, WALL);
+        map.setTile(sf::Vector2u(0, y), tile); 
+        map.setTile(sf::Vector2u(w - 1, y), tile); 
+    }
+        
 
     std::cout << "end generate" << std::endl;
     return map;
