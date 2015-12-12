@@ -217,6 +217,8 @@ void GameScene::checkKeys() {
                         case CHANGE_WEAPON: {
                             Player& player = game.getPlayers()[i];
                             player.nextWeapon();
+                            
+                            keyboard[key] = sf::Vector2u(0, 0);
                             break;                            
                         }
                         default:
