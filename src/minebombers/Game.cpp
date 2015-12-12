@@ -183,6 +183,9 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
         if(map.floorAt(newPosition) && !isEntityAtPos(newPosition)) {
             players[player].move(d);
         }
+        else {
+            players[player].setDirection(d);
+        }
         
         for(auto i = treasures.begin(); i != treasures.end(); i++) {
             Treasure& tres = *i;
