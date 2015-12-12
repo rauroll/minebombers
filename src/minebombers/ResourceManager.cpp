@@ -36,6 +36,10 @@ ResourceManager::ResourceManager() {
     soundBuffers["death2"] = soundBuffer;
     soundBuffer.loadFromFile("assets/aivittu1.wav");
     soundBuffers["hurt1"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/plip.wav");
+    soundBuffers["plip"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/plop.wav");
+    soundBuffers["plop"] = soundBuffer;
 }
 
 ResourceManager::~ResourceManager() {
