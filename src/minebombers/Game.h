@@ -53,6 +53,9 @@ public:
     
     void addEffect(Effect effect);
     
+    bool toggleSound();
+    bool soundEnabled();
+    
     std::vector<Effect>& getEffects();
     
     sf::Vector2u getCanvasSize();
@@ -97,6 +100,7 @@ private:
       
     int round = 0;
     int totalRounds = 3;
+    bool sound = true;
     
     sf::Clock roundClock;
     sf::Time roundTime;

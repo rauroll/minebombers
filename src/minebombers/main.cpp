@@ -39,6 +39,8 @@ int main(int argc, char const** argv) {
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+            else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::M)
+                game.toggleSound();
             else
                 game.getScene()->onEvent(event);
         }

@@ -263,6 +263,16 @@ std::vector<Effect>& Game::getEffects() {
     return effects;
 }
 
+bool Game::toggleSound() {
+    sound = !sound;
+    ResourceManager::getInstance().enableMusic(sound);
+    return sound;
+}
+
+bool Game::soundEnabled() {
+    return sound;
+}
+
 void Game::update(sf::Time dt) {
     if (getRoundRemainingTime() <= sf::seconds(0)) {
         endRound();

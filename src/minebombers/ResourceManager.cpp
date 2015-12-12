@@ -12,6 +12,7 @@
  */
 
 #include "ResourceManager.h"
+#include "Game.h"
 #include <iostream>
 
 ResourceManager::ResourceManager() {
@@ -69,30 +70,36 @@ const sf::Texture& ResourceManager::loadTexture(const std::string& path) {
 }
 
 const void ResourceManager::playSound(std::string soundName) {
-    if (sounds.find(soundName) == sounds.end())
-        sounds[soundName] = sf::Sound(soundBuffers.at(soundName));
-    sounds[soundName].play();
+    if (Game::game().soundEnabled()) {
+        if (sounds.find(soundName) == sounds.end())
+            sounds[soundName] = sf::Sound(soundBuffers.at(soundName));
+        sounds[soundName].play();
+    }
 }
 
 const void ResourceManager::playKling(int value) {
-    if (sounds.find("kling") == sounds.end())
-        sounds["kling"] = sf::Sound(soundBuffers.at("kling"));
-    sounds["kling"].setPitch(1 / (value / 200.0));
-    sounds["kling"].setVolume(20);
-    sounds["kling"].play();
-    if (value >= 240 && value < 280) {
-        this->playSound("yesh");
-    } else if (value >= 280) {
-        this->playSound("ohright");
+    if (Game::game().soundEnabled()) {
+        if (sounds.find("kling") == sounds.end())
+            sounds["kling"] = sf::Sound(soundBuffers.at("kling"));
+        sounds["kling"].setPitch(1 / (value / 200.0));
+        sounds["kling"].setVolume(20);
+        sounds["kling"].play();
+        if (value >= 240 && value < 280) {
+            this->playSound("yesh");
+        } else if (value >= 280) {
+            this->playSound("ohright");
+        }
     }
 }
 
 const void ResourceManager::playExplosion(int damage, std::string soundName) {
-    if (sounds.find(soundName) == sounds.end())
-        sounds[soundName] = sf::Sound(soundBuffers.at(soundName));
-    sounds[soundName].setPitch(1 / (damage / 20.0));
-    sounds[soundName].setVolume(50 * (damage / 30.0));
-    sounds[soundName].play();
+    if (Game::game().soundEnabled()) {
+        if (sounds.find(soundName) == sounds.end())
+            sounds[soundName] = sf::Sound(soundBuffers.at(soundName));
+        sounds[soundName].setPitch(1 / (damage / 20.0));
+        sounds[soundName].setVolume(50 * (damage / 30.0));
+        sounds[soundName].play();
+    }
 }
 
 
@@ -106,4 +113,8 @@ const void ResourceManager::playMusic(std::string musicName) {
         this->music.play();
         this->music.setLoop(true);
     }
+}
+
+const void ResourceManager::enableMusic(bool enable) {
+    music.setVolume(enable ? 15 : 0);
 }
