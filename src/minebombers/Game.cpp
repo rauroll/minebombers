@@ -46,8 +46,8 @@ void Game::startRound() {
     roundEnded = false;
     roundClock.restart();
     roundTime = sf::seconds(100);
-    map = loader.fromFile("maps/map.mb");
-    //map = gen.generate();
+    //map = loader.fromFile("maps/map.mb");
+    map = gen.generate();
     
     startPositions.clear();
     startPositions.push_back(sf::Vector2u(1, 1));
