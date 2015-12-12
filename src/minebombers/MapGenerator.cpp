@@ -31,10 +31,10 @@ MapGenerator::~MapGenerator() {
 Map MapGenerator::generate() {
     uint16_t w = 80;
     uint16_t h = 40;
-    float floorRatio = 0;
-    float wallRatio = 0.05 + (rand() % 3 / 100.0);
-    float softRatio = 0.5;
-    float wallSizeRatio = 0.15;
+    float floorRatio = 0; // how much floor relative to total amount of tiles
+    float wallRatio = 0.05 + (rand() % 3 / 100.0); // how much wall relative to total amount of tiles
+    float softRatio = 0.5; // how much soft wall relative to total wall
+    float wallSizeRatio = 0.15; // how long walls are relative to (w + h) / 2
     
     Map map = Map(w, h);
     Tileset tileset(sf::Vector2u(16, 16));
