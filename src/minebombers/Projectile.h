@@ -19,10 +19,11 @@
 
 #include "MyDrawable.h"
 #include "Effect.h"
+#include "ProjectileType.h"
 
 class Projectile : public MyDrawable {
 public:
-    Projectile(const std::string& name, const std::string& texturefile, const std::string& audioName, int damage, Effect& effect, sf::Vector2u radius = sf::Vector2u(1, 1), sf::Time timer = sf::milliseconds(5000));
+    Projectile(const std::string& name, const std::string& texturefile, const std::string& audioName, int damage, Effect& effect, ProjectileType projectileType, sf::Vector2u radius = sf::Vector2u(1, 1), sf::Time timer = sf::milliseconds(5000));
     Projectile(const Projectile& orig);
     
     void setDirection(sf::Vector2u dir);
@@ -41,6 +42,7 @@ private:
     sf::Time timer;
     Effect effect;
     int stepper = 0;
+    ProjectileType projectileType;
 };
 
 #endif /* BULLET_H */

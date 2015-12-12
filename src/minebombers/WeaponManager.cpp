@@ -35,13 +35,14 @@ void WeaponManager::createWeapons() {
 //                           const std::string& audioName,
 //                           int damage,
 //                           Effect& effect,
+//                           ProjectileType projectileType,
 //                           sf::Vector2u radius = sf::Vector2u(1, 1),
 //                           sf::Time timer = sf::milliseconds(5000))
 
     
     // Projectiles
-    Projectile proj = Projectile("jonnemissile", "assets/projectile.png", "explosion", 30, explosion, sf::Vector2u(5, 5));
-    Projectile bomb = Projectile("keilapommi", "assets/bomb.png", "boom", 50, explosion, sf::Vector2u(100, 100));
+    Projectile proj = Projectile("jonnemissile", "assets/projectile.png", "explosion", 30, explosion, PROJECTILE, sf::Vector2u(5, 5));
+    Projectile bomb = Projectile("keilapommi", "assets/bomb.png", "boom", 50, explosion, PROJECTILE, sf::Vector2u(100, 100));
     
     
     //Weapons

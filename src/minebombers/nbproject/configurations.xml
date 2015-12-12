@@ -18,6 +18,7 @@
       <itemPath>MyDrawable.h</itemPath>
       <itemPath>Player.h</itemPath>
       <itemPath>Projectile.h</itemPath>
+      <itemPath>ProjectileType.h</itemPath>
       <itemPath>ResourceManager.h</itemPath>
       <itemPath>Scene.h</itemPath>
       <itemPath>ShopScene.h</itemPath>
@@ -142,6 +143,8 @@
       </item>
       <item path="Projectile.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ProjectileType.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="ResourceManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ResourceManager.h" ex="false" tool="3" flavor2="0">
@@ -258,6 +261,8 @@
       <item path="Projectile.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Projectile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProjectileType.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ResourceManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
