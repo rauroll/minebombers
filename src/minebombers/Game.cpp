@@ -108,6 +108,15 @@ sf::Time Game::getRoundRemainingTime() const {
     return (roundTime - roundClock.getElapsedTime());
 }
 
+int Game::getRound() {
+    return round;
+}
+
+int Game::getTotalRounds() {
+    return totalRounds;
+}
+
+
 void Game::setScene(SceneType scene) {
     currentScene = scenes.at(scene);
     currentScene->onChangedTo();

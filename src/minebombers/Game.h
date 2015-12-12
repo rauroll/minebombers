@@ -64,6 +64,9 @@ public:
         return instance;
     }
     
+    int getRound();
+    int getTotalRounds();
+    
     bool roundHasEnded();
     
     sf::Time getRoundRemainingTime() const;
@@ -93,6 +96,7 @@ private:
     bool addTreasure(Treasure& treasure);
       
     int round = 0;
+    int totalRounds = 3;
     
     sf::Clock roundClock;
     sf::Time roundTime;
