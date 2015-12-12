@@ -155,14 +155,12 @@ void Game::clearTreasures() {
 
 void Game::setRandomTreasures(uint16_t amount) {
     while(amount) {
-        sf::Vector2u pos(rand() % map.getSize().x, rand() % map.getSize().y);
-        
-        if(isEmpty(pos)) {
-            sf::Sprite sprite = sf::Sprite(ResourceManager::getInstance().loadTexture("assets/my_doc.png"));
-            treasures.push_back(Treasure(sprite, rand() % 300, pos));
-            
-            amount--;
-        }
+        sf::Vector2u pos(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 1);
+        sf::Sprite sprite = sf::Sprite(ResourceManager::getInstance().loadTexture("assets/my_doc.png"));
+        treasures.push_back(Treasure(sprite, rand() % 300, pos));
+        Tile tile(0, 0, FLOOR);
+        map.setTile(pos, tile);
+        amount--;
     }
 }
 
