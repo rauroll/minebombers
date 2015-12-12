@@ -33,6 +33,7 @@ public:
     void removeAllWeapons();
     Projectile useWeapon();
     unsigned int getAmmo();
+    void addAmmo(std::string weaponName, unsigned int amount);
     bool hasAmmo();
     void incrementMoney(uint32_t amount);
     int getMoney() const;

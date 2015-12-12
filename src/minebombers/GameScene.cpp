@@ -209,7 +209,6 @@ void GameScene::checkKeys() {
                         case SHOOT: {
                             Player& player = game.getPlayers()[i];
                             if (player.hasAmmo()) {
-                                std::cout << "Player had ammo left" << std::endl;
                                 Projectile p = player.useWeapon();
                                 game.addProjectile(p);
                             }

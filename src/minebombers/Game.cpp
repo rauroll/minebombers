@@ -64,8 +64,7 @@ void Game::startRound() {
     
     WeaponManager& wepMan = WeaponManager::getInstance();
     wepMan.createWeapons();
-    wepMan.addWeaponsToPlayer(players[0]);
-    wepMan.addWeaponsToPlayer(players[1]);
+    for (auto& p : players) wepMan.addWeaponsToPlayer(p); 
     
     ResourceManager::getInstance().playMusic("game");
 }
