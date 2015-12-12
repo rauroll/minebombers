@@ -28,8 +28,8 @@ MapGenerator::~MapGenerator() {
 }
 
 Map MapGenerator::generate() {
-    uint16_t w = 40;
-    uint16_t h = 30;
+    uint16_t w = 80;
+    uint16_t h = 40;
     float floorRatio = 0.4 + (rand() % 20 / 100.0);
     float wallRatio = 0.05 + (rand() % 5 / 100.0);
     float softRatio = 0.5;
