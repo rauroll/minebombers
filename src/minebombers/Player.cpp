@@ -36,10 +36,14 @@ void Player::incrementMoney(uint32_t amount) {
 }
 
 void Player::nextWeapon() {
-    ++activeWeapon;
-    if (activeWeapon == weaponsMap.end()) {
-        activeWeapon = weaponsMap.begin();
+    while (true) {
+        ++activeWeapon;
+        if (activeWeapon == weaponsMap.end()) {
+            activeWeapon = weaponsMap.begin();
+        }
+        if (activeWeapon->second > 0) break;
     }
+    
 }
 
 void Player::removeAllWeapons() {
@@ -47,7 +51,7 @@ void Player::removeAllWeapons() {
 }
 
 void Player::addWeapon(Weapon& weapon) {
-    weaponsMap[weapon.getName()] = 10;
+    weaponsMap[weapon.getName()] = 0;
     this->activeWeapon = weaponsMap.begin();
 }
 
@@ -61,6 +65,14 @@ Weapon& Player::getActiveWeapon() {
 
 unsigned int Player::getAmmo() {
     return activeWeapon->second;
+}
+
+void Player::addAmmo(std::string weaponName, unsigned int amount) {
+    if (weaponsMap.find(weaponName) == weaponsMap.end()) {
+        std::cout << "Weapon didn't exist" << std::endl;
+    } else {
+        weaponsMap[weaponName] += amount;
+    }
 }
 
 // This method isn't responsible for checking for ammo
