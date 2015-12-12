@@ -12,6 +12,7 @@
  */
 
 #include <math.h>
+#include <iostream>
 
 #include "ShopScene.h"
 #include "Game.h"

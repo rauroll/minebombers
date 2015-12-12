@@ -27,8 +27,8 @@
 
 Game::Game() {
     srand(time(NULL));
-    this->gen = MapGenerator();
-    this->loader = MapLoader();
+    gen = MapGenerator();
+    loader = MapLoader();
      
     scenes[MENUSCENE] = new MenuScene();
     scenes[GAMESCENE] = new GameScene();
@@ -40,17 +40,17 @@ Game::Game() {
 }
 
 void Game::startRound() {    
-    this->roundClock.restart();
-    this->roundTime = sf::seconds(100);
+    roundClock.restart();
+    roundTime = sf::seconds(100);
     map = loader.fromFile("maps/map.mb");
     //map = gen.generate();
      
     sf::Vector2u windowSize = map.getSize();
     overlayImage.create(windowSize.x * 16, windowSize.y * 16, sf::Color(0, 0, 0, 255));
     
-    this->setRandomTreasures(50);
-    this->addPlayer("JERE");
-    this->addPlayer("JERE2");
+    setRandomTreasures(50);
+    addPlayer("JERE");
+    addPlayer("JERE2");
     
     Effect explosion = Effect("Explosion", "assets/explosion.png", sf::Vector2u(0, 0), true);
     Projectile proj = Projectile("jonnemissile", "assets/projectile.png", "explosion", 30, explosion, sf::Vector2u(5, 5));
@@ -59,19 +59,18 @@ void Game::startRound() {
     Projectile bomb = Projectile("keilapommi", "assets/bomb.png", "boom", 50, explosion, sf::Vector2u(100, 100));
     Weapon bombWeapon = Weapon("bomb", "shot", 99, bomb);
         
-    this->getPlayers()[0].addWeapon(onlyWeapon);
-    this->getPlayers()[0].addWeapon(bombWeapon);
+    getPlayers()[0].addWeapon(onlyWeapon);
+    getPlayers()[0].addWeapon(bombWeapon);
     
     ResourceManager::getInstance().playMusic("game");
 }
 
 void Game::endRound() {
-    this->setScene(SHOPSCENE);
-    this->players.clear();
-    this->treasures.clear();
-    this->effects.clear();
-    this->projectiles.clear();
-
+    setScene(SHOPSCENE);
+    players.clear();
+    treasures.clear();
+    effects.clear();
+    //projectiles.clear();
 }
 
 Game::~Game() {
@@ -82,6 +81,9 @@ sf::Vector2u Game::getCanvasSize() {
     return sf::Vector2u(s.x * 16, s.y * 16 + 100);
 }
 
+void Game::onPlayerDead() {
+    endRound();
+}
 
 std::vector<Player>& Game::getPlayers() {
     return players;
@@ -92,7 +94,7 @@ Scene* Game::getScene() {
 }
 
 sf::Time Game::getRoundRemainingTime() const {
-    return (this->roundTime - this->roundClock.getElapsedTime());
+    return (roundTime - roundClock.getElapsedTime());
 }
 
 void Game::setScene(SceneType scene) {
@@ -158,7 +160,7 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
     if(player < players.size()) {
         sf::Vector2u newPosition = players[player].getPos() + d;
         
-        if(map.floorAt(newPosition) && !this->isEntityAtPos(newPosition)) {
+        if(map.floorAt(newPosition) && !isEntityAtPos(newPosition)) {
             players[player].move(d);
         }
         
@@ -173,7 +175,7 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
             }
         }
         
-        this->revealMapAt(players[player].getPos());
+        revealMapAt(players[player].getPos());
     }
 }
 
@@ -211,7 +213,7 @@ sf::Vector2u Game::getRandomEmptyPos() {
     
     while (true) {
         pos = sf::Vector2u(rand() % mapSize.x, rand() % mapSize.y);
-        if (map.floorAt(pos) && !this->isEntityAtPos(pos))
+        if (map.floorAt(pos) && !isEntityAtPos(pos))
             break;
     }
     
@@ -219,11 +221,11 @@ sf::Vector2u Game::getRandomEmptyPos() {
 }
 
 void Game::addPlayer(const std::string& name) {
-    sf::Vector2u pos = this->getRandomEmptyPos();
+    sf::Vector2u pos = getRandomEmptyPos();
     
     Player p("assets/playersprite.png", pos.x, pos.y, name);
     players.push_back(p);
-    this->revealMapAt(p.getPos());
+    revealMapAt(p.getPos());
 }
 
 void Game::addProjectile(Projectile projectile) {
@@ -231,20 +233,20 @@ void Game::addProjectile(Projectile projectile) {
 }
 
 std::vector<Projectile>& Game::getProjectiles() {
-    return this->projectiles;
+    return projectiles;
 }
 
 void Game::addEffect(Effect effect) {
-    this->effects.push_back(effect);
+    effects.push_back(effect);
 }
 
 std::vector<Effect>& Game::getEffects() {
-    return this->effects;
+    return effects;
 }
 
 void Game::update() {
-    if (this->getRoundRemainingTime() <= sf::seconds(0)) {
-        this->endRound();
+    if (getRoundRemainingTime() <= sf::seconds(0)) {
+        endRound();
     }
     
     for(auto &i : players) {

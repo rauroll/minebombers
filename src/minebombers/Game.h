@@ -49,6 +49,7 @@ public:
     sf::Vector2u getRandomEmptyPos();
     void addProjectile(Projectile projectile);
     std::vector<Projectile>& getProjectiles();
+    void onPlayerDead();
     
     void addEffect(Effect effect);
     

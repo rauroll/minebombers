@@ -15,6 +15,7 @@
 #include "MyDrawable.h"
 #include <algorithm>
 #include "ResourceManager.h"
+#include "Game.h"
 
 Entity::Entity() {
     
@@ -37,10 +38,12 @@ int Entity::getHealth() {
 
 void Entity::reduceHealth(int damage) {
     bool wasAlive = this->isAlive();
+    Game& game = Game::game();
     this->health = std::max(0, this->health - damage);
     if (wasAlive && this->isAlive()) {
         ResourceManager::getInstance().playSound("hurt1");
     } else if (wasAlive) {
+        game.onPlayerDead();
         ResourceManager::getInstance().playSound("death2");
     }
 }
