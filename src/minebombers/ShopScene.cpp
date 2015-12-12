@@ -36,18 +36,22 @@ void ShopScene::onEvent(sf::Event& event) {
     if (event.type == sf::Event::KeyPressed) {
         switch (event.key.code) {
             case sf::Keyboard::W: {
+                ResourceManager::getInstance().playSound("plip");
                 playerSelections[1]--;
                 break;
             }
             case sf::Keyboard::S: {
+                ResourceManager::getInstance().playSound("plip");
                 playerSelections[1]++;
                 break;
             }
             case sf::Keyboard::Up: {
+                ResourceManager::getInstance().playSound("plop");
                 playerSelections[0]--;
                 break;
             }
             case sf::Keyboard::Down: {
+                ResourceManager::getInstance().playSound("plop");
                 playerSelections[0]++;
                 break;
             }
@@ -80,6 +84,17 @@ void ShopScene::draw(sf::RenderWindow& window) {
         sf::Text text(w, font, 72);
         text.setPosition(200, 200 + i++ * 80);
         window.draw(text);
+        // draw players ammo for each weapon if the player has it
+        // HAUENLEUKAPIHDEILLÄ WEAPON MANAGER TÄHÄ!
+        sf::Text player1Ammo("23", font, 28);
+        player1Ammo.setColor(sf::Color(255, 0, 0));
+        player1Ammo.setPosition(text.getPosition().x + text.getGlobalBounds().width + 20, text.getPosition().y + 12);
+        window.draw(player1Ammo);
+        sf::Text player2Ammo("15", font, 28);
+        player2Ammo.setColor(sf::Color(0, 255, 0));
+        player2Ammo.setPosition(text.getPosition().x + text.getGlobalBounds().width + 20, text.getPosition().y + 48);
+        window.draw(player2Ammo);
+        
     }
     
     for(int i = 0; i < playerSelections.size(); i++) {
