@@ -48,8 +48,8 @@ void Map::makeFloorAround(sf::Vector2u pos) {
             pos.x += rand() % 2 ? 1 : 0;
         else
             pos.y += rand() % 2 ? 1 : 0;
-        pos.x = fmin(width - 1, fmax(1, pos.x));
-        pos.y = fmin(height - 1, fmax(1, pos.y));
+        pos.x = fmin(width - 2, fmax(1, pos.x));
+        pos.y = fmin(height - 2, fmax(1, pos.y));
     }
 }
 
