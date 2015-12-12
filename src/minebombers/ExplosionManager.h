@@ -38,6 +38,8 @@ public:
     void explode(Projectile& projectile);
     
 private:
+    std::vector<sf::Vector2i> directions;
+    
 
 };
 

@@ -21,9 +21,15 @@
 
 #include "ExplosionType.h"
 
+#include <iostream>
+
 
 ExplosionManager::ExplosionManager() {
-    
+    this->directions.clear();
+    this->directions.push_back(sf::Vector2i(0, -1));
+    this->directions.push_back(sf::Vector2i(0, 1));
+    this->directions.push_back(sf::Vector2i(-1, 0));
+    this->directions.push_back(sf::Vector2i(1, 0));
 }
 
 ExplosionManager::~ExplosionManager() {
@@ -38,37 +44,37 @@ void ExplosionManager::crossExplosion(Projectile& projectile) {
     sf::Vector2u radius = projectile.getRadius();
     int damage = projectile.getDamage();
     
-    
-    int zero = 1;
-    for (auto i = std::max((int)(loc.x - radius.x), zero); i < std::min(loc.x + radius.x, map.getSize().x-1); i++) {
-        Effect effect = Effect(projectile.getEffect());
+    for (auto dir : directions) {
+        auto currentLoc = (sf::Vector2u)((sf::Vector2i)loc + dir);
         
-        sf::Vector2u explosionLoc = sf::Vector2u(i, loc.y);
-        effect.setPos(explosionLoc);
-        
-        game.addEffect(effect);
-        map.damageTile(explosionLoc, damage);
+        unsigned int rangeLeft = projectile.getRadius().x;
+        while (!game.getMap().wallAt(currentLoc) && rangeLeft > 0) {
+            Effect effect = Effect(projectile.getEffect());
+            effect.setPos(currentLoc);
 
-        for (auto& p : players) {
-            if (p.getPos() == explosionLoc) {
-                p.reduceHealth(damage);
-            }    
+            game.addEffect(effect);
+            map.damageTile(currentLoc, damage);
+
+            for (auto& p : players) {
+                if (p.getPos() == currentLoc) {
+                    p.reduceHealth(damage);
+                }
+            }
+            currentLoc = (sf::Vector2u)((sf::Vector2i)currentLoc + dir);
+            rangeLeft--;
         }
     }
     
-    for (auto i = std::max((int)(loc.y - radius.y), zero); i < std::min(loc.y + radius.y, map.getSize().y-1); i++) {
-        if (i == loc.y) continue;
-        
-        Effect effect = Effect(projectile.getEffect());
-        sf::Vector2u explosionLoc = sf::Vector2u(loc.x, i);
-        effect.setPos(explosionLoc);
-        
-        game.addEffect(effect);
-        map.damageTile(explosionLoc, damage);
-        for (auto& p : players) {
-            if (p.getPos() == explosionLoc) {
-                p.reduceHealth(damage);
-            }    
+    Effect effect = Effect(projectile.getEffect());
+    
+    effect.setPos(loc);
+
+    game.addEffect(effect);
+    map.damageTile(loc, damage);
+
+    for (auto& p : players) {
+        if (p.getPos() == loc) {
+            p.reduceHealth(damage);
         }
     }
 
@@ -80,6 +86,7 @@ void ExplosionManager::recursiveExplosion(Projectile& projectile) {
 }
     
 void ExplosionManager::circleExplosion(Projectile& projectile) {
+    
     
 }
 
