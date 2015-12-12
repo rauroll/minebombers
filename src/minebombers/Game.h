@@ -64,13 +64,18 @@ public:
         return instance;
     }
     
+    int getRound();
+    int getTotalRounds();
+    
+    bool roundHasEnded();
+    
     sf::Time getRoundRemainingTime() const;
     
     sf::Image& getOverlayImage();
     void revealMapAt(sf::Vector2u pos, int radius = 80);
     
     void startRound();
-    void endRound();
+    void endRound(bool switchToShop = false);
 private:
     sf::Image overlayImage;
     
@@ -89,9 +94,15 @@ private:
     
     bool isEmpty(sf::Vector2u pos);
     bool addTreasure(Treasure& treasure);
-       
+      
+    int round = 0;
+    int totalRounds = 3;
+    
     sf::Clock roundClock;
     sf::Time roundTime;
+    
+    bool roundEnded = false;
+    sf::Clock roundEndClock;
 };
 
 #endif /* GAME_H */

@@ -69,37 +69,63 @@ void GameScene::draw(sf::RenderWindow& window) {
     int statusBarHeight = 100;
     sf::RectangleShape background(sf::Vector2f(windowSize.x, statusBarHeight));
     background.setPosition(0, windowSize.y - statusBarHeight);
-    background.setFillColor(sf::Color(150, 0, 0, 155));
+    background.setFillColor(sf::Color(230, 230, 230));
     window.draw(background);
     
     sf::Font font = ResourceManager::getInstance().getFont();
 
     // Draw player data for each player
-    int i = 0;
+    int playerFontSize = 20;
+    int playerX = 20;
+    int playerY = windowSize.y - statusBarHeight / 2 + playerFontSize / 2;
+    sf::Color statusBarColor = sf::Color(0, 0, 0);
+    
     for(auto &p : players) {
-        int box_x = 10 + i * 100;
-        int box_baseline_y = windowSize.y - 32;
-        sf::Text name = sf::Text(p.getName(), font, 16);
-        name.setPosition(box_x, box_baseline_y - 32);
-        sf::Text hp = sf::Text("HP" + std::to_string(p.getHealth()) + "/100", font, 16);
-        hp.setPosition(box_x, box_baseline_y - 16);
-        sf::Text mohlay = sf::Text("Money: " + std::to_string(p.getMoney()), font, 16);
-        mohlay.setPosition(box_x, box_baseline_y);
+        sf::Text name = sf::Text(p.getName(), font, playerFontSize * 1.2);
+        name.setPosition(playerX, playerY - playerFontSize * 1.2 * 2);
+        name.setColor(statusBarColor);
         window.draw(name);
+        
+        sf::Text hp = sf::Text("HP" + std::to_string(p.getHealth()) + "/100", font, playerFontSize);
+        hp.setPosition(playerX, playerY - playerFontSize);
+        hp.setColor(sf::Color(100, 100, 100));
         window.draw(hp);
+        
+        sf::Text mohlay = sf::Text("Money: " + std::to_string(p.getMoney()), font, playerFontSize);
+        mohlay.setPosition(playerX, playerY);
+        mohlay.setColor(sf::Color(100, 100, 100));
         window.draw(mohlay);
-        i++;
+        
+        playerX += name.getLocalBounds().width + 75;
     }
     
-    sf::Text roundClock = sf::Text(std::to_string(game.getRoundRemainingTime().asSeconds()), font, 32);
-    roundClock.setPosition(windowSize.x - 200, windowSize.y - 32);
-    window.draw(roundClock);
+    sf::Text roundStatus("Round " + std::to_string(game.getRound()) + " / " + std::to_string(game.getTotalRounds()), font, 60);
+    roundStatus.setColor(statusBarColor);
+    roundStatus.setPosition(windowSize.x / 2 - roundStatus.getLocalBounds().width / 2, windowSize.y - statusBarHeight / 2 - 38);
+    window.draw(roundStatus);
     
+    // draw map overlay
     sf::Texture overlayTexture;
     overlayTexture.loadFromImage(game.getOverlayImage());
     sf::Sprite overlay;
     overlay.setTexture(overlayTexture);
     window.draw(overlay);
+    
+    // draw round end overlay
+    if (game.roundHasEnded()) {
+        sf::RectangleShape rect(sf::Vector2f(windowSize.x, windowSize.y));
+        rect.setFillColor(sf::Color(0, 0, 0, 150));
+        window.draw(rect);
+        
+        sf::Text roundEnded("The round has ended!", font, 100);
+        roundEnded.setPosition(windowSize.x / 2 - roundEnded.getLocalBounds().width / 2, 200);
+        window.draw(roundEnded);
+    } else {
+        sf::Text roundClock = sf::Text("Time left: " + std::to_string((int) ceil(game.getRoundRemainingTime().asSeconds())), font, 40);
+        roundClock.setPosition(windowSize.x - roundClock.getLocalBounds().width - 40, windowSize.y - statusBarHeight / 2 - 23);
+        roundClock.setColor(statusBarColor);
+        window.draw(roundClock);
+    }
 }
 
 void GameScene::onEvent(sf::Event& event) {
@@ -144,38 +170,34 @@ void GameScene::onEvent(sf::Event& event) {
 void GameScene::update(sf::Time dt) {
     Game& game = Game::game();
     
-//    sf::Time delay = sf::milliseconds(50);
-    
-    for(auto& i : keyboard) {
-        if(i.second.x) {
-            i.second.y ++;
-            
-            //std::cout << i.second.y << std::endl;
-            
-            if(i.second.y % 5 == 1) {
-                
-                //Player 1
-                if(i.first == sf::Keyboard::Up)
-                    game.movePlayer(0, sf::Vector2u(0, -1));
-                if(i.first == sf::Keyboard::Down)
-                    game.movePlayer(0, sf::Vector2u(0, 1));
-                if(i.first == sf::Keyboard::Right)
-                    game.movePlayer(0, sf::Vector2u(1, 0));
-                if(i.first == sf::Keyboard::Left)
-                    game.movePlayer(0, sf::Vector2u(-1, 0));
-                
-                //Player 2
-                if(i.first == sf::Keyboard::W)
-                    game.movePlayer(1, sf::Vector2u(0, -1));
-                if(i.first == sf::Keyboard::S)
-                    game.movePlayer(1, sf::Vector2u(0, 1));
-                if(i.first == sf::Keyboard::D)
-                    game.movePlayer(1, sf::Vector2u(1, 0));
-                if(i.first == sf::Keyboard::A)
-                    game.movePlayer(1, sf::Vector2u(-1, 0));
-                   
+    if (!game.roundHasEnded()) {
+        for(auto& i : keyboard) {
+            if(i.second.x) {
+                i.second.y ++;
+
+                if(i.second.y % 5 == 1) {
+
+                    //Player 1
+                    if(i.first == sf::Keyboard::Up)
+                        game.movePlayer(0, sf::Vector2u(0, -1));
+                    if(i.first == sf::Keyboard::Down)
+                        game.movePlayer(0, sf::Vector2u(0, 1));
+                    if(i.first == sf::Keyboard::Right)
+                        game.movePlayer(0, sf::Vector2u(1, 0));
+                    if(i.first == sf::Keyboard::Left)
+                        game.movePlayer(0, sf::Vector2u(-1, 0));
+
+                    //Player 2
+                    if(i.first == sf::Keyboard::W)
+                        game.movePlayer(1, sf::Vector2u(0, -1));
+                    if(i.first == sf::Keyboard::S)
+                        game.movePlayer(1, sf::Vector2u(0, 1));
+                    if(i.first == sf::Keyboard::D)
+                        game.movePlayer(1, sf::Vector2u(1, 0));
+                    if(i.first == sf::Keyboard::A)
+                        game.movePlayer(1, sf::Vector2u(-1, 0));
+                }
             }
-                
         }
     }
     
