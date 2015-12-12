@@ -18,10 +18,11 @@
 #include "Game.h"
 #include "ResourceManager.h"
 
-Projectile::Projectile(const std::string& name, const std::string& texturefile, const std::string& audioName, int damage, Effect& effect, sf::Vector2u radius, sf::Time timer) : MyDrawable(texturefile, 0, 0, name), effect(effect) {
+Projectile::Projectile(const std::string& name, const std::string& texturefile, const std::string& audioName, int damage, Effect& effect, ProjectileType projectileType, sf::Vector2u radius, sf::Time timer) : MyDrawable(texturefile, 0, 0, name), effect(effect) {
     this->damage = damage;
     this->dir = dir;
     this->radius = radius;
+    this->projectileType = projectileType;
     this->timer = timer;
     this->alwaysStillSprite = true;
     this->explosionAudioName = audioName;
@@ -32,6 +33,7 @@ Projectile::Projectile(const Projectile& orig) : MyDrawable(orig), effect(orig.e
     this->damage = orig.damage;
     this->position = orig.position;
     this->radius = orig.radius;
+    this->projectileType = orig.projectileType;
     this->timer = orig.timer;
     this->alwaysStillSprite = orig.alwaysStillSprite;
     this->explosionAudioName = orig.explosionAudioName;
@@ -45,7 +47,22 @@ void Projectile::setDirection(sf::Vector2u dir) {
     this->dir = dir;
 }
 
-bool Projectile::update() {
+bool Projectile::update(sf::Time dt) {
+    switch (this->projectileType) {
+        case PROJECTILE:
+            return this->updateProjectile();
+            break;
+        case EXPLOSIVE:
+            return this->updateBomb(dt);
+            break;
+        default:
+            return false;
+    }
+    
+    
+}
+
+bool Projectile::updateProjectile() {
     stepper++;
     if (stepper % 2 == 1) {
         Game &game = Game::game();
@@ -66,8 +83,18 @@ bool Projectile::update() {
         }
     }
     return false;
-    
 }
+
+bool Projectile::updateBomb(sf::Time dt) {
+    this->timer -= dt;
+    if (this->timer <= sf::milliseconds(0)) {
+        this->explode();
+        return true;
+    }
+    return false;
+}
+
+
 
 Effect& Projectile::getEffect() {
     return this->effect;

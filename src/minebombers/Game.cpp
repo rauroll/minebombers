@@ -263,7 +263,7 @@ std::vector<Effect>& Game::getEffects() {
     return effects;
 }
 
-void Game::update() {
+void Game::update(sf::Time dt) {
     if (getRoundRemainingTime() <= sf::seconds(0)) {
         endRound();
     }
@@ -283,7 +283,7 @@ void Game::update() {
         Projectile& p = projectiles[i];
         p.updateSpritePosition(8);
         
-        bool exploded = p.update();
+        bool exploded = p.update(dt);
         if (exploded) {
             projectiles.erase(projectiles.begin() + i);
             i--;
