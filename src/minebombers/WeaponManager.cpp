@@ -36,18 +36,20 @@ void WeaponManager::createWeapons() {
 //                           int damage,
 //                           Effect& effect,
 //                           ProjectileType projectileType,
-//                           sf::Vector2u radius = sf::Vector2u(1, 1),
-//                           sf::Time timer = sf::milliseconds(5000))
+//                           sf::Vector2u radius = sf::Vector2u(0, 0),
+//                           sf::Time timer = sf::milliseconds(5000)),
+//                           uint range = 0; (default to unlimited range)
 
     
     // Projectiles
     Projectile proj = Projectile("jonnemissile", "assets/projectile.png", "explosion", 30, explosion, PROJECTILE, sf::Vector2u(5, 5));
     Projectile bomb = Projectile("keilapommi", "assets/bomb.png", "boom", 50, explosion, EXPLOSIVE, sf::Vector2u(100, 100));
-    
+    Projectile pick = Projectile("pick", "assets/projectile.png", "explosion", 50, explosion, PICK, sf::Vector2u(0, 0), sf::milliseconds(0), 1);
     
     //Weapons
     this->addWeapon(Weapon("jonnegun", "lazer", 99, proj));
     this->addWeapon(Weapon("bomb", "shot", 99, bomb));
+    this->addWeapon(Weapon("pick", "shot", 0, pick));
     
 }
 
@@ -59,6 +61,7 @@ void WeaponManager::addWeaponsToPlayer(Player& player) {
     // Add unlimited ammo to default weapon
     player.addAmmo("jonnegun", 999);
     player.addAmmo("bomb", 3);
+    player.addAmmo("pick", 999);
     player.nextWeapon();
 }
 

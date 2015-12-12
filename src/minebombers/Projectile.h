@@ -23,7 +23,7 @@
 
 class Projectile : public MyDrawable {
 public:
-    Projectile(const std::string& name, const std::string& texturefile, const std::string& audioName, int damage, Effect& effect, ProjectileType projectileType, sf::Vector2u radius = sf::Vector2u(1, 1), sf::Time timer = sf::milliseconds(5000));
+    Projectile(const std::string& name, const std::string& texturefile, const std::string& audioName, int damage, Effect& effect, ProjectileType projectileType, sf::Vector2u radius = sf::Vector2u(0, 0), sf::Time timer = sf::milliseconds(5000), unsigned int range = 0);
     Projectile(const Projectile& orig);
     
     void setDirection(sf::Vector2u dir);
@@ -33,6 +33,9 @@ public:
     bool update(sf::Time dt);
     bool updateProjectile();
     bool updateBomb(sf::Time dt);
+    bool updatePick();
+    bool reachedMaxRange();
+    void move(sf::Vector2u dir);
     virtual ~Projectile();
     void explode();
 private:
@@ -45,6 +48,8 @@ private:
     Effect effect;
     int stepper = 0;
     ProjectileType projectileType;
+    unsigned int range;
+    unsigned int moved = 0;
 };
 
 #endif /* BULLET_H */

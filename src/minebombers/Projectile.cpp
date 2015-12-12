@@ -18,7 +18,7 @@
 #include "Game.h"
 #include "ResourceManager.h"
 
-Projectile::Projectile(const std::string& name, const std::string& texturefile, const std::string& audioName, int damage, Effect& effect, ProjectileType projectileType, sf::Vector2u radius, sf::Time timer) : MyDrawable(texturefile, 0, 0, name), effect(effect) {
+Projectile::Projectile(const std::string& name, const std::string& texturefile, const std::string& audioName, int damage, Effect& effect, ProjectileType projectileType, sf::Vector2u radius, sf::Time timer, unsigned int range) : MyDrawable(texturefile, 0, 0, name), effect(effect) {
     this->damage = damage;
     this->dir = dir;
     this->radius = radius;
@@ -26,6 +26,7 @@ Projectile::Projectile(const std::string& name, const std::string& texturefile, 
     this->timer = timer;
     this->alwaysStillSprite = true;
     this->explosionAudioName = audioName;
+    this->range = range;
 }
 
 Projectile::Projectile(const Projectile& orig) : MyDrawable(orig), effect(orig.effect) {
@@ -37,10 +38,16 @@ Projectile::Projectile(const Projectile& orig) : MyDrawable(orig), effect(orig.e
     this->timer = orig.timer;
     this->alwaysStillSprite = orig.alwaysStillSprite;
     this->explosionAudioName = orig.explosionAudioName;
+    this->range = orig.range;
 }
 
 Projectile::~Projectile() {
     
+}
+
+void Projectile::move(sf::Vector2u dir) {
+    MyDrawable::move(dir);
+    this->moved++;
 }
 
 void Projectile::setDirection(sf::Vector2u dir) {
@@ -54,6 +61,9 @@ bool Projectile::update(sf::Time dt) {
             break;
         case EXPLOSIVE:
             return this->updateBomb(dt);
+            break;
+        case PICK:
+            return this->updatePick();
             break;
         default:
             return false;
@@ -69,7 +79,7 @@ bool Projectile::updateProjectile() {
         sf::Vector2u nextLocation = this->getPos() + this->dir;
         bool playerHit = false;
         for (auto& p : game.getPlayers()) {
-            if (p.getPos() == nextLocation && p.isAlive()) {
+            if ((p.getPos() == nextLocation && p.isAlive()) || this->reachedMaxRange()) {
                 this->explode();
                 return true;
             }
@@ -92,6 +102,21 @@ bool Projectile::updateBomb(sf::Time dt) {
         return true;
     }
     return false;
+}
+
+bool Projectile::updatePick() {
+    Game& game = Game::game();
+    Map& map = game.getMap();
+    sf::Vector2u loc = this->getPos() + this->dir;
+    std::vector<Player>& players = game.getPlayers();
+    
+    map.damageTile(loc, this->damage);
+    
+    return true;
+}
+
+bool Projectile::reachedMaxRange() {
+    return (this->moved >= this->range) && this->range != 0;
 }
 
 
