@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include <list>
+#include <math.h>
 
 #include "MapGenerator.h"
 #include "ResourceManager.h"
@@ -30,9 +31,10 @@ MapGenerator::~MapGenerator() {
 Map MapGenerator::generate() {
     uint16_t w = 80;
     uint16_t h = 40;
-    float floorRatio = 0;
-    float wallRatio = 0.05 + (rand() % 5 / 100.0);
-    float softRatio = 0.5;
+    float floorRatio = 0; // how much floor relative to total amount of tiles
+    float wallRatio = 0.05 + (rand() % 2 / 100.0); // how much wall relative to total amount of tiles
+    float softRatio = 0.5; // how much soft wall relative to total wall
+    float wallSizeRatio = 0.1; // how long walls are relative to (w + h) / 2
     
     Map map = Map(w, h);
     Tileset tileset(sf::Vector2u(16, 16));
@@ -56,16 +58,20 @@ Map MapGenerator::generate() {
         map.setTile(pos, tile);
     }
     
-    // calculate wall seeds
-    std::list<sf::Vector2u> walls;
-    while (walls.size() < w * h * wallRatio)
-        walls.push_back(sf::Vector2u(rand() % w, rand() % h));
-    
     // fill wall
-    for (auto wall : walls) {
+    int walls = 0;
+    while (walls++ <= w * h * wallRatio) {
         Tile tile = Tile(0, 10, WALL);
-        sf::Vector2u pos(wall.x, wall.y);
+        sf::Vector2u pos(rand() % w, rand() % h);
         map.setTile(pos, tile);
+        
+        int size = rand() % ((w + h) / 2) * wallSizeRatio;
+        bool direction = rand() % 2 == 0;
+        for (int i = 0; i < size; ++i) {
+            Tile tile(0, 10, WALL);
+            sf::Vector2u p = direction ? sf::Vector2u(pos.x, pos.y + i) : sf::Vector2u(pos.x + i, pos.y);
+            map.setTile(sf::Vector2u(fmin(w - 1, p.x), fmin(h - 1, p.y)), tile);
+        }
     }
     
     // edges
