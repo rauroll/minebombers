@@ -83,7 +83,7 @@ bool Projectile::updateProjectile() {
         bool playerHit = false;
         for (auto& p : game.getPlayers()) {
             if ((p.getPos() == nextLocation && p.isAlive()) || this->reachedMaxRange()) {
-                this->explode();
+                ExplosionManager::getInstance().explode(*this);
                 return true;
             }
         }
@@ -91,7 +91,7 @@ bool Projectile::updateProjectile() {
         if (game.getMap().floorAt(nextLocation)) {
             this->move(this->dir);
         } else {
-            this->explode();
+            ExplosionManager::getInstance().explode(*this);
             return true;
         }
     }
@@ -101,7 +101,7 @@ bool Projectile::updateProjectile() {
 bool Projectile::updateBomb(sf::Time dt) {
     this->timer -= dt;
     if (this->timer <= sf::milliseconds(0)) {
-        this->explode();
+        ExplosionManager::getInstance().explode(*this);
         return true;
     }
     return false;
@@ -140,48 +140,5 @@ std::string Projectile::getExplosionAudioName() {
 
 ExplosionType Projectile::getExplosionType() {
     return this->explosionType;
-}
-
-void Projectile::explode() {
-    Game& game = Game::getInstance();
-    Map& map = game.getMap();
-    sf::Vector2u loc = this->getPos();
-    std::vector<Player>& players = game.getPlayers();
-    
-    
-    int zero = 1;
-    for (auto i = std::max((int)(loc.x - radius.x), zero); i < std::min(loc.x + radius.x, map.getSize().x-1); i++) {
-        Effect effect = Effect(this->getEffect());
-        
-        sf::Vector2u explosionLoc = sf::Vector2u(i, loc.y);
-        effect.setPos(explosionLoc);
-        
-        game.addEffect(effect);
-        map.damageTile(explosionLoc, this->damage);
-
-        for (auto& p : players) {
-            if (p.getPos() == explosionLoc) {
-                p.reduceHealth(this->damage);
-            }    
-        }
-    }
-    
-    for (auto i = std::max((int)(loc.y - radius.y), zero); i < std::min(loc.y + radius.y, map.getSize().y-1); i++) {
-        if (i == loc.y) continue;
-        
-        Effect effect = Effect(this->getEffect());
-        sf::Vector2u explosionLoc = sf::Vector2u(loc.x, i);
-        effect.setPos(explosionLoc);
-        
-        game.addEffect(effect);
-        map.damageTile(explosionLoc, this->damage);
-        for (auto& p : players) {
-            if (p.getPos() == explosionLoc) {
-                p.reduceHealth(this->damage);
-            }    
-        }
-    }
-
-    ResourceManager::getInstance().playExplosion(this->damage, this->explosionAudioName);
 }
 

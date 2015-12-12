@@ -30,7 +30,7 @@ ExplosionManager::~ExplosionManager() {
     
 }
 
-void crossExplosion(Projectile& projectile) {
+void ExplosionManager::crossExplosion(Projectile& projectile) {
     Game& game = Game::getInstance();
     Map& map = game.getMap();
     sf::Vector2u loc = projectile.getPos();
@@ -75,22 +75,22 @@ void crossExplosion(Projectile& projectile) {
     ResourceManager::getInstance().playExplosion(damage, projectile.getExplosionAudioName());
 }
 
-void recursiveExplosion(Projectile& projectile) {
+void ExplosionManager::recursiveExplosion(Projectile& projectile) {
     
 }
     
-void circleExplosion(Projectile& projectile) {
-    
-}
-
-void recursiveCircleExplosion(Projectile& projectile) {
+void ExplosionManager::circleExplosion(Projectile& projectile) {
     
 }
 
-void explode(Projectile& projectile) {
+void ExplosionManager::recursiveCircleExplosion(Projectile& projectile) {
+    
+}
+
+void ExplosionManager::explode(Projectile& projectile) {
     switch (projectile.getExplosionType()) {
         case CROSS:
-            crossExplosion(projectile);
+            this->crossExplosion(projectile);
             break;
         case CROSSREC:
             break;
@@ -99,6 +99,8 @@ void explode(Projectile& projectile) {
         case CIRCLEREC:
             break;
         case BOOMERANG:
+            break;
+        default:
             break;
     }
 }
