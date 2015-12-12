@@ -12,6 +12,7 @@
  */
 
 #include <iostream>
+#include <math.h>
 
 #include "Map.h"
 #include "ResourceManager.h"
@@ -36,6 +37,15 @@ Map::Map(const Map& orig) : width(orig.width), height(orig.height), name(orig.na
 }
 
 Map::~Map() {
+}
+
+void Map::makeFloorAround(sf::Vector2u pos) {
+    for (int x = fmax(1, (int) pos.x - 1); x < fmin(pos.x + 1, width - 1); x++) {
+        for (int y = fmax(1, (int) pos.y - 3); y < fmin(pos.y + 3, height - 1); y++) {
+            Tile tile = Tile(0, 0, FLOOR);
+            setTile(sf::Vector2u(x, y), tile);
+        }
+    }
 }
 
 void Map::clearTiles() {

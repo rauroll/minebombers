@@ -32,6 +32,7 @@ public:
     void setTile(sf::Vector2u pos, Tile& tile);
     void setTileLevel(sf::Vector2u pos, int level);
     bool floorAt(sf::Vector2u newPosition);
+    void makeFloorAround(sf::Vector2u pos);
 
     void clearTiles();
     

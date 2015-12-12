@@ -30,7 +30,7 @@ MapGenerator::~MapGenerator() {
 Map MapGenerator::generate() {
     uint16_t w = 80;
     uint16_t h = 40;
-    float floorRatio = 0.4 + (rand() % 20 / 100.0);
+    float floorRatio = 0;
     float wallRatio = 0.05 + (rand() % 5 / 100.0);
     float softRatio = 0.5;
     
@@ -50,17 +50,21 @@ Map MapGenerator::generate() {
             
     // fill floor
     int floor = 0;
-    while (floor++ < w * h * floorRatio) {
+    while (floor++ <= w * h * floorRatio ) {
         Tile tile = Tile(0, 0, FLOOR);
         sf::Vector2u pos(rand() % w, rand() % h);
         map.setTile(pos, tile);
     }
     
+    // calculate wall seeds
+    std::list<sf::Vector2u> walls;
+    while (walls.size() < w * h * wallRatio)
+        walls.push_back(sf::Vector2u(rand() % w, rand() % h));
+    
     // fill wall
-    int wall = 0;
-    while (wall++ < w * h * wallRatio) {
+    for (auto wall : walls) {
         Tile tile = Tile(0, 10, WALL);
-        sf::Vector2u pos(rand() % w, rand() % h);
+        sf::Vector2u pos(wall.x, wall.y);
         map.setTile(pos, tile);
     }
     

@@ -155,14 +155,12 @@ void Game::clearTreasures() {
 
 void Game::setRandomTreasures(uint16_t amount) {
     while(amount) {
-        sf::Vector2u pos(rand() % map.getSize().x, rand() % map.getSize().y);
-        
-        if(isEmpty(pos)) {
-            sf::Sprite sprite = sf::Sprite(ResourceManager::getInstance().loadTexture("assets/my_doc.png"));
-            treasures.push_back(Treasure(sprite, rand() % 300, pos));
-            
-            amount--;
-        }
+        sf::Vector2u pos(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 1);
+        sf::Sprite sprite = sf::Sprite(ResourceManager::getInstance().loadTexture("assets/my_doc.png"));
+        treasures.push_back(Treasure(sprite, rand() % 300, pos));
+        Tile tile(0, 0, FLOOR);
+        map.setTile(pos, tile);
+        amount--;
     }
 }
 
@@ -241,10 +239,11 @@ sf::Vector2u Game::getRandomEmptyPos() {
 }
 
 void Game::addPlayer(const std::string& name) {
-    sf::Vector2u pos = getRandomEmptyPos();
+    sf::Vector2u pos = sf::Vector2u(rand() % map.getSize().x, rand() % map.getSize().y);
     
     Player p("assets/playersprite.png", pos.x, pos.y, name);
     players.push_back(p);
+    map.makeFloorAround(pos);
     revealMapAt(p.getPos());
 }
 
