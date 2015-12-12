@@ -38,7 +38,7 @@ int Entity::getHealth() {
 
 void Entity::reduceHealth(int damage) {
     bool wasAlive = this->isAlive();
-    Game& game = Game::game();
+    Game& game = Game::getInstance();
     this->health = std::max(0, this->health - damage);
     if (wasAlive && this->isAlive()) {
         ResourceManager::getInstance().playSound("hurt1");

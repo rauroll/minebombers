@@ -65,14 +65,14 @@ void ShopScene::onEvent(sf::Event& event) {
 
 void ShopScene::update(sf::Time dt) {
     if (clock.getElapsedTime().asSeconds() > 15) {
-        Game::game().setScene(GAMESCENE);
+        Game::getInstance().setScene(GAMESCENE);
     }
 }
 
 void ShopScene::draw(sf::RenderWindow& window) {
     sf::Font font = ResourceManager::getInstance().getFont();
     
-    Game& game = Game::game();
+    Game& game = Game::getInstance();
     sf::Vector2u size = game.getCanvasSize();
     
     sf::Text text("Shop", font, 100);
