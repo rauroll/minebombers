@@ -59,7 +59,17 @@ Weapon& Player::getActiveWeapon() {
     return WeaponManager::getInstance().getWeapon(activeWeapon->first);
 }
 
+unsigned int Player::getAmmo() {
+    return activeWeapon->second;
+}
+
+// This method isn't responsible for checking for ammo
 Projectile Player::useWeapon() {
     Weapon& wep = this->getActiveWeapon();
+    if (activeWeapon->second < 999) activeWeapon->second--;
     return wep.use(this->getPos(), this->getDir());
+}
+
+bool Player::hasAmmo() {
+    return activeWeapon->second > 0;
 }
