@@ -103,6 +103,8 @@ private:
     
     bool roundEnded = false;
     sf::Clock roundEndClock;
+    
+    std::vector<sf::Vector2u> startPositions;
 };
 
 #endif /* GAME_H */

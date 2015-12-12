@@ -17,6 +17,7 @@
 #include <cstdio>
 #include <time.h>
 #include <cmath>
+#include <algorithm> 
 
 #include "Game.h"
 #include "Player.h"
@@ -46,6 +47,12 @@ void Game::startRound() {
     roundTime = sf::seconds(100);
     map = loader.fromFile("maps/map.mb");
     //map = gen.generate();
+    
+    startPositions.clear();
+    startPositions.push_back(sf::Vector2u(1, 1));
+    startPositions.push_back(sf::Vector2u(1, map.getSize().y - 2));
+    startPositions.push_back(sf::Vector2u(map.getSize().x - 2, map.getSize().y - 2));
+    startPositions.push_back(sf::Vector2u(map.getSize().x - 2, 1));
      
     sf::Vector2u windowSize = map.getSize();
     overlayImage.create(windowSize.x * 16, windowSize.y * 16, sf::Color(0, 0, 0, 255));
@@ -228,15 +235,10 @@ void Game::revealMapAt(sf::Vector2u pos, int radius) {
 }
 
 sf::Vector2u Game::getRandomEmptyPos() {
-    sf::Vector2u pos;
-    sf::Vector2u mapSize = map.getSize();
+    auto element = startPositions.begin() + rand() % startPositions.size();
     
-    while (true) {
-        pos = sf::Vector2u(rand() % mapSize.x, rand() % mapSize.y);
-        if (map.floorAt(pos) && !isEntityAtPos(pos))
-            break;
-    }
-    
+    sf::Vector2u pos = *element;
+    startPositions.erase(element);
     return pos;
 }
 
