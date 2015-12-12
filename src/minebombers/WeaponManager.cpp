@@ -41,7 +41,13 @@ void WeaponManager::createWeapons() {
     this->addWeapon(Weapon("jonnegun", "lazer", 99, proj));
     this->addWeapon(Weapon("bomb", "shot", 99, bomb));
     
-    
+}
+
+void WeaponManager::addWeaponsToPlayer(Player& player) {
+    player.removeAllWeapons();
+    for (auto& w : weapons) {
+        player.addWeapon(w);
+    }
 }
 
 void WeaponManager::addWeapon(Weapon weapon) {

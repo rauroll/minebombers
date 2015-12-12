@@ -22,6 +22,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "ResourceManager.h"
+#include "WeaponManager.h"
 #include "GameScene.h"
 #include "MenuScene.h"
 #include "ShopScene.h"
@@ -60,6 +61,11 @@ void Game::startRound() {
     setRandomTreasures(50);
     addPlayer("JERE");
     addPlayer("JERE2");
+    
+    WeaponManager wepMan = WeaponManager::getInstance();
+    wepMan.createWeapons();
+    wepMan.addWeaponsToPlayer(players[0]);
+    wepMan.addWeaponsToPlayer(players[1]);
     
     ResourceManager::getInstance().playMusic("game");
 }

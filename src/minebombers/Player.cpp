@@ -36,13 +36,17 @@ void Player::incrementMoney(uint32_t amount) {
 
 void Player::nextWeapon() {
     activeWeapon++;
-    if (activeWeapon == weapons_map.end()) {
-        activeWeapon = weapons_map.begin();
+    if (activeWeapon == weaponsMap.end()) {
+        activeWeapon = weaponsMap.begin();
     }
 }
 
+void Player::removeAllWeapons() {
+    this->weaponsMap.clear();
+}
+
 void Player::addWeapon(Weapon& weapon) {
-    weapons_map[weapon.getName()] = 10;
+    weaponsMap[weapon.getName()] = 10;
 }
 
 int Player::getMoney() const {

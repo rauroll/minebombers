@@ -15,6 +15,7 @@
 #define WEAPONMANAGER_H
 
 #include "Weapon.h"
+#include "Player.h"
 
 class WeaponManager {
 public:
@@ -27,6 +28,7 @@ public:
     }
     
     void createWeapons();
+    void addWeaponsToPlayer(Player& player);
     void addWeapon(Weapon weapon);
     Weapon& getWeapon(std::string name);
     

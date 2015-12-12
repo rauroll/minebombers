@@ -30,12 +30,13 @@ public:
     
     void addWeapon(Weapon& weapon);
     void nextWeapon();
+    void removeAllWeapons();
     Projectile useWeapon();
     void incrementMoney(uint32_t amount);
     int getMoney() const;
 private:
     Weapon& getActiveWeapon();
-    std::map<std::string, unsigned int> weapons_map;
+    std::map<std::string, unsigned int> weaponsMap;
     typedef std::map<std::string, unsigned int>::iterator weapon_iterator;
     weapon_iterator activeWeapon;
     uint32_t money;
