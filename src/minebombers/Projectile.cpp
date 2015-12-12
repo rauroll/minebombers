@@ -17,12 +17,14 @@
 #include "Projectile.h"
 #include "Game.h"
 #include "ResourceManager.h"
+#include "ExplosionManager.h"
 
-Projectile::Projectile(const std::string& name, const std::string& texturefile, const std::string& audioName, int damage, Effect& effect, ProjectileType projectileType, sf::Vector2u radius, sf::Time timer, unsigned int range) : MyDrawable(texturefile, 0, 0, name), effect(effect) {
+Projectile::Projectile(const std::string& name, const std::string& texturefile, const std::string& audioName, int damage, Effect& effect, ProjectileType projectileType, ExplosionType explosionType, sf::Vector2u radius, sf::Time timer, unsigned int range) : MyDrawable(texturefile, 0, 0, name), effect(effect) {
     this->damage = damage;
     this->dir = dir;
     this->radius = radius;
     this->projectileType = projectileType;
+    this->explosionType = explosionType;
     this->timer = timer;
     this->alwaysStillSprite = true;
     this->explosionAudioName = audioName;
@@ -35,6 +37,7 @@ Projectile::Projectile(const Projectile& orig) : MyDrawable(orig), effect(orig.e
     this->position = orig.position;
     this->radius = orig.radius;
     this->projectileType = orig.projectileType;
+    this->explosionType = orig.explosionType;
     this->timer = orig.timer;
     this->alwaysStillSprite = orig.alwaysStillSprite;
     this->explosionAudioName = orig.explosionAudioName;
@@ -123,6 +126,20 @@ bool Projectile::reachedMaxRange() {
 
 Effect& Projectile::getEffect() {
     return this->effect;
+}
+
+sf::Vector2u Projectile::getRadius() {
+    return this->radius;
+}
+int Projectile::getDamage() {
+    return this->damage;
+}
+std::string Projectile::getExplosionAudioName() {
+    return this->explosionAudioName;
+}
+
+ExplosionType Projectile::getExplosionType() {
+    return this->explosionType;
 }
 
 void Projectile::explode() {

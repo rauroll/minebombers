@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/ButtonReactionFactory.o \
 	${OBJECTDIR}/Effect.o \
 	${OBJECTDIR}/Entity.o \
+	${OBJECTDIR}/ExplosionManager.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/GameScene.o \
 	${OBJECTDIR}/Map.o \
@@ -96,6 +97,11 @@ ${OBJECTDIR}/Entity.o: Entity.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Entity.o Entity.cpp
+
+${OBJECTDIR}/ExplosionManager.o: ExplosionManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ExplosionManager.o ExplosionManager.cpp
 
 ${OBJECTDIR}/Game.o: Game.cpp 
 	${MKDIR} -p ${OBJECTDIR}
