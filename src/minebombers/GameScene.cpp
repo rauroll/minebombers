@@ -53,7 +53,6 @@ void GameScene::draw(sf::RenderWindow& window) {
         window.draw(i.getSprite());
     }
     
-    
     std::vector<Projectile>& projectiles = game.getProjectiles();
     for (auto &i : projectiles) {
         window.draw(i.getSprite());
@@ -164,7 +163,6 @@ void GameScene::update(sf::Time dt) {
     }
     
     game.update();
-    
 }
 
 void GameScene::reloadButtons() {
