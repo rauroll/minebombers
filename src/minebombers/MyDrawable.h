@@ -28,6 +28,7 @@ public:
     sf::Vector2u getPos() const;
     sf::Vector2u getDir() const;
     void setPos(sf::Vector2u position);
+    void setDirection(sf::Vector2u dir);
     const sf::Vector2u& getPos();
     void move(sf::Vector2u dir);
     

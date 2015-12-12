@@ -65,10 +65,13 @@ std::string MyDrawable::getName() const {
 }
 
 void MyDrawable::move(sf::Vector2u dir) {
-    this->dir = dir;
+    setDirection(dir);
     position += dir;
 }
 
+void MyDrawable::setDirection(sf::Vector2u dir) {
+    this->dir = dir;
+}
 void MyDrawable::setPos(sf::Vector2u position) {
     this->position = position;
     sprite.setPosition(position.x*16, position.y*16);
