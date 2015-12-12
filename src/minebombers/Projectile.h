@@ -30,7 +30,9 @@ public:
     
     Effect& getEffect();
     
-    bool update();
+    bool update(sf::Time dt);
+    bool updateProjectile();
+    bool updateBomb(sf::Time dt);
     virtual ~Projectile();
     void explode();
 private:

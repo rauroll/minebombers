@@ -42,7 +42,7 @@ void WeaponManager::createWeapons() {
     
     // Projectiles
     Projectile proj = Projectile("jonnemissile", "assets/projectile.png", "explosion", 30, explosion, PROJECTILE, sf::Vector2u(5, 5));
-    Projectile bomb = Projectile("keilapommi", "assets/bomb.png", "boom", 50, explosion, PROJECTILE, sf::Vector2u(100, 100));
+    Projectile bomb = Projectile("keilapommi", "assets/bomb.png", "boom", 50, explosion, EXPLOSIVE, sf::Vector2u(100, 100));
     
     
     //Weapons
@@ -58,6 +58,7 @@ void WeaponManager::addWeaponsToPlayer(Player& player) {
     }
     // Add unlimited ammo to default weapon
     player.addAmmo("jonnegun", 999);
+    player.addAmmo("bomb", 3);
     player.nextWeapon();
 }
 

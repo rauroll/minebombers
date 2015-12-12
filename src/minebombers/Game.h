@@ -57,7 +57,7 @@ public:
     
     sf::Vector2u getCanvasSize();
     
-    void update();
+    void update(sf::Time dt);
     
     static Game& game() {
         static Game instance;

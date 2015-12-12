@@ -47,7 +47,22 @@ void Projectile::setDirection(sf::Vector2u dir) {
     this->dir = dir;
 }
 
-bool Projectile::update() {
+bool Projectile::update(sf::Time dt) {
+    switch (this->projectileType) {
+        case PROJECTILE:
+            return this->updateProjectile();
+            break;
+        case EXPLOSIVE:
+            return this->updateBomb(dt);
+            break;
+        default:
+            return false;
+    }
+    
+    
+}
+
+bool Projectile::updateProjectile() {
     stepper++;
     if (stepper % 2 == 1) {
         Game &game = Game::game();
@@ -68,8 +83,18 @@ bool Projectile::update() {
         }
     }
     return false;
-    
 }
+
+bool Projectile::updateBomb(sf::Time dt) {
+    this->timer -= dt;
+    if (this->timer <= sf::milliseconds(0)) {
+        this->explode();
+        return true;
+    }
+    return false;
+}
+
+
 
 Effect& Projectile::getEffect() {
     return this->effect;

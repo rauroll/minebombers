@@ -162,7 +162,7 @@ void GameScene::update(sf::Time dt) {
         checkKeys();
     }
     
-    game.update();
+    game.update(dt);
 }
 
 void GameScene::reloadButtons() {
