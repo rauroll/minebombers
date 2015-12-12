@@ -62,7 +62,7 @@ void Game::startRound() {
     addPlayer("JERE");
     addPlayer("JERE2");
     
-    WeaponManager wepMan = WeaponManager::getInstance();
+    WeaponManager& wepMan = WeaponManager::getInstance();
     wepMan.createWeapons();
     wepMan.addWeaponsToPlayer(players[0]);
     wepMan.addWeaponsToPlayer(players[1]);

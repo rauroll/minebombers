@@ -13,6 +13,7 @@
 
 #include "Player.h"
 #include "WeaponManager.h"
+#include <iostream>
 
 Player::Player() : Entity() {
     money = 0;
@@ -35,7 +36,7 @@ void Player::incrementMoney(uint32_t amount) {
 }
 
 void Player::nextWeapon() {
-    activeWeapon++;
+    ++activeWeapon;
     if (activeWeapon == weaponsMap.end()) {
         activeWeapon = weaponsMap.begin();
     }
@@ -47,6 +48,7 @@ void Player::removeAllWeapons() {
 
 void Player::addWeapon(Weapon& weapon) {
     weaponsMap[weapon.getName()] = 10;
+    this->activeWeapon = weaponsMap.begin();
 }
 
 int Player::getMoney() const {
@@ -54,7 +56,7 @@ int Player::getMoney() const {
 }
 
 Weapon& Player::getActiveWeapon() {
-    WeaponManager::getInstance().getWeapon(activeWeapon->first);
+    return WeaponManager::getInstance().getWeapon(activeWeapon->first);
 }
 
 Projectile Player::useWeapon() {
