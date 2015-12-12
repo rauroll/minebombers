@@ -35,6 +35,7 @@ public:
     const void playKling(int value);
     const void playExplosion(int damage, std::string soundName);
     const void playMusic(std::string musicName);
+
 private:
     std::map<std::string, sf::Texture> textures;
     sf::Font* font;

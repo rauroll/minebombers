@@ -88,7 +88,7 @@ void GameScene::draw(sf::RenderWindow& window) {
         
         sf::Text hp = sf::Text("HP" + std::to_string(p.getHealth()) + "/100", font, playerFontSize);
         hp.setPosition(playerX, playerY - playerFontSize);
-        hp.setColor(sf::Color(100, 100, 100));
+        hp.setColor(sf::Color(200 - p.getHealth() * 200 / 100, p.getHealth() * 200 / 100, 50));
         window.draw(hp);
         
         sf::Text mohlay = sf::Text("Money: " + std::to_string(p.getMoney()), font, playerFontSize);
