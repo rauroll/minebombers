@@ -91,15 +91,27 @@ void GameScene::draw(sf::RenderWindow& window) {
         i++;
     }
     
-    sf::Text roundClock = sf::Text(std::to_string(game.getRoundRemainingTime().asSeconds()), font, 32);
-    roundClock.setPosition(windowSize.x - 200, windowSize.y - 32);
-    window.draw(roundClock);
-    
+    // draw map overlay
     sf::Texture overlayTexture;
     overlayTexture.loadFromImage(game.getOverlayImage());
     sf::Sprite overlay;
     overlay.setTexture(overlayTexture);
     window.draw(overlay);
+    
+    // draw round end overlay
+    if (game.roundHasEnded()) {
+        sf::RectangleShape rect(sf::Vector2f(windowSize.x, windowSize.y));
+        rect.setFillColor(sf::Color(0, 0, 0, 150));
+        window.draw(rect);
+        
+        sf::Text roundEnded("The round has ended!", font, 100);
+        roundEnded.setPosition(windowSize.x / 2 - roundEnded.getLocalBounds().width / 2, 200);
+        window.draw(roundEnded);
+    } else {
+        sf::Text roundClock = sf::Text(std::to_string(game.getRoundRemainingTime().asSeconds()), font, 32);
+        roundClock.setPosition(windowSize.x - 200, windowSize.y - 32);
+        window.draw(roundClock);
+    }
 }
 
 void GameScene::onEvent(sf::Event& event) {
@@ -144,38 +156,38 @@ void GameScene::onEvent(sf::Event& event) {
 void GameScene::update(sf::Time dt) {
     Game& game = Game::game();
     
-//    sf::Time delay = sf::milliseconds(50);
-    
-    for(auto& i : keyboard) {
-        if(i.second.x) {
-            i.second.y ++;
-            
-            //std::cout << i.second.y << std::endl;
-            
-            if(i.second.y % 5 == 1) {
-                
-                //Player 1
-                if(i.first == sf::Keyboard::Up)
-                    game.movePlayer(0, sf::Vector2u(0, -1));
-                if(i.first == sf::Keyboard::Down)
-                    game.movePlayer(0, sf::Vector2u(0, 1));
-                if(i.first == sf::Keyboard::Right)
-                    game.movePlayer(0, sf::Vector2u(1, 0));
-                if(i.first == sf::Keyboard::Left)
-                    game.movePlayer(0, sf::Vector2u(-1, 0));
-                
-                //Player 2
-                if(i.first == sf::Keyboard::W)
-                    game.movePlayer(1, sf::Vector2u(0, -1));
-                if(i.first == sf::Keyboard::S)
-                    game.movePlayer(1, sf::Vector2u(0, 1));
-                if(i.first == sf::Keyboard::D)
-                    game.movePlayer(1, sf::Vector2u(1, 0));
-                if(i.first == sf::Keyboard::A)
-                    game.movePlayer(1, sf::Vector2u(-1, 0));
-                   
+    if (!game.roundHasEnded()) {
+        for(auto& i : keyboard) {
+            if(i.second.x) {
+                i.second.y ++;
+
+                //std::cout << i.second.y << std::endl;
+
+                if(i.second.y % 5 == 1) {
+
+                    //Player 1
+                    if(i.first == sf::Keyboard::Up)
+                        game.movePlayer(0, sf::Vector2u(0, -1));
+                    if(i.first == sf::Keyboard::Down)
+                        game.movePlayer(0, sf::Vector2u(0, 1));
+                    if(i.first == sf::Keyboard::Right)
+                        game.movePlayer(0, sf::Vector2u(1, 0));
+                    if(i.first == sf::Keyboard::Left)
+                        game.movePlayer(0, sf::Vector2u(-1, 0));
+
+                    //Player 2
+                    if(i.first == sf::Keyboard::W)
+                        game.movePlayer(1, sf::Vector2u(0, -1));
+                    if(i.first == sf::Keyboard::S)
+                        game.movePlayer(1, sf::Vector2u(0, 1));
+                    if(i.first == sf::Keyboard::D)
+                        game.movePlayer(1, sf::Vector2u(1, 0));
+                    if(i.first == sf::Keyboard::A)
+                        game.movePlayer(1, sf::Vector2u(-1, 0));
+
+                }
+
             }
-                
         }
     }
     
