@@ -22,6 +22,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "ResourceManager.h"
+#include "WeaponManager.h"
 #include "GameScene.h"
 #include "MenuScene.h"
 #include "ShopScene.h"
@@ -61,18 +62,10 @@ void Game::startRound() {
     addPlayer("JERE");
     addPlayer("JERE2");
     
-    Effect explosion = Effect("Explosion", "assets/explosion.png", sf::Vector2u(0, 0), true);
-    Projectile proj = Projectile("jonnemissile", "assets/projectile.png", "explosion", 30, explosion, sf::Vector2u(5, 5));
-    Weapon onlyWeapon = Weapon("jonnegun", "lazer", 99, proj);
-    
-    Projectile bomb = Projectile("keilapommi", "assets/bomb.png", "boom", 50, explosion, sf::Vector2u(100, 100));
-    Weapon bombWeapon = Weapon("bomb", "shot", 99, bomb);
-        
-    getPlayers()[0].addWeapon(onlyWeapon);
-    getPlayers()[0].addWeapon(bombWeapon);
-    
-    getPlayers()[1].addWeapon(onlyWeapon);
-    getPlayers()[1].addWeapon(bombWeapon);
+    WeaponManager& wepMan = WeaponManager::getInstance();
+    wepMan.createWeapons();
+    wepMan.addWeaponsToPlayer(players[0]);
+    wepMan.addWeaponsToPlayer(players[1]);
     
     ResourceManager::getInstance().playMusic("game");
 }
