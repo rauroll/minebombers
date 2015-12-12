@@ -35,8 +35,9 @@ public:
     int getMoney() const;
 private:
     Weapon& getActiveWeapon();
-    int activeWeapon = 0;
-    std::vector<Weapon> weapons;
+    std::map<std::string, unsigned int> weapons_map;
+    typedef std::map<std::string, unsigned int>::iterator weapon_iterator;
+    weapon_iterator activeWeapon;
     uint32_t money;
 };
 

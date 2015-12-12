@@ -61,19 +61,6 @@ void Game::startRound() {
     addPlayer("JERE");
     addPlayer("JERE2");
     
-    Effect explosion = Effect("Explosion", "assets/explosion.png", sf::Vector2u(0, 0), true);
-    Projectile proj = Projectile("jonnemissile", "assets/projectile.png", "explosion", 30, explosion, sf::Vector2u(5, 5));
-    Weapon onlyWeapon = Weapon("jonnegun", "lazer", 99, proj);
-    
-    Projectile bomb = Projectile("keilapommi", "assets/bomb.png", "boom", 50, explosion, sf::Vector2u(100, 100));
-    Weapon bombWeapon = Weapon("bomb", "shot", 99, bomb);
-        
-    getPlayers()[0].addWeapon(onlyWeapon);
-    getPlayers()[0].addWeapon(bombWeapon);
-    
-    getPlayers()[1].addWeapon(onlyWeapon);
-    getPlayers()[1].addWeapon(bombWeapon);
-    
     ResourceManager::getInstance().playMusic("game");
 }
 
