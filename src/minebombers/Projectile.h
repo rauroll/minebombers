@@ -36,7 +36,7 @@ public:
     ExplosionType getExplosionType();
     
     void setUser(std::string playerName);
-    void getUser();
+    std::string getUser();
     
     
     bool update(sf::Time dt);

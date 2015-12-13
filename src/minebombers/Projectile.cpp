@@ -147,7 +147,7 @@ void Projectile::setUser(std::string playerName) {
     this->userName = playerName;
 }
 
-void Projectile::getUser() {
+std::string Projectile::getUser() {
     return this->userName;
 }
 
