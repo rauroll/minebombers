@@ -24,6 +24,7 @@
 
 class Projectile : public MyDrawable {
 public:
+    Projectile();
     Projectile(const std::string& name, const std::string& texturefile, const std::string& audioName, int damage, Effect& effect, ProjectileType projectileType, ExplosionType explosionType, sf::Vector2u radius = sf::Vector2u(0, 0), sf::Time timer = sf::milliseconds(5000), unsigned int range = 0);
     Projectile(const Projectile& orig);
     

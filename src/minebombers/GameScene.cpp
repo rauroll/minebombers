@@ -101,17 +101,17 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
         name.setColor(p.getColor());
         window.draw(name);
         
-        sf::Text hp = sf::Text(std::to_string(p.getHealth()), font, playerFontSize * 1.1);
-        hp.setPosition(playerX + name.getLocalBounds().width + 5, playerY - playerFontSize * 1.1 * 3);
-        hp.setColor(sf::Color(200 - p.getHealth() * 200 / 100, p.getHealth() * 200 / 100, 50));
+        sf::RectangleShape hp(sf::Vector2f(p.getHealth(), 3));
+        hp.setPosition(playerX, playerY - playerFontSize * 1.1 * 2 + 3);
+        hp.setFillColor(sf::Color(200 - p.getHealth() * 200 / 100, p.getHealth() * 200 / 100, 50));
         window.draw(hp);
         
-        sf::Text mohlay = sf::Text("Money: " + std::to_string(p.getMoney()), font, playerFontSize);
+        sf::Text mohlay = sf::Text("$" + std::to_string(p.getMoney()), font, playerFontSize);
         mohlay.setPosition(playerX, playerY - playerFontSize * 2);
         mohlay.setColor(sf::Color(100, 100, 100));
         window.draw(mohlay);
         
-        sf::Text score = sf::Text("Score: " + std::to_string(p.getScore()), font, playerFontSize);
+        sf::Text score = sf::Text(std::to_string(p.getScore()) + " points", font, playerFontSize);
         score.setPosition(playerX, playerY - playerFontSize);
         score.setColor(sf::Color(100, 100, 100));
         window.draw(score);
@@ -137,7 +137,7 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
         window.draw(rect);
         
         std::vector<Player> sortedPlayers = game.getPlayersSortedByScore();
-        sf::Text roundEnded(game.getRound() == 3 ? sortedPlayers[0].getName() + " won!" : "The round has ended!", font, 100);
+        sf::Text roundEnded(game.getRound() == game.getTotalRounds() ? sortedPlayers[0].getName() + " won!" : "The round has ended!", font, 100);
         roundEnded.setPosition(windowSize.x / 2 - roundEnded.getLocalBounds().width / 2, 200);
         window.draw(roundEnded);
         int y = 200 + roundEnded.getLocalBounds().height + 100;
@@ -149,7 +149,7 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
             y += 65;
         }
         
-        if (game.getRound() == 3) {
+        if (game.getRound() == game.getTotalRounds()) {
             sf::Text keyNote("Press enter to return to the menu", font, 50);
             keyNote.setPosition(windowSize.x / 2 - keyNote.getLocalBounds().width / 2, windowSize.y - 75);
             keyNote.setColor(sf::Color(255, 255, 255, 200));
@@ -169,7 +169,7 @@ void GameScene::onEvent(sf::Event& event) {
     switch (event.type)
     {
         case sf::Event::KeyPressed: {
-            if (game.getRound() == 3 && event.key.code == sf::Keyboard::Return && game.roundHasEnded())
+            if (game.getRound() == game.getTotalRounds() && event.key.code == sf::Keyboard::Return && game.roundHasEnded())
                 game.setScene(MENUSCENE);
             else {
                 sf::Vector2u& v = keyboard[event.key.code];
@@ -261,6 +261,13 @@ void GameScene::checkKeys() {
                             case CHANGE_WEAPON: {
                                 Player& player = game.getPlayers()[i];
                                 player.nextWeapon();
+
+                                keyboard[key] = sf::Vector2u(0, 0);
+                                break;                            
+                            }
+                            case USE_PICK: {
+                                Player& player = game.getPlayers()[i];
+                                player.usePick();
 
                                 keyboard[key] = sf::Vector2u(0, 0);
                                 break;                            

@@ -127,7 +127,7 @@ void ShopScene::draw(sf::RenderWindow& window) {
     int i = 0;
     for(auto& w : weapons) {
         int yPos = 200 + i++ * 55;
-        sf::Text text(w.getName() + ", $" + std::to_string(w.getPrice()), font, 50);
+        sf::Text text(w.getName() + ": $" + std::to_string(w.getPrice()), font, 50);
         text.setPosition(xPosition + 50, yPos);
         window.draw(text);
         

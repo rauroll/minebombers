@@ -65,7 +65,7 @@ void WeaponManager::createWeapons() {
     this->addWeapon(Weapon("atomic bomb", "shot", 800, atomicBomb));
     this->addWeapon(Weapon("holy bomb", "shot", 5000, holybomb));
     this->addWeapon(Weapon("mine", "shot", 500, mineBomb));
-    this->addWeapon(Weapon("pick", "pick", 0, pick));
+    this->pick = Weapon("pick", "pick", 0, pick);
     
 }
 
@@ -106,4 +106,8 @@ Weapon& WeaponManager::getWeapon(std::string name) {
     // Default weapon is the first one - the weapons vector is expected to never be empty.
     return weapons[0];
 }
+
+Weapon& WeaponManager::getPick() {
+    return pick;
+} 
 
