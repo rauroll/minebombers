@@ -113,7 +113,7 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
         score.setColor(sf::Color(100, 100, 100));
         window.draw(score);
         
-        Weapon weapon = p.getActiveWeapon();
+        Weapon& weapon = p.getActiveWeapon();
         sf::Text weaponText = sf::Text(weapon.getName() + " (" + std::to_string(weapon.getAmmoCount()) + ")", font, playerFontSize);
         weaponText.setPosition(playerX, playerY);
         weaponText.setColor(sf::Color(100, 100, 100));

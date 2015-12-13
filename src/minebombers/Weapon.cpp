@@ -24,6 +24,7 @@ Weapon::Weapon(const Weapon& orig) : projectile(orig.projectile) {
     this->name = orig.name;
     this->price = orig.price;
     this->shotAudioName = orig.shotAudioName;
+    this->ammoCount = orig.ammoCount;
 }
 
 Weapon::~Weapon() {
