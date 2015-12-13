@@ -217,52 +217,54 @@ void GameScene::checkKeys() {
     Game& game = Game::getInstance();
     
     for(size_t i = 0; i < playerButtons.size(); i++) {
-        auto buttons = playerButtons[i];
-        
-        for(auto button = buttons.begin(); button != buttons.end(); button++) {
-            sf::Keyboard::Key key = button->first;
-            ButtonReaction reaction = button->second;
-            
-            if (keyboard.find(key) != keyboard.end()) {
-                sf::Vector2u b = keyboard[key]; // x = state, y = time;
-                
-                if (b.x) {
-                    switch(reaction) {
-                        case MOVE_UP:
-                            if(b.y % 5 == 1)
-                                game.movePlayer(i, sf::Vector2u(0, -1));
-                            break;
-                        case MOVE_DOWN:
-                            if(b.y % 5 == 1)
-                                game.movePlayer(i, sf::Vector2u(0, 1));
-                            break;
-                        case MOVE_LEFT:
-                            if(b.y % 5 == 1)
-                                game.movePlayer(i, sf::Vector2u(-1, 0));
-                            break;
-                        case MOVE_RIGHT:
-                            if(b.y % 5 == 1)
-                                game.movePlayer(i, sf::Vector2u(1, 0));
-                            break;
-                        case SHOOT: {
-                            Player& player = game.getPlayers()[i];
-                            if (player.hasAmmo()) {
-                                Projectile p = player.useWeapon();
-                                game.addProjectile(p);
+        if (game.getPlayers()[i].isAlive()) {
+            auto buttons = playerButtons[i];
+
+            for(auto button = buttons.begin(); button != buttons.end(); button++) {
+                sf::Keyboard::Key key = button->first;
+                ButtonReaction reaction = button->second;
+
+                if (keyboard.find(key) != keyboard.end()) {
+                    sf::Vector2u b = keyboard[key]; // x = state, y = time;
+
+                    if (b.x) {
+                        switch(reaction) {
+                            case MOVE_UP:
+                                if(b.y % 5 == 1)
+                                    game.movePlayer(i, sf::Vector2u(0, -1));
+                                break;
+                            case MOVE_DOWN:
+                                if(b.y % 5 == 1)
+                                    game.movePlayer(i, sf::Vector2u(0, 1));
+                                break;
+                            case MOVE_LEFT:
+                                if(b.y % 5 == 1)
+                                    game.movePlayer(i, sf::Vector2u(-1, 0));
+                                break;
+                            case MOVE_RIGHT:
+                                if(b.y % 5 == 1)
+                                    game.movePlayer(i, sf::Vector2u(1, 0));
+                                break;
+                            case SHOOT: {
+                                Player& player = game.getPlayers()[i];
+                                if (player.hasAmmo()) {
+                                    Projectile p = player.useWeapon();
+                                    game.addProjectile(p);
+                                }
+
+                                keyboard[key] = sf::Vector2u(0, 0);
+                                break;
                             }
-                            
-                            keyboard[key] = sf::Vector2u(0, 0);
-                            break;
+                            case CHANGE_WEAPON: {
+                                Player& player = game.getPlayers()[i];
+                                player.nextWeapon();
+
+                                keyboard[key] = sf::Vector2u(0, 0);
+                                break;                            
+                            }
+                            default:
+                                break;
                         }
-                        case CHANGE_WEAPON: {
-                            Player& player = game.getPlayers()[i];
-                            player.nextWeapon();
-                            
-                            keyboard[key] = sf::Vector2u(0, 0);
-                            break;                            
-                        }
-                        default:
-                            break;
                     }
                 }
             }

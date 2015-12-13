@@ -15,7 +15,8 @@
 
 
 int main(int argc, char const** argv) {
-    ConfigManager::getInstance().loadFromFile("mb.config");
+    ConfigManager& config = ConfigManager::getInstance();
+    config.loadFromFile("mb.config");
     
     Game& game = Game::getInstance();
     game.setScene(MENUSCENE);
@@ -34,6 +35,8 @@ int main(int argc, char const** argv) {
     sf::Time gameTime = sf::milliseconds(0);
     bool draw = true;
     
+    sf::Keyboard::Key muteButton = (sf::Keyboard::Key)config.getInt("mute_button", sf::Keyboard::F10);
+    
     while (window.isOpen())
     {        
         sf::Event event;
@@ -41,7 +44,7 @@ int main(int argc, char const** argv) {
         {
             if (event.type == sf::Event::Closed)
                 window.close();
-            else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::M)
+            else if (event.type == sf::Event::KeyPressed && event.key.code == muteButton)
                 game.toggleSound();
             else
                 game.getScene()->onEvent(event);

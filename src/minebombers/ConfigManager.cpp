@@ -70,7 +70,7 @@ void ConfigManager::loadFromFile(const std::string& path) {
 
 int ConfigManager::getInt(const std::string& key, int def) {
     if(values.find(key) == values.end()) {
-        return 0;
+        return def;
     }
     return std::stoi(values[key]);
 }

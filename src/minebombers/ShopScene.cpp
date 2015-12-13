@@ -11,13 +11,16 @@
  * Created on December 10, 2015, 6:23 PM
  */
 
-#include <math.h>
+#include <cmath>
 #include <iostream>
+#include <map>
 
 #include "ShopScene.h"
 #include "Game.h"
 #include "ResourceManager.h"
 #include "ConfigManager.h"
+#include "ButtonReaction.h"
+#include "ButtonReactionFactory.h"
 
 ShopScene::ShopScene() {
     ConfigManager& config = ConfigManager::getInstance();
@@ -40,38 +43,39 @@ void ShopScene::onChangedTo() {
 
 
 void ShopScene::onEvent(sf::Event& event) {
+    Game& game = Game::getInstance();
+    
     if (event.type == sf::Event::KeyPressed) {
-        switch (event.key.code) {
-            case sf::Keyboard::W: {
-                ResourceManager::getInstance().playSound("plip");
-                playerSelections[1]--;
-                break;
+        if(event.type == sf::Event::KeyPressed) {
+            for(size_t i = 0; i < game.getPlayers().size(); i++) {
+                ButtonReactionFactory buttonFactory;
+                std::map<sf::Keyboard::Key, ButtonReaction> buttons = buttonFactory.getPlayerButtons(i);
+ 
+                if(buttons.find(event.key.code) != buttons.end()) {
+                    ButtonReaction button = buttons[event.key.code];
+                    
+                    switch(button) {
+                        case MOVE_UP:
+                            if(i % 2)
+                                ResourceManager::getInstance().playSound("plip");
+                            else
+                                ResourceManager::getInstance().playSound("plop");
+                            playerSelections[i]--;
+                            break;
+                        case MOVE_DOWN:
+                            if(i % 2)
+                                ResourceManager::getInstance().playSound("plip");
+                            else
+                                ResourceManager::getInstance().playSound("plop");
+                            playerSelections[i]++;
+                            break;
+                        case SHOOT:
+                            this->buyAmmo(i, this->weapons[playerSelections[i]]);
+                        default:
+                            break;
+                    }
+                }
             }
-            case sf::Keyboard::S: {
-                ResourceManager::getInstance().playSound("plip");
-                playerSelections[1]++;
-                break;
-            }
-            case sf::Keyboard::Up: {
-                ResourceManager::getInstance().playSound("plop");
-                playerSelections[0]--;
-                break;
-            }
-            case sf::Keyboard::Down: {
-                ResourceManager::getInstance().playSound("plop");
-                playerSelections[0]++;
-                break;
-            }
-            case sf::Keyboard::E: {
-                this->buyAmmo(1, this->weapons[playerSelections[1]]);
-                break;
-            }
-            case sf::Keyboard::Return: {
-                this->buyAmmo(0, this->weapons[playerSelections[0]]);
-                break;
-            }
-            default:
-                break;
         }
         
         for (int i = 0; i < playerSelections.size(); i++)
@@ -115,15 +119,15 @@ void ShopScene::draw(sf::RenderWindow& window) {
     }
     
     int i = 0;
-    for(auto w : weapons) {
+    for(auto& w : weapons) {
         sf::Text text(w.getName() + ", $" + std::to_string(w.getPrice()), font, 50);
         text.setPosition(xPosition + 50, 200 + i++ * 55);
         window.draw(text);
     }
 
     int moneyY = 12;
-    for(auto p : players) {
-        sf::Text playerMoney(p.getName() + " money $" + std::to_string(players[0].getMoney()), font, 36);
+    for(auto& p : players) {
+        sf::Text playerMoney(p.getName() + " money $" + std::to_string(p.getMoney()), font, 36);
         playerMoney.setPosition(800, moneyY);
         playerMoney.setColor(p.getColor());
         window.draw(playerMoney);
@@ -136,5 +140,3 @@ void ShopScene::draw(sf::RenderWindow& window) {
     nextRound.setPosition(size.x / 2 - bounds.width / 2, size.y - bounds.height - 50);
     window.draw(nextRound);
 }
-
-
