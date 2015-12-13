@@ -36,8 +36,8 @@ int Entity::getHealth() {
     return this->health;
 }
 
-void Entity::setHealt(int healt) {
-    this->health = healt;
+void Entity::setHealth(int health) {
+    this->health = health;
 } 
 
 void Entity::reduceHealth(int damage, std::string damagedBy) {

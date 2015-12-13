@@ -25,7 +25,7 @@ void WeaponManager::createWeapons() {
     this->weapons.clear();
     
     // Effects
-    Effect explosion = Effect("Explosion", "assets/explosion.png", sf::Vector2u(0, 0), true);
+    Effect explosion = Effect("Explosion", "assets/explosion.png", sf::Vector2u(0, 0));
     
 
 
