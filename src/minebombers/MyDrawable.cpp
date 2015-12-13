@@ -67,6 +67,7 @@ std::string MyDrawable::getName() const {
 void MyDrawable::move(sf::Vector2u dir) {
     setDirection(dir);
     position += dir;
+    
 }
 
 void MyDrawable::setDirection(sf::Vector2u dir) {
