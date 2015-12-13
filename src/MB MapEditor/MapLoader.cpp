@@ -88,9 +88,12 @@ namespace MBEditor {
         }
         else {
             std::cout << "Error: file not found" << std::endl;
+            MBEditor::Tileset tileset(sf::Vector2u(16, 16));
+            tileset.load("map_spritesheet.png");
+            map = Map(80, 40);
+            map.setTileset(tileset);
         }
 
-        //map = Map(100, 100, "assets/tileset.png", sf::Vector2u(16, 16));
         return map;
     }
 
