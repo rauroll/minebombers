@@ -119,7 +119,7 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
         weaponText.setColor(sf::Color(100, 100, 100));
         window.draw(weaponText);
                 
-        playerX += name.getLocalBounds().width + 80;
+        playerX += name.getLocalBounds().width + 120;
     }
     
     sf::Text roundStatus("Round " + std::to_string(game.getRound()) + " / " + std::to_string(game.getTotalRounds()), font, 60);

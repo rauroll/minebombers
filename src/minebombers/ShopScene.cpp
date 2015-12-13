@@ -102,7 +102,7 @@ void ShopScene::draw(sf::RenderWindow& window) {
         sf::Text text(w.getName(), font, 72);
         text.setPosition(200, 200 + i++ * 80);
         window.draw(text);
-        // draw players ammo for each weapon if the player has it        
+        // draw players ammo for each weapon if the player has it
         sf::Text player1Ammo(std::to_string(players[0].getAmmo(w.getName())), font, 28);
         player1Ammo.setColor(sf::Color(255, 0, 0));
         player1Ammo.setPosition(text.getPosition().x + text.getGlobalBounds().width + 20, text.getPosition().y + 12);
