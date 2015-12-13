@@ -41,6 +41,8 @@ ResourceManager::ResourceManager() {
     soundBuffers["plip"] = soundBuffer;
     soundBuffer.loadFromFile("assets/plop.wav");
     soundBuffers["plop"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/pick.wav");
+    soundBuffers["pick"] = soundBuffer;
 }
 
 ResourceManager::~ResourceManager() {
@@ -74,6 +76,16 @@ const void ResourceManager::playSound(std::string soundName) {
         if (sounds.find(soundName) == sounds.end())
             sounds[soundName] = sf::Sound(soundBuffers.at(soundName));
         sounds[soundName].play();
+    }
+}
+
+const void ResourceManager::playPickSound(int materialHP) {
+    if (Game::getInstance().soundEnabled()) {
+        if (sounds.find("pick") == sounds.end())
+            sounds["pick"] = sf::Sound(soundBuffers.at("pick"));
+        sounds["pick"].setPitch(1 / (materialHP / 200.0));
+        sounds["pick"].setVolume(20);
+        sounds["pick"].play();
     }
 }
 

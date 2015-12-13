@@ -38,6 +38,8 @@ public:
     
     TileType getType() const;
 private:
+    int maxHp;
+    int hp;
     bool visible;;
     int level;
     int startLevel;

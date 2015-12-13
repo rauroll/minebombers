@@ -12,13 +12,15 @@
  */
 
 #include <algorithm>
-
+#include <iostream>
 #include "Tile.h"
 
 Tile::Tile(int level, int id, TileType type) {
     this->level = level;
     this->startLevel = level;
     this->id = id;
+    this->maxHp = 100;
+    this->hp = this->maxHp;
     this->type = type;
     this->visible = false;
 }
@@ -27,6 +29,8 @@ Tile::Tile(const Tile& orig) {
     level = orig.level;
     startLevel = orig.startLevel;
     id = orig.id;
+    this->maxHp = orig.maxHp;
+    this->hp = this->maxHp;
     type = orig.type;
     visible = orig.visible;
 }
@@ -63,7 +67,8 @@ void Tile::setLevel(int level) {
 }
 
 void Tile::reduceLevel(int dmg) {
-    this->level = std::max(0, this->level - dmg);
+    this->hp = std::max(0, this->hp - dmg);
+    this->level = ((float) this->hp / this->maxHp) * this->startLevel;
 }
 
 TileType Tile::getType() const {
