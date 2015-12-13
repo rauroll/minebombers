@@ -59,9 +59,6 @@ void Game::startRound() {
     setRandomTreasures(50);
     
     if(round == 1) {
-        addPlayer("JERE", "assets/playersprite1.png");
-        addPlayer("JERE2", "assets/playersprite2.png");
-
         WeaponManager& wepMan = WeaponManager::getInstance();
         wepMan.createWeapons();
         for (auto& p : players) {
