@@ -43,14 +43,16 @@ void WeaponManager::createWeapons() {
 
     
     // Projectiles
-    Projectile proj = Projectile("jonnemissile", "assets/projectile.png", "explosion", 30, explosion, PROJECTILE, CIRCLE, sf::Vector2u(5, 5));
+    Projectile proj = Projectile("jonnemissile", "assets/projectile.png", "explosion", 30, explosion, PROJECTILE, CIRCLE, sf::Vector2u(2, 2));
 
-    Projectile bomb = Projectile("keilapommi", "assets/bomb.png", "boom", 50, explosion, EXPLOSIVE, CROSS, sf::Vector2u(100, 100));
+    Projectile basicBomb = Projectile("sbomb", "assets/bomb.png", "boom", 30, explosion, EXPLOSIVE, CIRCLE, sf::Vector2u(5, 5), sf::milliseconds(2000));
+    Projectile atomicBomb = Projectile("abomb", "assets/bomb.png", "boom", 50, explosion, EXPLOSIVE, CROSS, sf::Vector2u(100, 100), sf::milliseconds(4000));
     Projectile pick = Projectile("pick", "assets/projectile.png", "explosion", 10, explosion, PICK, CROSS, sf::Vector2u(0, 0), sf::milliseconds(0), 1);
     
     //Weapons
     this->addWeapon(Weapon("jonnegun", "lazer", 49, proj));
-    this->addWeapon(Weapon("bomb", "shot", 99, bomb));
+    this->addWeapon(Weapon("small bomb", "shot", 99, basicBomb));
+    this->addWeapon(Weapon("atomic bomb", "shot", 200, atomicBomb));
     this->addWeapon(Weapon("pick", "pick", 0, pick));
     
 }
