@@ -19,6 +19,10 @@
 #include "ResourceManager.h"
 #include "ExplosionManager.h"
 
+Projectile::Projectile() {
+    
+}
+
 Projectile::Projectile(const std::string& name, const std::string& texturefile, const std::string& audioName, int damage, Effect& effect, ProjectileType projectileType, ExplosionType explosionType, sf::Vector2u radius, sf::Time timer, unsigned int range) : MyDrawable(texturefile, 0, 0, name), effect(effect) {
     this->damage = damage;
     this->dir = dir;

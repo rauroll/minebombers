@@ -18,7 +18,7 @@ Effect::Effect(std::string name, const std::string& texturefile, sf::Vector2u lo
 }
 
 Effect::Effect() {
-    
+    this->permanent = false;
 }
 
 Effect::Effect(const Effect& orig) : MyDrawable(orig) {
