@@ -25,6 +25,10 @@ ResourceManager::ResourceManager() {
     soundBuffers["boom"] = soundBuffer;
     soundBuffer.loadFromFile("assets/shot.wav");
     soundBuffers["shot"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/ignite.wav");
+    soundBuffers["ignite"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/holyboom.wav");
+    soundBuffers["holyboom"] = soundBuffer;
     soundBuffer.loadFromFile("assets/räjähdys.wav");
     soundBuffers["explosion"] = soundBuffer;
     soundBuffer.loadFromFile("assets/kling.wav");
