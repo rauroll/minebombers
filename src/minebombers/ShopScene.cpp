@@ -80,6 +80,7 @@ void ShopScene::update(sf::Time dt) {
 
 void ShopScene::buyAmmo(int playerId, Weapon weapon) {
     auto& p = Game::getInstance().getPlayers()[playerId];
+    std::cout << "buy, money: " << p.getMoney() << std::endl;
     if (p.getMoney() >= weapon.getPrice()) {
         p.buyAmmo(weapon.getName(), 1, weapon.getPrice());
     }
@@ -122,13 +123,13 @@ void ShopScene::draw(sf::RenderWindow& window) {
         window.draw(circle);
     }
     
-    sf::Text player1Money(std::to_string(players[0].getMoney()), font, 36);
-    player1Money.setPosition(window.getSize().x - 200, 12);
+    sf::Text player1Money("PLAYER1 money " + std::to_string(players[0].getMoney()), font, 36);
+    player1Money.setPosition(800, 12);
     player1Money.setColor(sf::Color(0, 255, 0));
     window.draw(player1Money);
 
-    sf::Text player2Money(std::to_string(players[1].getMoney()), font, 36);
-    player2Money.setPosition(window.getSize().x - 300, 12);
+    sf::Text player2Money("PLAYER2 money " + std::to_string(players[1].getMoney()), font, 36);
+    player2Money.setPosition(800, 48);
     player2Money.setColor(sf::Color(255, 0, 0));
     window.draw(player2Money);
 
