@@ -78,10 +78,13 @@ public:
     sf::Time getRoundRemainingTime() const;
     
     sf::Image& getOverlayImage();
-    void revealMapAt(sf::Vector2u pos, int radius = 80);
+    void revealMapAt(sf::Vector2u pos, int radius = 150);
     
     void startRound();
     void endRound(bool switchToShop = false);
+    
+    void useRandomMap();
+    void useMap(const std::string& name);
 private:
     sf::Image overlayImage;
     
@@ -114,6 +117,9 @@ private:
     int roundEndClocktime;
     
     std::vector<sf::Vector2u> startPositions;
+    
+    bool useMapGenerator;
+    std::string mapName;
 };
 
 #endif /* GAME_H */

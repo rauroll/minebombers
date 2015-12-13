@@ -56,6 +56,11 @@ void Player::incrementMoney(uint32_t amount) {
     money += amount;
 }
 
+void Player::setMoney(uint32_t money) {
+    this->money = money;
+}
+
+
 int Player::getScore() const {
     return score;
 }

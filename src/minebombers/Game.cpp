@@ -51,8 +51,11 @@ void Game::startRound() {
 
     roundTime = sf::seconds(roundEndClocktime);
 
-    //map = loader.fromFile("maps/map.mb");
-    map = gen.generate();
+    if(useMapGenerator)
+        map = gen.generate();
+    else {
+        map = loader.fromFile("maps/"+mapName+".mb");
+    }
     
     startPositions.clear();
     startPositions.push_back(sf::Vector2u(1, 1));
@@ -119,6 +122,7 @@ void Game::onPlayerDead(std::string killed, std::string killer) {
         if (p.getName() == killer) {
             if (killer == killed) {
                 p.incrementScore(-5);
+                p.setMoney(0);
             } else {
                 p.incrementScore(10);
             }
@@ -299,22 +303,25 @@ sf::Vector2u Game::getRandomEmptyPos() {
 }
 
 void Game::addPlayer(const std::string& name, const std::string textureName) {
-    sf::Vector2i pos;    
+    sf::Vector2u pos;    
     bool found = false;
+    int cleared;
     if (players.size() >= 1) {
         while (!found) {
-            pos = sf::Vector2i(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 2);
-            for (auto& p : players) {
-                int dist = (int) sqrt(pow(pos.x - p.getPos().x, 2) + pow(pos.y - p.getPos().y, 2));
-                std::cout << "dist:" << dist << std::endl;
-                if (dist >= 16) {
-                    found = true;
-                    break;
+            while (cleared < players.size()) {
+                cleared = 0;
+                pos = sf::Vector2u(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 2);
+                for (auto& p : players) {
+                    unsigned int dist = (unsigned int) sqrt(pow((int) pos.x - (int) p.getPos().x, 2) + pow((int) pos.y - (int) p.getPos().y, 2));
+                    if (dist >= 16) {
+                        cleared++;
+                    }
                 }
             }
+            found = true;
         }
     } else {
-        pos = sf::Vector2i(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 2);
+        pos = sf::Vector2u(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 2);
     }
     
     Player p(textureName, pos.x, pos.y, name);
@@ -388,6 +395,7 @@ void Game::update(sf::Time dt) {
 
 void Game::initGame() {
     round = 0;
+    useMapGenerator = true;
     players.clear();
     treasures.clear();
     projectiles.clear();
@@ -396,4 +404,14 @@ void Game::initGame() {
 
     totalRounds = config.getInt("rounds", 3);
     roundEndClocktime = config.getInt("roundTime", 120);
+}
+
+void Game::useRandomMap() {
+    useMapGenerator = true;
+}
+
+
+void Game::useMap(const std::string& name) {
+    useMapGenerator = false;
+    mapName = name;
 }

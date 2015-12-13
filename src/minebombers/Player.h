@@ -42,6 +42,7 @@ public:
     int getScore() const;
     Weapon& getActiveWeapon();
     const sf::Color& getColor();
+    void setMoney(uint32_t money);
 private:
     void calculateColor();
     sf::Color color;
