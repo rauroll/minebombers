@@ -162,7 +162,7 @@ void ExplosionManager::recursiveCircleExplosion(Projectile& projectile) {
 
 void ExplosionManager::chainExplode(Projectile& projectile) {
     projectile.setProjectileType(EXPLOSIVE);
-    projectile.setTimer(sf::milliseconds(30));
+    projectile.setTimer(sf::milliseconds(100));
 }
 
 void ExplosionManager::explode(Projectile& projectile) {
