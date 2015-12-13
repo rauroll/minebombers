@@ -341,6 +341,7 @@ std::vector<Projectile>& Game::getProjectiles() {
 }
 
 void Game::addEffect(Effect effect) {
+    this->revealMapAt(effect.getPos(), 30);
     effects.push_back(effect);
 }
 

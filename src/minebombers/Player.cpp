@@ -131,6 +131,7 @@ Projectile Player::useWeapon() {
 
 Projectile Player::usePick() {
     Weapon& pick = WeaponManager::getInstance().getPick();
+    
     return pick.use(this->name, this->getPos(), this->getDir());
 }
 

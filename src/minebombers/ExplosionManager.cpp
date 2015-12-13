@@ -175,9 +175,8 @@ void ExplosionManager::explode(Projectile& projectile) {
         case CIRCLE:
             this->circleExplosion(projectile);
             break;
-        case CIRCLEREC:
-            break;
-        case BOOMERANG:
+        case PICK:
+            this->crossExplosion(projectile);
             break;
         default:
             break;
