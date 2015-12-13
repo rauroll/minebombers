@@ -78,7 +78,7 @@ public:
     sf::Time getRoundRemainingTime() const;
     
     sf::Image& getOverlayImage();
-    void revealMapAt(sf::Vector2u pos, int radius = 150);
+    void revealMapAt(sf::Vector2u pos, int radius = 80);
     
     void startRound();
     void endRound(bool switchToShop = false);
