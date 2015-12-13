@@ -24,6 +24,7 @@ public:
     virtual ~Entity();
     
     int getHealth();
+    void setHealt(int health);
     void reduceHealth(int damage);
     bool isAlive();
 private:
