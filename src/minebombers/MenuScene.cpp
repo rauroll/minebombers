@@ -34,35 +34,27 @@ void MenuScene::onEvent(sf::Event& event) {
     Game& game = Game::getInstance();
     if(event.type == sf::Event::KeyPressed) {
         switch (event.key.code) {
+            case sf::Keyboard::Left: selectedMap--; break;
+            case sf::Keyboard::Right: selectedMap++; break;
             case sf::Keyboard::Down: selected++; break;
             case sf::Keyboard::Up: selected--; break;
             case sf::Keyboard::Return: {
-                if (selected == 0) {
-                    game.initGame();
-                    game.setScene(GAMESCENE);
-                }
+                game.initGame();
+                for (int i = 0; i < selected + 2; i++)
+                    game.addPlayer("Player " + std::to_string(i + 1), "assets/playersprite" + std::to_string(i + 1) + ".png");
+
+                game.setScene(GAMESCENE);
             }
             default:
                 break;
         }
-        selected = fmin(1, fmax(0, selected));
+        selected = fmin(options.size() - 1, fmax(0, selected));
+        selectedMap = fmin(maps.size() - 1, fmax(0, selectedMap));
     }
 }
 
 void MenuScene::update(sf::Time dt) {
     logoPhase++;
-    
-    if (selected == 0) {
-        if (twoPlayerScale < 1)
-            twoPlayerScale += 0.05;
-        if (campaignScale > 0.9)
-            campaignScale -= 0.05;
-    } else if (selected == 1) {
-        if (twoPlayerScale > 0.9)
-            twoPlayerScale -= 0.05;
-        if (campaignScale < 1)
-            campaignScale += 0.05;
-    }
 }
 
 void MenuScene::draw(sf::RenderWindow& window) {
@@ -74,35 +66,44 @@ void MenuScene::draw(sf::RenderWindow& window) {
     sf::Sprite background;
     background.setTexture(ResourceManager::getInstance().loadTexture("assets/background.jpg"));
     background.setScale(width / background.getLocalBounds().width, height / background.getLocalBounds().height);
+    window.draw(background);
     
-    sf::Text minebombers = sf::Text("minebombers", font, 110);
-    sf::Text twoPlayer = sf::Text("2 players", font, 85);
-    sf::Text campaign = sf::Text("campaign", font, 85);
-       
+    sf::Text minebombers = sf::Text("minebombers", font, 175);
     float logoScale = (sin(logoPhase / 20.0) + 20) * 0.05;
     minebombers.setScale(logoScale, logoScale);
     minebombers.setOrigin(minebombers.getLocalBounds().width / 2, minebombers.getLocalBounds().height / 2);
-    
-    twoPlayer.setOrigin(twoPlayer.getLocalBounds().width / 2, twoPlayer.getLocalBounds().height / 2);
-    campaign.setOrigin(campaign.getLocalBounds().width / 2, campaign.getLocalBounds().height / 2);
-    
-    sf::Color dimmed = sf::Color(255, 255, 255, 150);
-    if (selected == 1)
-        twoPlayer.setColor(dimmed);
-    else if (selected == 0)
-        campaign.setColor(dimmed);
-    
-    twoPlayer.setScale(twoPlayerScale, twoPlayerScale);
-    campaign.setScale(campaignScale, campaignScale);
-    
     minebombers.setPosition(width / 2, 100);    
-    twoPlayer.setPosition(width / 2, minebombers.getPosition().y + 210);
-    campaign.setPosition(width / 2, twoPlayer.getPosition().y + 120);
-    
-    window.draw(background);
     window.draw(minebombers);
-    window.draw(twoPlayer);
-    window.draw(campaign);
+    
+    int positionY = 300;
+    for (int i = 0; i < options.size(); i++) {
+        auto option = options[i];
+        sf::Text optionText(option, font, 90);
+        optionText.setPosition(size.x / 2, positionY);
+        optionText.setOrigin(optionText.getLocalBounds().width / 2, optionText.getLocalBounds().height / 2);
+        optionText.setColor(sf::Color(255, 255, 255, selected == i ? 255 : 175));
+        window.draw(optionText);
+        positionY += 100;
+    }
+    
+    sf::Text mt(maps[selectedMap], font, 70);
+    mt.setPosition(size.x / 2 - mt.getLocalBounds().width / 2, size.y - 100);
+    mt.setColor(sf::Color(255, 255, 255));
+    window.draw(mt);
+    
+    if (selectedMap > 0) {
+        sf::CircleShape leftArrow(16, 3);
+        leftArrow.setFillColor(sf::Color(255, 255, 255));
+        leftArrow.setPosition(mt.getPosition().x - 50, mt.getPosition().y + 60);
+        leftArrow.setRotation(-90);
+        window.draw(leftArrow);
+    }
+    
+    if (selectedMap < maps.size() - 1) {
+        sf::CircleShape rightArrow(16, 3);
+        rightArrow.setFillColor(sf::Color(255, 255, 255));
+        rightArrow.setPosition(mt.getPosition().x + mt.getLocalBounds().width + 50, mt.getPosition().y + 30);
+        rightArrow.setRotation(90);
+        window.draw(rightArrow);
+    }
 }
-
-
