@@ -30,8 +30,8 @@ public:
     
     void loadFromFile(const std::string& path);
     
-    std::string getString(const std::string& key);
-    int getInt(const std::string& key);
+    std::string getString(const std::string& key, const std::string& def);
+    int getInt(const std::string& key, int def);
 private:
     std::map<std::string, std::string> values;
 };

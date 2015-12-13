@@ -14,11 +14,13 @@
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
+#include <string>
 
 #include "MenuScene.h"
 #include "Game.h"
 #include "GameScene.h"
 #include "ResourceManager.h"
+#include "ConfigManager.h"
 
 MenuScene::MenuScene() {
 }
@@ -32,6 +34,8 @@ void MenuScene::onChangedTo() {
 
 void MenuScene::onEvent(sf::Event& event) {
     Game& game = Game::getInstance();
+    ConfigManager& config = ConfigManager::getInstance();
+    
     if(event.type == sf::Event::KeyPressed) {
         switch (event.key.code) {
             case sf::Keyboard::Left: selectedMap--; break;
@@ -40,9 +44,15 @@ void MenuScene::onEvent(sf::Event& event) {
             case sf::Keyboard::Up: selected--; break;
             case sf::Keyboard::Return: {
                 game.initGame();
-                for (int i = 0; i < selected + 2; i++)
-                    game.addPlayer("Player " + std::to_string(i + 1), "assets/playersprite" + std::to_string(i + 1) + ".png");
-
+                for (int i = 0; i < selected + 2; i++) {
+                    std::string key = "player" + std::to_string(i + 1) + "_name";
+                    std::string defaultName = "Player " + std::to_string(i + 1);
+                    std::string playerName = config.getString(key, defaultName);
+                    
+                    std::string spritePath = "assets/playersprite" + std::to_string(i + 1) + ".png";
+                    
+                    game.addPlayer(playerName, spritePath);
+                }
                 game.setScene(GAMESCENE);
             }
             default:

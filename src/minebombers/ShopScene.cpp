@@ -17,8 +17,11 @@
 #include "ShopScene.h"
 #include "Game.h"
 #include "ResourceManager.h"
+#include "ConfigManager.h"
 
 ShopScene::ShopScene() {
+    ConfigManager& config = ConfigManager::getInstance();
+    shopTime = config.getInt("shopTime", 25);
 }
 
 ShopScene::ShopScene(const ShopScene& orig) {

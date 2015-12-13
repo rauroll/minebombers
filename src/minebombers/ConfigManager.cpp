@@ -68,12 +68,17 @@ void ConfigManager::loadFromFile(const std::string& path) {
     }
 }
 
-int ConfigManager::getInt(const std::string& key) {
-    std::cout << values[key] << std::endl;
+int ConfigManager::getInt(const std::string& key, int def) {
+    if(values.find(key) == values.end()) {
+        return 0;
+    }
     return std::stoi(values[key]);
 }
 
-std::string ConfigManager::getString(const std::string& key) {
+std::string ConfigManager::getString(const std::string& key, const std::string& def) {
+    if(values.find(key) == values.end()) {
+        return def;
+    }
     return values[key];
 }
 

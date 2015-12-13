@@ -351,6 +351,6 @@ void Game::initGame() {
     
     ConfigManager& config = ConfigManager::getInstance();
 
-    totalRounds = config.getInt("rounds");
-    roundEndClocktime = config.getInt("roundTime");
+    totalRounds = config.getInt("rounds", 3);
+    roundEndClocktime = config.getInt("roundTime", 120);
 }
