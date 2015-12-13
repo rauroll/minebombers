@@ -45,10 +45,10 @@ void Entity::reduceHealth(int damage) {
     Game& game = Game::getInstance();
     this->health = std::max(0, this->health - damage);
     if (wasAlive && this->isAlive()) {
-        ResourceManager::getInstance().playSound("hurt1");
+        ResourceManager::getInstance().playHurtSound();
     } else if (wasAlive) {
         game.onPlayerDead();
-        ResourceManager::getInstance().playSound("death2");
+        ResourceManager::getInstance().playDeathSound();
     }
 }
 
