@@ -408,6 +408,9 @@ void Game::initGame() {
 
     totalRounds = config.getInt("rounds", 3);
     roundEndClocktime = config.getInt("roundTime", 120);
+    
+    startMoney = config.getInt("startMoney", 500);
+    treasureCount = config.getInt("treasureCount", 50);
 }
 
 void Game::useRandomMap() {
