@@ -41,7 +41,10 @@ public:
     uint32_t getMoney() const;
     uint32_t getScore() const;
     Weapon& getActiveWeapon();
+    const sf::Color& getColor();
 private:
+    void calculateColor();
+    sf::Color color;
     std::map<std::string, unsigned int> weaponsMap;
     typedef std::map<std::string, unsigned int>::iterator weapon_iterator;
     weapon_iterator activeWeapon;
