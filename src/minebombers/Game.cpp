@@ -59,8 +59,8 @@ void Game::startRound() {
     setRandomTreasures(50);
     
     if(round == 1) {
-        addPlayer("JERE");
-        addPlayer("JERE2");
+        addPlayer("JERE", "assets/playersprite1.png");
+        addPlayer("JERE2", "assets/playersprite2.png");
 
         WeaponManager& wepMan = WeaponManager::getInstance();
         wepMan.createWeapons();
@@ -76,6 +76,7 @@ void Game::startRound() {
     
     ResourceManager::getInstance().playMusic("game");
 }
+
 
 void Game::endRound(bool switchToShop) {
     if (switchToShop) {
@@ -262,10 +263,10 @@ sf::Vector2u Game::getRandomEmptyPos() {
     return pos;
 }
 
-void Game::addPlayer(const std::string& name) {
+void Game::addPlayer(const std::string& name, const std::string textureName) {
     sf::Vector2u pos = sf::Vector2u(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 2);
     
-    Player p("assets/playersprite.png", pos.x, pos.y, name);
+    Player p(textureName, pos.x, pos.y, name);
     players.push_back(p);
 }
 
