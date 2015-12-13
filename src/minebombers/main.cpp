@@ -50,6 +50,9 @@ int main(int argc, char const** argv) {
                 game.setScene(MENUSCENE);
             else
                 game.getScene()->onEvent(event);
+            
+            if (event.type == sf::Event::KeyPressed)
+                std::cout << event.key.code << std::endl;
         }
         
         while(gameTime + dt <= clock.getElapsedTime()) {            
