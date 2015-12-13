@@ -75,7 +75,7 @@ void Game::startRound() {
     }
     
     for(auto& p : players) {
-        p.setHealt(100);
+        p.setHealth(100);
         map.makeFloorAround(p.getPos());
         revealMapAt(p.getPos());
     }
@@ -117,10 +117,16 @@ sf::Vector2u Game::getCanvasSize() {
 void Game::onPlayerDead(std::string killed, std::string killer) {
     for (auto& p : players) {
         if (p.getName() == killer) {
-            if (killer == killed)
+            if (killer == killed) {
                 p.incrementScore(-5);
-            else 
+            } else {
                 p.incrementScore(10);
+            }
+        }
+        if (p.getName() == killed) {
+            Effect playerDead = Effect("PlayerDead", "assets/bloodsprite.png", sf::Vector2u(0, 0), true);
+            playerDead.setPos(p.getPos());
+            this->addEffect(playerDead);
         }
     }
     if (this->lastManStanding()) {

@@ -31,7 +31,7 @@ Effect::~Effect() {
 }
 
 bool Effect::isPermanent() {
-    return !this->permanent;
+    return this->permanent;
 }
 
 bool Effect::update() {
