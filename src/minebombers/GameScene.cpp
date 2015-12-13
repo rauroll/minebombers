@@ -63,7 +63,20 @@ void GameScene::draw(sf::RenderWindow& window) {
         window.draw(i.getSprite());
     }
     
-    // statusbar
+    // draw map overlay
+    sf::Texture overlayTexture;
+    overlayTexture.loadFromImage(game.getOverlayImage());
+    sf::Sprite overlay;
+    overlay.setTexture(overlayTexture);
+    //window.draw(overlay);
+    
+    drawStatusBar(window);
+}
+
+void GameScene::drawStatusBar(sf::RenderWindow& window) {
+    Game& game = Game::getInstance();
+    std::vector<Player>& players = game.getPlayers();
+    
     sf::Vector2u windowSize = game.getCanvasSize();
     int statusBarHeight = 100;
     sf::RectangleShape background(sf::Vector2f(windowSize.x, statusBarHeight));
@@ -76,26 +89,37 @@ void GameScene::draw(sf::RenderWindow& window) {
     // Draw player data for each player
     int playerFontSize = 20;
     int playerX = 20;
-    int playerY = windowSize.y - statusBarHeight / 2 + playerFontSize / 2;
+    int playerY = windowSize.y - statusBarHeight / 2 + playerFontSize / 2 + 7;
     sf::Color statusBarColor = sf::Color(0, 0, 0);
     
     for(auto &p : players) {
-        sf::Text name = sf::Text(p.getName(), font, playerFontSize * 1.2);
-        name.setPosition(playerX, playerY - playerFontSize * 1.2 * 2);
+        sf::Text name = sf::Text(p.getName(), font, playerFontSize * 1.1);
+        name.setPosition(playerX, playerY - playerFontSize * 1.1 * 3);
         name.setColor(statusBarColor);
         window.draw(name);
         
-        sf::Text hp = sf::Text("HP" + std::to_string(p.getHealth()) + "/100", font, playerFontSize);
-        hp.setPosition(playerX, playerY - playerFontSize);
+        sf::Text hp = sf::Text(std::to_string(p.getHealth()), font, playerFontSize * 1.1);
+        hp.setPosition(playerX + name.getLocalBounds().width + 5, playerY - playerFontSize * 1.1 * 3);
         hp.setColor(sf::Color(200 - p.getHealth() * 200 / 100, p.getHealth() * 200 / 100, 50));
         window.draw(hp);
         
         sf::Text mohlay = sf::Text("Money: " + std::to_string(p.getMoney()), font, playerFontSize);
-        mohlay.setPosition(playerX, playerY);
+        mohlay.setPosition(playerX, playerY - playerFontSize * 2);
         mohlay.setColor(sf::Color(100, 100, 100));
         window.draw(mohlay);
         
-        playerX += name.getLocalBounds().width + 75;
+        sf::Text score = sf::Text("Score: " + std::to_string(p.getScore()), font, playerFontSize);
+        score.setPosition(playerX, playerY - playerFontSize);
+        score.setColor(sf::Color(100, 100, 100));
+        window.draw(score);
+        
+        Weapon& weapon = p.getActiveWeapon();
+        sf::Text weaponText = sf::Text(weapon.getName() + " (" + std::to_string(p.getAmmo()) + ")", font, playerFontSize);
+        weaponText.setPosition(playerX, playerY);
+        weaponText.setColor(sf::Color(100, 100, 100));
+        window.draw(weaponText);
+                
+        playerX += name.getLocalBounds().width + 80;
     }
     
     sf::Text roundStatus("Round " + std::to_string(game.getRound()) + " / " + std::to_string(game.getTotalRounds()), font, 60);
@@ -103,22 +127,23 @@ void GameScene::draw(sf::RenderWindow& window) {
     roundStatus.setPosition(windowSize.x / 2 - roundStatus.getLocalBounds().width / 2, windowSize.y - statusBarHeight / 2 - 38);
     window.draw(roundStatus);
     
-    // draw map overlay
-    sf::Texture overlayTexture;
-    overlayTexture.loadFromImage(game.getOverlayImage());
-    sf::Sprite overlay;
-    overlay.setTexture(overlayTexture);
-    //window.draw(overlay);
-    
     // draw round end overlay
     if (game.roundHasEnded()) {
         sf::RectangleShape rect(sf::Vector2f(windowSize.x, windowSize.y));
         rect.setFillColor(sf::Color(0, 0, 0, 150));
         window.draw(rect);
         
-        sf::Text roundEnded("The round has ended!", font, 100);
+        std::vector<Player> sortedPlayers = game.getPlayersSortedByScore();
+        sf::Text roundEnded(game.getRound() == 3 ? sortedPlayers[0].getName() + " won!" : "The round has ended!", font, 100);
         roundEnded.setPosition(windowSize.x / 2 - roundEnded.getLocalBounds().width / 2, 200);
         window.draw(roundEnded);
+        int y = 200 + roundEnded.getLocalBounds().height + 100;
+        for (auto player : sortedPlayers) {
+            sf::Text t(player.getName() + ": " + std::to_string(player.getScore()), font, 50);
+            t.setPosition(windowSize.x / 2 - t.getLocalBounds().width / 2, y);
+            window.draw(t);
+            y += t.getLocalBounds().height + 10;
+        }
     } else {
         sf::Text roundClock = sf::Text("Time left: " + std::to_string((int) ceil(game.getRoundRemainingTime().asSeconds())), font, 40);
         roundClock.setPosition(windowSize.x - roundClock.getLocalBounds().width - 40, windowSize.y - statusBarHeight / 2 - 23);
@@ -129,15 +154,20 @@ void GameScene::draw(sf::RenderWindow& window) {
 
 void GameScene::onEvent(sf::Event& event) {
     Game& game = Game::getInstance();
+    
     switch (event.type)
     {
         case sf::Event::KeyPressed: {
-            sf::Vector2u& v = keyboard[event.key.code];
-            if(!v.x) {
-                v.x = 1; //on/off
-                v.y = 0; //time
+            if (game.getRound() == 3 && game.roundHasEnded())
+                game.setScene(MENUSCENE);
+            else {
+                sf::Vector2u& v = keyboard[event.key.code];
+                if(!v.x) {
+                    v.x = 1; //on/off
+                    v.y = 0; //time
+                }
+                break;
             }
-            break;
         }
         case sf::Event::KeyReleased:
             //std::cout << "release" << std::endl;

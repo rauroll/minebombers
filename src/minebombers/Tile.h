@@ -32,12 +32,15 @@ public:
     void setLevel(int level);
     
     void reduceLevel(int dmg);
+    void setHp(int hp);
     
     void setVisible();
     bool isVisible() const;
     
     TileType getType() const;
 private:
+    int maxHp;
+    int hp;
     bool visible;;
     int level;
     int startLevel;

@@ -37,8 +37,6 @@ Game::Game() {
     scenes[SHOPSCENE] = new ShopScene();
     
     map = loader.fromFile("maps/map.mb");
-    
-    //this->startRound();
 }
 
 void Game::startRound() {
@@ -102,6 +100,17 @@ std::vector<Player>& Game::getPlayers() {
     return players;
 }
 
+bool sortPlayersByScore (Player a, Player b) {
+    return a.getScore() > b.getScore();
+}
+
+std::vector<Player> Game::getPlayersSortedByScore() {
+    std::vector<Player> players = this->players;
+    std::sort(players.begin(), players.end(), sortPlayersByScore);
+    return players;
+}
+
+
 Scene* Game::getScene() {
     return currentScene;
 }
@@ -157,7 +166,7 @@ void Game::setRandomTreasures(uint16_t amount) {
     while(amount) {
         sf::Vector2u pos(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 1);
         sf::Sprite sprite = sf::Sprite(ResourceManager::getInstance().loadTexture("assets/my_doc.png"));
-        treasures.push_back(Treasure(sprite, rand() % 300, pos));
+        treasures.push_back(Treasure(sprite, 1, (rand() % 8) * 100 + 100, pos));
         Tile tile(0, 0, FLOOR);
         map.setTile(pos, tile);
         amount--;
@@ -193,6 +202,7 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
                 // TREASURE FOUND :)
                 ResourceManager::getInstance().playKling(tres.getValue());
                 players[player].incrementMoney(tres.getValue());
+                players[player].incrementScore(tres.getScore());
                 treasures.erase(i);
                 break;
             }
@@ -239,7 +249,7 @@ sf::Vector2u Game::getRandomEmptyPos() {
 }
 
 void Game::addPlayer(const std::string& name) {
-    sf::Vector2u pos = sf::Vector2u(rand() % map.getSize().x, rand() % map.getSize().y);
+    sf::Vector2u pos = sf::Vector2u(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 2);
     
     Player p("assets/playersprite.png", pos.x, pos.y, name);
     players.push_back(p);

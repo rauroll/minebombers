@@ -18,16 +18,18 @@
 
 class Treasure {
 public:
-    Treasure(sf::Sprite& sprite, uint32_t value, sf::Vector2u pos);
+    Treasure(sf::Sprite& sprite, uint32_t score, uint32_t value, sf::Vector2u pos);
     Treasure(const Treasure& orig);
     virtual ~Treasure();
     
     uint32_t getValue() const;
+    uint32_t getScore() const;
     sf::Vector2u getPosition() const;
     sf::Sprite& getSprite();
 private:
     sf::Sprite sprite;
     uint32_t value;
+    uint32_t score;
     sf::Vector2u position;
 };
 

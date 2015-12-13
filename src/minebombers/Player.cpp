@@ -15,17 +15,18 @@
 #include "WeaponManager.h"
 #include <iostream>
 
-Player::Player() : Entity() {
-    money = 0;
+Player::Player() : money(0), score(0), Entity() {
 }
 
 
 Player::Player(const std::string& texturefile, int x, int y, const std::string& name) : Entity(texturefile, x, y, 100, name) {
     money = 0;
+    score = 0;
 }
 
 Player::Player(const Player& orig) : Entity(orig){
-    money = 0;
+    money = orig.money;
+    score = orig.score;
 }
 
 Player::~Player() {
@@ -34,6 +35,15 @@ Player::~Player() {
 void Player::incrementMoney(uint32_t amount) {
     money += amount;
 }
+
+int Player::getScore() const {
+    return score;
+}
+
+void Player::incrementScore(uint32_t amount) {
+    score += amount;
+}
+
 
 void Player::nextWeapon() {
     while (true) {

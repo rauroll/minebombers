@@ -41,6 +41,8 @@ ResourceManager::ResourceManager() {
     soundBuffers["plip"] = soundBuffer;
     soundBuffer.loadFromFile("assets/plop.wav");
     soundBuffers["plop"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/pick.wav");
+    soundBuffers["pick"] = soundBuffer;
 }
 
 ResourceManager::~ResourceManager() {
@@ -77,17 +79,27 @@ const void ResourceManager::playSound(std::string soundName) {
     }
 }
 
+const void ResourceManager::playPickSound(int materialHP) {
+    if (Game::getInstance().soundEnabled()) {
+        if (sounds.find("pick") == sounds.end())
+            sounds["pick"] = sf::Sound(soundBuffers.at("pick"));
+        sounds["pick"].setPitch(1 / (materialHP / 200.0));
+        sounds["pick"].setVolume(20);
+        sounds["pick"].play();
+    }
+}
+
 const void ResourceManager::playKling(int value) {
     if (Game::getInstance().soundEnabled()) {
         if (sounds.find("kling") == sounds.end())
             sounds["kling"] = sf::Sound(soundBuffers.at("kling"));
-        sounds["kling"].setPitch(1 / (value / 200.0));
+        sounds["kling"].setPitch(1 / (value / 500.0));
         sounds["kling"].setVolume(20);
         sounds["kling"].play();
-        if (value >= 240 && value < 280) {
-            this->playSound("yesh");
-        } else if (value >= 280) {
+        if (value > 700) {
             this->playSound("ohright");
+        } else if (value > 600) {
+            this->playSound("yesh");
         }
     }
 }

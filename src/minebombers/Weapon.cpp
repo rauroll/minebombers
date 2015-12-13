@@ -24,10 +24,16 @@ Weapon::Weapon(const Weapon& orig) : projectile(orig.projectile) {
     this->name = orig.name;
     this->price = orig.price;
     this->shotAudioName = orig.shotAudioName;
+    this->ammoCount = orig.ammoCount;
 }
 
 Weapon::~Weapon() {
 }
+
+const Projectile& Weapon::getProjectile() {
+    return projectile;
+}
+
 
 int Weapon::getAmmoCount() const {
     return this->ammoCount;

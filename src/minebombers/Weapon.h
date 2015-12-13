@@ -29,6 +29,8 @@ public:
     
     Projectile use(sf::Vector2u loc, sf::Vector2u dir);
     
+    const Projectile& getProjectile();
+    
     void addAmmo(int amount);
     int getAmmoCount() const;
     
