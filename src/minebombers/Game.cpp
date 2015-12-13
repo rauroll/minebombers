@@ -64,8 +64,10 @@ void Game::startRound() {
 
         WeaponManager& wepMan = WeaponManager::getInstance();
         wepMan.createWeapons();
-        for (auto& p : players)
+        for (auto& p : players) {
+            p.incrementMoney(500);
             wepMan.addWeaponsToPlayer(p); 
+        }
     }
     
     for(auto& p : players) {

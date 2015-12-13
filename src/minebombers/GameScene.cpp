@@ -68,7 +68,7 @@ void GameScene::draw(sf::RenderWindow& window) {
     overlayTexture.loadFromImage(game.getOverlayImage());
     sf::Sprite overlay;
     overlay.setTexture(overlayTexture);
-    //window.draw(overlay);
+    window.draw(overlay);
     
     drawStatusBar(window);
 }
