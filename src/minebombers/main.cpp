@@ -72,8 +72,6 @@ int main(int argc, char const** argv) {
         else {
             //sf::sleep(sf::milliseconds(10));
         }
-        
-        
     }
 
     return EXIT_SUCCESS;
