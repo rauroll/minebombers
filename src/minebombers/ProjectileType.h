@@ -17,6 +17,7 @@
 enum ProjectileType {
     PROJECTILE,
     EXPLOSIVE,
+    MINE,
     PICK
 };
 
