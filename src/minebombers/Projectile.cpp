@@ -69,6 +69,12 @@ bool Projectile::update(sf::Time dt) {
         case PICK:
             return this->updatePick();
             break;
+        case MINE:
+            return this->updateBomb(dt);
+            break;
+        case ACTIVATEDMINE:
+            return this->updateProjectile();
+            break;
         default:
             return false;
     }
@@ -81,7 +87,10 @@ bool Projectile::updateProjectile() {
         sf::Vector2u nextLocation = this->getPos() + this->dir;
         bool playerHit = false;
         for (auto& p : game.getPlayers()) {
-            if ((p.getPos() == nextLocation && p.isAlive() && p.getName() != this->userName) || this->reachedMaxRange()) {
+            if ((p.getPos() == nextLocation && p.isAlive()
+                    && (p.getName() != this->userName
+                    || this->projectileType == ACTIVATEDMINE))
+                    || this->reachedMaxRange()) {
                 ExplosionManager::getInstance().explode(*this);
                 return true;
             }
@@ -100,8 +109,12 @@ bool Projectile::updateProjectile() {
 bool Projectile::updateBomb(sf::Time dt) {
     this->timer -= dt;
     if (this->timer <= sf::milliseconds(0)) {
-        ExplosionManager::getInstance().explode(*this);
-        return true;
+        if (this->projectileType == MINE) {
+            this->setProjectileType(ACTIVATEDMINE);
+        } else {
+            ExplosionManager::getInstance().explode(*this);
+            return true;
+        }
     }
     return false;
 }
