@@ -63,7 +63,20 @@ void GameScene::draw(sf::RenderWindow& window) {
         window.draw(i.getSprite());
     }
     
-    // statusbar
+    // draw map overlay
+    sf::Texture overlayTexture;
+    overlayTexture.loadFromImage(game.getOverlayImage());
+    sf::Sprite overlay;
+    overlay.setTexture(overlayTexture);
+    //window.draw(overlay);
+    
+    drawStatusBar(window);
+}
+
+void GameScene::drawStatusBar(sf::RenderWindow& window) {
+    Game& game = Game::getInstance();
+    std::vector<Player>& players = game.getPlayers();
+    
     sf::Vector2u windowSize = game.getCanvasSize();
     int statusBarHeight = 100;
     sf::RectangleShape background(sf::Vector2f(windowSize.x, statusBarHeight));
@@ -108,13 +121,6 @@ void GameScene::draw(sf::RenderWindow& window) {
     roundStatus.setColor(statusBarColor);
     roundStatus.setPosition(windowSize.x / 2 - roundStatus.getLocalBounds().width / 2, windowSize.y - statusBarHeight / 2 - 38);
     window.draw(roundStatus);
-    
-    // draw map overlay
-    sf::Texture overlayTexture;
-    overlayTexture.loadFromImage(game.getOverlayImage());
-    sf::Sprite overlay;
-    overlay.setTexture(overlayTexture);
-    //window.draw(overlay);
     
     // draw round end overlay
     if (game.roundHasEnded()) {

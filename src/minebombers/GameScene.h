@@ -31,6 +31,7 @@ public:
     void onEvent(sf::Event& event);
     void onChangedTo();
     void draw(sf::RenderWindow& window);
+    void drawStatusBar(sf::RenderWindow& window);
     
 private:
     void reloadButtons();
