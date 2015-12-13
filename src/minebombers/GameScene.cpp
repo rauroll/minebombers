@@ -89,24 +89,29 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
     // Draw player data for each player
     int playerFontSize = 20;
     int playerX = 20;
-    int playerY = windowSize.y - statusBarHeight / 2 + playerFontSize / 2;
+    int playerY = windowSize.y - statusBarHeight / 2 + playerFontSize / 2 + 7;
     sf::Color statusBarColor = sf::Color(0, 0, 0);
     
     for(auto &p : players) {
         sf::Text name = sf::Text(p.getName(), font, playerFontSize * 1.1);
-        name.setPosition(playerX, playerY - playerFontSize * 1.1 * 2);
+        name.setPosition(playerX, playerY - playerFontSize * 1.1 * 3);
         name.setColor(statusBarColor);
         window.draw(name);
         
         sf::Text hp = sf::Text(std::to_string(p.getHealth()), font, playerFontSize * 1.1);
-        hp.setPosition(playerX + name.getLocalBounds().width + 5, playerY - playerFontSize * 1.1 * 2);
+        hp.setPosition(playerX + name.getLocalBounds().width + 5, playerY - playerFontSize * 1.1 * 3);
         hp.setColor(sf::Color(200 - p.getHealth() * 200 / 100, p.getHealth() * 200 / 100, 50));
         window.draw(hp);
         
         sf::Text mohlay = sf::Text("Money: " + std::to_string(p.getMoney()), font, playerFontSize);
-        mohlay.setPosition(playerX, playerY - playerFontSize);
+        mohlay.setPosition(playerX, playerY - playerFontSize * 2);
         mohlay.setColor(sf::Color(100, 100, 100));
         window.draw(mohlay);
+        
+        sf::Text score = sf::Text("Score: " + std::to_string(p.getScore()), font, playerFontSize);
+        score.setPosition(playerX, playerY - playerFontSize);
+        score.setColor(sf::Color(100, 100, 100));
+        window.draw(score);
         
         Weapon weapon = p.getActiveWeapon();
         sf::Text weaponText = sf::Text(weapon.getName() + " (" + std::to_string(weapon.getAmmoCount()) + ")", font, playerFontSize);
