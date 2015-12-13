@@ -35,5 +35,6 @@ bool Effect::isPermanent() {
 }
 
 bool Effect::update() {
+    if (this->permanent && this->spriteHasEnded()) this->spriteColumn = 0;
     return this->spriteHasEnded();
 }
