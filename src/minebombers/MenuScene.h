@@ -31,9 +31,10 @@ public:
 private:
     int logoPhase = 0;
     int selected = 0;
+    int selectedMap = 0;
     
-    float twoPlayerScale = 0.9;
-    float campaignScale = 0.9;
+    std::vector<std::string> options{"2 players", "3 players", "4 players"};
+    std::vector<std::string> maps{"generated map", "map1.asd", "map2.asd"};
 };
 
 #endif /* MENUSCENE_H */
