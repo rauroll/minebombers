@@ -63,7 +63,7 @@ void WeaponManager::createWeapons() {
     this->addWeapon(Weapon("small dynamite", "ignite", 100, smallDynamite));
     this->addWeapon(Weapon("big dynamite", "ignite", 200, bigDynamite));
     this->addWeapon(Weapon("atomic bomb", "shot", 800, atomicBomb));
-    this->addWeapon(Weapon("holy bomb", "allahuakbar", 5000, holybomb));
+    this->addWeapon(Weapon("holy bomb", "lolapua", 5000, holybomb));
     this->addWeapon(Weapon("mine", "shot", 500, mineBomb));
     this->pick = Weapon("pick", "pick", 0, pick);
     
