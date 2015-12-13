@@ -51,8 +51,11 @@ void Game::startRound() {
 
     roundTime = sf::seconds(roundEndClocktime);
 
-    //map = loader.fromFile("maps/map.mb");
-    map = gen.generate();
+    if(useMapGenerator)
+        map = gen.generate();
+    else {
+        map = loader.fromFile("maps/"+mapName+".mb");
+    }
     
     startPositions.clear();
     startPositions.push_back(sf::Vector2u(1, 1));
@@ -389,6 +392,7 @@ void Game::update(sf::Time dt) {
 
 void Game::initGame() {
     round = 0;
+    useMapGenerator = true;
     players.clear();
     treasures.clear();
     projectiles.clear();
@@ -397,4 +401,14 @@ void Game::initGame() {
 
     totalRounds = config.getInt("rounds", 3);
     roundEndClocktime = config.getInt("roundTime", 120);
+}
+
+void Game::useRandomMap() {
+    useMapGenerator = true;
+}
+
+
+void Game::useMap(const std::string& name) {
+    useMapGenerator = false;
+    mapName = name;
 }
