@@ -31,7 +31,7 @@ MapGenerator::~MapGenerator() {
 Map MapGenerator::generate() {
     uint16_t w = 80;
     uint16_t h = 40;
-    float floorRatio = 0.05; // how much floor relative to total amount of tiles
+    float floorRatio = 0; // how much floor relative to total amount of tiles
     float wallRatio = 0.05 + (rand() % 2 / 100.0); // how much wall relative to total amount of tiles
     float softRatio = 0.5; // how much soft wall relative to total wall
     float wallSizeRatio = 0.1; // how long walls are relative to (w + h) / 2
@@ -45,7 +45,7 @@ Map MapGenerator::generate() {
     for (int x = 0; x < w; x++)
         for(int y = 0; y < h; y++) {
             bool isSoft = rand() % 100 < softRatio * 100;
-            Tile tile = Tile(isSoft ? 2 : 5, isSoft ? 20 : 30, ROCK);
+            Tile tile = Tile(5, isSoft ? 20 : 30, ROCK);
             sf::Vector2u pos(x, y);
             map.setTile(pos, tile);
         }
