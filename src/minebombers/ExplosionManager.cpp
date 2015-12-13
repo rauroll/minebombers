@@ -50,9 +50,8 @@ void ExplosionManager::crossExplosion(Projectile& projectile) {
         auto currentLoc = (sf::Vector2u)((sf::Vector2i)loc + dir);
         
         unsigned int rangeLeft = projectile.getRadius().x;
-        bool stoppedByDirt = false;
-        while (!map.wallAt(currentLoc) && rangeLeft > 0 && !stoppedByDirt) {
-            stoppedByDirt = map.isUnpassable(currentLoc);
+
+        while (!map.wallAt(currentLoc) && rangeLeft > 0) {
             Effect effect = Effect(projectile.getEffect());
             effect.setPos(currentLoc);
 

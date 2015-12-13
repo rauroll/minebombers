@@ -42,6 +42,7 @@ Projectile::Projectile(const Projectile& orig) : MyDrawable(orig), effect(orig.e
     this->alwaysStillSprite = orig.alwaysStillSprite;
     this->explosionAudioName = orig.explosionAudioName;
     this->range = orig.range;
+    this->userName = orig.userName;
 }
 
 Projectile::~Projectile() {
@@ -71,8 +72,6 @@ bool Projectile::update(sf::Time dt) {
         default:
             return false;
     }
-    
-    
 }
 
 bool Projectile::updateProjectile() {
@@ -82,7 +81,7 @@ bool Projectile::updateProjectile() {
         sf::Vector2u nextLocation = this->getPos() + this->dir;
         bool playerHit = false;
         for (auto& p : game.getPlayers()) {
-            if ((p.getPos() == nextLocation && p.isAlive()) || this->reachedMaxRange()) {
+            if ((p.getPos() == nextLocation && p.isAlive() && p.getName() != this->userName) || this->reachedMaxRange()) {
                 ExplosionManager::getInstance().explode(*this);
                 return true;
             }
@@ -140,5 +139,9 @@ std::string Projectile::getExplosionAudioName() {
 
 ExplosionType Projectile::getExplosionType() {
     return this->explosionType;
+}
+
+void Projectile::setUser(std::string playerName) {
+    this->userName = playerName;
 }
 
