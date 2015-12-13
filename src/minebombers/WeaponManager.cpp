@@ -56,7 +56,7 @@ void WeaponManager::createWeapons() {
     
     ConfigManager& config = ConfigManager::getInstance();
     
-    std::string holySound = "shot";
+    std::string holySound = "lolapua";
     if(config.getInt("are_you_patronizingperson_with_puritan_moral_sense", 1) == 0)
         holySound = "allahuakbar";
  
@@ -94,8 +94,7 @@ void WeaponManager::addWeaponsToPlayer(Player& player) {
     player.buyAmmo("big dynamite", 5, 0);
     player.buyAmmo("mine", 5, 0);
     player.buyAmmo("holy bomb", 1, 0);
-    // Add unlimited ammo to default weapon
-    player.buyAmmo("pick", 999, 0);
+    
     player.nextWeapon();
 }
 

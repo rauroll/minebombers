@@ -71,12 +71,14 @@ void Player::incrementScore(int amount) {
 
 
 void Player::nextWeapon() {
+    auto startedAt = this->activeWeapon;
     while (true) {
         ++activeWeapon;
         if (activeWeapon == weaponsMap.end()) {
             activeWeapon = weaponsMap.begin();
         }
         if (activeWeapon->second > 0) break;
+        if (activeWeapon == startedAt) break;
     }
     
 }

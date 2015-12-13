@@ -55,6 +55,8 @@ ResourceManager::ResourceManager() {
     soundBuffers["plop"] = soundBuffer;
     soundBuffer.loadFromFile("assets/pick.wav");
     soundBuffers["pick"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/lolapua.wav");
+    soundBuffers["lolapua"] = soundBuffer;
 }
 
 ResourceManager::~ResourceManager() {

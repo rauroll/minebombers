@@ -113,6 +113,13 @@ bool Projectile::updateProjectile() {
 
 bool Projectile::updateBomb(sf::Time dt) {
     this->timer -= dt;
+    int spriteLength = sprite.getTexture()->getSize().x / 16;
+    spriteLength = spriteLength == 0 ? 1 : spriteLength;
+    if (tick == tickRate) {
+        spriteColumn = (spriteColumn + 1) % spriteLength;
+        tick = 0;
+    }
+    tick++;
     if (this->timer <= sf::milliseconds(0)) {
         if (this->projectileType == MINE) {
             this->setProjectileType(ACTIVATEDMINE);
