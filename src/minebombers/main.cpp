@@ -11,11 +11,13 @@
 #include "FPS.h"
 #include "Weapon.h"
 #include "Projectile.h"
+#include "ConfigManager.h"
 
 
 int main(int argc, char const** argv) {
-    Game& game = Game::getInstance();
+    ConfigManager::getInstance().loadFromFile("mb.config");
     
+    Game& game = Game::getInstance();
     game.setScene(MENUSCENE);
     
     sf::Vector2u mapSize = game.getMap().getSize();

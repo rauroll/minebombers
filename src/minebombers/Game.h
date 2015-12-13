@@ -101,8 +101,8 @@ private:
     bool isEmpty(sf::Vector2u pos);
     bool addTreasure(Treasure& treasure);
       
-    int round = 0;
-    int totalRounds = 3;
+    int round;
+    int totalRounds;
     bool sound = true;
     
     sf::Clock roundClock;
@@ -110,6 +110,7 @@ private:
     
     bool roundEnded = false;
     sf::Clock roundEndClock;
+    int roundEndClocktime;
     
     std::vector<sf::Vector2u> startPositions;
 };
