@@ -66,13 +66,13 @@ void Game::startRound() {
     sf::Vector2u windowSize = map.getSize();
     overlayImage.create(windowSize.x * 16, windowSize.y * 16, sf::Color(0, 0, 0, 255));
     
-    setRandomTreasures(50);
+    setRandomTreasures(treasureCount);
     
     if(round == 1) {
         WeaponManager& wepMan = WeaponManager::getInstance();
         wepMan.createWeapons();
         for (auto& p : players) {
-            p.incrementMoney(500);
+            p.incrementMoney(startMoney);
             wepMan.addWeaponsToPlayer(p); 
         }
     }
