@@ -22,7 +22,6 @@ Treasure::Treasure(const Treasure& orig) {
     value = orig.value;
     score = orig.score;
     position = orig.position;
-    
     sprite.setPosition(position.x * 16, position.y * 16);
 }
 
