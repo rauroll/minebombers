@@ -48,7 +48,9 @@ void Game::startRound() {
     round++;
     roundEnded = false;
     roundClock.restart();
+
     roundTime = sf::seconds(roundEndClocktime);
+
     //map = loader.fromFile("maps/map.mb");
     map = gen.generate();
     
@@ -64,13 +66,12 @@ void Game::startRound() {
     setRandomTreasures(50);
     
     if(round == 1) {
-        addPlayer("JERE", "assets/playersprite1.png");
-        addPlayer("JERE2", "assets/playersprite2.png");
-
         WeaponManager& wepMan = WeaponManager::getInstance();
         wepMan.createWeapons();
-        for (auto& p : players)
+        for (auto& p : players) {
+            p.incrementMoney(500);
             wepMan.addWeaponsToPlayer(p); 
+        }
     }
     
     for(auto& p : players) {
@@ -178,15 +179,17 @@ bool Game::addTreasure(Treasure& treasure) {
     return false;
 }
 
-void Game::clearTreasures() {
+void Game::clearTreasures() {  
     treasures.clear();
 }
 
 void Game::setRandomTreasures(uint16_t amount) {
     while(amount) {
         sf::Vector2u pos(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 1);
-        sf::Sprite sprite = sf::Sprite(ResourceManager::getInstance().loadTexture("assets/my_doc.png"));
-        treasures.push_back(Treasure(sprite, 1, (rand() % 8) * 100 + 100, pos));
+        std::vector<std::string> treasureTextures = {"assets/treasure0.png", "assets/treasure1.png", "assets/treasure2.png", "assets/treasure3.png"};
+        int value = (rand() % 8) * 100 + 100;
+        sf::Sprite sprite = sf::Sprite(ResourceManager::getInstance().loadTexture(treasureTextures[value / 800.0 * 3]));
+        treasures.push_back(Treasure(sprite, 1, value, pos));
         Tile tile(0, 0, FLOOR);
         map.setTile(pos, tile);
         amount--;

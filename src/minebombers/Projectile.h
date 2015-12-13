@@ -35,6 +35,8 @@ public:
     std::string getExplosionAudioName();
     ExplosionType getExplosionType();
     
+    void setUser(std::string playerName);
+    
     
     bool update(sf::Time dt);
     bool updateProjectile();
@@ -57,6 +59,7 @@ private:
     ExplosionType explosionType;
     unsigned int range;
     unsigned int moved = 0;
+    std::string userName = "default";
 };
 
 #endif /* BULLET_H */

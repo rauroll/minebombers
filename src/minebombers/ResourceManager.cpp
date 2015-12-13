@@ -128,5 +128,5 @@ const void ResourceManager::playMusic(std::string musicName) {
 }
 
 const void ResourceManager::enableMusic(bool enable) {
-    music.setVolume(enable ? 15 : 0);
+    music.setVolume(enable ? 25 : 0);
 }

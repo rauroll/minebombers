@@ -62,13 +62,10 @@ void ConfigManager::loadFromFile(const std::string& path) {
             std::getline(ss, value, '=');
             
             if(!value.empty()) {
-                std::cout << key << "=" << value << std::endl;
                 values[key] = value;
             }
         }
     }
-    
-    std::cout << "config loaded" << std::endl;
 }
 
 int ConfigManager::getInt(const std::string& key) {

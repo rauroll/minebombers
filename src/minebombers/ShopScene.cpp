@@ -99,17 +99,18 @@ void ShopScene::draw(sf::RenderWindow& window) {
     
     int i = 0;
     for(auto w : weapons) {
-        sf::Text text(w.getName(), font, 72);
+        sf::Text text(w.getName() + ", $" + std::to_string(w.getPrice()), font, 72);
         text.setPosition(200, 200 + i++ * 80);
         window.draw(text);
         // draw players ammo for each weapon if the player has it
+        
         sf::Text player1Ammo(std::to_string(players[0].getAmmo(w.getName())), font, 28);
         player1Ammo.setColor(sf::Color(255, 0, 0));
-        player1Ammo.setPosition(text.getPosition().x + text.getGlobalBounds().width + 20, text.getPosition().y + 12);
+        player1Ammo.setPosition(text.getPosition().x + text.getGlobalBounds().width + 30, text.getPosition().y + 12);
         window.draw(player1Ammo);
         sf::Text player2Ammo(std::to_string(players[1].getAmmo(w.getName())), font, 28);
         player2Ammo.setColor(sf::Color(0, 255, 0));
-        player2Ammo.setPosition(text.getPosition().x + text.getGlobalBounds().width + 20, text.getPosition().y + 48);
+        player2Ammo.setPosition(text.getPosition().x + text.getGlobalBounds().width + 30, text.getPosition().y + 48);
         window.draw(player2Ammo);
         
     }
@@ -122,13 +123,13 @@ void ShopScene::draw(sf::RenderWindow& window) {
         window.draw(circle);
     }
     
-    sf::Text player1Money(std::to_string(players[0].getMoney()), font, 36);
-    player1Money.setPosition(window.getSize().x - 200, 12);
+    sf::Text player1Money("PLAYER1 money $" + std::to_string(players[0].getMoney()), font, 36);
+    player1Money.setPosition(800, 12);
     player1Money.setColor(sf::Color(0, 255, 0));
     window.draw(player1Money);
 
-    sf::Text player2Money(std::to_string(players[1].getMoney()), font, 36);
-    player2Money.setPosition(window.getSize().x - 300, 12);
+    sf::Text player2Money("PLAYER2 money $" + std::to_string(players[1].getMoney()), font, 36);
+    player2Money.setPosition(800, 48);
     player2Money.setColor(sf::Color(255, 0, 0));
     window.draw(player2Money);
 
