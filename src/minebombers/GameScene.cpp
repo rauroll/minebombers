@@ -101,9 +101,9 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
         name.setColor(p.getColor());
         window.draw(name);
         
-        sf::Text hp = sf::Text(std::to_string(p.getHealth()), font, playerFontSize * 1.1);
-        hp.setPosition(playerX + name.getLocalBounds().width + 5, playerY - playerFontSize * 1.1 * 3);
-        hp.setColor(sf::Color(200 - p.getHealth() * 200 / 100, p.getHealth() * 200 / 100, 50));
+        sf::RectangleShape hp(sf::Vector2f(p.getHealth(), 3));
+        hp.setPosition(playerX, playerY - playerFontSize * 1.1 * 2 + 3);
+        hp.setFillColor(sf::Color(200 - p.getHealth() * 200 / 100, p.getHealth() * 200 / 100, 50));
         window.draw(hp);
         
         sf::Text mohlay = sf::Text("Money: " + std::to_string(p.getMoney()), font, playerFontSize);

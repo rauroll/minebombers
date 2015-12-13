@@ -83,8 +83,6 @@ void Game::startRound() {
         map.makeFloorAround(p.getPos());
         revealMapAt(p.getPos());
     }
-    
-    ResourceManager::getInstance().playMusic("game");
 }
 
 
