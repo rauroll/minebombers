@@ -233,18 +233,26 @@ void GameScene::checkKeys() {
                     if (b.x) {
                         switch(reaction) {
                             case MOVE_UP:
-                                if(b.y % 5 == 1)
+                                if(b.y == 1)
+                                    game.turnPlayer(i, sf::Vector2u(0, -1));
+                                else if(b.y % 5 == 1)
                                     game.movePlayer(i, sf::Vector2u(0, -1));
                                 break;
                             case MOVE_DOWN:
+                                if(b.y == 1)
+                                    game.turnPlayer(i, sf::Vector2u(0, 1));
                                 if(b.y % 5 == 1)
                                     game.movePlayer(i, sf::Vector2u(0, 1));
                                 break;
                             case MOVE_LEFT:
+                                if(b.y == 1)
+                                    game.turnPlayer(i, sf::Vector2u(-1, 0));
                                 if(b.y % 5 == 1)
                                     game.movePlayer(i, sf::Vector2u(-1, 0));
                                 break;
                             case MOVE_RIGHT:
+                                if(b.y == 1)
+                                    game.turnPlayer(i, sf::Vector2u(1, 0));
                                 if(b.y % 5 == 1)
                                     game.movePlayer(i, sf::Vector2u(1, 0));
                                 break;
