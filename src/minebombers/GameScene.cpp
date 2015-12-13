@@ -137,7 +137,7 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
         window.draw(rect);
         
         std::vector<Player> sortedPlayers = game.getPlayersSortedByScore();
-        sf::Text roundEnded(game.getRound() == 3 ? sortedPlayers[0].getName() + " won!" : "The round has ended!", font, 100);
+        sf::Text roundEnded(game.getRound() == game.getTotalRounds() ? sortedPlayers[0].getName() + " won!" : "The round has ended!", font, 100);
         roundEnded.setPosition(windowSize.x / 2 - roundEnded.getLocalBounds().width / 2, 200);
         window.draw(roundEnded);
         int y = 200 + roundEnded.getLocalBounds().height + 100;
@@ -149,7 +149,7 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
             y += 65;
         }
         
-        if (game.getRound() == 3) {
+        if (game.getRound() == game.getTotalRounds()) {
             sf::Text keyNote("Press enter to return to the menu", font, 50);
             keyNote.setPosition(windowSize.x / 2 - keyNote.getLocalBounds().width / 2, windowSize.y - 75);
             keyNote.setColor(sf::Color(255, 255, 255, 200));
@@ -169,7 +169,7 @@ void GameScene::onEvent(sf::Event& event) {
     switch (event.type)
     {
         case sf::Event::KeyPressed: {
-            if (game.getRound() == 3 && event.key.code == sf::Keyboard::Return && game.roundHasEnded())
+            if (game.getRound() == game.getTotalRounds() && event.key.code == sf::Keyboard::Return && game.roundHasEnded())
                 game.setScene(MENUSCENE);
             else {
                 sf::Vector2u& v = keyboard[event.key.code];
