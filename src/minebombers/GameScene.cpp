@@ -18,9 +18,10 @@
 #include "ResourceManager.h"
 #include "Player.h"
 #include "ButtonReactionFactory.h"
+#include "ConfigManager.h"
 
 GameScene::GameScene() {
-    
+    showShadow = (bool)ConfigManager::getInstance().getInt("shadow", 1);
 }
 
 GameScene::GameScene(const GameScene& orig) {
@@ -64,11 +65,14 @@ void GameScene::draw(sf::RenderWindow& window) {
     }
     
     // draw map overlay
-    sf::Texture overlayTexture;
-    overlayTexture.loadFromImage(game.getOverlayImage());
-    sf::Sprite overlay;
-    overlay.setTexture(overlayTexture);
-    //window.draw(overlay);
+    if(showShadow) {
+        
+        sf::Texture overlayTexture;
+        overlayTexture.loadFromImage(game.getOverlayImage());
+        sf::Sprite overlay;
+        overlay.setTexture(overlayTexture);
+        window.draw(overlay);
+    }
     
     drawStatusBar(window);
 }
