@@ -25,10 +25,10 @@ public:
     
     int getHealth();
     void setHealt(int health);
-    void reduceHealth(int damage);
+    void reduceHealth(int damage, std::string damagedBy);
     bool isAlive();
 private:
-    
+    std::string lastDamagedBy;
     int health;
 };
 

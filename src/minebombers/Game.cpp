@@ -114,8 +114,29 @@ sf::Vector2u Game::getCanvasSize() {
     return sf::Vector2u(s.x * 16, s.y * 16 + 100);
 }
 
-void Game::onPlayerDead() {
-    endRound();
+void Game::onPlayerDead(std::string killed, std::string killer) {
+    for (auto& p : players) {
+        if (p.getName() == killer) {
+            if (killer == killed)
+                p.incrementScore(-5);
+            else 
+                p.incrementScore(10);
+        }
+    }
+    if (this->lastManStanding()) {
+        endRound();
+    }
+    
+}
+
+bool Game::lastManStanding() {
+    int alive = 0;
+    for (auto& p : players) {
+        if (p.isAlive()) {
+            alive++;
+        }
+    }
+    return alive <= 1;
 }
 
 std::vector<Player>& Game::getPlayers() {
