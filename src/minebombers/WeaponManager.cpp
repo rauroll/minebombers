@@ -56,7 +56,7 @@ void WeaponManager::createWeapons() {
     
     ConfigManager& config = ConfigManager::getInstance();
     
-    std::string holySound = "shot";
+    std::string holySound = "lolapua";
     if(config.getInt("are_you_patronizingperson_with_puritan_moral_sense", 1) == 0)
         holySound = "allahuakbar";
  
