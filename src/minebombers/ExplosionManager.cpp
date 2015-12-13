@@ -43,6 +43,7 @@ void ExplosionManager::crossExplosion(Projectile& projectile) {
     Map& map = game.getMap();
     sf::Vector2u loc = projectile.getPos();
     std::vector<Player>& players = game.getPlayers();
+    std::vector<Projectile>& projectiles = game.getProjectiles();
     sf::Vector2u radius = projectile.getRadius();
     int damage = projectile.getDamage();
     
@@ -61,6 +62,11 @@ void ExplosionManager::crossExplosion(Projectile& projectile) {
             for (auto& p : players) {
                 if (p.getPos() == currentLoc) {
                     p.reduceHealth(damage, projectile.getUser());
+                }
+            }
+            for (auto& p : projectiles) {
+                if (p.getPos() == currentLoc) {
+                    this->chainExplode(p);
                 }
             }
             currentLoc = (sf::Vector2u)((sf::Vector2i)currentLoc + dir);
@@ -92,6 +98,7 @@ void ExplosionManager::circleExplosion(Projectile& projectile) {
     Map& map = game.getMap();
     sf::Vector2u loc = projectile.getPos();
     std::vector<Player>& players = game.getPlayers();
+    std::vector<Projectile>& projectiles = game.getProjectiles();
     sf::Vector2u radius = projectile.getRadius();
     int damage = projectile.getDamage();
     
@@ -129,6 +136,11 @@ void ExplosionManager::circleExplosion(Projectile& projectile) {
                         p.reduceHealth(damage, projectile.getUser());
                     }
                 }
+                for (auto& p : projectiles) {
+                    if (p.getPos() == explosionLoc) {
+                        this->chainExplode(p);
+                    }
+                }
             }
         }
     }
@@ -146,6 +158,11 @@ unsigned int ExplosionManager::euclideanDistance(sf::Vector2i v1, sf::Vector2i v
 
 void ExplosionManager::recursiveCircleExplosion(Projectile& projectile) {
     
+}
+
+void ExplosionManager::chainExplode(Projectile& projectile) {
+    projectile.setProjectileType(EXPLOSIVE);
+    projectile.setTimer(sf::milliseconds(30));
 }
 
 void ExplosionManager::explode(Projectile& projectile) {

@@ -14,14 +14,17 @@
 #include "Player.h"
 #include "WeaponManager.h"
 #include <iostream>
+#include <stdlib.h>
 
 Player::Player() : money(0), score(0), Entity() {
+    calculateColor();
 }
 
 
 Player::Player(const std::string& texturefile, int x, int y, const std::string& name) : Entity(texturefile, x, y, 100, name) {
     money = 0;
     score = 0;
+    calculateColor();
 }
 
 Player::Player(const Player& orig) : Entity(orig){
@@ -29,10 +32,25 @@ Player::Player(const Player& orig) : Entity(orig){
     score = orig.score;
     weaponsMap = std::map<std::string, unsigned int>(orig.weaponsMap);
     activeWeapon = orig.activeWeapon;
+    calculateColor();
 }
 
 Player::~Player() {
 }
+
+const sf::Color& Player::getColor() {
+    return color;
+}
+
+
+void Player::calculateColor() {
+    int c = 0;
+    for (int i = 0; i < name.size(); i++)
+        c += (int) name[i];
+    srand(c);
+    color = sf::Color(50 +rand() % 150, 50 + rand() % 150, 50 + rand() % 150);
+}
+
 
 void Player::incrementMoney(uint32_t amount) {
     money += amount;

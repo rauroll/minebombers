@@ -35,6 +35,8 @@ public:
     void circleExplosion(Projectile& projectile);
     void recursiveCircleExplosion(Projectile& projectile);
     
+    void chainExplode(Projectile& projectile);
+    
     void explode(Projectile& projectile);
     
 private:

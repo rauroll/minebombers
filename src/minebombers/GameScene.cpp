@@ -95,7 +95,7 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
     for(auto &p : players) {
         sf::Text name = sf::Text(p.getName(), font, playerFontSize * 1.1);
         name.setPosition(playerX, playerY - playerFontSize * 1.1 * 3);
-        name.setColor(statusBarColor);
+        name.setColor(p.getColor());
         window.draw(name);
         
         sf::Text hp = sf::Text(std::to_string(p.getHealth()), font, playerFontSize * 1.1);
@@ -124,7 +124,7 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
     
     sf::Text roundStatus("Round " + std::to_string(game.getRound()) + " / " + std::to_string(game.getTotalRounds()), font, 60);
     roundStatus.setColor(statusBarColor);
-    roundStatus.setPosition(windowSize.x / 2 - roundStatus.getLocalBounds().width / 2, windowSize.y - statusBarHeight / 2 - 38);
+    roundStatus.setPosition(windowSize.x - roundStatus.getLocalBounds().width - 20, windowSize.y - statusBarHeight / 2 - 18);
     window.draw(roundStatus);
     
     // draw round end overlay
@@ -141,8 +141,9 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
         for (auto player : sortedPlayers) {
             sf::Text t(player.getName() + ": " + std::to_string(player.getScore()), font, 50);
             t.setPosition(windowSize.x / 2 - t.getLocalBounds().width / 2, y);
+            t.setColor(player.getColor());
             window.draw(t);
-            y += t.getLocalBounds().height + 10;
+            y += t.getLocalBounds().height + 20;
         }
         
         if (game.getRound() == 3) {
@@ -153,7 +154,7 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
         }
     } else {
         sf::Text roundClock = sf::Text("Time left: " + std::to_string((int) ceil(game.getRoundRemainingTime().asSeconds())), font, 40);
-        roundClock.setPosition(windowSize.x - roundClock.getLocalBounds().width - 40, windowSize.y - statusBarHeight / 2 - 23);
+        roundClock.setPosition(windowSize.x - roundClock.getLocalBounds().width - 20, windowSize.y - statusBarHeight / 2 - 48);
         roundClock.setColor(statusBarColor);
         window.draw(roundClock);
     }
