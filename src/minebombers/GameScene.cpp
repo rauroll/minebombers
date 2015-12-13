@@ -95,7 +95,7 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
     for(auto &p : players) {
         sf::Text name = sf::Text(p.getName(), font, playerFontSize * 1.1);
         name.setPosition(playerX, playerY - playerFontSize * 1.1 * 3);
-        name.setColor(statusBarColor);
+        name.setColor(p.getColor());
         window.draw(name);
         
         sf::Text hp = sf::Text(std::to_string(p.getHealth()), font, playerFontSize * 1.1);

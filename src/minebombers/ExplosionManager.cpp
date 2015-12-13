@@ -61,7 +61,7 @@ void ExplosionManager::crossExplosion(Projectile& projectile) {
 
             for (auto& p : players) {
                 if (p.getPos() == currentLoc) {
-                    p.reduceHealth(damage);
+                    p.reduceHealth(damage, projectile.getUser());
                 }
             }
             for (auto& p : projectiles) {
@@ -83,7 +83,7 @@ void ExplosionManager::crossExplosion(Projectile& projectile) {
 
     for (auto& p : players) {
         if (p.getPos() == loc) {
-            p.reduceHealth(damage);
+            p.reduceHealth(damage, projectile.getUser());
         }
     }
 
@@ -133,7 +133,7 @@ void ExplosionManager::circleExplosion(Projectile& projectile) {
 
                 for (auto& p : players) {
                     if (p.getPos() == explosionLoc) {
-                        p.reduceHealth(damage);
+                        p.reduceHealth(damage, projectile.getUser());
                     }
                 }
                 for (auto& p : projectiles) {
@@ -162,7 +162,7 @@ void ExplosionManager::recursiveCircleExplosion(Projectile& projectile) {
 
 void ExplosionManager::chainExplode(Projectile& projectile) {
     projectile.setProjectileType(EXPLOSIVE);
-    projectile.setTimer(sf::milliseconds(30));
+    projectile.setTimer(sf::milliseconds(100));
 }
 
 void ExplosionManager::explode(Projectile& projectile) {
