@@ -18,9 +18,10 @@
 #include "ResourceManager.h"
 #include "Player.h"
 #include "ButtonReactionFactory.h"
+#include "ConfigManager.h"
 
 GameScene::GameScene() {
-    
+    showShadow = (bool)ConfigManager::getInstance().getInt("shadow", 1);
 }
 
 GameScene::GameScene(const GameScene& orig) {
@@ -64,12 +65,14 @@ void GameScene::draw(sf::RenderWindow& window) {
     }
     
     // draw map overlay
-    sf::Texture overlayTexture;
-    overlayTexture.loadFromImage(game.getOverlayImage());
-    sf::Sprite overlay;
-    overlay.setTexture(overlayTexture);
-    window.draw(overlay);
-    
+    if(showShadow) {
+        sf::Texture overlayTexture;
+        overlayTexture.loadFromImage(game.getOverlayImage());
+        sf::Sprite overlay;
+        overlay.setTexture(overlayTexture);
+        window.draw(overlay);
+    }
+
     drawStatusBar(window);
 }
 
@@ -230,18 +233,26 @@ void GameScene::checkKeys() {
                     if (b.x) {
                         switch(reaction) {
                             case MOVE_UP:
-                                if(b.y % 5 == 1)
+                                if(b.y == 1)
+                                    game.turnPlayer(i, sf::Vector2u(0, -1));
+                                else if(b.y % 5 == 1)
                                     game.movePlayer(i, sf::Vector2u(0, -1));
                                 break;
                             case MOVE_DOWN:
+                                if(b.y == 1)
+                                    game.turnPlayer(i, sf::Vector2u(0, 1));
                                 if(b.y % 5 == 1)
                                     game.movePlayer(i, sf::Vector2u(0, 1));
                                 break;
                             case MOVE_LEFT:
+                                if(b.y == 1)
+                                    game.turnPlayer(i, sf::Vector2u(-1, 0));
                                 if(b.y % 5 == 1)
                                     game.movePlayer(i, sf::Vector2u(-1, 0));
                                 break;
                             case MOVE_RIGHT:
+                                if(b.y == 1)
+                                    game.turnPlayer(i, sf::Vector2u(1, 0));
                                 if(b.y % 5 == 1)
                                     game.movePlayer(i, sf::Vector2u(1, 0));
                                 break;
