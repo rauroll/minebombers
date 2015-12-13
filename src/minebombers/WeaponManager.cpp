@@ -45,7 +45,7 @@ void WeaponManager::createWeapons() {
     // Projectiles
 
     Projectile proj = Projectile("jonnemissile", "assets/projectile.png", "explosion", 30, explosion, PROJECTILE, CIRCLE, sf::Vector2u(2, 2));
-    Projectile nuclearMissile = Projectile("nuc", "assets/nuclear_missile.png", "explosion", 50, explosion, PROJECTILE, CIRCLE, sf::Vector2u(12, 12));
+    Projectile nuclearMissile = Projectile("nuc", "assets/nuclear_missile.png", "hugeboom", 50, explosion, PROJECTILE, CIRCLE, sf::Vector2u(12, 12));
 
     Projectile basicBomb = Projectile("sbomb", "assets/bomb.png", "boom", 30, explosion, EXPLOSIVE, CIRCLE, sf::Vector2u(4, 4), sf::milliseconds(1500));
     Projectile atomicBomb = Projectile("abomb", "assets/atomic_bomb.png", "boom", 70, explosion, EXPLOSIVE, CROSS, sf::Vector2u(100, 100), sf::milliseconds(4000));
