@@ -39,6 +39,7 @@ public:
     
 private:
     std::vector<sf::Vector2i> directions;
+    unsigned int euclideanDistance(sf::Vector2i v1, sf::Vector2i v2);
     
 
 };
