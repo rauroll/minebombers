@@ -41,7 +41,7 @@ std::map<sf::Keyboard::Key, ButtonReaction> ButtonReactionFactory::getPlayerButt
         buttons[(sf::Keyboard::Key)(config.getInt("p1_change_weapon", sf::Keyboard::RShift))] = CHANGE_WEAPON;
     }
     else if (id == 1) {
-        buttons[(sf::Keyboard::Key)(config.getInt("p2_up", sf::Keyboard::A))] = MOVE_UP;
+        buttons[(sf::Keyboard::Key)(config.getInt("p2_up", sf::Keyboard::W))] = MOVE_UP;
         buttons[(sf::Keyboard::Key)(config.getInt("p2_down", sf::Keyboard::S))] = MOVE_DOWN;
         buttons[(sf::Keyboard::Key)(config.getInt("p2_left", sf::Keyboard::A))] = MOVE_LEFT;
         buttons[(sf::Keyboard::Key)(config.getInt("p2_right", sf::Keyboard::D))] = MOVE_RIGHT;
