@@ -39,6 +39,8 @@ private:
     
     std::map<sf::Keyboard::Key, sf::Vector2u> keyboard;
     std::vector<std::map<sf::Keyboard::Key, ButtonReaction> > playerButtons;
+    
+    bool showShadow;
 };
 
 #endif /* GAMESCENE_H */
