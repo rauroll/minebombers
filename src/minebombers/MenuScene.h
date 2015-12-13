@@ -34,7 +34,7 @@ private:
     int selectedMap = 0;
     
     std::vector<std::string> options{"2 players", "3 players", "4 players"};
-    std::vector<std::string> maps{"generated map", "map1.asd", "map2.asd"};
+    std::vector<std::string> maps{"random map", "map1.asd", "map2.asd"};
 };
 
 #endif /* MENUSCENE_H */
