@@ -66,7 +66,6 @@ void GameScene::draw(sf::RenderWindow& window) {
     
     // draw map overlay
     if(showShadow) {
-        
         sf::Texture overlayTexture;
         overlayTexture.loadFromImage(game.getOverlayImage());
         sf::Sprite overlay;
