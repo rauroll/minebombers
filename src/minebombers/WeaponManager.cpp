@@ -53,14 +53,17 @@ void WeaponManager::createWeapons() {
     Projectile bigDynamite = Projectile("big dynamite", "assets/dynamite_big.png", "boom", 70, explosion, EXPLOSIVE, CROSS, sf::Vector2u(10, 10), sf::milliseconds(3000));
     Projectile pick = Projectile("pick", "assets/projectile.png", "explosion", 20, explosion, PICK, CROSS, sf::Vector2u(0, 0), sf::milliseconds(0), 1);
     
+    Projectile holybomb = Projectile("holybomb", "assets/teddy.png", "holyboom", 120, explosion, EXPLOSIVE, CIRCLE, sf::Vector2u(200, 200), sf::milliseconds(4000));
+    
     Projectile mineBomb = Projectile("landmine", "assets/mine.png", "boom", 100, explosion, MINE, CIRCLE, sf::Vector2u(5, 5), sf::milliseconds(5000));
     //Weapons
     this->addWeapon(Weapon("jonnegun", "lazer", 49, proj));
     this->addWeapon(Weapon("nuclear missile", "lazer", 1000, nuclearMissile));
     this->addWeapon(Weapon("small bomb", "shot", 300, basicBomb));
-    this->addWeapon(Weapon("small dynamite", "shot", 100, smallDynamite));
-    this->addWeapon(Weapon("big dynamite", "shot", 200, bigDynamite));
+    this->addWeapon(Weapon("small dynamite", "ignite", 100, smallDynamite));
+    this->addWeapon(Weapon("big dynamite", "ignite", 200, bigDynamite));
     this->addWeapon(Weapon("atomic bomb", "shot", 800, atomicBomb));
+    this->addWeapon(Weapon("holy bomb", "shot", 5000, holybomb));
     this->addWeapon(Weapon("mine", "shot", 500, mineBomb));
     this->pick = Weapon("pick", "pick", 0, pick);
     
@@ -83,6 +86,7 @@ void WeaponManager::addWeaponsToPlayer(Player& player) {
     player.buyAmmo("small dynamite", 5, 0);
     player.buyAmmo("big dynamite", 5, 0);
     player.buyAmmo("mine", 5, 0);
+    player.buyAmmo("holy bomb", 1, 0);
     // Add unlimited ammo to default weapon
     player.buyAmmo("pick", 999, 0);
     player.nextWeapon();
