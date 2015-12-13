@@ -36,13 +36,16 @@ public:
     void addAmmo(std::string weaponName, unsigned int amount);
     bool hasAmmo();
     void incrementMoney(uint32_t amount);
+    void incrementScore(uint32_t amount);
     int getMoney() const;
+    int getScore() const;
     Weapon& getActiveWeapon();
 private:
     std::map<std::string, unsigned int> weaponsMap;
     typedef std::map<std::string, unsigned int>::iterator weapon_iterator;
     weapon_iterator activeWeapon;
     uint32_t money;
+    uint32_t score;
 };
 
 #endif /* PLAYER_H */
