@@ -68,7 +68,7 @@ void GameScene::draw(sf::RenderWindow& window) {
     overlayTexture.loadFromImage(game.getOverlayImage());
     sf::Sprite overlay;
     overlay.setTexture(overlayTexture);
-    //window.draw(overlay);
+    window.draw(overlay);
     
     drawStatusBar(window);
 }
@@ -144,6 +144,13 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
             window.draw(t);
             y += t.getLocalBounds().height + 10;
         }
+        
+        if (game.getRound() == 3) {
+            sf::Text keyNote("Press enter to return to the menu", font, 50);
+            keyNote.setPosition(windowSize.x / 2 - keyNote.getLocalBounds().width / 2, windowSize.y - 75);
+            keyNote.setColor(sf::Color(255, 255, 255, 200));
+            window.draw(keyNote);
+        }
     } else {
         sf::Text roundClock = sf::Text("Time left: " + std::to_string((int) ceil(game.getRoundRemainingTime().asSeconds())), font, 40);
         roundClock.setPosition(windowSize.x - roundClock.getLocalBounds().width - 40, windowSize.y - statusBarHeight / 2 - 23);
@@ -158,7 +165,7 @@ void GameScene::onEvent(sf::Event& event) {
     switch (event.type)
     {
         case sf::Event::KeyPressed: {
-            if (game.getRound() == 3 && game.roundHasEnded())
+            if (game.getRound() == 3 && event.key.code == sf::Keyboard::Return && game.roundHasEnded())
                 game.setScene(MENUSCENE);
             else {
                 sf::Vector2u& v = keyboard[event.key.code];

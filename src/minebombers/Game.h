@@ -38,6 +38,8 @@ public:
     Map& getMap();
     std::vector<Player>& getPlayers();
     std::vector<Player> getPlayersSortedByScore();
+    
+    void initGame();
 
     void clearTreasures();
     void setRandomTreasures(uint16_t amount);
@@ -45,7 +47,7 @@ public:
     
     bool isEntityAtPos(sf::Vector2u pos);
     
-    void addPlayer(const std::string& name);
+    void addPlayer(const std::string& name, const std::string textureName);
     void movePlayer(uint8_t player, sf::Vector2u d);
     sf::Vector2u getRandomEmptyPos();
     void addProjectile(Projectile projectile);

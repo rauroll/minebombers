@@ -37,14 +37,13 @@ Game::Game() {
     scenes[SHOPSCENE] = new ShopScene();
     
     map = loader.fromFile("maps/map.mb");
-    
 }
 
 void Game::startRound() {
     round++;
     roundEnded = false;
     roundClock.restart();
-    roundTime = sf::seconds(100);
+    roundTime = sf::seconds(10);
     //map = loader.fromFile("maps/map.mb");
     map = gen.generate();
     
@@ -60,13 +59,15 @@ void Game::startRound() {
     setRandomTreasures(50);
     
     if(round == 1) {
-        addPlayer("JERE");
-        addPlayer("JERE2");
+        addPlayer("JERE", "assets/playersprite1.png");
+        addPlayer("JERE2", "assets/playersprite2.png");
 
         WeaponManager& wepMan = WeaponManager::getInstance();
         wepMan.createWeapons();
-        for (auto& p : players)
+        for (auto& p : players) {
+            p.incrementMoney(500);
             wepMan.addWeaponsToPlayer(p); 
+        }
     }
     
     for(auto& p : players) {
@@ -78,13 +79,19 @@ void Game::startRound() {
     ResourceManager::getInstance().playMusic("game");
 }
 
+
 void Game::endRound(bool switchToShop) {
     if (switchToShop) {
-        setScene(SHOPSCENE);
-       // players.clear();
+        if(round == totalRounds) {
+            setScene(MENUSCENE);
+        }
+        else {
+            setScene(SHOPSCENE);
+        }
+        
         treasures.clear();
         effects.clear();
-        //projectiles.clear();
+        projectiles.clear();
     } else {
         roundEndClock.restart();
         roundEnded = true;
@@ -258,10 +265,10 @@ sf::Vector2u Game::getRandomEmptyPos() {
     return pos;
 }
 
-void Game::addPlayer(const std::string& name) {
+void Game::addPlayer(const std::string& name, const std::string textureName) {
     sf::Vector2u pos = sf::Vector2u(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 2);
     
-    Player p("assets/playersprite.png", pos.x, pos.y, name);
+    Player p(textureName, pos.x, pos.y, name);
     players.push_back(p);
 }
 
@@ -292,12 +299,13 @@ bool Game::soundEnabled() {
 }
 
 void Game::update(sf::Time dt) {
-    if (getRoundRemainingTime() <= sf::seconds(0)) {
+    if (getRoundRemainingTime() <= sf::seconds(0) && !roundEnded) {
         endRound();
     }
     
-    if (roundEndClock.getElapsedTime().asSeconds() > 5 && roundEnded)
-        endRound(true);
+    if (roundEndClock.getElapsedTime().asSeconds() > 5 && roundEnded) {
+        endRound(true);   
+    }
     
     for(auto &i : players) {
         i.updateSpritePosition(4);
@@ -327,5 +335,11 @@ void Game::update(sf::Time dt) {
             i--;
         }
     }
+}
 
+void Game::initGame() {
+    round = 0;
+    players.clear();
+    treasures.clear();
+    projectiles.clear();
 }
