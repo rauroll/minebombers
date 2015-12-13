@@ -66,6 +66,10 @@ void Tile::setLevel(int level) {
     this->level = level;
 }
 
+void Tile::setHp(int hp) {
+    this->hp = hp;
+}
+
 void Tile::reduceLevel(int dmg) {
     this->hp = std::max(0, this->hp - dmg);
     this->level = ((float) this->hp / this->maxHp) * this->startLevel;

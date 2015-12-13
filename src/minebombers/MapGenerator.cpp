@@ -46,6 +46,7 @@ Map MapGenerator::generate() {
         for(int y = 0; y < h; y++) {
             bool isSoft = rand() % 100 < softRatio * 100;
             Tile tile = Tile(5, isSoft ? 20 : 30, ROCK);
+            tile.setHp(isSoft ? 50 : 100);
             sf::Vector2u pos(x, y);
             map.setTile(pos, tile);
         }
