@@ -100,6 +100,13 @@ bool Map::wallAt(sf::Vector2u newPosition) {
     return (outOfBounds || tileType == WALL);
 }
 
+bool Map::isUnpassable(sf::Vector2u newPosition) {
+    bool outOfBounds = (newPosition.x == 0 || newPosition.y == 0 || newPosition.x > getSize().x-1 ||newPosition.y >= getSize().y-1);
+    const Tile& tile = this->getTile(newPosition);
+    TileType tileType = tile.getType();
+    return (outOfBounds || tileType == WALL || (tileType == ROCK && tile.getLevel() > 0));
+}
+
 void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     states.transform *= getTransform();
     states.texture = &tileset.getTexture();

@@ -50,7 +50,9 @@ void ExplosionManager::crossExplosion(Projectile& projectile) {
         auto currentLoc = (sf::Vector2u)((sf::Vector2i)loc + dir);
         
         unsigned int rangeLeft = projectile.getRadius().x;
-        while (!game.getMap().wallAt(currentLoc) && rangeLeft > 0) {
+        bool stoppedByDirt = false;
+        while (!map.wallAt(currentLoc) && rangeLeft > 0 && !stoppedByDirt) {
+            stoppedByDirt = map.isUnpassable(currentLoc);
             Effect effect = Effect(projectile.getEffect());
             effect.setPos(currentLoc);
 
@@ -80,7 +82,6 @@ void ExplosionManager::crossExplosion(Projectile& projectile) {
         }
     }
 
-    ResourceManager::getInstance().playExplosion(damage, projectile.getExplosionAudioName());
 }
 
 void ExplosionManager::recursiveExplosion(Projectile& projectile) {
@@ -165,4 +166,5 @@ void ExplosionManager::explode(Projectile& projectile) {
         default:
             break;
     }
+    ResourceManager::getInstance().playExplosion(projectile.getDamage(), projectile.getExplosionAudioName());
 }

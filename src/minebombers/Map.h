@@ -33,6 +33,7 @@ public:
     void setTileLevel(sf::Vector2u pos, int level);
     bool floorAt(sf::Vector2u newPosition);
     bool wallAt(sf::Vector2u newPosition);
+    bool isUnpassable(sf::Vector2u newPosition);
     void makeFloorAround(sf::Vector2u pos);
 
     void clearTiles();
