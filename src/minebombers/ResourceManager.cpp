@@ -129,7 +129,7 @@ const void ResourceManager::playExplosion(int damage, std::string soundName) {
     if (Game::getInstance().soundEnabled()) {
         if (sounds.find(soundName) == sounds.end())
             sounds[soundName] = sf::Sound(soundBuffers.at(soundName));
-        sounds[soundName].setPitch(1 / (damage / 20.0));
+        if (soundName != "holyboom") sounds[soundName].setPitch(1 / (damage / 20.0));
         sounds[soundName].setVolume(50 * (damage / 30.0));
         sounds[soundName].play();
     }
