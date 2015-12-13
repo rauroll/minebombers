@@ -38,6 +38,8 @@ public:
     Map& getMap();
     std::vector<Player>& getPlayers();
     std::vector<Player> getPlayersSortedByScore();
+    
+    void initGame();
 
     void clearTreasures();
     void setRandomTreasures(uint16_t amount);

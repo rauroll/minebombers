@@ -30,7 +30,6 @@ void MenuScene::onChangedTo() {
 
 }
 
-
 void MenuScene::onEvent(sf::Event& event) {
     Game& game = Game::getInstance();
     if(event.type == sf::Event::KeyPressed) {
@@ -39,6 +38,7 @@ void MenuScene::onEvent(sf::Event& event) {
             case sf::Keyboard::Up: selected--; break;
             case sf::Keyboard::Return: {
                 if (selected == 0) {
+                    game.initGame();
                     game.setScene(GAMESCENE);
                 }
             }
