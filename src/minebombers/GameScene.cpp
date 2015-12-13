@@ -133,9 +133,17 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
         rect.setFillColor(sf::Color(0, 0, 0, 150));
         window.draw(rect);
         
-        sf::Text roundEnded("The round has ended!", font, 100);
+        std::vector<Player> sortedPlayers = game.getPlayersSortedByScore();
+        sf::Text roundEnded(game.getRound() == 3 ? sortedPlayers[0].getName() + " won!" : "The round has ended!", font, 100);
         roundEnded.setPosition(windowSize.x / 2 - roundEnded.getLocalBounds().width / 2, 200);
         window.draw(roundEnded);
+        int y = 200 + roundEnded.getLocalBounds().height + 100;
+        for (auto player : sortedPlayers) {
+            sf::Text t(player.getName() + ": " + std::to_string(player.getScore()), font, 50);
+            t.setPosition(windowSize.x / 2 - t.getLocalBounds().width / 2, y);
+            window.draw(t);
+            y += t.getLocalBounds().height + 10;
+        }
     } else {
         sf::Text roundClock = sf::Text("Time left: " + std::to_string((int) ceil(game.getRoundRemainingTime().asSeconds())), font, 40);
         roundClock.setPosition(windowSize.x - roundClock.getLocalBounds().width - 40, windowSize.y - statusBarHeight / 2 - 23);
@@ -146,15 +154,20 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
 
 void GameScene::onEvent(sf::Event& event) {
     Game& game = Game::getInstance();
+    
     switch (event.type)
     {
         case sf::Event::KeyPressed: {
-            sf::Vector2u& v = keyboard[event.key.code];
-            if(!v.x) {
-                v.x = 1; //on/off
-                v.y = 0; //time
+            if (game.getRound() == 3 && game.roundHasEnded())
+                game.setScene(MENUSCENE);
+            else {
+                sf::Vector2u& v = keyboard[event.key.code];
+                if(!v.x) {
+                    v.x = 1; //on/off
+                    v.y = 0; //time
+                }
+                break;
             }
-            break;
         }
         case sf::Event::KeyReleased:
             //std::cout << "release" << std::endl;

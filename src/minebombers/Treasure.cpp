@@ -13,17 +13,14 @@
 
 #include "Treasure.h"
 
-Treasure::Treasure(sf::Sprite& sprite, uint32_t value, sf::Vector2u pos) {
-    this->sprite = sprite;
-    this->value = value;
-    this->position = pos;
-    
+Treasure::Treasure(sf::Sprite& sprite, uint32_t score, uint32_t value, sf::Vector2u pos) : sprite(sprite), value(value), position(pos), score(score) {
     sprite.setPosition(pos.x * 16, pos.y * 16);
 }
 
 Treasure::Treasure(const Treasure& orig) {
     sprite = orig.sprite;
     value = orig.value;
+    score = orig.score;
     position = orig.position;
     
     sprite.setPosition(position.x * 16, position.y * 16);
@@ -31,6 +28,11 @@ Treasure::Treasure(const Treasure& orig) {
 
 Treasure::~Treasure() {
 }
+
+uint32_t Treasure::getScore() const {
+    return score;
+}
+
 
 uint32_t Treasure::getValue() const {
     return value;

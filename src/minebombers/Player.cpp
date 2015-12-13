@@ -21,10 +21,12 @@ Player::Player() : money(0), score(0), Entity() {
 
 Player::Player(const std::string& texturefile, int x, int y, const std::string& name) : Entity(texturefile, x, y, 100, name) {
     money = 0;
+    score = 0;
 }
 
 Player::Player(const Player& orig) : Entity(orig){
-    money = 0;
+    money = orig.money;
+    score = orig.score;
 }
 
 Player::~Player() {

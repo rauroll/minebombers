@@ -37,6 +37,7 @@ public:
     Scene* getScene();
     Map& getMap();
     std::vector<Player>& getPlayers();
+    std::vector<Player> getPlayersSortedByScore();
 
     void clearTreasures();
     void setRandomTreasures(uint16_t amount);

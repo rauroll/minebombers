@@ -36,13 +36,14 @@ void WeaponManager::createWeapons() {
 //                           int damage,
 //                           Effect& effect,
 //                           ProjectileType projectileType,
+//                           ExplosionType explosionType,
 //                           sf::Vector2u radius = sf::Vector2u(0, 0),
 //                           sf::Time timer = sf::milliseconds(5000)),
 //                           uint range = 0; (default to unlimited range)
 
     
     // Projectiles
-    Projectile proj = Projectile("jonnemissile", "assets/projectile.png", "explosion", 30, explosion, PROJECTILE, CROSS, sf::Vector2u(2, 2));
+    Projectile proj = Projectile("jonnemissile", "assets/projectile.png", "explosion", 30, explosion, PROJECTILE, CIRCLE, sf::Vector2u(5, 5));
     Projectile bomb = Projectile("keilapommi", "assets/bomb.png", "boom", 50, explosion, EXPLOSIVE, CROSS, sf::Vector2u(100, 100));
     Projectile pick = Projectile("pick", "assets/projectile.png", "explosion", 10, explosion, PICK, CROSS, sf::Vector2u(0, 0), sf::milliseconds(0), 1);
     
