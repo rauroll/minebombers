@@ -60,7 +60,7 @@ void ExplosionManager::crossExplosion(Projectile& projectile) {
 
             for (auto& p : players) {
                 if (p.getPos() == currentLoc) {
-                    p.reduceHealth(damage);
+                    p.reduceHealth(damage, projectile.getUser());
                 }
             }
             currentLoc = (sf::Vector2u)((sf::Vector2i)currentLoc + dir);
@@ -77,7 +77,7 @@ void ExplosionManager::crossExplosion(Projectile& projectile) {
 
     for (auto& p : players) {
         if (p.getPos() == loc) {
-            p.reduceHealth(damage);
+            p.reduceHealth(damage, projectile.getUser());
         }
     }
 
@@ -126,7 +126,7 @@ void ExplosionManager::circleExplosion(Projectile& projectile) {
 
                 for (auto& p : players) {
                     if (p.getPos() == explosionLoc) {
-                        p.reduceHealth(damage);
+                        p.reduceHealth(damage, projectile.getUser());
                     }
                 }
             }

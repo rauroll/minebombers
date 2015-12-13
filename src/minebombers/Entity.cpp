@@ -40,14 +40,15 @@ void Entity::setHealt(int healt) {
     this->health = healt;
 } 
 
-void Entity::reduceHealth(int damage) {
+void Entity::reduceHealth(int damage, std::string damagedBy) {
+    this->lastDamagedBy = damagedBy;
     bool wasAlive = this->isAlive();
     Game& game = Game::getInstance();
     this->health = std::max(0, this->health - damage);
     if (wasAlive && this->isAlive()) {
         ResourceManager::getInstance().playHurtSound();
     } else if (wasAlive) {
-        game.onPlayerDead();
+        game.onPlayerDead(this->name, damagedBy);
         ResourceManager::getInstance().playDeathSound();
     }
 }

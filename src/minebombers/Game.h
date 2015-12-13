@@ -52,7 +52,7 @@ public:
     sf::Vector2u getRandomEmptyPos();
     void addProjectile(Projectile projectile);
     std::vector<Projectile>& getProjectiles();
-    void onPlayerDead();
+    void onPlayerDead(std::string killed, std::string killer);
     
     void addEffect(Effect effect);
     
@@ -100,6 +100,7 @@ private:
     
     bool isEmpty(sf::Vector2u pos);
     bool addTreasure(Treasure& treasure);
+    bool lastManStanding();
       
     int round;
     int totalRounds;
