@@ -79,6 +79,7 @@ void Game::startRound() {
     
     for(auto& p : players) {
         p.setHealth(100);
+        p.setPos(getNewPlayerPosition());
         map.makeFloorAround(p.getPos());
         revealMapAt(p.getPos());
     }
@@ -302,28 +303,25 @@ sf::Vector2u Game::getRandomEmptyPos() {
     return pos;
 }
 
-void Game::addPlayer(const std::string& name, const std::string textureName) {
-    sf::Vector2u pos;    
-    bool found = false;
-    int cleared;
-    if (players.size() >= 1) {
-        while (!found) {
-            while (cleared < players.size()) {
-                cleared = 0;
-                pos = sf::Vector2u(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 2);
-                for (auto& p : players) {
-                    unsigned int dist = (unsigned int) sqrt(pow((int) pos.x - (int) p.getPos().x, 2) + pow((int) pos.y - (int) p.getPos().y, 2));
-                    if (dist >= 16) {
-                        cleared++;
-                    }
-                }
-            }
-            found = true;
+sf::Vector2u Game::getNewPlayerPosition() {
+    sf::Vector2u pos;
+    int guard = 0;
+    while (guard++ < 1000) {
+        pos = sf::Vector2u(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 1);
+        int cleared = 0;
+        for (auto& p : players) {
+            int dist = sqrt(pow((int) pos.x - (int) p.getPos().x, 2) + pow((int) pos.y - (int) p.getPos().y, 2));
+            if (dist >= 16)
+                cleared++;
         }
-    } else {
-        pos = sf::Vector2u(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 2);
+        if (cleared >= players.size())
+            break;
     }
-    
+    return pos;
+}
+
+void Game::addPlayer(const std::string& name, const std::string textureName) {
+    sf::Vector2u pos = getNewPlayerPosition();
     Player p(textureName, pos.x, pos.y, name);
     players.push_back(p);
 }

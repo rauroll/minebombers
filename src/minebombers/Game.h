@@ -86,6 +86,7 @@ public:
     void useRandomMap();
     void useMap(const std::string& name);
 private:
+    sf::Vector2u getNewPlayerPosition();
     sf::Image overlayImage;
     
     Scene* currentScene;
