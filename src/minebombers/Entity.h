@@ -24,7 +24,7 @@ public:
     virtual ~Entity();
     
     int getHealth();
-    void setHealt(int health);
+    void setHealth(int health);
     void reduceHealth(int damage, std::string damagedBy);
     bool isAlive();
 private:
