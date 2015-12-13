@@ -106,12 +106,12 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
         hp.setFillColor(sf::Color(200 - p.getHealth() * 200 / 100, p.getHealth() * 200 / 100, 50));
         window.draw(hp);
         
-        sf::Text mohlay = sf::Text("Money: " + std::to_string(p.getMoney()), font, playerFontSize);
+        sf::Text mohlay = sf::Text("$" + std::to_string(p.getMoney()), font, playerFontSize);
         mohlay.setPosition(playerX, playerY - playerFontSize * 2);
         mohlay.setColor(sf::Color(100, 100, 100));
         window.draw(mohlay);
         
-        sf::Text score = sf::Text("Score: " + std::to_string(p.getScore()), font, playerFontSize);
+        sf::Text score = sf::Text(std::to_string(p.getScore()) + " points", font, playerFontSize);
         score.setPosition(playerX, playerY - playerFontSize);
         score.setColor(sf::Color(100, 100, 100));
         window.draw(score);
