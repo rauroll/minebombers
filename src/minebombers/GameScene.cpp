@@ -139,11 +139,11 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
         window.draw(roundEnded);
         int y = 200 + roundEnded.getLocalBounds().height + 100;
         for (auto player : sortedPlayers) {
-            sf::Text t(player.getName() + ": " + std::to_string(player.getScore()), font, 50);
+            sf::Text t(player.getName() + ": " + std::to_string(player.getScore()) + " points", font, 60);
             t.setPosition(windowSize.x / 2 - t.getLocalBounds().width / 2, y);
             t.setColor(player.getColor());
             window.draw(t);
-            y += t.getLocalBounds().height + 20;
+            y += 65;
         }
         
         if (game.getRound() == 3) {
