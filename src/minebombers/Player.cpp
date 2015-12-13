@@ -123,8 +123,15 @@ unsigned int Player::getAmmo(std::string weaponName) {
 // This method isn't responsible for checking for ammo
 Projectile Player::useWeapon() {
     Weapon& wep = this->getActiveWeapon();
+    
+    // This is an intended feature to allow unlimited ammo
     if (activeWeapon->second < 999) activeWeapon->second--;
     return wep.use(this->name, this->getPos(), this->getDir());
+}
+
+Projectile Player::usePick() {
+    Weapon& pick = WeaponManager::getInstance().getPick();
+    return pick.use(this->name, this->getPos(), this->getDir());
 }
 
 bool Player::hasAmmo() {

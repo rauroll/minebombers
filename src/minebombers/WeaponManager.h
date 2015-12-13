@@ -31,11 +31,13 @@ public:
     void addWeaponsToPlayer(Player& player);
     void addWeapon(Weapon weapon);
     Weapon& getWeapon(std::string name);
+    Weapon& getPick();
     
     std::vector<Weapon> getWeapons();  
 
 private:
     std::vector<Weapon> weapons;
+    Weapon pick;
 };
 
 #endif /* WEAPONMANAGER_H */

@@ -32,6 +32,7 @@ public:
     void nextWeapon();
     void removeAllWeapons();
     Projectile useWeapon();
+    Projectile usePick();
     unsigned int getActiveWeaponAmmo();
     void buyAmmo(std::string weaponName, unsigned int amount, int price);
     unsigned int getAmmo(std::string weaponName);
