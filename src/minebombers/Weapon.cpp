@@ -33,6 +33,9 @@ const Projectile& Weapon::getProjectile() {
     return projectile;
 }
 
+int Weapon::getPrice() const {
+    return this->price;
+}
 
 
 std::string Weapon::getName() {

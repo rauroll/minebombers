@@ -31,6 +31,9 @@ public:
     
     const Projectile& getProjectile();
     
+
+    int getPrice() const;
+
     std::string getName();
     
 protected:

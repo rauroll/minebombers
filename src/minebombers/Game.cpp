@@ -37,6 +37,7 @@ Game::Game() {
     scenes[SHOPSCENE] = new ShopScene();
     
     map = loader.fromFile("maps/map.mb");
+    
 }
 
 void Game::startRound() {
@@ -57,12 +58,14 @@ void Game::startRound() {
     overlayImage.create(windowSize.x * 16, windowSize.y * 16, sf::Color(0, 0, 0, 255));
     
     setRandomTreasures(50);
+    
     addPlayer("JERE");
     addPlayer("JERE2");
     
     WeaponManager& wepMan = WeaponManager::getInstance();
     wepMan.createWeapons();
-    for (auto& p : players) wepMan.addWeaponsToPlayer(p); 
+    for (auto& p : players)
+        wepMan.addWeaponsToPlayer(p); 
     
     ResourceManager::getInstance().playMusic("game");
 }

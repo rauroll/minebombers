@@ -43,18 +43,25 @@ void WeaponManager::createWeapons() {
 
     
     // Projectiles
+
     Projectile proj = Projectile("jonnemissile", "assets/projectile.png", "explosion", 30, explosion, PROJECTILE, CIRCLE, sf::Vector2u(2, 2));
+    Projectile nuclearMissile = Projectile("nuc", "assets/nuclear_missile.png", "explosion", 50, explosion, PROJECTILE, CIRCLE, sf::Vector2u(12, 12));
 
     Projectile basicBomb = Projectile("sbomb", "assets/bomb.png", "boom", 30, explosion, EXPLOSIVE, CIRCLE, sf::Vector2u(5, 5), sf::milliseconds(2000));
-    Projectile atomicBomb = Projectile("abomb", "assets/bomb.png", "boom", 50, explosion, EXPLOSIVE, CROSS, sf::Vector2u(100, 100), sf::milliseconds(4000));
+    Projectile atomicBomb = Projectile("abomb", "assets/atomic_bomb.png", "boom", 50, explosion, EXPLOSIVE, CROSS, sf::Vector2u(100, 100), sf::milliseconds(4000));
     Projectile pick = Projectile("pick", "assets/projectile.png", "explosion", 10, explosion, PICK, CROSS, sf::Vector2u(0, 0), sf::milliseconds(0), 1);
     
     //Weapons
     this->addWeapon(Weapon("jonnegun", "lazer", 49, proj));
+    this->addWeapon(Weapon("nuclear missile", "lazer", 1000, nuclearMissile));
     this->addWeapon(Weapon("small bomb", "shot", 99, basicBomb));
-    this->addWeapon(Weapon("atomic bomb", "shot", 200, atomicBomb));
+    this->addWeapon(Weapon("atomic bomb", "shot", 600, atomicBomb));
     this->addWeapon(Weapon("pick", "pick", 0, pick));
     
+}
+
+std::vector<Weapon> WeaponManager::getWeapons() {
+    return this->weapons;
 }
 
 void WeaponManager::addWeaponsToPlayer(Player& player) {
@@ -62,10 +69,13 @@ void WeaponManager::addWeaponsToPlayer(Player& player) {
     for (auto& w : weapons) {
         player.addWeapon(w);
     }
+    // starting ammo
+    player.buyAmmo("jonnegun", 20, 0);
+    player.buyAmmo("small bomb", 5, 0);
+    player.buyAmmo("nuclear missile", 5, 0);
+    player.buyAmmo("atomic bomb", 5, 0);
     // Add unlimited ammo to default weapon
-    player.addAmmo("jonnegun", 999);
-    player.addAmmo("bomb", 3);
-    player.addAmmo("pick", 999);
+    player.buyAmmo("pick", 999, 0);
     player.nextWeapon();
 }
 

@@ -32,13 +32,14 @@ public:
     void nextWeapon();
     void removeAllWeapons();
     Projectile useWeapon();
-    unsigned int getAmmo();
-    void addAmmo(std::string weaponName, unsigned int amount);
+    unsigned int getActiveWeaponAmmo();
+    void buyAmmo(std::string weaponName, unsigned int amount, int price);
+    unsigned int getAmmo(std::string weaponName);
     bool hasAmmo();
     void incrementMoney(uint32_t amount);
     void incrementScore(uint32_t amount);
-    int getMoney() const;
-    int getScore() const;
+    uint32_t getMoney() const;
+    uint32_t getScore() const;
     Weapon& getActiveWeapon();
 private:
     std::map<std::string, unsigned int> weaponsMap;

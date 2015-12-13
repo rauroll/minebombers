@@ -28,6 +28,7 @@ ShopScene::~ShopScene() {
 }
 
 void ShopScene::onChangedTo() {
+    this->weapons = WeaponManager::getInstance().getWeapons();
     clock.restart();
 }
 
@@ -55,6 +56,14 @@ void ShopScene::onEvent(sf::Event& event) {
                 playerSelections[0]++;
                 break;
             }
+            case sf::Keyboard::E: {
+                this->buyAmmo(1, this->weapons[playerSelections[1]]);
+                break;
+            }
+            case sf::Keyboard::Return: {
+                this->buyAmmo(0, this->weapons[playerSelections[0]]);
+                break;
+            }
             default:
                 break;
         }
@@ -64,8 +73,15 @@ void ShopScene::onEvent(sf::Event& event) {
 }
 
 void ShopScene::update(sf::Time dt) {
-    if (clock.getElapsedTime().asSeconds() > 15) {
+    if (clock.getElapsedTime().asSeconds() > this->shopTime) {
         Game::getInstance().setScene(GAMESCENE);
+    }
+}
+
+void ShopScene::buyAmmo(int playerId, Weapon weapon) {
+    auto& p = Game::getInstance().getPlayers()[playerId];
+    if (p.getMoney() >= weapon.getPrice()) {
+        p.buyAmmo(weapon.getName(), 1, weapon.getPrice());
     }
 }
 
@@ -81,16 +97,15 @@ void ShopScene::draw(sf::RenderWindow& window) {
     
     int i = 0;
     for(auto w : weapons) {
-        sf::Text text(w, font, 72);
+        sf::Text text(w.getName(), font, 72);
         text.setPosition(200, 200 + i++ * 80);
         window.draw(text);
-        // draw players ammo for each weapon if the player has it
-        // HAUENLEUKAPIHDEILLÄ WEAPON MANAGER TÄHÄ!
-        sf::Text player1Ammo("23", font, 28);
+        // draw players ammo for each weapon if the player has it        
+        sf::Text player1Ammo(std::to_string(Game::getInstance().getPlayers()[0].getAmmo(w.getName())), font, 28);
         player1Ammo.setColor(sf::Color(255, 0, 0));
         player1Ammo.setPosition(text.getPosition().x + text.getGlobalBounds().width + 20, text.getPosition().y + 12);
         window.draw(player1Ammo);
-        sf::Text player2Ammo("15", font, 28);
+        sf::Text player2Ammo(std::to_string(Game::getInstance().getPlayers()[1].getAmmo(w.getName())), font, 28);
         player2Ammo.setColor(sf::Color(0, 255, 0));
         player2Ammo.setPosition(text.getPosition().x + text.getGlobalBounds().width + 20, text.getPosition().y + 48);
         window.draw(player2Ammo);
@@ -105,7 +120,18 @@ void ShopScene::draw(sf::RenderWindow& window) {
         window.draw(circle);
     }
     
-    sf::Text nextRound("Next round starts in " + std::to_string((int) ceil(15 - clock.getElapsedTime().asSeconds())) + "...", font, 60);
+    sf::Text player1Money(std::to_string(Game::getInstance().getPlayers()[0].getMoney()), font, 36);
+    player1Money.setPosition(window.getSize().x - 200, 12);
+    player1Money.setColor(sf::Color(0, 255, 0));
+    window.draw(player1Money);
+
+    sf::Text player2Money(std::to_string(Game::getInstance().getPlayers()[1].getMoney()), font, 36);
+    player2Money.setPosition(window.getSize().x - 300, 12);
+    player2Money.setColor(sf::Color(255, 0, 0));
+    window.draw(player2Money);
+
+    
+    sf::Text nextRound("Next round starts in " + std::to_string((int) ceil(this->shopTime - clock.getElapsedTime().asSeconds())) + "...", font, 60);
     sf::FloatRect bounds = nextRound.getLocalBounds();
     nextRound.setPosition(size.x / 2 - bounds.width / 2, size.y - bounds.height - 50);
     window.draw(nextRound);

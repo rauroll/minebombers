@@ -17,6 +17,9 @@
 #include <SFML/System.hpp>
 
 #include "Scene.h"
+#include "WeaponManager.h"
+#include "Weapon.h"
+#include "Player.h"
 
 class ShopScene : public Scene {
 public:
@@ -29,8 +32,10 @@ public:
     void onChangedTo();
     void draw(sf::RenderWindow& window);
 private:
+    int shopTime = 30;
+    void buyAmmo(int playerId, Weapon weapon);
     std::vector<int> playerSelections{0,0};
-    std::vector<std::string> weapons{"ase 1", "ase 2", "ase 3", "sun mutsi"};
+    std::vector<Weapon> weapons;
     sf::Clock clock;
 };
 
