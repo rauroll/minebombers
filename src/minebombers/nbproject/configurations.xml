@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>ButtonReaction.h</itemPath>
       <itemPath>ButtonReactionFactory.h</itemPath>
+      <itemPath>ConfigManager.h</itemPath>
       <itemPath>Effect.h</itemPath>
       <itemPath>Entity.h</itemPath>
       <itemPath>ExplosionManager.h</itemPath>
@@ -39,6 +40,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>ButtonReactionFactory.cpp</itemPath>
+      <itemPath>ConfigManager.cpp</itemPath>
       <itemPath>Effect.cpp</itemPath>
       <itemPath>Entity.cpp</itemPath>
       <itemPath>ExplosionManager.cpp</itemPath>
@@ -103,6 +105,10 @@
       <item path="ButtonReactionFactory.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ButtonReactionFactory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ConfigManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ConfigManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Effect.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -228,6 +234,10 @@
       <item path="ButtonReactionFactory.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ButtonReactionFactory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ConfigManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ConfigManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Effect.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -26,6 +26,7 @@
 #include "GameScene.h"
 #include "MenuScene.h"
 #include "ShopScene.h"
+#include "ConfigManager.h"
 
 Game::Game() {
     srand(time(NULL));
@@ -37,13 +38,19 @@ Game::Game() {
     scenes[SHOPSCENE] = new ShopScene();
     
     map = loader.fromFile("maps/map.mb");
+
+    round = 0;
+    totalRounds = 3;
+    roundEndClocktime = 120;
 }
 
 void Game::startRound() {
     round++;
     roundEnded = false;
     roundClock.restart();
-    roundTime = sf::seconds(100);
+
+    roundTime = sf::seconds(roundEndClocktime);
+
     //map = loader.fromFile("maps/map.mb");
     map = gen.generate();
     
@@ -341,4 +348,9 @@ void Game::initGame() {
     players.clear();
     treasures.clear();
     projectiles.clear();
+    
+    ConfigManager& config = ConfigManager::getInstance();
+
+    totalRounds = config.getInt("rounds", 3);
+    roundEndClocktime = config.getInt("roundTime", 120);
 }

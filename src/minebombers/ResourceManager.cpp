@@ -33,10 +33,16 @@ ResourceManager::ResourceManager() {
     soundBuffers["yesh"] = soundBuffer;
     soundBuffer.loadFromFile("assets/ohright.wav");
     soundBuffers["ohright"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/kuolema1.wav");
+    soundBuffers["death1"] = soundBuffer;
     soundBuffer.loadFromFile("assets/kuolema2.wav");
     soundBuffers["death2"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/kuolema3.wav");
+    soundBuffers["death3"] = soundBuffer;
     soundBuffer.loadFromFile("assets/aivittu1.wav");
     soundBuffers["hurt1"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/aivittu2.wav");
+    soundBuffers["hurt2"] = soundBuffer;
     soundBuffer.loadFromFile("assets/plip.wav");
     soundBuffers["plip"] = soundBuffer;
     soundBuffer.loadFromFile("assets/plop.wav");
@@ -78,6 +84,17 @@ const void ResourceManager::playSound(std::string soundName) {
         sounds[soundName].play();
     }
 }
+
+const void ResourceManager::playDeathSound() {
+    std::vector<std::string> sounds = {"death1", "death2", "death3"};
+    this->playSound(sounds[rand() % sounds.size()]);
+}
+
+const void ResourceManager::playHurtSound() {
+    std::vector<std::string> sounds = {"hurt1", "hurt2"};
+    this->playSound(sounds[rand() % sounds.size()]);
+}
+
 
 const void ResourceManager::playPickSound(int materialHP) {
     if (Game::getInstance().soundEnabled()) {

@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/ButtonReactionFactory.o \
+	${OBJECTDIR}/ConfigManager.o \
 	${OBJECTDIR}/Effect.o \
 	${OBJECTDIR}/Entity.o \
 	${OBJECTDIR}/ExplosionManager.o \
@@ -87,6 +88,11 @@ ${OBJECTDIR}/ButtonReactionFactory.o: ButtonReactionFactory.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ButtonReactionFactory.o ButtonReactionFactory.cpp
+
+${OBJECTDIR}/ConfigManager.o: ConfigManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ConfigManager.o ConfigManager.cpp
 
 ${OBJECTDIR}/Effect.o: Effect.cpp 
 	${MKDIR} -p ${OBJECTDIR}

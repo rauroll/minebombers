@@ -32,7 +32,7 @@ public:
     void onChangedTo();
     void draw(sf::RenderWindow& window);
 private:
-    int shopTime = 5;
+    int shopTime;
     void buyAmmo(int playerId, Weapon weapon);
     std::vector<int> playerSelections;
     std::vector<Weapon> weapons;
