@@ -87,8 +87,7 @@ void WeaponManager::addWeaponsToPlayer(Player& player) {
     player.buyAmmo("big dynamite", 5, 0);
     player.buyAmmo("mine", 5, 0);
     player.buyAmmo("holy bomb", 1, 0);
-    // Add unlimited ammo to default weapon
-    player.buyAmmo("pick", 999, 0);
+    
     player.nextWeapon();
 }
 
