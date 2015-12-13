@@ -28,7 +28,10 @@ ShopScene::~ShopScene() {
 }
 
 void ShopScene::onChangedTo() {
-    this->weapons = WeaponManager::getInstance().getWeapons();
+    weapons = WeaponManager::getInstance().getWeapons();
+    playerSelections.clear();
+    for (auto p : Game::getInstance().getPlayers())
+        playerSelections.push_back(0);
     clock.restart();
 }
 
@@ -67,8 +70,9 @@ void ShopScene::onEvent(sf::Event& event) {
             default:
                 break;
         }
-        playerSelections[0] = fmin(weapons.size() - 1, fmax(0, playerSelections[0]));
-        playerSelections[1] = fmin(weapons.size() - 1, fmax(0, playerSelections[1]));
+        
+        for (int i = 0; i < playerSelections.size(); i++)
+            playerSelections[i] = fmin(weapons.size() - 1, fmax(0, playerSelections[i]));
     }
 }
 
@@ -97,41 +101,31 @@ void ShopScene::draw(sf::RenderWindow& window) {
     
     std::vector<Player>& players = game.getPlayers();
     
-    int i = 0;
-    for(auto w : weapons) {
-        sf::Text text(w.getName() + ", $" + std::to_string(w.getPrice()), font, 72);
-        text.setPosition(200, 200 + i++ * 80);
-        window.draw(text);
-        // draw players ammo for each weapon if the player has it
-        
-        sf::Text player1Ammo(std::to_string(players[0].getAmmo(w.getName())), font, 28);
-        player1Ammo.setColor(sf::Color(255, 0, 0));
-        player1Ammo.setPosition(text.getPosition().x + text.getGlobalBounds().width + 30, text.getPosition().y + 12);
-        window.draw(player1Ammo);
-        sf::Text player2Ammo(std::to_string(players[1].getAmmo(w.getName())), font, 28);
-        player2Ammo.setColor(sf::Color(0, 255, 0));
-        player2Ammo.setPosition(text.getPosition().x + text.getGlobalBounds().width + 30, text.getPosition().y + 48);
-        window.draw(player2Ammo);
-        
-    }
-    
+    int xPosition = 24;
     for(int i = 0; i < playerSelections.size(); i++) {
         int s = playerSelections[i];
-        sf::CircleShape circle(25);
-        circle.setPosition(50 + i * 25 * 3, 220 + s * 80);
-        circle.setFillColor(i ? sf::Color(0, 255, 0) : sf::Color(255, 0, 0));
+        sf::CircleShape circle(16);
+        circle.setPosition(50 + xPosition, 220 + s * 54);
+        circle.setFillColor(players[i].getColor());
         window.draw(circle);
+        xPosition += 16 * 3;
     }
     
-    sf::Text player1Money("PLAYER1 money $" + std::to_string(players[0].getMoney()), font, 36);
-    player1Money.setPosition(800, 12);
-    player1Money.setColor(sf::Color(0, 255, 0));
-    window.draw(player1Money);
+    int i = 0;
+    for(auto w : weapons) {
+        sf::Text text(w.getName() + ", $" + std::to_string(w.getPrice()), font, 50);
+        text.setPosition(xPosition + 50, 200 + i++ * 55);
+        window.draw(text);
+    }
 
-    sf::Text player2Money("PLAYER2 money $" + std::to_string(players[1].getMoney()), font, 36);
-    player2Money.setPosition(800, 48);
-    player2Money.setColor(sf::Color(255, 0, 0));
-    window.draw(player2Money);
+    int moneyY = 12;
+    for(auto p : players) {
+        sf::Text playerMoney(p.getName() + " money $" + std::to_string(players[0].getMoney()), font, 36);
+        playerMoney.setPosition(800, moneyY);
+        playerMoney.setColor(p.getColor());
+        window.draw(playerMoney);
+        moneyY += 42;
+    }
 
     
     sf::Text nextRound("Next round starts in " + std::to_string((int) ceil(this->shopTime - clock.getElapsedTime().asSeconds())) + "...", font, 60);
