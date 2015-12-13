@@ -27,8 +27,10 @@ ResourceManager::ResourceManager() {
     soundBuffers["shot"] = soundBuffer;
     soundBuffer.loadFromFile("assets/ignite.wav");
     soundBuffers["ignite"] = soundBuffer;
-    soundBuffer.loadFromFile("assets/holyboom.wav");
-    soundBuffers["holyboom"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/hugeboom.wav");
+    soundBuffers["hugeboom"] = soundBuffer;
+    soundBuffer.loadFromFile("assets/allahuakbar.wav");
+    soundBuffers["allahuakbar"] = soundBuffer;
     soundBuffer.loadFromFile("assets/räjähdys.wav");
     soundBuffers["explosion"] = soundBuffer;
     soundBuffer.loadFromFile("assets/kling.wav");
@@ -129,7 +131,7 @@ const void ResourceManager::playExplosion(int damage, std::string soundName) {
     if (Game::getInstance().soundEnabled()) {
         if (sounds.find(soundName) == sounds.end())
             sounds[soundName] = sf::Sound(soundBuffers.at(soundName));
-        if (soundName != "holyboom") sounds[soundName].setPitch(1 / (damage / 20.0));
+        if (soundName != "hugeboom") sounds[soundName].setPitch(1 / (damage / 20.0));
         sounds[soundName].setVolume(50 * (damage / 30.0));
         sounds[soundName].play();
     }
