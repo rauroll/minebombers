@@ -267,7 +267,7 @@ void GameScene::checkKeys() {
                             }
                             case USE_PICK: {
                                 Player& player = game.getPlayers()[i];
-                                
+                                player.usePick();
 
                                 keyboard[key] = sf::Vector2u(0, 0);
                                 break;                            
