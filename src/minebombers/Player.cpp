@@ -25,8 +25,8 @@ Player::Player(const std::string& texturefile, int x, int y, const std::string& 
 }
 
 Player::Player(const Player& orig) : Entity(orig){
-    money = 0;
-    score = 0;
+    money = orig.money;
+    score = orig.score;
 }
 
 Player::~Player() {

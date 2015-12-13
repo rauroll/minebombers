@@ -37,8 +37,6 @@ Game::Game() {
     scenes[SHOPSCENE] = new ShopScene();
     
     map = loader.fromFile("maps/map.mb");
-    
-    //this->startRound();
 }
 
 void Game::startRound() {
@@ -101,6 +99,17 @@ void Game::onPlayerDead() {
 std::vector<Player>& Game::getPlayers() {
     return players;
 }
+
+bool sortPlayersByScore (Player a, Player b) {
+    return a.getScore() > b.getScore();
+}
+
+std::vector<Player> Game::getPlayersSortedByScore() {
+    std::vector<Player> players = this->players;
+    std::sort(players.begin(), players.end(), sortPlayersByScore);
+    return players;
+}
+
 
 Scene* Game::getScene() {
     return currentScene;

@@ -132,14 +132,17 @@ void GameScene::drawStatusBar(sf::RenderWindow& window) {
         sf::RectangleShape rect(sf::Vector2f(windowSize.x, windowSize.y));
         rect.setFillColor(sf::Color(0, 0, 0, 150));
         window.draw(rect);
-        if (game.getRound() == 3) {
-            sf::Text roundEnded("The game has ended!", font, 100);
-            roundEnded.setPosition(windowSize.x / 2 - roundEnded.getLocalBounds().width / 2, 200);
-            window.draw(roundEnded);
-        } else {
-            sf::Text roundEnded("The round has ended!", font, 100);
-            roundEnded.setPosition(windowSize.x / 2 - roundEnded.getLocalBounds().width / 2, 200);
-            window.draw(roundEnded);
+        
+        std::vector<Player> sortedPlayers = game.getPlayersSortedByScore();
+        sf::Text roundEnded(game.getRound() == 3 ? sortedPlayers[0].getName() + " won!" : "The round has ended!", font, 100);
+        roundEnded.setPosition(windowSize.x / 2 - roundEnded.getLocalBounds().width / 2, 200);
+        window.draw(roundEnded);
+        int y = 200 + roundEnded.getLocalBounds().height + 100;
+        for (auto player : sortedPlayers) {
+            sf::Text t(player.getName() + ": " + std::to_string(player.getScore()), font, 50);
+            t.setPosition(windowSize.x / 2 - t.getLocalBounds().width / 2, y);
+            window.draw(t);
+            y += t.getLocalBounds().height + 10;
         }
     } else {
         sf::Text roundClock = sf::Text("Time left: " + std::to_string((int) ceil(game.getRoundRemainingTime().asSeconds())), font, 40);
