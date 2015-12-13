@@ -122,6 +122,9 @@ private:
     
     bool useMapGenerator;
     std::string mapName;
+    
+    int startMoney;
+    int treasureCount;
 };
 
 #endif /* GAME_H */
