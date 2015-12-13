@@ -130,9 +130,11 @@ Effect& Projectile::getEffect() {
 sf::Vector2u Projectile::getRadius() {
     return this->radius;
 }
+
 int Projectile::getDamage() {
     return this->damage;
 }
+
 std::string Projectile::getExplosionAudioName() {
     return this->explosionAudioName;
 }
@@ -143,5 +145,9 @@ ExplosionType Projectile::getExplosionType() {
 
 void Projectile::setUser(std::string playerName) {
     this->userName = playerName;
+}
+
+void Projectile::getUser() {
+    return this->userName;
 }
 
