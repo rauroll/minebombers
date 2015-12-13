@@ -64,14 +64,14 @@ void WeaponManager::createWeapons() {
     
     Projectile mineBomb = Projectile("landmine", "assets/mine.png", "boom", 100, explosion, MINE, CIRCLE, sf::Vector2u(5, 5), sf::milliseconds(5000));
     //Weapons
-    this->addWeapon(Weapon("jonnegun", "lazer", 49, proj));
-    this->addWeapon(Weapon("nuclear missile", "lazer", 1000, nuclearMissile));
-    this->addWeapon(Weapon("small bomb", "shot", 300, basicBomb));
-    this->addWeapon(Weapon("small dynamite", "ignite", 100, smallDynamite));
-    this->addWeapon(Weapon("big dynamite", "ignite", 200, bigDynamite));
-    this->addWeapon(Weapon("atomic bomb", "shot", 800, atomicBomb));
-    this->addWeapon(Weapon("holy bomb", holySound, 5000, holybomb));
-    this->addWeapon(Weapon("mine", "shot", 500, mineBomb));
+    this->addWeapon(Weapon("jonnegun", "lazer", config.getInt("jonnegun_price", 49), proj));
+    this->addWeapon(Weapon("nuclear missile", "lazer", config.getInt("nuclear_missile_price", 1000), nuclearMissile));
+    this->addWeapon(Weapon("small bomb", "shot", config.getInt("small_bomb_price", 300), basicBomb));
+    this->addWeapon(Weapon("small dynamite", "ignite", config.getInt("small_dynamite_price", 100), smallDynamite));
+    this->addWeapon(Weapon("big dynamite", "ignite", config.getInt("big_dynamite_price", 200), bigDynamite));
+    this->addWeapon(Weapon("atomic bomb", "shot", config.getInt("atomic_bomb_price", 800), atomicBomb));
+    this->addWeapon(Weapon("holy bomb", holySound, config.getInt("holy_bomb_price", 5000), holybomb));
+    this->addWeapon(Weapon("mine", "shot", config.getInt("mine_price", 500), mineBomb));
     this->pick = Weapon("pick", "pick", 0, pick);
     
 }
@@ -86,14 +86,16 @@ void WeaponManager::addWeaponsToPlayer(Player& player) {
         player.addWeapon(w);
     }
     // starting ammo
-    player.buyAmmo("jonnegun", 20, 0);
-    player.buyAmmo("small bomb", 5, 0);
-    player.buyAmmo("nuclear missile", 5, 0);
-    player.buyAmmo("atomic bomb", 5, 0);
-    player.buyAmmo("small dynamite", 5, 0);
-    player.buyAmmo("big dynamite", 5, 0);
-    player.buyAmmo("mine", 5, 0);
-    player.buyAmmo("holy bomb", 1, 0);
+    
+    ConfigManager& config = ConfigManager::getInstance();
+    player.buyAmmo("jonnegun", config.getInt("jonnegun_startammo", 10), 0);
+    player.buyAmmo("small bomb", config.getInt("small_bomb_startammo", 5), 0);
+    player.buyAmmo("nuclear missile", config.getInt("nuclear_missile_startammo", 5), 0);
+    player.buyAmmo("atomic bomb", config.getInt("atomic_bomb_startammo", 5), 0);
+    player.buyAmmo("small dynamite", config.getInt("small_dynamite_startammo", 5), 0);
+    player.buyAmmo("big dynamite", config.getInt("big_dynamite_startammo", 5), 0);
+    player.buyAmmo("mine", config.getInt("mine_startammo", 5), 0);
+    player.buyAmmo("holy bomb", config.getInt("holy_bomb_startammo", 0), 0);
     
     player.nextWeapon();
 }
