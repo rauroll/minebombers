@@ -193,6 +193,7 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
                 // TREASURE FOUND :)
                 ResourceManager::getInstance().playKling(tres.getValue());
                 players[player].incrementMoney(tres.getValue());
+                players[player].incrementScore(tres.getValue() * 2);
                 treasures.erase(i);
                 break;
             }
