@@ -32,9 +32,7 @@ public:
     void addWeapon(Weapon weapon);
     Weapon& getWeapon(std::string name);
     
-    
-    
-    
+    std::vector<Weapon> getWeapons();  
 
 private:
     std::vector<Weapon> weapons;

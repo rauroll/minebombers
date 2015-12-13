@@ -34,6 +34,9 @@ const Projectile& Weapon::getProjectile() {
     return projectile;
 }
 
+int Weapon::getPrice() const {
+    return this->price;
+}
 
 int Weapon::getAmmoCount() const {
     return this->ammoCount;

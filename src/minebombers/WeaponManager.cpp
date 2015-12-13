@@ -42,7 +42,7 @@ void WeaponManager::createWeapons() {
 
     
     // Projectiles
-    Projectile proj = Projectile("jonnemissile", "assets/projectile.png", "explosion", 30, explosion, PROJECTILE, CROSS, sf::Vector2u(5, 5));
+    Projectile proj = Projectile("jonnemissile", "assets/projectile.png", "explosion", 30, explosion, PROJECTILE, CROSS, sf::Vector2u(2, 2));
     Projectile bomb = Projectile("keilapommi", "assets/bomb.png", "boom", 50, explosion, EXPLOSIVE, CROSS, sf::Vector2u(100, 100));
     Projectile pick = Projectile("pick", "assets/projectile.png", "explosion", 10, explosion, PICK, CROSS, sf::Vector2u(0, 0), sf::milliseconds(0), 1);
     
@@ -53,15 +53,17 @@ void WeaponManager::createWeapons() {
     
 }
 
+std::vector<Weapon> WeaponManager::getWeapons() {
+    return this->weapons;
+}
+
 void WeaponManager::addWeaponsToPlayer(Player& player) {
     player.removeAllWeapons();
     for (auto& w : weapons) {
         player.addWeapon(w);
     }
     // Add unlimited ammo to default weapon
-    player.addAmmo("jonnegun", 999);
-    player.addAmmo("bomb", 3);
-    player.addAmmo("pick", 999);
+    player.buyAmmo("pick", 999, 0);
     player.nextWeapon();
 }
 

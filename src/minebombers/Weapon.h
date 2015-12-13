@@ -33,6 +33,7 @@ public:
     
     void addAmmo(int amount);
     int getAmmoCount() const;
+    int getPrice() const;
     
     std::string getName();
     

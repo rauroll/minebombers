@@ -34,7 +34,7 @@ void Player::incrementMoney(uint32_t amount) {
     money += amount;
 }
 
-int Player::getScore() const {
+uint32_t Player::getScore() const {
     return score;
 }
 
@@ -63,7 +63,7 @@ void Player::addWeapon(Weapon& weapon) {
     this->activeWeapon = weaponsMap.begin();
 }
 
-int Player::getMoney() const {
+uint32_t Player::getMoney() const {
     return this->money;
 }
 
@@ -71,15 +71,25 @@ Weapon& Player::getActiveWeapon() {
     return WeaponManager::getInstance().getWeapon(activeWeapon->first);
 }
 
-unsigned int Player::getAmmo() {
+unsigned int Player::getActiveWeaponAmmo() {
     return activeWeapon->second;
 }
 
-void Player::addAmmo(std::string weaponName, unsigned int amount) {
+void Player::buyAmmo(std::string weaponName, unsigned int amount, int price) {
     if (weaponsMap.find(weaponName) == weaponsMap.end()) {
         std::cout << "Weapon didn't exist" << std::endl;
     } else {
+        this->money -= price;
         weaponsMap[weaponName] += amount;
+    }
+}
+
+unsigned int Player::getAmmo(std::string weaponName) {
+    if (weaponsMap.find(weaponName) == weaponsMap.end()) {
+        std::cout << "Weapon didn't exist" << std::endl;
+        return 0;
+    } else {
+        return weaponsMap[weaponName];
     }
 }
 
