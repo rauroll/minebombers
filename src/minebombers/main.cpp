@@ -70,7 +70,7 @@ int main(int argc, char const** argv) {
             fps.update();
         }
         else {
-            //sf::sleep(sf::milliseconds(10));
+            sf::sleep(sf::milliseconds(10));
         }
     }
 
