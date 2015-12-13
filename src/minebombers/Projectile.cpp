@@ -143,6 +143,14 @@ ExplosionType Projectile::getExplosionType() {
     return this->explosionType;
 }
 
+void Projectile::setProjectileType(ProjectileType projectileType) {
+    this->projectileType = projectileType;
+}
+
+void Projectile::setTimer(sf::Time newTime) {
+    this->timer = newTime;
+}
+
 void Projectile::setUser(std::string playerName) {
     this->userName = playerName;
 }

@@ -35,6 +35,10 @@ public:
     std::string getExplosionAudioName();
     ExplosionType getExplosionType();
     
+    void setProjectileType(ProjectileType projectileType);
+    
+    void setTimer(sf::Time newTime);
+    
     void setUser(std::string playerName);
     std::string getUser();
     
