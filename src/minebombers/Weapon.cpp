@@ -14,6 +14,10 @@
 #include "Weapon.h"
 #include "ResourceManager.h"
 
+Weapon::Weapon() {
+
+}
+
 Weapon::Weapon(std::string name, std::string shotAudioName, int price, Projectile projectile) : projectile(projectile) {
     this->name = name;
     this->price = price;

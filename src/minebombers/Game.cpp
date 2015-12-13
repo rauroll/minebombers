@@ -42,6 +42,8 @@ Game::Game() {
     round = 0;
     totalRounds = 3;
     roundEndClocktime = 120;
+    
+    ResourceManager::getInstance().playMusic();
 }
 
 void Game::startRound() {
@@ -83,8 +85,6 @@ void Game::startRound() {
         map.makeFloorAround(p.getPos());
         revealMapAt(p.getPos());
     }
-    
-    ResourceManager::getInstance().playMusic("game");
 }
 
 

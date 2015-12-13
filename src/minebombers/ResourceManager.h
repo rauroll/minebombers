@@ -35,7 +35,7 @@ public:
     const void playKling(int value);
     const void playPickSound(int pitch);
     const void playExplosion(int damage, std::string soundName);
-    const void playMusic(std::string musicName);
+    const void playMusic();
     const void playDeathSound();
     const void playHurtSound();
     const void enableMusic(bool);

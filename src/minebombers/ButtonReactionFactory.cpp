@@ -39,6 +39,7 @@ std::map<sf::Keyboard::Key, ButtonReaction> ButtonReactionFactory::getPlayerButt
         
         buttons[(sf::Keyboard::Key)(config.getInt("p1_shoot", sf::Keyboard::RAlt))] = SHOOT;
         buttons[(sf::Keyboard::Key)(config.getInt("p1_change_weapon", sf::Keyboard::RShift))] = CHANGE_WEAPON;
+        buttons[(sf::Keyboard::Key)(config.getInt("p1_use_pick", sf::Keyboard::Slash))] = USE_PICK;
     }
     else if (id == 1) {
         buttons[(sf::Keyboard::Key)(config.getInt("p2_up", sf::Keyboard::W))] = MOVE_UP;
@@ -48,6 +49,7 @@ std::map<sf::Keyboard::Key, ButtonReaction> ButtonReactionFactory::getPlayerButt
         
         buttons[(sf::Keyboard::Key)(config.getInt("p2_shoot", sf::Keyboard::LAlt))] = SHOOT;
         buttons[(sf::Keyboard::Key)(config.getInt("p2_change_weapon", sf::Keyboard::LShift))] = CHANGE_WEAPON;
+        buttons[(sf::Keyboard::Key)(config.getInt("p2_use_pick", sf::Keyboard::Dash))] = USE_PICK;
     }
     else if (id > 1) {
         std::string pre = "p" + std::to_string(id + 1);
@@ -58,7 +60,8 @@ std::map<sf::Keyboard::Key, ButtonReaction> ButtonReactionFactory::getPlayerButt
         buttons[(sf::Keyboard::Key)(config.getInt(pre + "_right", sf::Keyboard::Unknown))] = MOVE_RIGHT;
         
         buttons[(sf::Keyboard::Key)(config.getInt(pre + "_shoot", sf::Keyboard::Unknown))] = SHOOT;
-        buttons[(sf::Keyboard::Key)(config.getInt(pre + "_change_weapon", sf::Keyboard::Unknown))] = CHANGE_WEAPON;        
+        buttons[(sf::Keyboard::Key)(config.getInt(pre + "_change_weapon", sf::Keyboard::Unknown))] = CHANGE_WEAPON;  
+        buttons[(sf::Keyboard::Key)(config.getInt(pre + "_use_pick", sf::Keyboard::Dash))] = USE_PICK;
     }
     
     return buttons;

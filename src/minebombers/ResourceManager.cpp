@@ -132,16 +132,14 @@ const void ResourceManager::playExplosion(int damage, std::string soundName) {
 }
 
 
-const void ResourceManager::playMusic(std::string musicName) {
-    if (musicName == "game") {
-        if (!this->music.openFromFile("assets/never_die.flac")) {
-            return;
-        }
-        //this->music.setPitch(2); // for hilarious effect :: D maybe for some power up?
-        this->music.setVolume(15);
-        this->music.play();
-        this->music.setLoop(true);
+const void ResourceManager::playMusic() {
+    if (!this->music.openFromFile("assets/never_die.flac")) {
+        return;
     }
+    //this->music.setPitch(2); // for hilarious effect :: D maybe for some power up?
+    this->music.setVolume(15);
+    this->music.play();
+    this->music.setLoop(true);
 }
 
 const void ResourceManager::enableMusic(bool enable) {
