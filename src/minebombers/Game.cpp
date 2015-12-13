@@ -267,6 +267,12 @@ void Game::movePlayer(uint8_t player, sf::Vector2u d) {
     }
 }
 
+void Game::turnPlayer(uint8_t player, sf::Vector2u d) {
+    if(player < players.size()) {
+        players[player].setDirection(d);
+    }
+}
+
 sf::Image& Game::getOverlayImage() {
     return overlayImage;
 }

@@ -46,34 +46,36 @@ void ShopScene::onEvent(sf::Event& event) {
     Game& game = Game::getInstance();
     
     if (event.type == sf::Event::KeyPressed) {
-        if(event.type == sf::Event::KeyPressed) {
-            for(size_t i = 0; i < game.getPlayers().size(); i++) {
-                ButtonReactionFactory buttonFactory;
-                std::map<sf::Keyboard::Key, ButtonReaction> buttons = buttonFactory.getPlayerButtons(i);
- 
-                if(buttons.find(event.key.code) != buttons.end()) {
-                    ButtonReaction button = buttons[event.key.code];
-                    
-                    switch(button) {
-                        case MOVE_UP:
-                            if(i % 2)
-                                ResourceManager::getInstance().playSound("plip");
-                            else
-                                ResourceManager::getInstance().playSound("plop");
-                            playerSelections[i]--;
-                            break;
-                        case MOVE_DOWN:
-                            if(i % 2)
-                                ResourceManager::getInstance().playSound("plip");
-                            else
-                                ResourceManager::getInstance().playSound("plop");
-                            playerSelections[i]++;
-                            break;
-                        case SHOOT:
-                            this->buyAmmo(i, this->weapons[playerSelections[i]]);
-                        default:
-                            break;
-                    }
+        if(event.key.code == sf::Keyboard::Return) {
+            game.setScene(GAMESCENE);
+        }
+        
+        for(size_t i = 0; i < game.getPlayers().size(); i++) {
+            ButtonReactionFactory buttonFactory;
+            std::map<sf::Keyboard::Key, ButtonReaction> buttons = buttonFactory.getPlayerButtons(i);
+
+            if(buttons.find(event.key.code) != buttons.end()) {
+                ButtonReaction button = buttons[event.key.code];
+
+                switch(button) {
+                    case MOVE_UP:
+                        if(i % 2)
+                            ResourceManager::getInstance().playSound("plip");
+                        else
+                            ResourceManager::getInstance().playSound("plop");
+                        playerSelections[i]--;
+                        break;
+                    case MOVE_DOWN:
+                        if(i % 2)
+                            ResourceManager::getInstance().playSound("plip");
+                        else
+                            ResourceManager::getInstance().playSound("plop");
+                        playerSelections[i]++;
+                        break;
+                    case SHOOT:
+                        this->buyAmmo(i, this->weapons[playerSelections[i]]);
+                    default:
+                        break;
                 }
             }
         }
@@ -148,7 +150,7 @@ void ShopScene::draw(sf::RenderWindow& window) {
         moneyY += 50;
     }
     
-    sf::Text nextRound("Next round starts in " + std::to_string((int) ceil(this->shopTime - clock.getElapsedTime().asSeconds())) + "...", font, 60);
+    sf::Text nextRound("Next round starts in " + std::to_string((int) ceil(this->shopTime - clock.getElapsedTime().asSeconds())) + " or press enter...", font, 60);
     sf::FloatRect bounds = nextRound.getLocalBounds();
     nextRound.setPosition(size.x / 2 - bounds.width / 2, size.y - bounds.height - 50);
     window.draw(nextRound);
