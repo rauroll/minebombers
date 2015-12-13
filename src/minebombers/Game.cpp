@@ -37,14 +37,13 @@ Game::Game() {
     scenes[SHOPSCENE] = new ShopScene();
     
     map = loader.fromFile("maps/map.mb");
-    
 }
 
 void Game::startRound() {
     round++;
     roundEnded = false;
     roundClock.restart();
-    roundTime = sf::seconds(100);
+    roundTime = sf::seconds(10);
     //map = loader.fromFile("maps/map.mb");
     map = gen.generate();
     
@@ -80,11 +79,16 @@ void Game::startRound() {
 
 void Game::endRound(bool switchToShop) {
     if (switchToShop) {
-        setScene(SHOPSCENE);
-       // players.clear();
+        if(round == totalRounds) {
+            setScene(MENUSCENE);
+        }
+        else {
+            setScene(SHOPSCENE);
+        }
+        
         treasures.clear();
         effects.clear();
-        //projectiles.clear();
+        projectiles.clear();
     } else {
         roundEndClock.restart();
         roundEnded = true;
@@ -292,12 +296,13 @@ bool Game::soundEnabled() {
 }
 
 void Game::update(sf::Time dt) {
-    if (getRoundRemainingTime() <= sf::seconds(0)) {
+    if (getRoundRemainingTime() <= sf::seconds(0) && !roundEnded) {
         endRound();
     }
     
-    if (roundEndClock.getElapsedTime().asSeconds() > 5 && roundEnded)
-        endRound(true);
+    if (roundEndClock.getElapsedTime().asSeconds() > 5 && roundEnded) {
+        endRound(true);   
+    }
     
     for(auto &i : players) {
         i.updateSpritePosition(4);
@@ -327,5 +332,11 @@ void Game::update(sf::Time dt) {
             i--;
         }
     }
+}
 
+void Game::initGame() {
+    round = 0;
+    players.clear();
+    treasures.clear();
+    projectiles.clear();
 }
