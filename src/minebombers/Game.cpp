@@ -303,22 +303,25 @@ sf::Vector2u Game::getRandomEmptyPos() {
 }
 
 void Game::addPlayer(const std::string& name, const std::string textureName) {
-    sf::Vector2i pos;    
+    sf::Vector2u pos;    
     bool found = false;
+    int cleared;
     if (players.size() >= 1) {
         while (!found) {
-            pos = sf::Vector2i(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 2);
-            for (auto& p : players) {
-                int dist = (int) sqrt(pow(pos.x - p.getPos().x, 2) + pow(pos.y - p.getPos().y, 2));
-                std::cout << "dist:" << dist << std::endl;
-                if (dist >= 16) {
-                    found = true;
-                    break;
+            while (cleared < players.size()) {
+                cleared = 0;
+                pos = sf::Vector2u(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 2);
+                for (auto& p : players) {
+                    unsigned int dist = (unsigned int) sqrt(pow((int) pos.x - (int) p.getPos().x, 2) + pow((int) pos.y - (int) p.getPos().y, 2));
+                    if (dist >= 16) {
+                        cleared++;
+                    }
                 }
             }
+            found = true;
         }
     } else {
-        pos = sf::Vector2i(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 2);
+        pos = sf::Vector2u(rand() % (map.getSize().x - 2) + 1, rand() % (map.getSize().y - 2) + 2);
     }
     
     Player p(textureName, pos.x, pos.y, name);
