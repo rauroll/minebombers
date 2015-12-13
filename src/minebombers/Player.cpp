@@ -101,7 +101,7 @@ unsigned int Player::getAmmo(std::string weaponName) {
 Projectile Player::useWeapon() {
     Weapon& wep = this->getActiveWeapon();
     if (activeWeapon->second < 999) activeWeapon->second--;
-    return wep.use(this->getPos(), this->getDir());
+    return wep.use(this->name, this->getPos(), this->getDir());
 }
 
 bool Player::hasAmmo() {
