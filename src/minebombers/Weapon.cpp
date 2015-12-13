@@ -24,7 +24,6 @@ Weapon::Weapon(const Weapon& orig) : projectile(orig.projectile) {
     this->name = orig.name;
     this->price = orig.price;
     this->shotAudioName = orig.shotAudioName;
-    this->ammoCount = orig.ammoCount;
 }
 
 Weapon::~Weapon() {
@@ -38,13 +37,6 @@ int Weapon::getPrice() const {
     return this->price;
 }
 
-int Weapon::getAmmoCount() const {
-    return this->ammoCount;
-}
-
-void Weapon::addAmmo(int amount) {
-    this->ammoCount += amount;
-}
 
 std::string Weapon::getName() {
     return name;

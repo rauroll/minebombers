@@ -31,16 +31,14 @@ public:
     
     const Projectile& getProjectile();
     
-    void addAmmo(int amount);
-    int getAmmoCount() const;
+
     int getPrice() const;
-    
+
     std::string getName();
     
 protected:
     std::string shotAudioName;
     std::string name;
-    int ammoCount;
     int price;
     Projectile projectile;
     
