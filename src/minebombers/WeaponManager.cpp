@@ -63,6 +63,9 @@ void WeaponManager::addWeaponsToPlayer(Player& player) {
     for (auto& w : weapons) {
         player.addWeapon(w);
     }
+    // starting ammo
+    player.buyAmmo("jonnegun", 20, 0);
+    player.buyAmmo("bomb", 5, 0);
     // Add unlimited ammo to default weapon
     player.buyAmmo("pick", 999, 0);
     player.nextWeapon();
