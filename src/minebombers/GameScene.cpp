@@ -73,7 +73,7 @@ void GameScene::draw(sf::RenderWindow& window) {
         overlay.setTexture(overlayTexture);
         window.draw(overlay);
     }
-    
+
     drawStatusBar(window);
 }
 
