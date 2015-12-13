@@ -119,7 +119,7 @@ void ShopScene::draw(sf::RenderWindow& window) {
     }
     
     int i = 0;
-    for(auto w : weapons) {
+    for(auto& w : weapons) {
         sf::Text text(w.getName() + ", $" + std::to_string(w.getPrice()), font, 50);
         text.setPosition(xPosition + 50, 200 + i++ * 55);
         window.draw(text);
