@@ -119,6 +119,7 @@ void Game::onPlayerDead(std::string killed, std::string killer) {
         if (p.getName() == killer) {
             if (killer == killed) {
                 p.incrementScore(-5);
+                p.setMoney(0);
             } else {
                 p.incrementScore(10);
             }
