@@ -12,6 +12,7 @@
  */
 
 #include "WeaponManager.h"
+#include "ConfigManager.h"
 #include <iostream>
 
 WeaponManager::WeaponManager() {
@@ -53,6 +54,12 @@ void WeaponManager::createWeapons() {
     Projectile bigDynamite = Projectile("big dynamite", "assets/dynamite_big.png", "boom", 70, explosion, EXPLOSIVE, CROSS, sf::Vector2u(10, 10), sf::milliseconds(3000));
     Projectile pick = Projectile("pick", "assets/projectile.png", "explosion", 20, explosion, PICK, CROSS, sf::Vector2u(0, 0), sf::milliseconds(0), 1);
     
+    ConfigManager& config = ConfigManager::getInstance();
+    
+    std::string holySound = "shot";
+    if(config.getInt("are_you_patronizingperson_with_puritan_moral_sense", 1) == 0)
+        holySound = "allahuakbar";
+ 
     Projectile holybomb = Projectile("holybomb", "assets/teddy.png", "hugeboom", 120, explosion, EXPLOSIVE, CIRCLE, sf::Vector2u(50, 50), sf::milliseconds(4000));
     
     Projectile mineBomb = Projectile("landmine", "assets/mine.png", "boom", 100, explosion, MINE, CIRCLE, sf::Vector2u(5, 5), sf::milliseconds(5000));
@@ -63,7 +70,7 @@ void WeaponManager::createWeapons() {
     this->addWeapon(Weapon("small dynamite", "ignite", 100, smallDynamite));
     this->addWeapon(Weapon("big dynamite", "ignite", 200, bigDynamite));
     this->addWeapon(Weapon("atomic bomb", "shot", 800, atomicBomb));
-    this->addWeapon(Weapon("holy bomb", "allahuakbar", 5000, holybomb));
+    this->addWeapon(Weapon("holy bomb", holySound, 5000, holybomb));
     this->addWeapon(Weapon("mine", "shot", 500, mineBomb));
     this->pick = Weapon("pick", "pick", 0, pick);
     
