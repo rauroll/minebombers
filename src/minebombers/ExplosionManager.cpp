@@ -86,6 +86,12 @@ void ExplosionManager::crossExplosion(Projectile& projectile) {
             p.reduceHealth(damage, projectile.getUser());
         }
     }
+    
+    for (auto& p : projectiles) {
+        if (p.getPos() == loc) {
+            this->chainExplode(p);
+        }
+    }
 
 }
 
