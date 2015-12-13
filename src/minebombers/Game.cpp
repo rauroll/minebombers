@@ -59,13 +59,21 @@ void Game::startRound() {
     
     setRandomTreasures(50);
     
-    addPlayer("JERE");
-    addPlayer("JERE2");
+    if(round == 1) {
+        addPlayer("JERE");
+        addPlayer("JERE2");
+
+        WeaponManager& wepMan = WeaponManager::getInstance();
+        wepMan.createWeapons();
+        for (auto& p : players)
+            wepMan.addWeaponsToPlayer(p); 
+    }
     
-    WeaponManager& wepMan = WeaponManager::getInstance();
-    wepMan.createWeapons();
-    for (auto& p : players)
-        wepMan.addWeaponsToPlayer(p); 
+    for(auto& p : players) {
+        p.setHealt(100);
+        map.makeFloorAround(p.getPos());
+        revealMapAt(p.getPos());
+    }
     
     ResourceManager::getInstance().playMusic("game");
 }
@@ -73,7 +81,7 @@ void Game::startRound() {
 void Game::endRound(bool switchToShop) {
     if (switchToShop) {
         setScene(SHOPSCENE);
-        players.clear();
+       // players.clear();
         treasures.clear();
         effects.clear();
         //projectiles.clear();
@@ -129,7 +137,6 @@ int Game::getRound() {
 int Game::getTotalRounds() {
     return totalRounds;
 }
-
 
 void Game::setScene(SceneType scene) {
     currentScene = scenes.at(scene);
@@ -256,8 +263,6 @@ void Game::addPlayer(const std::string& name) {
     
     Player p("assets/playersprite.png", pos.x, pos.y, name);
     players.push_back(p);
-    map.makeFloorAround(pos);
-    revealMapAt(p.getPos());
 }
 
 void Game::addProjectile(Projectile projectile) {

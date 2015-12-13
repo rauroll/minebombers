@@ -36,6 +36,10 @@ int Entity::getHealth() {
     return this->health;
 }
 
+void Entity::setHealt(int healt) {
+    this->health = healt;
+} 
+
 void Entity::reduceHealth(int damage) {
     bool wasAlive = this->isAlive();
     Game& game = Game::getInstance();

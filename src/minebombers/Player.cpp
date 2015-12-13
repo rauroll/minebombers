@@ -27,6 +27,8 @@ Player::Player(const std::string& texturefile, int x, int y, const std::string& 
 Player::Player(const Player& orig) : Entity(orig){
     money = orig.money;
     score = orig.score;
+    weaponsMap = std::map<std::string, unsigned int>(orig.weaponsMap);
+    activeWeapon = orig.activeWeapon;
 }
 
 Player::~Player() {
@@ -79,7 +81,6 @@ unsigned int Player::getActiveWeaponAmmo() {
 
 void Player::buyAmmo(std::string weaponName, unsigned int amount, int price) {
     if (weaponsMap.find(weaponName) == weaponsMap.end()) {
-        std::cout << "Weapon didn't exist" << std::endl;
     } else {
         this->money -= price;
         weaponsMap[weaponName] += amount;
@@ -91,7 +92,8 @@ unsigned int Player::getAmmo(std::string weaponName) {
         std::cout << "Weapon didn't exist" << std::endl;
         return 0;
     } else {
-        return weaponsMap[weaponName];
+        int asd = weaponsMap[weaponName];
+        return asd;
     }
 }
 
