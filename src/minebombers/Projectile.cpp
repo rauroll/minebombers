@@ -111,6 +111,7 @@ bool Projectile::updateBomb(sf::Time dt) {
     if (this->timer <= sf::milliseconds(0)) {
         if (this->projectileType == MINE) {
             this->setProjectileType(ACTIVATEDMINE);
+            this->setDirection(sf::Vector2u(0, 0));
         } else {
             ExplosionManager::getInstance().explode(*this);
             return true;
